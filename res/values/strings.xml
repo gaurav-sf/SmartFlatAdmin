@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">SmartFlatAdmin</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="new_users">Registered</string>
+    <string name="activated_users">Activated</string>
+    <string name="new_request">New</string>
+    <string name="closed_request">Closed</string>
+    <string name="new_notice">New</string>
+    <string name="sent_notice">Sent</string>
+
+    <string-array name="nav_drawer_items">
+        <item>Home</item>
+        <item>Users</item>
+        <item>Society</item>
+        <item>Requests</item>
+        <item>Notices</item>
+        <item>Contacts</item>
+        <item>About App</item>
+        <item>Help</item>
+        <item>Sign Out</item>
+    </string-array>
+
+    <!-- Nav Drawer List Item Icons -->
+    <!-- Keep them in order as the titles are in -->
+    <array name="nav_drawer_icons">
+        <item>@drawable/ic_home</item>
+        <item>@drawable/ic_people</item>
+        <item>@drawable/ic_photos</item>
+        <item>@drawable/ic_communities</item>
+        <item>@drawable/ic_pages</item>
+        <item>@drawable/ic_whats_hot</item>
+        <item>@drawable/ic_launcher</item>
+    </array>
+
+</resources>
