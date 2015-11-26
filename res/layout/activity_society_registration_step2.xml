@@ -4,22 +4,33 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="20sp" >
-    
+
     <TextView
         android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Society Registration \nStep 2/2"
         android:layout_gravity="center"
-        android:gravity="center"/>
-
-
+        android:gravity="center"
+        android:text="Society Registration \nStep 2/2"
+        android:textColor="#595959"
+        android:textSize="25sp" />
+    
+    <View
+            android:id="@+id/view1"
+            android:layout_width="150dp"
+            android:layout_height="1dp"
+            android:layout_below="@id/textView1"
+            android:layout_gravity="center"
+            android:layout_marginTop="18dp"
+            android:background="#469196" />
 
     <ScrollView
         android:id="@+id/scrollView1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20sp">
+        android:layout_marginTop="20sp" 
+        android:layout_above="@+id/buttonNext"
+        android:layout_below="@+id/view1">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -30,55 +41,55 @@
                 android:id="@+id/editTextUsername"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
                 android:editable="false"
                 android:ems="10"
                 android:hint="Username"
                 android:inputType="none"
-                android:padding="10sp" />
+                android:background="@drawable/edittext_bg"
+                android:padding="10dp"/>
 
             <EditText
                 android:id="@+id/editTextPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
                 android:ems="10"
                 android:hint="password"
                 android:inputType="textPassword"
-                android:padding="10sp" />
+                android:layout_marginTop="20dp"
+                android:background="@drawable/edittext_bg"
+                android:padding="10dp" />
 
-            <EditText
-                android:id="@+id/editTextSecurityQuestion"
+            <Spinner
+                android:id="@+id/spinnerSecurityQue"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:editable="false"
+                android:layout_height="40sp"
+                android:layout_marginTop="25dp"
+                android:background="@drawable/spinner_bg"
                 android:ems="10"
-                android:inputType="none"
-                android:padding="10sp"
-                android:text="What is your nick name?" />
+                android:hint="Floor Number"
+                android:popupBackground="@color/spinner_popup" />
 
             <EditText
                 android:id="@+id/editTextAnswer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
                 android:ems="10"
                 android:hint="answer"
-                android:padding="10sp" />
+                android:layout_marginTop="20dp"
+                android:background="@drawable/edittext_bg"
+                android:padding="10dp"/>
+
             
-            <Button
-        android:id="@+id/buttonSubmit"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:ems="10"
-        android:text="SUBMIT"/>
         </LinearLayout>
     </ScrollView>
-
-    
-
-    
+    <Button
+                android:id="@+id/buttonSubmit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:ems="10"
+                android:text="SUBMIT" 
+                android:background="@drawable/btnbg"
+                android:textColor="#ffffff"/>
 
 </LinearLayout>

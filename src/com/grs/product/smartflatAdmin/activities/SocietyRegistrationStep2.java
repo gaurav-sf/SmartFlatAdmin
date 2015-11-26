@@ -1,17 +1,24 @@
 package com.grs.product.smartflatAdmin.activities;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
+
 import com.grs.product.smartflatAdmin.R;
 import com.grs.product.smartflatAdmin.SmartFlatAdminApplication;
 import com.grs.product.smartflatAdmin.apicall.AsyncTaskCompleteListener;
 import com.grs.product.smartflatAdmin.asynctasks.SaveSocietyOwnerCredentialTask;
+import com.grs.product.smartflatAdmin.database.SmartFlatAdminDBManager;
 import com.grs.product.smartflatAdmin.error.SmartFlatAdminError;
 import com.grs.product.smartflatAdmin.response.Response;
 import com.grs.product.smartflatAdmin.utils.CustomProgressDialog;
@@ -20,23 +27,33 @@ import com.grs.product.smartflatAdmin.utils.Utilities;
 
 public class SocietyRegistrationStep2 extends Activity {
 	
-	private EditText mEditTextUsername, mEditTextPassword, mEditTextSecurityQue, mEditTextAnswer;
+	private EditText mEditTextUsername, mEditTextPassword, mEditTextAnswer;
+	private Spinner mSpinnerSecurityQue ;
 	private Button buttonSubmit;
+	private Bundle extras;
+	String[] security_Questions = {
+			"What is your nick name?",
+			"What is your birth place?",
+			"Who is your favorite cricket player?",
+			"What is your favorite color",
+
+			};
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_society_registration_step2);
+		 extras = getIntent().getExtras();
 		initializeUI();
 		addListeners();
+		createSpinnerData();
 	}
 	
 	private void initializeUI()
 	{
 		mEditTextUsername = (EditText) findViewById(R.id.editTextUsername);
-		mEditTextUsername.setText(SmartFlatAdminApplication.getSocietyCodeFromSharedPreferences());
+		mEditTextUsername.setText(extras.getString("societyCode"));
 		mEditTextPassword = (EditText) findViewById(R.id.editTextPassword); 
-		mEditTextSecurityQue =  (EditText) findViewById(R.id.editTextSecurityQuestion); 
-		mEditTextAnswer =  (EditText) findViewById(R.id.editTextAnswer);
+		mSpinnerSecurityQue =  (Spinner) findViewById(R.id.spinnerSecurityQue); 		mEditTextAnswer =  (EditText) findViewById(R.id.editTextAnswer);
 		buttonSubmit = (Button) findViewById(R.id.buttonSubmit);	
 	}
 	
@@ -87,7 +104,7 @@ public class SocietyRegistrationStep2 extends Activity {
 	{
 		SocietyRegistrationStep1.mSocietyDetails.setmUsername(mEditTextUsername.getText().toString());
 		SocietyRegistrationStep1.mSocietyDetails.setmPassword(mEditTextPassword.getText().toString());
-		SocietyRegistrationStep1.mSocietyDetails.setmSecurityQuestion(mEditTextSecurityQue.getText().toString());
+		//SocietyRegistrationStep1.mSocietyDetails.setmSecurityQuestion(mSpinnerSecurityQue.getText().toString());
 		SocietyRegistrationStep1.mSocietyDetails.setmAnswer(mEditTextAnswer.getText().toString());
 	}
 	
@@ -104,6 +121,8 @@ public class SocietyRegistrationStep2 extends Activity {
 			{
 				if (result.getStatus().equalsIgnoreCase("success")) 
 				{
+					SmartFlatAdminApplication.saveSocietyCodeInSharedPreferences(extras.getString("societyCode"));
+					saveDataInDB();
 					gotoNextActivity();
 					
 				}else{
@@ -119,7 +138,8 @@ public class SocietyRegistrationStep2 extends Activity {
 
 		@Override
 		public void onStopedWithError(SmartFlatAdminError e) {
-			CustomProgressDialog.removeDialog();			
+			CustomProgressDialog.removeDialog();	
+			Utilities.ShowAlertBox(SocietyRegistrationStep2.this, "Error", "Server Error. Please try after some time.");
 		}
 		
 	}
@@ -129,5 +149,24 @@ public class SocietyRegistrationStep2 extends Activity {
 		startActivity(intentLogin);
 		finish();
 	}
+	
+	private void saveDataInDB(){
+		SmartFlatAdminDBManager objDbManager = new SmartFlatAdminDBManager();
+	}
+	
+	private void createSpinnerData(){
+		//Later the values for the spinner will come from the database. 
+		//The values which we are going to save after validation of society code
+		List<String> listSecurityQuestion = new ArrayList<String>();
+		for (int i = 0; i < security_Questions.length; i++) {
+			listSecurityQuestion.add(security_Questions[i]);
+			
+		}
+		ArrayAdapter<String> securityQuestion = new ArrayAdapter<String>
+		(this, android.R.layout.simple_dropdown_item_1line, listSecurityQuestion);
+		securityQuestion.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);		
+		mSpinnerSecurityQue.setAdapter(securityQuestion);
+
+}
 
 }

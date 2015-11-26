@@ -1,29 +1,29 @@
 package com.grs.product.smartflatAdmin.asynctasks;
 
-import java.util.List;
-
 import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
+
 import com.grs.product.smartflatAdmin.apicall.AsyncTaskCompleteListener;
 import com.grs.product.smartflatAdmin.apicall.SmartFlatAdminAPI;
 import com.grs.product.smartflatAdmin.error.SmartFlatAdminError;
-import com.grs.product.smartflatAdmin.models.FlatOwnerDetails;
 import com.grs.product.smartflatAdmin.response.Response;
 
-public class GetFlatUsersTask extends AsyncTask<Void, Void, SmartFlatAdminError>{
+public class ActivateFlatOwnerTask extends AsyncTask<Void, Void, SmartFlatAdminError>{
 
 	private static final String TAG = SaveSocietyOwnerCredentialTask.class.getName();
 	final Context mContext;
-	private AsyncTaskCompleteListener<List<FlatOwnerDetails>> listener = null;
-	List<FlatOwnerDetails> listFlatOwnerDetails;
+	private AsyncTaskCompleteListener<Response> listener = null;
+	Response mLoginStatus;
+	private String flatOwnerCode;
 	
-	public GetFlatUsersTask(Context mContext, 
-			AsyncTaskCompleteListener<List<FlatOwnerDetails>> listener) 
-	{
+	public ActivateFlatOwnerTask(Context mContext,
+			AsyncTaskCompleteListener<Response> listener,
+			String flatOwnerCode) {
 		
 		this.mContext = mContext;
 		this.listener = listener;
+		this.flatOwnerCode = flatOwnerCode;
 	}
 	
 	@Override
@@ -35,12 +35,9 @@ public class GetFlatUsersTask extends AsyncTask<Void, Void, SmartFlatAdminError>
 	@Override
 	protected SmartFlatAdminError doInBackground(Void... params) {
 		SmartFlatAdminAPI smartFlatAdminAPI = new SmartFlatAdminAPI(mContext);		
-		try {
-			
-			listFlatOwnerDetails = smartFlatAdminAPI.getFlatUsers();
-			if (listFlatOwnerDetails==null) {
-				return new SmartFlatAdminError("No new users registered");				
-			}
+		try 
+		{			
+			mLoginStatus = smartFlatAdminAPI.activateFlatOwner(flatOwnerCode);
 			
 		} catch (SmartFlatAdminError e) {
 			Log.e(TAG, e.toString());
@@ -53,12 +50,12 @@ public class GetFlatUsersTask extends AsyncTask<Void, Void, SmartFlatAdminError>
 	@Override
 	protected void onPostExecute(SmartFlatAdminError error) {
 		
-		if(listFlatOwnerDetails!=null)
+		if(mLoginStatus!=null)
 		{
 			if(listener!=null)
 			{
 				listener.onStoped();
-				listener.onTaskComplete(listFlatOwnerDetails);
+				listener.onTaskComplete(mLoginStatus);
 				listener = null;
 			}
 		}

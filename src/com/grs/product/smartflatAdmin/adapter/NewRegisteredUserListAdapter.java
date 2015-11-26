@@ -3,15 +3,23 @@ package com.grs.product.smartflatAdmin.adapter;
 import java.util.ArrayList;
 import java.util.List;
 import android.content.Context;
+import android.os.AsyncTask;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.TextView;
-
 import com.grs.product.smartflatAdmin.R;
+import com.grs.product.smartflatAdmin.apicall.AsyncTaskCompleteListener;
+import com.grs.product.smartflatAdmin.asynctasks.ActivateFlatOwnerTask;
+import com.grs.product.smartflatAdmin.error.SmartFlatAdminError;
 import com.grs.product.smartflatAdmin.models.FlatOwnerDetails;
+import com.grs.product.smartflatAdmin.response.Response;
+import com.grs.product.smartflatAdmin.utils.CustomProgressDialog;
+import com.grs.product.smartflatAdmin.utils.NetworkDetector;
+import com.grs.product.smartflatAdmin.utils.Utilities;
 
 public class NewRegisteredUserListAdapter extends BaseAdapter {
 	private Context context;
@@ -27,19 +35,16 @@ public class NewRegisteredUserListAdapter extends BaseAdapter {
 
 	@Override
 	public int getCount() {
-		// TODO Auto-generated method stub
 		return listFlatOwnerDetails.size();
 	}
 
 	@Override
 	public Object getItem(int position) {
-		// TODO Auto-generated method stub
 		return listFlatOwnerDetails.get(position);
 	}
 
 	@Override
 	public long getItemId(int position) {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 
@@ -51,9 +56,67 @@ public class NewRegisteredUserListAdapter extends BaseAdapter {
 					.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 			rowView = infalInflater.inflate(R.layout.new_register_user_list_item, null);
 		}
-		 TextView mUserName;
-		 Button mButtonActivate;
-		return null;
+		final FlatOwnerDetails temp = listFlatOwnerDetails.get(position);
+		 TextView mUserName = (TextView) rowView.findViewById(R.id.textViewUserName);
+		 mUserName.setText(temp.getmFlatOwnerCode());
+		 Button mButtonActivate= (Button) rowView.findViewById(R.id.buttonActivate);
+		 mButtonActivate.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				activateFlatOwnerCall(temp.getmFlatOwnerCode());
+				
+			}
+		});
+		return rowView;
+	}
+	
+	private void activateFlatOwnerCall(String flatOwnerCode){
+
+		if (NetworkDetector.init(context).isNetworkAvailable()) 
+		{
+			new ActivateFlatOwnerTask(context, new ActivateFlatOwnerTaskListener(), flatOwnerCode)
+			.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+		} 
+		else 
+		{
+			Utilities.ShowAlertBox(context,"Error", "Please check your Internet");
+		}				
+	}
+	
+	public class ActivateFlatOwnerTaskListener implements AsyncTaskCompleteListener<Response>{
+
+		@Override
+		public void onStarted() {
+			CustomProgressDialog.showProgressDialog(context, "", false);
+		}
+
+		@Override
+		public void onTaskComplete(Response result) {
+			if (result!=null) {
+				if (result.getStatus().equals("success"))
+				{
+					Utilities.ShowAlertBox(context, "Message", result.getMessage());		
+				}else if (result.getStatus().equals("failure")){
+					Utilities.ShowAlertBox(context, "Message", result.getMessage());
+				}else{
+					Utilities.ShowAlertBox(context, "Message", "Something went wrong please try later");
+				}
+			}
+		}
+
+		@Override
+		public void onStoped() {
+			CustomProgressDialog.removeDialog();
+		}
+
+		@Override
+		public void onStopedWithError(SmartFlatAdminError e) {
+			CustomProgressDialog.removeDialog();
+			Utilities.ShowAlertBox(context, "Error", "Something went wrong please try later");
+			
+		}
+		
 	}
 
 }

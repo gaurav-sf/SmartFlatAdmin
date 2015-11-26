@@ -5,14 +5,25 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteDatabase.CursorFactory;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
+
 import com.grs.product.smartflatAdmin.SmartFlatAdminApplication;
+import com.grs.product.smartflatAdmin.database.SmartFlatAdminDBTables.TableFlatOwnerDetails;
 import com.grs.product.smartflatAdmin.database.SmartFlatAdminDBTables.TableNames;
+import com.grs.product.smartflatAdmin.database.SmartFlatAdminDBTables.TableRequestDetails;
+import com.grs.product.smartflatAdmin.database.SmartFlatAdminDBTables.TableSocietyDetails;
+import com.grs.product.smartflatAdmin.database.SmartFlatAdminDBTables.TableSocietyOwnerDetails;
+import com.grs.product.smartflatAdmin.models.FlatOwnerDetails;
+import com.grs.product.smartflatAdmin.models.RequestDetails;
+import com.grs.product.smartflatAdmin.models.SocietyDetails;
+import com.grs.product.smartflatAdmin.models.SocietyOwnerDetails;
 
 public class SmartFlatAdminDatabase {
 	private SQLiteDatabase mDb;
@@ -108,7 +119,7 @@ public class SmartFlatAdminDatabase {
 	}
 
 
-	private void createComplaintDetailsTable(SQLiteDatabase db){
+/*	private void createComplaintDetailsTable(SQLiteDatabase db){
 		try {
 			db.beginTransaction();
 			db.execSQL(SmartFlatAdminDBTableCreation.TABLE_COMPLAINT_DETAILS_CREATION_QUERY);
@@ -118,7 +129,7 @@ public class SmartFlatAdminDatabase {
 		}finally{
 			db.endTransaction();
 		}	
-	}
+	}*/
 
 	private void createRequestDetailsTable(SQLiteDatabase db){
 		try {
@@ -132,7 +143,7 @@ public class SmartFlatAdminDatabase {
 		}	
 	}
 
-	private void createQueryDetailsTable(SQLiteDatabase db){
+/*	private void createQueryDetailsTable(SQLiteDatabase db){
 		try {
 			db.beginTransaction();
 			db.execSQL(SmartFlatAdminDBTableCreation.TABLE_QUERY_DETAILS_CREATION_QUERY);
@@ -142,7 +153,7 @@ public class SmartFlatAdminDatabase {
 		}finally{
 			db.endTransaction();
 		}	
-	}
+	}*/
 
 	private void createSocietyNoticesTable(SQLiteDatabase db){
 		try {
@@ -171,9 +182,9 @@ public class SmartFlatAdminDatabase {
 				createFlatOwnerDetailsTable(db);
 				createSocietyOwnerDetailsTable(db);
 				createSocietyDetailsTable(db);
-				createComplaintDetailsTable(db);
+				//createComplaintDetailsTable(db);
 				createRequestDetailsTable(db);
-				createQueryDetailsTable(db);
+				//createQueryDetailsTable(db);
 				createSocietyNoticesTable(db);
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -187,13 +198,28 @@ public class SmartFlatAdminDatabase {
 		}
 
 	}
+	
+	public boolean saveSocietyOwnerDetails(SocietyOwnerDetails details){
+		boolean isAdded = false;
+		ContentValues values = new ContentValues();
+		values.put(TableSocietyOwnerDetails.SOCIETY_OWNER_NAME,details.getmSocietyOwnerName());
+		values.put(TableSocietyOwnerDetails.SOCIETY_OWNER_ADDRESS_LINE1,details.getmSocietyOwnerAddressLine1());
+		values.put(TableSocietyOwnerDetails.SOCIETY_OWNER_ADDRESS_LINE2,details.getmSocietyOwnerAddressLine2());
+		values.put(TableSocietyOwnerDetails.SOCIETY_OWNER_CITY,details.getmSocietyOwnerCity());
+		values.put(TableSocietyOwnerDetails.SOCIETY_OWNER_STATE,details.getmSocietyOwnerState());
+		values.put(TableSocietyOwnerDetails.SOCIETY_OWNER_PIN,details.getmSocietyOwnerPIN());
+		values.put(TableSocietyOwnerDetails.SOCIETY_OWNER_CONTACT_NO,details.getmSocietyOwnerContactNo());
+		values.put(TableSocietyOwnerDetails.SOCIETY_OWNER_EMAIL_ID,details.getmSocietyOwnerEmailId());
 
-/*	public boolean saveSocietyDetails(SocietyDetails details)
+		return isAdded;
+	}
+
+	public boolean saveSocietyDetails(SocietyDetails details)
 	{
 		boolean isAdded = false;
 		ContentValues values = new ContentValues();
 		values.put(TableSocietyDetails.SOCIETY_CODE,details.getmSocietyCode());
-		values.put(TableSocietyDetails.SOCIETY_OWNER_NAME,details.getmSocietyOwnerName());
+/*		values.put(TableSocietyDetails.SOCIETY_OWNER_NAME,details.getmSocietyOwnerName());
 		values.put(TableSocietyDetails.SOCIETY_OWNER_ADDRESS_LINE1,details.getmSocietyOwnerAddressLine1());
 		values.put(TableSocietyDetails.SOCIETY_OWNER_ADDRESS_LINE2,details.getmSocietyOwnerAddressLine2());
 		values.put(TableSocietyDetails.SOCIETY_OWNER_CITY,details.getmSocietyOwnerCity());
@@ -201,11 +227,11 @@ public class SmartFlatAdminDatabase {
 		values.put(TableSocietyDetails.SOCIETY_OWNER_PIN,details.getmSocietyOwnerPIN());
 		values.put(TableSocietyDetails.SOCIETY_OWNER_CONTACT_NO,details.getmSocietyOwnerContactNo());
 		values.put(TableSocietyDetails.SOCIETY_OWNER_EMAIL_ID,details.getmSocietyOwnerEmailId());
-		values.put(TableSocietyDetails.SOCIETY_NAME,details.getmSocietyName());
+*/		values.put(TableSocietyDetails.SOCIETY_NAME,details.getmSocietyName());
 		values.put(TableSocietyDetails.BUILDING_NAME,details.getmBuildingName());
 		values.put(TableSocietyDetails.TOTAL_FLOOR_NUMBER,details.getmTotalFloorNumber());
 		values.put(TableSocietyDetails.SOCIETY_ADDRESS_LINE1,details.getmSocietyAddressLine1());
-		values.put(TableSocietyDetails.SOCIETY_ADDRESS_LINE2,details.getmSocietyOwnerAddressLine2());
+		values.put(TableSocietyDetails.SOCIETY_ADDRESS_LINE2,details.getmSocietyAddressLine2());
 		values.put(TableSocietyDetails.SOCIETY_ADDRESS_CITY,details.getmSocietyAddressCity());
 		values.put(TableSocietyDetails.SOCIETY_ADDRESS_STATE,details.getmSocietyAddressState());
 		values.put(TableSocietyDetails.SOCIETY_ADDRESS_PIN,details.getmSocietyAddressPIN());	
@@ -218,8 +244,8 @@ public class SmartFlatAdminDatabase {
 		} finally {
 			mDb.endTransaction();
 		}
-		return isAdded;		
-	}*/
+		return isAdded;
+		}
 
 	public Cursor getSocietyDetails(){
 		String selectQuery = "SELECT  * FROM " + TableNames.SOCIETY_DETAILS;
@@ -230,45 +256,48 @@ public class SmartFlatAdminDatabase {
 		return cursor;		
 	}
 
-/*	public boolean saveFlatOwnerDeatils(FlatOwnerDetails details){
+	public boolean saveFlatOwnerDeatils(FlatOwnerDetails details){
 		boolean isAdded = false;
 		ContentValues values = new ContentValues();
-		values.put(TableFlatOwnerDetails.USERNAME, details.getmUsername());
-		values.put(TableFlatOwnerDetails.PASSWORD, details.getmPassword());
-		values.put(TableFlatOwnerDetails.SECURITY_QUESTION, details.getmSecurityQuestion());
-		values.put(TableFlatOwnerDetails.ANSWER, details.getmAnswer());
 		values.put(TableFlatOwnerDetails.FLAT_OWNER_NAME, details.getmFlatOwnerName());
-		values.put(TableFlatOwnerDetails.FLAT_OWNER_DOB, details.getmFlatOwnerDOB());
-		values.put(TableFlatOwnerDetails.FLAT_OWNER_AGE, details.getmFlatOwnerAge());
+		//values.put(TableFlatOwnerDetails.FLAT_OWNER_DOB, details.getmFlatOwnerDOB());
 		values.put(TableFlatOwnerDetails.FLAT_OWNER_CONTACT_NO, details.getmFlatOwnerContactNo());
 		values.put(TableFlatOwnerDetails.FLAT_OWNER_EMAIL_ID, details.getmFlatOwnerEmailId());
 		values.put(TableFlatOwnerDetails.FLAT_BUILDING_NAME, details.getmBuildingName());
 		values.put(TableFlatOwnerDetails.FLOOR_NO, details.getmFloorNo());		
 		values.put(TableFlatOwnerDetails.FLAT_NO, details.getmFlatno());
-		values.put(TableFlatOwnerDetails.SOCIETY_CODE, details.getmSocietyCode());
 		values.put(TableFlatOwnerDetails.FLAT_OWNER_CREATED_DATETIME, details.getmFlatOwnerCreatedDateTime());
-		values.put(TableFlatOwnerDetails.NO_OF_FAMILY_MEMBER, details.getmNoofFamilyMembers());
-		values.put(TableFlatOwnerDetails.NO_OF_VEHICLE, details.getmNoofVehicles());
 		values.put(TableFlatOwnerDetails.FLAT_OWNER_CODE, details.getmFlatOwnerCode());
-		values.put(TableFlatOwnerDetails.PUSH_TOKEN, details.getmPushToken());
-		values.put(TableFlatOwnerDetails.ACCESS_TOKEN, details.getmAccessToken());
-		values.put(TableFlatOwnerDetails.FLAT_OWNER_LATITUDE, details.getmLatitude());
-		values.put(TableFlatOwnerDetails.FLAT_OWNER_LONGITUDE, details.getmLongitude());		
+		values.put(TableFlatOwnerDetails.IS_ACTIVE, details.isActive());
 		try {
-			mDb.beginTransaction();
-			isAdded = mDb.insert(TableNames.FLAT_OWNER_DETAILS, null, values) > 0;
-			mDb.setTransactionSuccessful();
+			if(getFlatOwnerDetails(details.getmFlatOwnerCode()).getCount()<=0)
+			{
+				mDb.beginTransaction();
+				isAdded = mDb.insert(TableNames.FLAT_OWNER_DETAILS, null, values) > 0;
+				mDb.setTransactionSuccessful();	
+			}
+
 		} catch (Exception e) {
 			Log.e("Error in transaction", e.toString());
 		} finally {
 			mDb.endTransaction();
 		}	
 		return isAdded;
-	}*/
+	}
 
 
-	public Cursor getFlatOwnerDetails(){
+	public Cursor getAllFlatOwnerDetails(){
 		String selectQuery = "SELECT  * FROM " + TableNames.FLAT_OWNER_DETAILS;
+		Cursor cursor = mDb.rawQuery(selectQuery, null);	
+		if (cursor != null && cursor.getCount()>0) {
+			cursor.moveToNext();
+		}
+		return cursor;		
+	}
+	
+	private Cursor getFlatOwnerDetails(String flatOwnerCode){
+		String selectQuery = "SELECT  * FROM " + TableNames.FLAT_OWNER_DETAILS
+				+ " WHERE "+ TableFlatOwnerDetails.FLAT_OWNER_CODE +" = "+flatOwnerCode;
 		Cursor cursor = mDb.rawQuery(selectQuery, null);	
 		if (cursor != null && cursor.getCount()>0) {
 			cursor.moveToNext();
@@ -298,35 +327,40 @@ public class SmartFlatAdminDatabase {
 		return isAdded;
 	}*/
 	
-	public Cursor getAllComplaintDetails(){
+/*	public Cursor getAllComplaintDetails(){
 		String selectQuery = "SELECT  * FROM " + TableNames.COMPLAINT_DETAILS;
 		Cursor cursor = mDb.rawQuery(selectQuery, null);	
 		if (cursor != null && cursor.getCount()>0) {
 			cursor.moveToNext();
 		}
 		return cursor;			
-	}
+	}*/
 	
-/*	public boolean saveRequestDetails(RequestDetails details){
+	public boolean saveRequestDetails(RequestDetails details){
 		boolean isAdded = false;
 		ContentValues values = new ContentValues();		
-		values.put(TableFlatOwnerRequestDetails.REQUEST_NUMBER, details.getmRequestNumber());
-		values.put(TableFlatOwnerRequestDetails.REQUEST_TYPE, details.getmRequestType());
-		values.put(TableFlatOwnerRequestDetails.REQUEST_PRIORITY, details.getmRequestPriority());
-		values.put(TableFlatOwnerRequestDetails.REQUEST_STATUS, details.getmRequestStatus());
-		values.put(TableFlatOwnerRequestDetails.REQUEST_DETAILS, details.getmRequestDetails());
-		values.put(TableFlatOwnerRequestDetails.REQUEST_DATETIME, details.getmRequestDateTime());
+		values.put(TableRequestDetails.REQUEST_NUMBER, details.getmRequestNumber());
+		values.put(TableRequestDetails.REQUEST_TYPE, details.getmRequestType());
+		values.put(TableRequestDetails.REQUEST_CATEGORY, details.getmRequestCategory());
+		values.put(TableRequestDetails.REQUEST_PRIORITY, details.getmRequestPriority());
+		values.put(TableRequestDetails.REQUEST_STATUS, details.getmRequestStatus());
+		values.put(TableRequestDetails.REQUEST_DETAILS, details.getmRequestDetails());
+		values.put(TableRequestDetails.REQUEST_DATETIME, details.getmRequestDateTime());
 		try {
-			mDb.beginTransaction();
-			isAdded = mDb.insert(TableNames.REQUEST_DETAILS, null, values) > 0;
-			mDb.setTransactionSuccessful();
+			if(getRequestDetails(details.getmRequestNumber()).getCount()<=0)
+			{			
+				mDb.beginTransaction();
+				isAdded = mDb.insert(TableNames.REQUEST_DETAILS, null, values) > 0;
+				mDb.setTransactionSuccessful();				
+			}
+
 		} catch (Exception e) {
 			Log.e("Error in transaction", e.toString());
 		} finally {
 			mDb.endTransaction();
 		}	
 		return isAdded;
-	}*/
+	}
 	
 	public Cursor getAllRequestDetails(){
 		String selectQuery = "SELECT  * FROM " + TableNames.REQUEST_DETAILS;
@@ -335,6 +369,16 @@ public class SmartFlatAdminDatabase {
 			cursor.moveToNext();
 		}
 		return cursor;			
+	}
+	
+	private Cursor getRequestDetails(String requestNumber){
+		String selectQuery = "SELECT  * FROM " + TableNames.REQUEST_DETAILS
+				+ " WHERE "+ TableRequestDetails.REQUEST_NUMBER +" = "+requestNumber;
+		Cursor cursor = mDb.rawQuery(selectQuery, null);	
+		if (cursor != null && cursor.getCount()>0) {
+			cursor.moveToNext();
+		}
+		return cursor;		
 	}
 	
 /*	public boolean saveQueryDetails(QueryDetails details){
@@ -356,14 +400,14 @@ public class SmartFlatAdminDatabase {
 		return isAdded;
 	}*/
 	
-	public Cursor getAllQueryDetails(){
+/*	public Cursor getAllQueryDetails(){
 		String selectQuery = "SELECT  * FROM " + TableNames.QUERY_DETAILS;
 		Cursor cursor = mDb.rawQuery(selectQuery, null);	
 		if (cursor != null && cursor.getCount()>0) {
 			cursor.moveToNext();
 		}
 		return cursor;			
-	}
+	}*/
 	
 /*	public boolean saveSocietyNoticeDetails(NoticeDetails details){
 		boolean isAdded = false;

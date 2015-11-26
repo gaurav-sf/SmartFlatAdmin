@@ -8,10 +8,12 @@ import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONException;
 import org.json.JSONObject;
 import android.content.Context;
+import android.util.Log;
 
 import com.grs.product.smartflatAdmin.SmartFlatAdminApplication;
 import com.grs.product.smartflatAdmin.error.SmartFlatAdminError;
 import com.grs.product.smartflatAdmin.models.FlatOwnerDetails;
+import com.grs.product.smartflatAdmin.models.RequestDetails;
 import com.grs.product.smartflatAdmin.models.SocietyDetails;
 import com.grs.product.smartflatAdmin.models.SocietyOwnerDetails;
 import com.grs.product.smartflatAdmin.response.Response;
@@ -36,22 +38,32 @@ public class SmartFlatAdminAPI {
 	}
 
 	public Response getLogin(String username, String password)
-			throws SmartFlatAdminError{
+			throws SmartFlatAdminError
+	{
 		return getLoginCall(username, password);
 	}
 
 	public List<FlatOwnerDetails> getFlatUsers()
-			throws SmartFlatAdminError{
-
+			throws SmartFlatAdminError
+	{
 		return getFlatUsersCall();
-
 	}
+	
+	public Response activateFlatOwner(String flatOwnerCode) 
+			throws SmartFlatAdminError{
+		return activateFlatOwnerCall(flatOwnerCode);
+	}
+	
+	public List<RequestDetails> getRequestAndComplaint()
+			throws SmartFlatAdminError
+	{
+		return getRequestAndComplaintCall();
+	} 
 
 	private Response getRegistrationCall(SocietyDetails societyDetails, SocietyOwnerDetails societyOwnerDetails)
 			throws SmartFlatAdminError{
 		try{
 			ArrayList<NameValuePair> object = new ArrayList<NameValuePair>();
-			object.add(new BasicNameValuePair("ownerName", societyOwnerDetails.getmSocietyOwnerName()));
 			object.add(new BasicNameValuePair("ownerName", societyOwnerDetails.getmSocietyOwnerName()));
 			object.add(new BasicNameValuePair("ownerGender",societyOwnerDetails.getmGender() ));
 			object.add(new BasicNameValuePair("ownerDOB",societyOwnerDetails.getmSocietyOwnerDOB()));
@@ -69,12 +81,13 @@ public class SmartFlatAdminAPI {
 			object.add(new BasicNameValuePair("societyCity", societyDetails.getmSocietyAddressCity()));
 			object.add(new BasicNameValuePair("societyState",societyDetails.getmSocietyAddressState()));
 			object.add(new BasicNameValuePair("societyPIN", societyDetails.getmSocietyAddressPIN()));
+			//Building name will be separated by @ sign
 			object.add(new BasicNameValuePair("buildingName", societyDetails.getmBuildingName()));
 			object.add(new BasicNameValuePair("totalFloorNo", societyDetails.getmTotalFloorNumber()+""));
 
-			JSONParserNVP obj = new JSONParserNVP();
+			ServerConnecter serverConnecter = new ServerConnecter();
 			String URL = Param.baseURL+ "registerSocietyOwner.php";
-			JSONObject objJson = obj.getJSONFromUrl(URL, object);
+			JSONObject objJson = serverConnecter.getJSONFromUrl(URL, object);
 			JSONSingleObjectDecode objectjson = new JSONSingleObjectDecode();
 			return objectjson.getStatus(objJson);	
 
@@ -99,9 +112,10 @@ public class SmartFlatAdminAPI {
 			object.add(new BasicNameValuePair("answer", societyDetails.getmAnswer()));
 			//object.add(new BasicNameValuePair("totalFloorNo", societyDetails.getmTotalFloorNumber()+""));
 
-			JSONParserNVP obj = new JSONParserNVP();
-			String URL = Param.baseURL+ "saveSocietyOwnerCredential.php";
-			JSONObject objJson = obj.getJSONFromUrl(URL, object);
+			ServerConnecter serverConnecter = new ServerConnecter();
+			String URL = Param.baseURL+ "saveSocietyOwnerCredentials.php";
+			JSONObject objJson = serverConnecter.getJSONFromUrl(URL, object);
+			Log.e("GAURAV", objJson.toString());
 			JSONSingleObjectDecode objectjson = new JSONSingleObjectDecode();
 			return objectjson.getStatus(objJson);	
 
@@ -124,9 +138,9 @@ public class SmartFlatAdminAPI {
 			object.add(new BasicNameValuePair("password",password));
 			//object.add(new BasicNameValuePair("totalFloorNo", societyDetails.getmTotalFloorNumber()+""));
 
-			JSONParserNVP obj = new JSONParserNVP();
-			String URL = Param.baseURL + "getSocietyLogin.php";
-			JSONObject objJson = obj.getJSONFromUrl(URL, object);
+			ServerConnecter serverConnecter = new ServerConnecter();
+			String URL = Param.baseURL + "SocietyOwnerLogin.php";
+			JSONObject objJson = serverConnecter.getJSONFromUrl(URL, object);
 			JSONSingleObjectDecode objectjson = new JSONSingleObjectDecode();
 			return objectjson.getStatus(objJson);	
 
@@ -142,18 +156,68 @@ public class SmartFlatAdminAPI {
 	}
 
 	private List<FlatOwnerDetails> getFlatUsersCall() 
-			throws SmartFlatAdminError{
-
-		try{
+			throws SmartFlatAdminError
+	{
+		try
+		{
 			ArrayList<NameValuePair> object = new ArrayList<NameValuePair>();
 			object.add(new BasicNameValuePair("societyCode", SmartFlatAdminApplication.getSocietyCodeFromSharedPreferences()));
-			//object.add(new BasicNameValuePair("totalFloorNo", societyDetails.getmTotalFloorNumber()+""));
 
-			JSONParserNVP obj = new JSONParserNVP();
+			ServerConnecter obj = new ServerConnecter();
 			String URL = Param.baseURL + "getFlatUserDetails.php";
 			JSONObject objJson = obj.getJSONFromUrl(URL, object);
 			JSONSingleObjectDecode objectjson = new JSONSingleObjectDecode();
 			return objectjson.getFlatUsers(objJson);	
+
+		} 
+		catch (JSONException e) 
+		{
+			throw new SmartFlatAdminError("Server error occured. Please try again later", "Server Error");
+		}
+		catch (Exception e)
+		{
+			throw new SmartFlatAdminError("Please try again later", "Server Error");
+		}
+	}
+	
+	private Response activateFlatOwnerCall(String flatOwnerCode)
+			throws SmartFlatAdminError{
+		try{
+			ArrayList<NameValuePair> object = new ArrayList<NameValuePair>();
+			object.add(new BasicNameValuePair("flatOwnerCode", flatOwnerCode));
+			object.add(new BasicNameValuePair("societyCode", SmartFlatAdminApplication.getSocietyCodeFromSharedPreferences()));
+			//object.add(new BasicNameValuePair("totalFloorNo", societyDetails.getmTotalFloorNumber()+""));
+
+			ServerConnecter serverConnecter = new ServerConnecter();
+			String URL = Param.baseURL + "activateFlatOwner.php";
+			JSONObject objJson = serverConnecter.getJSONFromUrl(URL, object);
+			JSONSingleObjectDecode objectjson = new JSONSingleObjectDecode();
+			return objectjson.getStatus(objJson);	
+
+		} 
+		catch (JSONException e) 
+		{
+			throw new SmartFlatAdminError("Server error occured. Please try again later", "Server Error");
+		}
+		catch (Exception e)
+		{
+			throw new SmartFlatAdminError("Please try again later", "Server Error");
+		}
+	}
+	
+	private List<RequestDetails> getRequestAndComplaintCall() 
+			throws SmartFlatAdminError
+	{
+		try
+		{
+			ArrayList<NameValuePair> object = new ArrayList<NameValuePair>();
+			object.add(new BasicNameValuePair("societyCode", SmartFlatAdminApplication.getSocietyCodeFromSharedPreferences()));
+
+			ServerConnecter obj = new ServerConnecter();
+			String URL = Param.baseURL + "getRequestsAndComplaints.php";
+			JSONObject objJson = obj.getJSONFromUrl(URL, object);
+			JSONSingleObjectDecode objectjson = new JSONSingleObjectDecode();
+			return objectjson.getRequestAndComplaint(objJson);
 
 		} 
 		catch (JSONException e) 

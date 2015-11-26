@@ -11,9 +11,9 @@ public class SmartFlatAdminDBTables {
 	public static final class TableNames{
 		public static final String SOCIETY_OWNER_DETAILS = "Society_Owner_Details";
 		public static final String SOCIETY_DETAILS = "Society_Details";
-		public static final String COMPLAINT_DETAILS = "Complaint_Details";
+		//public static final String COMPLAINT_DETAILS = "Complaint_Details";
 		public static final String REQUEST_DETAILS = "Request_Details";
-		public static final String QUERY_DETAILS = "Query_Details";
+		//public static final String QUERY_DETAILS = "Query_Details";
 		public static final String SOCIETY_NOTICES= "Society_Notices";
 		public static final String FLAT_OWNER_DETAILS = "Flat_Owner_Details";
 		
@@ -76,6 +76,7 @@ public class SmartFlatAdminDBTables {
 		public static final String ID = "ID";
 		public static final String REQUEST_NUMBER = "Request_Number";
 		public static final String REQUEST_TYPE = "Request_Type";	
+		public static final String REQUEST_CATEGORY = "Request_Category";
 		public static final String REQUEST_PRIORITY = "Request_Priority";	
 		public static final String REQUEST_DATETIME = "Request_DateTime";	
 		public static final String REQUEST_STATUS = "Request_Status";
@@ -111,7 +112,7 @@ public class SmartFlatAdminDBTables {
 		public static final String ID = "ID";
 		public static final String FLAT_OWNER_CODE = "Flat_Owner_Code";
 		public static final String FLAT_OWNER_NAME = "Flat_Owner_Name"	;
-		public static final String FLAT_OWNER_DOB = "Flat_Owner_DOB";	
+		//public static final String FLAT_OWNER_DOB = "Flat_Owner_DOB";	
 		public static final String FLAT_OWNER_CONTACT_NO = "Flat_Owner_Contact_No";
 		public static final String FLAT_OWNER_EMAIL_ID = "Flat_Owner_Email_id";
 		public static final String FLAT_BUILDING_NAME = "Building_Name";	

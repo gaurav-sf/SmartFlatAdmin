@@ -2,14 +2,19 @@ package com.grs.product.smartflatAdmin.activities;
 
 import com.grs.product.smartflatAdmin.R;
 import com.grs.product.smartflatAdmin.SmartFlatAdminApplication;
+import com.grs.product.smartflatAdmin.activities.SocietyRegistrationStep2.SaveSocietyOwnerCredentialTaskListener;
 import com.grs.product.smartflatAdmin.apicall.AsyncTaskCompleteListener;
+import com.grs.product.smartflatAdmin.asynctasks.LoginTask;
+import com.grs.product.smartflatAdmin.asynctasks.SaveSocietyOwnerCredentialTask;
 import com.grs.product.smartflatAdmin.error.SmartFlatAdminError;
 import com.grs.product.smartflatAdmin.response.Response;
 import com.grs.product.smartflatAdmin.utils.CustomProgressDialog;
+import com.grs.product.smartflatAdmin.utils.NetworkDetector;
 import com.grs.product.smartflatAdmin.utils.Utilities;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -43,10 +48,25 @@ public class LoginActivity extends Activity{
 
 			@Override
 			public void onClick(View v) {
-				Intent i = new Intent(LoginActivity.this,DashBoardActivity.class);
-				startActivity(i);	
+				//Intent i = new Intent(LoginActivity.this,DashBoardActivity.class);
+				//startActivity(i);
+				getLoginCall();
 			}
 		});
+	}
+	
+	private void getLoginCall(){
+
+		if (NetworkDetector.init(getApplicationContext()).isNetworkAvailable()) 
+		{
+			new LoginTask(LoginActivity.this, new LoginTaskListener(), mEditTextUsername.getText().toString(), mEditTextPassword.getText().toString())
+			.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+		} 
+		else 
+		{
+			Utilities.ShowAlertBox(LoginActivity.this,"Error", "Please check your Internet");
+		}			
+	
 	}
 
 	public class LoginTaskListener implements AsyncTaskCompleteListener<Response>{

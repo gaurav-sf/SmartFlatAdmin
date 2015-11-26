@@ -1,100 +1,146 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:padding="20sp" >
 
-    <TextView
-        android:id="@+id/textView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:gravity="center"
-        android:text="Society Registration \n Step 1/2" />
-
-    <ScrollView
+    <LinearLayout
+        android:id="@+id/container"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:orientation="vertical" >
 
-        <LinearLayout
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="Society Registration \n Step 1/2"
+            android:textColor="#595959"
+            android:textSize="25sp" />
+
+        <View
+            android:id="@+id/view1"
+            android:layout_width="150dp"
+            android:layout_height="1dp"
+            android:layout_below="@id/textView1"
+            android:layout_gravity="center"
+            android:layout_marginTop="18dp"
+            android:background="#469196" />
+ </LinearLayout>
+        <ScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:layout_above="@+id/buttonNext"
+            android:layout_below="@+id/container"
+            android:layout_marginTop="20dp"
+            android:paddingBottom="10dp"
+            android:padding="5dp" >
 
-            <EditText
-                android:id="@+id/editTextSocietyName"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:ems="10"
-                android:hint="Society Name" />
+                android:orientation="vertical" >
 
-            <EditText
-                android:id="@+id/editTextAddressLine1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:ems="10"
-                android:hint="Address Line 1" />
+                <EditText
+                    android:id="@+id/editTextSocietyName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/edittext_bg"
+                    android:padding="5dp" 
+                    android:ems="10"
+                    android:hint="Society Name"
+                    />
 
-            <EditText
-                android:id="@+id/editTextAddressLine2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:ems="10"
-                android:hint="Address Line 2" />
+                <EditText
+                    android:id="@+id/editTextAddressLine1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/edittext_bg"
+                    android:ems="10"
+                    android:hint="Address Line 1"
+                    android:padding="5dp" />
 
-            <EditText
-                android:id="@+id/editTextCity"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:ems="10"
-                android:hint="City" />
+                <EditText
+                    android:id="@+id/editTextAddressLine2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/edittext_bg"
+                    android:ems="10"
+                    android:hint="Address Line 2"
+                    android:padding="5dp" />
 
-            <EditText
-                android:id="@+id/editTextState"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:ems="10"
-                android:hint="State" />
+                <EditText
+                    android:id="@+id/editTextCity"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/edittext_bg"
+                    android:ems="10"
+                    android:hint="City"
+                    android:padding="5dp" />
 
-            <EditText
-                android:id="@+id/editTextPin"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:ems="10"
-                android:hint="PIN Code" />
+                <EditText
+                    android:id="@+id/editTextState"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/edittext_bg"
+                    android:ems="10"
+                    android:hint="State"
+                    android:padding="5dp" />
 
-            <EditText
-                android:id="@+id/editTextBuildingName"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:ems="10"
-                android:hint="Building Name" />
+                <EditText
+                    android:id="@+id/editTextPin"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/edittext_bg"
+                    android:ems="10"
+                    
+                    android:hint="PIN Code"
+                    android:padding="5dp" 
+                    android:inputType="number"/>
 
-            <EditText
-                android:id="@+id/editTextTotalFloors"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:ems="10"
-                android:inputType="number"
-                android:hint="Total Floors in a building" />
+                <EditText
+                    android:id="@+id/editTextBuildingName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/edittext_bg"
+                    android:ems="10"
+                    android:hint="Building Name"
+                    android:padding="5dp" />
 
-            <Button
-                android:id="@+id/buttonNext"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="10dp"
-                android:ems="10"
-                android:text="NEXT" />
-        </LinearLayout>
-    </ScrollView>
+                <EditText
+                    android:id="@+id/editTextTotalFloors"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/edittext_bg"
+                    android:ems="10"
+                    android:hint="Total Floors in a building"
+                    android:inputType="number"
+                    android:padding="5dp" />
 
-</LinearLayout>
+                
+            </LinearLayout>
+        </ScrollView>
+   
+    <Button
+                    android:id="@+id/buttonNext"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:ems="10"
+                    android:background="@drawable/btnbg"
+                    android:textColor="#ffffff" 
+                    android:text="NEXT"
+                    android:layout_alignParentBottom="true"/>
+
+</RelativeLayout>

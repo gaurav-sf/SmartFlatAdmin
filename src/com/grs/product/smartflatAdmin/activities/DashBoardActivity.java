@@ -3,6 +3,7 @@ package com.grs.product.smartflatAdmin.activities;
 
 import java.util.ArrayList;
 
+import android.app.ActionBar;
 import android.content.res.Configuration;
 import android.content.res.TypedArray;
 import android.os.Bundle;
@@ -50,8 +51,9 @@ public class DashBoardActivity extends FragmentActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_dashboard);
-		Utilities.addCustomActionBar(this);
-		
+		//Utilities.addCustomActionBar(this);
+		ActionBar actionBar = getActionBar();
+		actionBar.setDisplayShowHomeEnabled(false);
 
 		mTitle = mDrawerTitle = getTitle();
 

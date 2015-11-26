@@ -9,19 +9,18 @@ import com.grs.product.smartflatAdmin.apicall.AsyncTaskCompleteListener;
 import com.grs.product.smartflatAdmin.apicall.SmartFlatAdminAPI;
 import com.grs.product.smartflatAdmin.error.SmartFlatAdminError;
 import com.grs.product.smartflatAdmin.models.FlatOwnerDetails;
-import com.grs.product.smartflatAdmin.response.Response;
+import com.grs.product.smartflatAdmin.models.RequestDetails;
 
-public class GetFlatUsersTask extends AsyncTask<Void, Void, SmartFlatAdminError>{
+public class GetRequestAndComplaintTask  extends AsyncTask<Void, Void, SmartFlatAdminError>{
 
-	private static final String TAG = SaveSocietyOwnerCredentialTask.class.getName();
+	private static final String TAG = GetRequestAndComplaintTask.class.getName();
 	final Context mContext;
-	private AsyncTaskCompleteListener<List<FlatOwnerDetails>> listener = null;
-	List<FlatOwnerDetails> listFlatOwnerDetails;
+	private AsyncTaskCompleteListener<List<RequestDetails>> listener = null;
+	List<RequestDetails> listRequestDetails;
 	
-	public GetFlatUsersTask(Context mContext, 
-			AsyncTaskCompleteListener<List<FlatOwnerDetails>> listener) 
-	{
-		
+	public GetRequestAndComplaintTask(Context mContext, 
+			AsyncTaskCompleteListener<List<RequestDetails>> listener) 
+	{		
 		this.mContext = mContext;
 		this.listener = listener;
 	}
@@ -37,8 +36,8 @@ public class GetFlatUsersTask extends AsyncTask<Void, Void, SmartFlatAdminError>
 		SmartFlatAdminAPI smartFlatAdminAPI = new SmartFlatAdminAPI(mContext);		
 		try {
 			
-			listFlatOwnerDetails = smartFlatAdminAPI.getFlatUsers();
-			if (listFlatOwnerDetails==null) {
+			listRequestDetails = smartFlatAdminAPI.getRequestAndComplaint();
+			if (listRequestDetails==null) {
 				return new SmartFlatAdminError("No new users registered");				
 			}
 			
@@ -53,12 +52,12 @@ public class GetFlatUsersTask extends AsyncTask<Void, Void, SmartFlatAdminError>
 	@Override
 	protected void onPostExecute(SmartFlatAdminError error) {
 		
-		if(listFlatOwnerDetails!=null)
+		if(listRequestDetails!=null)
 		{
 			if(listener!=null)
 			{
 				listener.onStoped();
-				listener.onTaskComplete(listFlatOwnerDetails);
+				listener.onTaskComplete(listRequestDetails);
 				listener = null;
 			}
 		}

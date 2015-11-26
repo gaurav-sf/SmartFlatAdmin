@@ -1,7 +1,6 @@
 package com.grs.product.smartflatAdmin.activities;
 
 import com.grs.product.smartflatAdmin.R;
-import com.grs.product.smartflatAdmin.SmartFlatAdminApplication;
 import com.grs.product.smartflatAdmin.apicall.AsyncTaskCompleteListener;
 import com.grs.product.smartflatAdmin.asynctasks.RegistrationTask;
 import com.grs.product.smartflatAdmin.error.SmartFlatAdminError;
@@ -117,8 +116,9 @@ public class SocietyRegistrationStep1 extends Activity {
 		mSocietyDetails.setmTotalFloorNumber(Integer.parseInt(mEditTextTotalFloors.getText().toString()));		
 	}
 	
-	private void gotoNextActivity(){
+	private void gotoNextActivity(String societyCode){
 		Intent intentSocietyRegistrationStep2 = new Intent(SocietyRegistrationStep1.this, SocietyRegistrationStep2.class);
+		intentSocietyRegistrationStep2.putExtra("societyCode", societyCode);
 		startActivity(intentSocietyRegistrationStep2);
 		finish();
 	}
@@ -152,8 +152,8 @@ public class SocietyRegistrationStep1 extends Activity {
 			{
 				if (result.getStatus().equalsIgnoreCase("success")) 
 				{
-					SmartFlatAdminApplication.saveSocietyCodeInSharedPreferences(result.getSocietycode());
-					gotoNextActivity();
+				//	SmartFlatAdminApplication.saveSocietyCodeInSharedPreferences(result.getSocietycode());
+					gotoNextActivity(result.getSocietycode());
 					
 				}else
 				{
