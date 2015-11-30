@@ -52,4 +52,40 @@ public class SmartFlatAdminApplication extends Application{
 		return restoredText;	
 	}
 
+	public static void saveUsersLastSyncTime(String time){
+		SharedPreferences.Editor editor = sharedpreferences.edit();           
+        editor.putString("UserLastSyncTime", time);
+        editor.commit();	
+	}
+	
+	public static String getUsersLastSyncTime(){	
+		
+		String restoredText = sharedpreferences.getString("UserLastSyncTime", null);		
+		return restoredText;	
+	}
+	
+	public static void saveRequestLastSyncTime(String time){
+		SharedPreferences.Editor editor = sharedpreferences.edit();           
+        editor.putString("RequestLastSyncTime", time);
+        editor.commit();	
+	}
+	
+	public static String getRequestLastSyncTime(){	
+		
+		String restoredText = sharedpreferences.getString("RequestLastSyncTime", null);		
+		return restoredText;	
+	}
+	
+	public static void saveLVisitorLastSyncTime(String time){
+		SharedPreferences.Editor editor = sharedpreferences.edit();           
+        editor.putString("VisitorLastSyncTime", time);
+        editor.commit();	
+	}
+	
+	public static String getVisitorLastSyncTime(){	
+		
+		String restoredText = sharedpreferences.getString("VisitorLastSyncTime", null);		
+		return restoredText;	
+	}
+
 }

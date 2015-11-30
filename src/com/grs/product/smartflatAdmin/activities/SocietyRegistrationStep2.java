@@ -7,6 +7,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ArrayAdapter;
@@ -104,7 +105,7 @@ public class SocietyRegistrationStep2 extends Activity {
 	{
 		SocietyRegistrationStep1.mSocietyDetails.setmUsername(mEditTextUsername.getText().toString());
 		SocietyRegistrationStep1.mSocietyDetails.setmPassword(mEditTextPassword.getText().toString());
-		//SocietyRegistrationStep1.mSocietyDetails.setmSecurityQuestion(mSpinnerSecurityQue.getText().toString());
+		SocietyRegistrationStep1.mSocietyDetails.setmSecurityQuestion(mSpinnerSecurityQue.getSelectedItem().toString());
 		SocietyRegistrationStep1.mSocietyDetails.setmAnswer(mEditTextAnswer.getText().toString());
 	}
 	
@@ -152,6 +153,14 @@ public class SocietyRegistrationStep2 extends Activity {
 	
 	private void saveDataInDB(){
 		SmartFlatAdminDBManager objDbManager = new SmartFlatAdminDBManager();
+		boolean isAdded = objDbManager.saveSocietyOwnerDetails(SocietyOwnerRegistration.mSocietyOwnerDetails);
+		if(isAdded){
+			Log.e("Society Owner Details", "Inserted Successfully");
+		}
+		isAdded = objDbManager.saveSocietyDetails(SocietyRegistrationStep1.mSocietyDetails);
+		if(isAdded){
+			Log.e("Society Details", "Inserted Successfully");
+		}
 	}
 	
 	private void createSpinnerData(){

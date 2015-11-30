@@ -5,21 +5,22 @@ import java.util.List;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
+
 import com.grs.product.smartflatAdmin.apicall.AsyncTaskCompleteListener;
 import com.grs.product.smartflatAdmin.apicall.SmartFlatAdminAPI;
 import com.grs.product.smartflatAdmin.error.SmartFlatAdminError;
-import com.grs.product.smartflatAdmin.models.FlatOwnerDetails;
 import com.grs.product.smartflatAdmin.models.RequestDetails;
+import com.grs.product.smartflatAdmin.models.RequestMessages;
 
-public class GetRequestAndComplaintTask  extends AsyncTask<Void, Void, SmartFlatAdminError>{
+public class GetMessagesTask   extends AsyncTask<Void, Void, SmartFlatAdminError>{
 
 	private static final String TAG = GetRequestAndComplaintTask.class.getName();
 	final Context mContext;
-	private AsyncTaskCompleteListener<List<RequestDetails>> listener = null;
-	List<RequestDetails> listRequestDetails;
+	private AsyncTaskCompleteListener<List<RequestMessages>> listener = null;
+	List<RequestMessages> listMessages;
 	
-	public GetRequestAndComplaintTask(Context mContext, 
-			AsyncTaskCompleteListener<List<RequestDetails>> listener) 
+	public GetMessagesTask(Context mContext, 
+			AsyncTaskCompleteListener<List<RequestMessages>> listener) 
 	{		
 		this.mContext = mContext;
 		this.listener = listener;
@@ -36,9 +37,9 @@ public class GetRequestAndComplaintTask  extends AsyncTask<Void, Void, SmartFlat
 		SmartFlatAdminAPI smartFlatAdminAPI = new SmartFlatAdminAPI(mContext);		
 		try {
 			
-			listRequestDetails = smartFlatAdminAPI.getRequestAndComplaint();
-			if (listRequestDetails==null) {
-				return new SmartFlatAdminError("No Requests to process for a day");				
+			listMessages = smartFlatAdminAPI.getMessages();
+			if (listMessages==null) {
+				return new SmartFlatAdminError("No Messages");				
 			}
 			
 		} catch (SmartFlatAdminError e) {
@@ -52,12 +53,12 @@ public class GetRequestAndComplaintTask  extends AsyncTask<Void, Void, SmartFlat
 	@Override
 	protected void onPostExecute(SmartFlatAdminError error) {
 		
-		if(listRequestDetails!=null)
+		if(listMessages!=null)
 		{
 			if(listener!=null)
 			{
 				listener.onStoped();
-				listener.onTaskComplete(listRequestDetails);
+				listener.onTaskComplete(listMessages);
 				listener = null;
 			}
 		}

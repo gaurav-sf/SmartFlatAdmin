@@ -2,13 +2,21 @@ package com.grs.product.smartflatAdmin.database;
 
 import android.database.Cursor;
 import com.grs.product.smartflatAdmin.models.FlatOwnerDetails;
-import com.grs.product.smartflatAdmin.models.NoticeDetails;
-import com.grs.product.smartflatAdmin.models.QueryDetails;
 import com.grs.product.smartflatAdmin.models.RequestDetails;
+import com.grs.product.smartflatAdmin.models.RequestMessages;
 import com.grs.product.smartflatAdmin.models.SocietyDetails;
+import com.grs.product.smartflatAdmin.models.SocietyOwnerDetails;
 
 
 public class SmartFlatAdminDBManager {
+	
+	public boolean saveSocietyOwnerDetails(SocietyOwnerDetails details){
+		boolean isAdded = false;
+		SmartFlatAdminDatabase.getInstance().open();
+		isAdded = SmartFlatAdminDatabase.getInstance().saveSocietyOwnerDetails(details);
+		SmartFlatAdminDatabase.getInstance().close();
+		return isAdded;
+	}
 
 	public boolean saveSocietyDetails(SocietyDetails details){
 		boolean isAdded = false;
@@ -39,9 +47,7 @@ public class SmartFlatAdminDBManager {
 		SmartFlatAdminDatabase.getInstance().close();
 		return details;
 	}
-	
-
-	
+		
 /*	public boolean saveVehicleDetails(VehicleDetails details){
 		boolean isAdded = false;
 		SmartFlatAdminDatabase.getInstance().open();
@@ -72,7 +78,6 @@ public class SmartFlatAdminDBManager {
 		return details;
 	}
 	
-	
 /*	public boolean saveSocietyNoticeDetails(NoticeDetails details){
 		boolean isAdded = false;
 		SmartFlatAdminDatabase.getInstance().open();
@@ -87,22 +92,8 @@ public class SmartFlatAdminDBManager {
 		SmartFlatAdminDatabase.getInstance().close();
 		return details;
 	}*/
-	
-/*	public Cursor getRaisedComplaintDetails(){
-		SmartFlatAdminDatabase.getInstance().open();
-		Cursor details = SmartFlatAdminDatabase.getInstance().getRaisedComplaintDetails();
-		SmartFlatAdminDatabase.getInstance().close();
-		return details;
-	}
-	
-	public Cursor getClosedComplaintDetails(){
-		SmartFlatAdminDatabase.getInstance().open();
-		Cursor details = SmartFlatAdminDatabase.getInstance().getClosedComplaintDetails();
-		SmartFlatAdminDatabase.getInstance().close();
-		return details;
-	}*/
 		
-/*	public Cursor getRaisedRequestDetails(){
+	public Cursor getRaisedRequestDetails(){
 		SmartFlatAdminDatabase.getInstance().open();
 		Cursor details = SmartFlatAdminDatabase.getInstance().getRaisedRequestDetails();
 		SmartFlatAdminDatabase.getInstance().close();
@@ -114,9 +105,9 @@ public class SmartFlatAdminDBManager {
 		Cursor details = SmartFlatAdminDatabase.getInstance().getRaisedRequestDetailsByType();
 		SmartFlatAdminDatabase.getInstance().close();
 		return details;
-	}*/
+	}
 	
-/*	public Cursor getRaisedRequestDetailsByCategory(){
+	public Cursor getRaisedRequestDetailsByCategory(){
 		SmartFlatAdminDatabase.getInstance().open();
 		Cursor details = SmartFlatAdminDatabase.getInstance().getRaisedRequestDetailsByCategory();
 		SmartFlatAdminDatabase.getInstance().close();
@@ -128,9 +119,9 @@ public class SmartFlatAdminDBManager {
 		Cursor details = SmartFlatAdminDatabase.getInstance().getRaisedRequestDetailsByPriorityHtoL();
 		SmartFlatAdminDatabase.getInstance().close();
 		return details;
-	}*/
+	}
 	
-/*	public Cursor getRaisedRequestDetailsByPriorityLtoH(){
+	public Cursor getRaisedRequestDetailsByPriorityLtoH(){
 		SmartFlatAdminDatabase.getInstance().open();
 		Cursor details = SmartFlatAdminDatabase.getInstance().getRaisedRequestDetailsByPriorityLtoH();
 		SmartFlatAdminDatabase.getInstance().close();
@@ -142,19 +133,27 @@ public class SmartFlatAdminDBManager {
 		Cursor details = SmartFlatAdminDatabase.getInstance().getClosedRequestDetails();
 		SmartFlatAdminDatabase.getInstance().close();
 		return details;
-	}*/
-/*	
-	public Cursor getRaisedQueryDetails(){
+	}
+	
+	public Cursor getSinbleRequestDetails(String requestNumber){
 		SmartFlatAdminDatabase.getInstance().open();
-		Cursor details = SmartFlatAdminDatabase.getInstance().getRaisedQueryDetails();
+		Cursor details = SmartFlatAdminDatabase.getInstance().getSinbleRequestDetails(requestNumber);
 		SmartFlatAdminDatabase.getInstance().close();
 		return details;
 	}
 	
-	public Cursor getClosedQueryDetails(){
+	public boolean saveMessage(RequestMessages messages){
+		boolean isAdded = false;
 		SmartFlatAdminDatabase.getInstance().open();
-		Cursor details = SmartFlatAdminDatabase.getInstance().getClosedQueryDetails();
+		isAdded = SmartFlatAdminDatabase.getInstance().saveMessage(messages);
 		SmartFlatAdminDatabase.getInstance().close();
-		return details;
-	}*/
+		return isAdded;
+	} 
+	
+	public Cursor getMessages(String requestNumber){
+		SmartFlatAdminDatabase.getInstance().open();
+		Cursor details = SmartFlatAdminDatabase.getInstance().getMessages(requestNumber);
+		SmartFlatAdminDatabase.getInstance().close();
+		return details;	
+	}
 }

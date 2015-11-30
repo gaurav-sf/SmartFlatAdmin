@@ -14,6 +14,7 @@ import com.grs.product.smartflatAdmin.SmartFlatAdminApplication;
 import com.grs.product.smartflatAdmin.error.SmartFlatAdminError;
 import com.grs.product.smartflatAdmin.models.FlatOwnerDetails;
 import com.grs.product.smartflatAdmin.models.RequestDetails;
+import com.grs.product.smartflatAdmin.models.RequestMessages;
 import com.grs.product.smartflatAdmin.models.SocietyDetails;
 import com.grs.product.smartflatAdmin.models.SocietyOwnerDetails;
 import com.grs.product.smartflatAdmin.response.Response;
@@ -59,6 +60,12 @@ public class SmartFlatAdminAPI {
 	{
 		return getRequestAndComplaintCall();
 	} 
+	
+	public List<RequestMessages> getMessages()
+			throws SmartFlatAdminError
+	{
+		return getMessagesCall();
+	}
 
 	private Response getRegistrationCall(SocietyDetails societyDetails, SocietyOwnerDetails societyOwnerDetails)
 			throws SmartFlatAdminError{
@@ -176,7 +183,7 @@ public class SmartFlatAdminAPI {
 		}
 		catch (Exception e)
 		{
-			throw new SmartFlatAdminError("Please try again later", "Server Error");
+			throw new SmartFlatAdminError("Server error occured. Please try again later", "Server Error");
 		}
 	}
 	
@@ -218,6 +225,31 @@ public class SmartFlatAdminAPI {
 			JSONObject objJson = obj.getJSONFromUrl(URL, object);
 			JSONSingleObjectDecode objectjson = new JSONSingleObjectDecode();
 			return objectjson.getRequestAndComplaint(objJson);
+
+		} 
+		catch (JSONException e) 
+		{
+			throw new SmartFlatAdminError("Server error occured. Please try again later", "Server Error");
+		}
+		catch (Exception e)
+		{
+			throw new SmartFlatAdminError("Please try again later", "Server Error");
+		}
+	}
+	
+	private List<RequestMessages> getMessagesCall() 
+			throws SmartFlatAdminError
+	{
+		try
+		{
+			ArrayList<NameValuePair> object = new ArrayList<NameValuePair>();
+			object.add(new BasicNameValuePair("societyCode", SmartFlatAdminApplication.getSocietyCodeFromSharedPreferences()));
+
+			ServerConnecter obj = new ServerConnecter();
+			String URL = Param.baseURL + "getRequestsAndComplaints.php";
+			JSONObject objJson = obj.getJSONFromUrl(URL, object);
+			JSONSingleObjectDecode objectjson = new JSONSingleObjectDecode();
+			return objectjson.getMessages(objJson);
 
 		} 
 		catch (JSONException e) 

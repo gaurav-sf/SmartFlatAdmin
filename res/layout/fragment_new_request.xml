@@ -3,12 +3,35 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" 
-    android:background="#879551">
+    android:padding="10dp"
+    android:background="#fdfbfb">
+    
+         <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Large Text"
+        android:layout_marginTop="60dp"
+        android:layout_gravity="center"
+        android:textAppearance="?android:attr/textAppearanceLarge" 
+        android:visibility="gone"/> 
+    
+        <Spinner
+        android:id="@+id/spinnertSorting"
+        android:layout_width="match_parent"
+        android:layout_height="35sp"
+        android:ems="10" 
+        android:popupBackground="#469196"
+        android:background="@drawable/spinner_bg"/>
     
         <ListView
         android:id="@+id/listViewNewRequestAndCompliant"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:cacheColorHint="@android:color/transparent"
+        android:divider="@android:color/transparent"
+        android:dividerHeight="10dp" >
     </ListView>
     
 

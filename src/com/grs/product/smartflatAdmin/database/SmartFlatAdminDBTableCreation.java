@@ -1,9 +1,9 @@
 package com.grs.product.smartflatAdmin.database;
 
-import com.grs.product.smartflatAdmin.database.SmartFlatAdminDBTables.TableComplaintDetails;
+import com.grs.product.smartflatAdmin.database.SmartFlatAdminDBTables.TableContactDetails;
 import com.grs.product.smartflatAdmin.database.SmartFlatAdminDBTables.TableFlatOwnerDetails;
+import com.grs.product.smartflatAdmin.database.SmartFlatAdminDBTables.TableMessageDetails;
 import com.grs.product.smartflatAdmin.database.SmartFlatAdminDBTables.TableNames;
-import com.grs.product.smartflatAdmin.database.SmartFlatAdminDBTables.TableQueryDetails;
 import com.grs.product.smartflatAdmin.database.SmartFlatAdminDBTables.TableRequestDetails;
 import com.grs.product.smartflatAdmin.database.SmartFlatAdminDBTables.TableSocietyDetails;
 import com.grs.product.smartflatAdmin.database.SmartFlatAdminDBTables.TableSocietyNotices;
@@ -102,85 +102,23 @@ public class SmartFlatAdminDBTableCreation {
 			+ TableSocietyNotices.NOTICE_PRIORITY + " TEXT, "
 			+ TableSocietyNotices.NOTICE_DATETIME + " TEXT, "
 			+ TableSocietyNotices.NOTICE_DETAILS + " TEXT);";
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-}
+	
+	public static final String TABLE_CONTACT_DETAILS_CREATION_QUERY = "Create table if not exists "+TableNames.CONTACT_DETAILS
+			+"( "
+			+ TableContactDetails.ID + " INTEGER PRIMARY KEY, "
+			+ TableContactDetails.CONTACT_NAME + " TEXT, "
+			+ TableContactDetails.CONTACT_NUMBER + " TEXT, "
+			+ TableContactDetails.CONTACT_EMAIL_ID + " TEXT, "
+			+ TableContactDetails.CONTACT_OCCUPATION + " TEXT);";
+	
+	public static final String TABLE_MESSAGE_DETAILS_CREATION_QUERY = "Create table if not exists "+TableNames.MESSAGE_DETAILS
+			+"( "
+			+ TableMessageDetails.ID + " INTEGER PRIMARY KEY, "
+			+ TableMessageDetails.MESSAGE_NUMBER + " TEXT, "
+			+ TableMessageDetails.MESSAGE_CONTENT + " TEXT, "
+			+ TableMessageDetails.REQUEST_NUMBER + " TEXT, "
+			+ TableMessageDetails.FLAT_OWNER_CODE + " TEXT, "
+			+ TableMessageDetails.SOCIETY_CODE + " TEXT, "
+			+ TableMessageDetails.IS_SOCIETY_MESSAGE + " BOOLEAN, "
+			+ TableMessageDetails.MESSAGE_DATETIME + " TEXT);";
+	}

@@ -1,60 +1,74 @@
 package com.grs.product.smartflatAdmin.adapter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.grs.product.smartflatAdmin.R;
-import com.grs.product.smartflatAdmin.models.FlatOwnerDetails;
 import com.grs.product.smartflatAdmin.models.RequestDetails;
-
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-public class NewRequestAndComplaintAdapter extends BaseAdapter{
+public class NewRequestAndComplaintAdapter  extends BaseAdapter {
+
+	Context mContext;
+	List<RequestDetails> listRequestDetails = new ArrayList<RequestDetails>();
+	private TextView textViewRequestNumber, textViewRequestDate;
 	
-	private Context mContext;
-	private List<RequestDetails> mListRequestDetails;
+	public NewRequestAndComplaintAdapter(Context context, List<RequestDetails> listRequestDetails) {
+		mContext = context;
+		this.listRequestDetails = listRequestDetails;
+	}
 	
-	public NewRequestAndComplaintAdapter(Context context,
-			List<RequestDetails> listRequestDetails) {
-		super();
-		this.mContext = context;
-		this.mListRequestDetails = listRequestDetails;
+
+	@Override
+	public int getCount() {	
+		return listRequestDetails.size();
 	}
 
 	@Override
-	public int getCount() {
-		// TODO Auto-generated method stub
-		return mListRequestDetails.size();
+	public Object getItem(int position) {	
+		return listRequestDetails.get(position);
 	}
 
 	@Override
-	public Object getItem(int position) {
-		// TODO Auto-generated method stub
-		return mListRequestDetails.get(position);
-	}
-
-	@Override
-	public long getItemId(int position) {
-		// TODO Auto-generated method stub
+	public long getItemId(int arg0) {
 		return 0;
 	}
 
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
+		
 		View rowView = convertView;
 		if (rowView == null) {
 			LayoutInflater infalInflater = (LayoutInflater) mContext
 					.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-			rowView = infalInflater.inflate(R.layout.new_request_complaint_list_item, null);
+			rowView = infalInflater.inflate(R.layout.request_complaint_list_item, null);
 		}
-		final RequestDetails temp = mListRequestDetails.get(position);
-		 TextView requestNo = (TextView) rowView.findViewById(R.id.textViewUserName);
-		 requestNo.setText(temp.getmRequestNumber());
+		RequestDetails tempRequestDetails = listRequestDetails.get(position);
+		TextView textViewRequestNumber = (TextView) rowView.findViewById(R.id.textViewRequestNumber);
+		textViewRequestNumber.setText(tempRequestDetails.getmRequestNumber());
+		TextView textViewRequestDate = (TextView) rowView.findViewById(R.id.textViewDatetime);
+		textViewRequestDate.setText(tempRequestDetails.getmRequestDateTime());
+		TextView textViewDetails = (TextView) rowView.findViewById(R.id.textViewDetails);
+		textViewDetails.setText("Details :- "+tempRequestDetails.getmRequestDetails());
+		TextView textViewCategory = (TextView) rowView.findViewById(R.id.textViewCategory);
+		textViewCategory.setText("Category :- "+tempRequestDetails.getmRequestCategory());
+		TextView textViewPriority = (TextView) rowView.findViewById(R.id.textViewPriority);
+		if(tempRequestDetails.getmRequestPriority().equalsIgnoreCase("1")){
+			textViewPriority.setTextColor(Color.RED);
+			textViewPriority.setText("High");	
+		}else if(tempRequestDetails.getmRequestPriority().equalsIgnoreCase("2")){
+			textViewPriority.setTextColor(Color.BLUE);
+			textViewPriority.setText("Medium");	
+		}else{
+			textViewPriority.setTextColor(Color.GREEN);
+			textViewPriority.setText("Low");	
+		}
 		return rowView;
 	}
-
 }

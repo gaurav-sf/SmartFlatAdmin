@@ -20,7 +20,7 @@ public class CustomProgressDialog
 	}
 
 	public static void showProgressDialog(Context mContext, String text, boolean cancellable) 
-	{/*
+	{
 		removeDialog();
 		mDialog = new Dialog(mContext,	android.R.style.Theme_Translucent_NoTitleBar);
 		LayoutInflater mInflater = LayoutInflater.from(mContext);
@@ -46,7 +46,7 @@ public class CustomProgressDialog
 			}
 		}
 
-	*/}
+	}
 
 	public static synchronized void  removeDialog()
 	{

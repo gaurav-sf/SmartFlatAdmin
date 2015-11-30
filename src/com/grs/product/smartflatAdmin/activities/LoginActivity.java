@@ -82,6 +82,7 @@ public class LoginActivity extends Activity{
 			{
 				if (result.getStatus().equalsIgnoreCase("success")) 
 				{
+					SmartFlatAdminApplication.saveSocietyOwnerAccessCodeInSharedPreferences("TEMP");
 					gotoNextActivity();
 				}
 				else if (result.getStatus().equalsIgnoreCase("failure"))
@@ -103,6 +104,7 @@ public class LoginActivity extends Activity{
 		@Override
 		public void onStopedWithError(SmartFlatAdminError e) {
 			CustomProgressDialog.removeDialog();
+			Utilities.ShowAlertBox(LoginActivity.this, "Error", "Server Error please try later");
 		}
 
 	}

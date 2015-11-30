@@ -1,5 +1,7 @@
 package com.grs.product.smartflatAdmin.models;
 
+import java.util.List;
+
 public class RequestDetails {
 	
 	private String mRequestNumber;
@@ -10,6 +12,7 @@ public class RequestDetails {
 	private String mRequestStatus;
 	private String mRequestDetails;
 	private String mRequestRaisedBy;
+	private List<RequestMessages> mMessageList;
 	
 	public String getmRequestNumber() {
 		return mRequestNumber;
@@ -73,6 +76,15 @@ public class RequestDetails {
 
 	public void setmRequestRaisedBy(String mRequestRaisedBy) {
 		this.mRequestRaisedBy = mRequestRaisedBy;
+	}
+	
+
+	public List<RequestMessages> getmMessageList() {
+		return mMessageList;
+	}
+
+	public void setmMessageList(List<RequestMessages> mMessageList) {
+		this.mMessageList = mMessageList;
 	}
 
 }
