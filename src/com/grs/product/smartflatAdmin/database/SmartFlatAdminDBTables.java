@@ -18,6 +18,7 @@ public class SmartFlatAdminDBTables {
 		public static final String FLAT_OWNER_DETAILS = "Flat_Owner_Details";
 		public static final String CONTACT_DETAILS = "Contact_Details";
 		public static final String MESSAGE_DETAILS = "Message_Details";
+		public static final String VISITOR_DETAILS = "Visitor_Details";
 		
 	}
 
@@ -143,6 +144,28 @@ public class SmartFlatAdminDBTables {
 		public static final String SOCIETY_CODE = "Society_Code";
 		public static final String IS_SOCIETY_MESSAGE = "Is_Society_Message";
 		public static final String MESSAGE_DATETIME = "Message_DateTime";
+	}
+	
+	public static final class TableVisitorDetails implements BaseColumns{
+		private TableVisitorDetails(){}
+		public static final String ID = "ID";
+		public static final String VISITOR_CODE = "Visitor_Code";
+		public static final String VISITOR_NAME = "Visitor_Name";
+		public static final String NO_OF_VISITORS = "No_of_Visitors";
+		public static final String VISITOR_IN_TIME = "Visitor_In_Time";
+		public static final String VISITOR_OUT_TIME = "Visitor_Out_Time";
+		public static final String VISIT_PURPOSE = "Visit_Purpose";
+		public static final String VISITOR_CONTACT_NO = "Visitor_Contac_No";
+		public static final String VISITOR_VEHICLE_NO = "Visitor_Vehicle_No";
+		public static final String SOCIETY_CODE = "Society_Code";
+		public static final String FLAT_OWNER_CODE = "Flat_Owner_Code";
+		public static final String IS_OFFLINE_ENTRY = "Is_Offline_Entry";
+		
+/*		//THINING TO USE IN NEXT VERSION
+  		public static final String VISITOR_EXPECTED_DATE = "Visitor_Expected_Date";
+		public static final String VISITOR_EXPECTED_ARRIVE_TIME_FROM = "Visitor_Expected_Arrive_Time_from";
+		public static final String VISITOR_EXPECTED_ARRIVE_TIME_TO = "Visitor_Expected_Arrive_Time_to";
+*/
 	}
 
 }

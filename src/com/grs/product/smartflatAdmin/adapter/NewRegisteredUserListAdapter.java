@@ -14,6 +14,7 @@ import android.widget.TextView;
 import com.grs.product.smartflatAdmin.R;
 import com.grs.product.smartflatAdmin.apicall.AsyncTaskCompleteListener;
 import com.grs.product.smartflatAdmin.asynctasks.ActivateFlatOwnerTask;
+import com.grs.product.smartflatAdmin.database.SmartFlatAdminDBManager;
 import com.grs.product.smartflatAdmin.error.SmartFlatAdminError;
 import com.grs.product.smartflatAdmin.models.FlatOwnerDetails;
 import com.grs.product.smartflatAdmin.response.Response;
@@ -24,6 +25,7 @@ import com.grs.product.smartflatAdmin.utils.Utilities;
 public class NewRegisteredUserListAdapter extends BaseAdapter {
 	private Context context;
 	private List<FlatOwnerDetails> listFlatOwnerDetails  = new ArrayList<FlatOwnerDetails>();
+	public String flatOwnerCode;
 	
 	public NewRegisteredUserListAdapter(Context context,
 			List<FlatOwnerDetails> listFlatOwnerDetails) {
@@ -64,7 +66,8 @@ public class NewRegisteredUserListAdapter extends BaseAdapter {
 			
 			@Override
 			public void onClick(View v) {
-				activateFlatOwnerCall(temp.getmFlatOwnerCode());
+				flatOwnerCode = temp.getmFlatOwnerCode();
+				activateFlatOwnerCall(flatOwnerCode);
 				
 			}
 		});
@@ -96,7 +99,8 @@ public class NewRegisteredUserListAdapter extends BaseAdapter {
 			if (result!=null) {
 				if (result.getStatus().equals("success"))
 				{
-					Utilities.ShowAlertBox(context, "Message", result.getMessage());		
+					Utilities.ShowAlertBox(context, "Message", result.getMessage());
+					updateInDB(flatOwnerCode);
 				}else if (result.getStatus().equals("failure")){
 					Utilities.ShowAlertBox(context, "Message", result.getMessage());
 				}else{
@@ -117,6 +121,11 @@ public class NewRegisteredUserListAdapter extends BaseAdapter {
 			
 		}
 		
+	}
+	
+	private void updateInDB(String flatOwnerCode){
+		SmartFlatAdminDBManager dbManager = new SmartFlatAdminDBManager();
+		dbManager.UpdateActivationFlag(flatOwnerCode);
 	}
 
 }

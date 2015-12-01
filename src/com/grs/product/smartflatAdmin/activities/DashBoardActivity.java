@@ -24,6 +24,7 @@ import com.grs.product.smartflatAdmin.fragments.HomeFragment;
 import com.grs.product.smartflatAdmin.fragments.MainNoticeFragment;
 import com.grs.product.smartflatAdmin.fragments.MainRequestFragment;
 import com.grs.product.smartflatAdmin.fragments.MainUsersFragment;
+import com.grs.product.smartflatAdmin.fragments.MainVisirtorFragment;
 import com.grs.product.smartflatAdmin.fragments.SocietyDetailsFragment;
 import com.grs.product.smartflatAdmin.utils.Utilities;
 
@@ -77,17 +78,19 @@ public class DashBoardActivity extends FragmentActivity {
 		// Society
 		navDrawerItems.add(new NavDrawerItem(navMenuTitles[2], navMenuIcons.getResourceId(2, -1)));		
 		// Requests
-		navDrawerItems.add(new NavDrawerItem(navMenuTitles[3], navMenuIcons.getResourceId(4, -1)));		
+		navDrawerItems.add(new NavDrawerItem(navMenuTitles[3], navMenuIcons.getResourceId(4, -1)));
+		// Visitors
+		navDrawerItems.add(new NavDrawerItem(navMenuTitles[4], navMenuIcons.getResourceId(4, -1)));		
 		//Notices
-		navDrawerItems.add(new NavDrawerItem(navMenuTitles[4], navMenuIcons.getResourceId(6, -1)));
-		//Contacts
 		navDrawerItems.add(new NavDrawerItem(navMenuTitles[5], navMenuIcons.getResourceId(6, -1)));
-		//About App
+		//Contacts
 		navDrawerItems.add(new NavDrawerItem(navMenuTitles[6], navMenuIcons.getResourceId(6, -1)));
-		//Help
+		//About App
 		navDrawerItems.add(new NavDrawerItem(navMenuTitles[7], navMenuIcons.getResourceId(6, -1)));
-		//Sign Out
+		//Help
 		navDrawerItems.add(new NavDrawerItem(navMenuTitles[8], navMenuIcons.getResourceId(6, -1)));
+		//Sign Out
+		navDrawerItems.add(new NavDrawerItem(navMenuTitles[9], navMenuIcons.getResourceId(6, -1)));
 
 		// Recycle the typed array
 		navMenuIcons.recycle();
@@ -209,10 +212,16 @@ public class DashBoardActivity extends FragmentActivity {
 			MainRequestFragment mainRequestFragment = new MainRequestFragment();
 	        getSupportFragmentManager().beginTransaction()
 	        .replace(R.id.fragment_container, mainRequestFragment).commit();
-			break;			
+			break;	
+		case 4:
+			status = "created";
+			MainVisirtorFragment mainVisirtorFragment = new MainVisirtorFragment();
+	        getSupportFragmentManager().beginTransaction()
+	        .replace(R.id.fragment_container, mainVisirtorFragment).commit();
+			break;
 			
 		//Notice	
-		case 4:
+		case 5:
 			status = "created";
 			MainNoticeFragment mainNoticeFragment = new MainNoticeFragment();
 	        getSupportFragmentManager().beginTransaction()
@@ -220,7 +229,7 @@ public class DashBoardActivity extends FragmentActivity {
 			break;
 		
 		//Contacts	
-		case 5:
+		case 6:
 /*			status = "created";
 			ContactsFragment contactsFragment = new ContactsFragment();
 			getSupportFragmentManager().beginTransaction()
@@ -228,7 +237,7 @@ public class DashBoardActivity extends FragmentActivity {
 			break;
 			
 		//	AboutApp
-		case 6:
+		case 7:
 /*			status = "created";
 			AboutAppFragment aboutAppFragment = new AboutAppFragment();
 			getSupportFragmentManager().beginTransaction()
@@ -236,7 +245,7 @@ public class DashBoardActivity extends FragmentActivity {
 			break;
 			
 		//Help	
-		case 7:
+		case 8:
 /*			status = "created";
 			HelpFragment helpFragment = new HelpFragment();
 			getSupportFragmentManager().beginTransaction()
@@ -244,7 +253,7 @@ public class DashBoardActivity extends FragmentActivity {
 			break;
 			
 		//Sign Out	
-		case 8:
+		case 9:
 			status = "created";
     		overridePendingTransition(R.animator.slide_in_bottom, R.animator.slide_out_bottom);
     		SmartFlatAdminApplication.saveSocietyOwnerAccessCodeInSharedPreferences(null);

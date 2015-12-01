@@ -41,9 +41,9 @@ public class SmartFlatAdminDBManager {
 		return isAdded;
 	}
 	
-	public Cursor getAllFlatOwnerDetails(){
+	public Cursor getAllFlatOwnerDetails(String activationCode){
 		SmartFlatAdminDatabase.getInstance().open();
-		Cursor details = SmartFlatAdminDatabase.getInstance().getAllFlatOwnerDetails();
+		Cursor details = SmartFlatAdminDatabase.getInstance().getAllFlatOwnerDetails(activationCode);
 		SmartFlatAdminDatabase.getInstance().close();
 		return details;
 	}
@@ -155,5 +155,11 @@ public class SmartFlatAdminDBManager {
 		Cursor details = SmartFlatAdminDatabase.getInstance().getMessages(requestNumber);
 		SmartFlatAdminDatabase.getInstance().close();
 		return details;	
+	}
+	
+	public void UpdateActivationFlag(String flatOwnerCode){
+		SmartFlatAdminDatabase.getInstance().open();
+		SmartFlatAdminDatabase.getInstance().UpdateActivationFlag(flatOwnerCode);
+		SmartFlatAdminDatabase.getInstance().close();
 	}
 }

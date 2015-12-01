@@ -8,6 +8,7 @@ import com.grs.product.smartflatAdmin.database.SmartFlatAdminDBTables.TableReque
 import com.grs.product.smartflatAdmin.database.SmartFlatAdminDBTables.TableSocietyDetails;
 import com.grs.product.smartflatAdmin.database.SmartFlatAdminDBTables.TableSocietyNotices;
 import com.grs.product.smartflatAdmin.database.SmartFlatAdminDBTables.TableSocietyOwnerDetails;
+import com.grs.product.smartflatAdmin.database.SmartFlatAdminDBTables.TableVisitorDetails;
 
 
 public class SmartFlatAdminDBTableCreation {
@@ -121,4 +122,19 @@ public class SmartFlatAdminDBTableCreation {
 			+ TableMessageDetails.SOCIETY_CODE + " TEXT, "
 			+ TableMessageDetails.IS_SOCIETY_MESSAGE + " BOOLEAN, "
 			+ TableMessageDetails.MESSAGE_DATETIME + " TEXT);";
+	
+	public static final String TABLE_VISITOR_DETAILS_CREATION_QUERY = "Create table if not exists "+TableNames.VISITOR_DETAILS
+			+"( "
+			+ TableVisitorDetails.ID + " INTEGER PRIMARY KEY, "
+			+ TableVisitorDetails.VISITOR_CODE + " TEXT, "
+			+ TableVisitorDetails.VISITOR_NAME + " TEXT, "
+			+ TableVisitorDetails.VISITOR_CONTACT_NO + " TEXT, "
+			+ TableVisitorDetails.VISIT_PURPOSE + " TEXT, "
+			+ TableVisitorDetails.VISITOR_VEHICLE_NO + " TEXT, "
+			+ TableVisitorDetails.VISITOR_IN_TIME + " TEXT, "
+			+ TableVisitorDetails.VISITOR_OUT_TIME + " TEXT, "
+			+ TableVisitorDetails.NO_OF_VISITORS + " INTEGER, "
+			+ TableVisitorDetails.FLAT_OWNER_CODE + " TEXT, "
+			+ TableVisitorDetails.SOCIETY_CODE + " TEXT, "
+			+ TableVisitorDetails.IS_OFFLINE_ENTRY + " BOOLEAN);";
 	}

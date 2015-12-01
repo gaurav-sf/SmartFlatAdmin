@@ -190,6 +190,18 @@ public class SmartFlatAdminDatabase {
 			db.endTransaction();
 		}	
 	}
+	
+	private void createVisitorDetailsTable(SQLiteDatabase db){
+		try {
+			db.beginTransaction();
+			db.execSQL(SmartFlatAdminDBTableCreation.TABLE_VISITOR_DETAILS_CREATION_QUERY);
+			db.setTransactionSuccessful();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally{
+			db.endTransaction();
+		}	
+	}
 
 
 	//inner class
@@ -212,6 +224,7 @@ public class SmartFlatAdminDatabase {
 				createSocietyNoticesTable(db);
 				createContactDetailsTable(db);
 				createMessageDetailsTable(db);
+				createVisitorDetailsTable(db);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -311,6 +324,12 @@ public class SmartFlatAdminDatabase {
 				isAdded = mDb.insert(TableNames.FLAT_OWNER_DETAILS, null, values) > 0;
 				mDb.setTransactionSuccessful();	
 				mDb.endTransaction();
+			}else{
+				String where_clause = TableFlatOwnerDetails.FLAT_OWNER_CODE +"= '"+ details.getmFlatOwnerCode()+"'";
+				mDb.beginTransaction();
+				isAdded = mDb.update(TableNames.FLAT_OWNER_DETAILS, values, where_clause, null) > 0;
+				mDb.setTransactionSuccessful();	
+				mDb.endTransaction();
 			}
 
 		} catch (Exception e) {
@@ -322,8 +341,8 @@ public class SmartFlatAdminDatabase {
 	}
 
 
-	public Cursor getAllFlatOwnerDetails(){
-		String selectQuery = "SELECT  * FROM " + TableNames.FLAT_OWNER_DETAILS;
+	public Cursor getAllFlatOwnerDetails(String activationCode){
+		String selectQuery = "SELECT  * FROM " + TableNames.FLAT_OWNER_DETAILS + "WHERE "+ TableFlatOwnerDetails.IS_ACTIVE+" = '"+activationCode+"'";
 		Cursor cursor = mDb.rawQuery(selectQuery, null);	
 		if (cursor != null && cursor.getCount()>0) {
 			cursor.moveToNext();
@@ -390,6 +409,12 @@ public class SmartFlatAdminDatabase {
 				isAdded = mDb.insert(TableNames.REQUEST_DETAILS, null, values) > 0;
 				mDb.setTransactionSuccessful();	
 				mDb.endTransaction();
+			}else{
+				String where_clause = TableRequestDetails.REQUEST_NUMBER +"= '"+ details.getmRequestNumber()+"'";
+				mDb.beginTransaction();
+				isAdded = mDb.update(TableNames.REQUEST_DETAILS, values, where_clause, null) > 0;
+				mDb.setTransactionSuccessful();	
+				mDb.endTransaction();		
 			}
 
 		} catch (Exception e) {
@@ -623,6 +648,22 @@ public class SmartFlatAdminDatabase {
 			cursor.moveToNext();
 		}
 		return cursor;			
+	}
+	
+	public void UpdateActivationFlag(String flatOwnerCode){
+		ContentValues values = new ContentValues();		
+		values.put(TableFlatOwnerDetails.IS_ACTIVE,"1");		
+		String WHERE = TableFlatOwnerDetails.FLAT_OWNER_CODE + "= '"+flatOwnerCode+"'";
+
+		try {
+			mDb.beginTransaction();
+			mDb.update(TableNames.FLAT_OWNER_DETAILS, values, WHERE, null);
+			mDb.setTransactionSuccessful();
+		} catch (Exception e) {
+			Log.e("Error in transaction", e.toString());
+		} finally {
+			mDb.endTransaction();
+		}		
 	}
 
 }
