@@ -3,6 +3,143 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
-    
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <EditText
+                android:id="@+id/editTextVisitorName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:background="@drawable/edittext_bg"
+                android:ems="10"
+                android:hint="visitor Name"
+                android:padding="10sp" />
+
+            <Spinner
+                android:id="@+id/spinnerNoOfVisitors"
+                android:layout_width="match_parent"
+                android:layout_height="40sp"
+                android:layout_marginTop="25dp"
+                android:background="@drawable/spinner_bg"
+                android:ems="10"
+                android:hint="No Of Visitors"
+                android:popupBackground="@color/spinner_popup" />
+
+            <RadioGroup
+                android:id="@+id/radioGroupFlatType"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:orientation="horizontal" >
+
+                <RadioButton
+                    android:id="@+id/radioButtonFlatNo"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:checked="true"
+                    android:text="Flat No" />
+
+                <RadioButton
+                    android:id="@+id/radioButtonOwnerName"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Owner Name" />
+            </RadioGroup>
+
+            <Spinner
+                android:id="@+id/spinnerBuildingName"
+                android:layout_width="match_parent"
+                android:layout_height="40sp"
+                android:layout_marginTop="25dp"
+                android:background="@drawable/spinner_bg"
+                android:ems="10"
+                android:hint="Building Name"
+                android:popupBackground="@color/spinner_popup" />
+
+            <Spinner
+                android:id="@+id/spinnerFloorNo"
+                android:layout_width="match_parent"
+                android:layout_height="40sp"
+                android:layout_marginTop="25dp"
+                android:background="@drawable/spinner_bg"
+                android:ems="10"
+                android:hint="Floor No"
+                android:popupBackground="@color/spinner_popup" />
+
+            <EditText
+                android:id="@+id/editTextFlatNo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:background="@drawable/edittext_bg"
+                android:ems="10"
+                android:hint="Flat No"
+                android:padding="10sp" />
+
+            <EditText
+                android:id="@+id/editTextVisitorInTime"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:background="@drawable/edittext_bg"
+                android:ems="10"
+                android:editable="false"
+                android:hint="visitor In Time"
+                android:padding="10sp" />
+
+            <EditText
+                android:id="@+id/editTextVisitPurpose"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:background="@drawable/edittext_bg"
+                android:ems="10"
+                android:hint="visit Purpose"
+                android:minLines="3"
+                android:padding="10sp"
+                android:singleLine="false" />
+
+            <EditText
+                android:id="@+id/editTextVisitorContactNo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:background="@drawable/edittext_bg"
+                android:ems="10"
+                android:hint="Contact No"
+                android:inputType="number"
+                android:padding="10sp" />
+
+            <EditText
+                android:id="@+id/editTextVisitorVehicleNo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:background="@drawable/edittext_bg"
+                android:ems="10"
+                android:hint="Vehicle no"
+                android:inputType="number"
+                android:padding="10sp" />
+
+            <Button
+                android:id="@+id/buttonAddVisitor"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@drawable/btnbg"
+                android:text="ADD VISITOR"
+                android:textColor="#ffffff" />
+        </LinearLayout>
+    </ScrollView>
 
 </LinearLayout>

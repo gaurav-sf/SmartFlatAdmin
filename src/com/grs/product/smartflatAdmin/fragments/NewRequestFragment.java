@@ -104,11 +104,11 @@ public class NewRequestFragment extends Fragment {
 		public void onStopedWithError(SmartFlatAdminError e) {
 			CustomProgressDialog.removeDialog();
 			if (e.getMessage().equalsIgnoreCase("No Requests to process for a day")) {
-				Utilities.ShowAlertBox(getActivity(), "Error", "No Requests to process for a day");
+				Utilities.ShowAlertBox(getActivity(), "Message", "No Requests to process for a day");
 				mSpinnertSorting.setVisibility(View.INVISIBLE);
 			}else{
 				Utilities.ShowAlertBox(getActivity(), "Error", "Server error occured please try later");
-				showDataInListView();			
+				//showDataInListView();			
 			}
 		}
 		
@@ -312,7 +312,7 @@ public class NewRequestFragment extends Fragment {
 	private void getMessagesFromServer(){
 		if (NetworkDetector.init(getActivity()).isNetworkAvailable()) 
 		{
-			new GetMessagesTask(getActivity(), null)
+			new GetMessagesTask(getActivity(), new GetMessagesTaskListener())
 			.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
 		} 
 		else 

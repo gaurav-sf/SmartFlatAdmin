@@ -9,7 +9,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import android.content.Context;
 import android.util.Log;
-
 import com.grs.product.smartflatAdmin.SmartFlatAdminApplication;
 import com.grs.product.smartflatAdmin.error.SmartFlatAdminError;
 import com.grs.product.smartflatAdmin.models.FlatOwnerDetails;
@@ -19,6 +18,7 @@ import com.grs.product.smartflatAdmin.models.SocietyDetails;
 import com.grs.product.smartflatAdmin.models.SocietyOwnerDetails;
 import com.grs.product.smartflatAdmin.response.Response;
 import com.grs.product.smartflatAdmin.utils.Param;
+import com.grs.product.smartflatAdmin.utils.Utilities;
 
 public class SmartFlatAdminAPI {
 
@@ -65,6 +65,10 @@ public class SmartFlatAdminAPI {
 			throws SmartFlatAdminError
 	{
 		return getMessagesCall();
+	}
+	
+	public Response sendMesssage(String message, String requestNumber, String flatOwnerCode) throws SmartFlatAdminError{
+		return sendMessageCall(message, requestNumber, flatOwnerCode);
 	}
 
 	private Response getRegistrationCall(SocietyDetails societyDetails, SocietyOwnerDetails societyOwnerDetails)
@@ -246,7 +250,7 @@ public class SmartFlatAdminAPI {
 			object.add(new BasicNameValuePair("societyCode", SmartFlatAdminApplication.getSocietyCodeFromSharedPreferences()));
 
 			ServerConnecter obj = new ServerConnecter();
-			String URL = Param.baseURL + "getRequestsAndComplaints.php";
+			String URL = Param.baseURL + "getSocietyMessages.php";
 			JSONObject objJson = obj.getJSONFromUrl(URL, object);
 			JSONSingleObjectDecode objectjson = new JSONSingleObjectDecode();
 			return objectjson.getMessages(objJson);
@@ -260,6 +264,34 @@ public class SmartFlatAdminAPI {
 		{
 			throw new SmartFlatAdminError("Please try again later", "Server Error");
 		}
+	}
+	
+	private Response sendMessageCall(String message, String requestNumber, String flatOwnerCode) throws SmartFlatAdminError{
+
+		try{
+			ArrayList<NameValuePair> object = new ArrayList<NameValuePair>();
+			object.add(new BasicNameValuePair("message", message));
+			object.add(new BasicNameValuePair("requestNumber",requestNumber));
+			object.add(new BasicNameValuePair("societyCode",SmartFlatAdminApplication.getSocietyCodeFromSharedPreferences()));
+			object.add(new BasicNameValuePair("flatOwnerCode",flatOwnerCode));
+			object.add(new BasicNameValuePair("isSocietyMessage","1"));
+			object.add(new BasicNameValuePair("messageDateTime",Utilities.getCurrentDateTime()));
+
+			ServerConnecter serverConnecter = new ServerConnecter();
+			String URL = Param.baseURL + "sendMessage.php";
+			JSONObject objJson = serverConnecter.getJSONFromUrl(URL, object);
+			JSONSingleObjectDecode objectjson = new JSONSingleObjectDecode();
+			return objectjson.getStatus(objJson);	
+
+		} 
+		catch (JSONException e) 
+		{
+			throw new SmartFlatAdminError("Server error occured. Please try again later", "Server Error");
+		}
+		catch (Exception e)
+		{
+			throw new SmartFlatAdminError("Please try again later", "Server Error");
+		}	
 	}
 
 

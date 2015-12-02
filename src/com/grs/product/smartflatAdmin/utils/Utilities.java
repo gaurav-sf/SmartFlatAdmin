@@ -6,6 +6,8 @@ import java.util.Date;
 import java.util.TimeZone;
 
 import com.grs.product.smartflatAdmin.R;
+import com.grs.product.smartflatAdmin.database.SmartFlatAdminDBManager;
+import com.grs.product.smartflatAdmin.database.SmartFlatAdminDBTables.TableSocietyDetails;
 import com.grs.product.smartflatAdmin.models.SocietyDetails;
 
 import android.app.ActionBar;
@@ -21,22 +23,13 @@ import android.widget.TextView;
 
 public class Utilities {
 
-	public static SocietyDetails getSocietyDetails(){/*
+	public static SocietyDetails getSocietyDetails(){
 		SocietyDetails societyDetails = null;
-		SmartFlatDBManager dbManager = new SmartFlatDBManager();
+		SmartFlatAdminDBManager dbManager = new SmartFlatAdminDBManager();
 		Cursor cursorDeatils = dbManager.getSocietyDetails();
-
 		if(cursorDeatils!=null && cursorDeatils.getCount()>0){
 			societyDetails = new SocietyDetails();
 			societyDetails.setmSocietyCode(cursorDeatils.getString(cursorDeatils.getColumnIndex(TableSocietyDetails.SOCIETY_CODE)));
-			societyDetails.setmSocietyOwnerName(cursorDeatils.getString(cursorDeatils.getColumnIndex(TableSocietyDetails.SOCIETY_OWNER_NAME)));
-			societyDetails.setmSocietyOwnerAddressLine1(cursorDeatils.getString(cursorDeatils.getColumnIndex(TableSocietyDetails.SOCIETY_OWNER_ADDRESS_LINE1)));
-			societyDetails.setmSocietyOwnerAddressLine2(cursorDeatils.getString(cursorDeatils.getColumnIndex(TableSocietyDetails.SOCIETY_OWNER_ADDRESS_LINE2)));
-			societyDetails.setmSocietyOwnerCity(cursorDeatils.getString(cursorDeatils.getColumnIndex(TableSocietyDetails.SOCIETY_OWNER_CITY)));
-			societyDetails.setmSocietyOwnerState(cursorDeatils.getString(cursorDeatils.getColumnIndex(TableSocietyDetails.SOCIETY_OWNER_STATE)));
-			societyDetails.setmSocietyOwnerPIN(cursorDeatils.getString(cursorDeatils.getColumnIndex(TableSocietyDetails.SOCIETY_OWNER_PIN)));
-			societyDetails.setmSocietyOwnerContactNo(cursorDeatils.getString(cursorDeatils.getColumnIndex(TableSocietyDetails.SOCIETY_OWNER_CONTACT_NO)));
-			societyDetails.setmSocietyOwnerEmailId(cursorDeatils.getString(cursorDeatils.getColumnIndex(TableSocietyDetails.SOCIETY_OWNER_EMAIL_ID)));
 			societyDetails.setmSocietyName(cursorDeatils.getString(cursorDeatils.getColumnIndex(TableSocietyDetails.SOCIETY_NAME)));
 			societyDetails.setmBuildingName(cursorDeatils.getString(cursorDeatils.getColumnIndex(TableSocietyDetails.BUILDING_NAME)));
 			societyDetails.setmTotalFloorNumber(cursorDeatils.getInt(cursorDeatils.getColumnIndex(TableSocietyDetails.TOTAL_FLOOR_NUMBER)));
@@ -45,13 +38,9 @@ public class Utilities {
 			societyDetails.setmSocietyAddressCity(cursorDeatils.getString(cursorDeatils.getColumnIndex(TableSocietyDetails.SOCIETY_ADDRESS_CITY)));
 			societyDetails.setmSocietyAddressState(cursorDeatils.getString(cursorDeatils.getColumnIndex(TableSocietyDetails.SOCIETY_ADDRESS_STATE)));
 			societyDetails.setmSocietyAddressPIN(cursorDeatils.getString(cursorDeatils.getColumnIndex(TableSocietyDetails.SOCIETY_ADDRESS_PIN)));
-
 		}		
 		return societyDetails;
-
-
-	*/
-		return null;}
+	}
 	
 	public static String getUTCDateTime() {
 

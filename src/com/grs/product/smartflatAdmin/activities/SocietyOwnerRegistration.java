@@ -1,13 +1,18 @@
 package com.grs.product.smartflatAdmin.activities;
 
+import java.util.Calendar;
+
 import com.grs.product.smartflatAdmin.R;
 import com.grs.product.smartflatAdmin.models.SocietyOwnerDetails;
 import android.app.Activity;
+import android.app.DatePickerDialog;
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -20,7 +25,11 @@ public class SocietyOwnerRegistration extends Activity {
 	public static SocietyOwnerDetails mSocietyOwnerDetails;
 	private RadioButton mRadioButtonMale, mRadioButtonFemale;
 	private RadioGroup mRadioGroupGender;
-	
+	 private Calendar cal;
+	 private int currentDay;
+	 private int currentMonth;
+	 private int currentYear;
+	 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -33,6 +42,8 @@ public class SocietyOwnerRegistration extends Activity {
 		mEditTextName = (EditText) findViewById(R.id.editTextName);
 		mEditTextDOB = (EditText) findViewById(R.id.editTextDOB);
 		mEditTextAge = (EditText) findViewById(R.id.editTextAge);
+		mEditTextAge.setText("25"); 
+		mEditTextAge.setVisibility(View.GONE);
 		mEditTextContactNo = (EditText) findViewById(R.id.editTextContactNo);
 		mEditTextEmailId =  (EditText) findViewById(R.id.editTextEmailId);
 		mEditTextAddressLine2 = (EditText) findViewById(R.id.editTextAddressLine1);
@@ -45,6 +56,10 @@ public class SocietyOwnerRegistration extends Activity {
 		mRadioButtonMale = (RadioButton) findViewById(R.id.radioButtonMale);
 		mRadioButtonFemale = (RadioButton) findViewById(R.id.radioButtonFemale);
 		mSocietyOwnerDetails = new SocietyOwnerDetails();
+		  cal = Calendar.getInstance();
+		  currentDay = cal.get(Calendar.DAY_OF_MONTH);
+		  currentMonth = cal.get(Calendar.MONTH);
+		  currentYear = cal.get(Calendar.YEAR);
 	}
 	
 	private void addListeners(){
@@ -60,6 +75,16 @@ public class SocietyOwnerRegistration extends Activity {
 				}
 			}
 		});	
+		
+		mEditTextDOB.setOnClickListener(new OnClickListener() {
+			
+			@SuppressWarnings("deprecation")
+			@Override
+			public void onClick(View v) {
+				showDialog(0);
+				
+			}
+		});
 	}
 	
 	private boolean isValidateUiEntries(){
@@ -91,11 +116,6 @@ public class SocietyOwnerRegistration extends Activity {
 		if(mEditTextAddressLine1.getText().toString().equals(""))
 		{
 			mEditTextAddressLine1.setError("Please enter address line 1");
-			return false;
-		}
-		if(mEditTextAddressLine2.getText().toString().equals(""))
-		{
-			mEditTextAddressLine2.setError("Please enter address line 2");
 			return false;
 		}
 		if(mEditTextCity.getText().toString().equals(""))
@@ -140,5 +160,19 @@ public class SocietyOwnerRegistration extends Activity {
 		startActivity(intentSocietyRegistrationStep1);
 		finish();
 	}
+	
+	 @Override
+	 @Deprecated
+	 protected Dialog onCreateDialog(int id) {
+	  return new DatePickerDialog(this, datePickerListener, currentYear, currentMonth, currentDay);
+	 }
+
+	 private DatePickerDialog.OnDateSetListener datePickerListener = new DatePickerDialog.OnDateSetListener() {
+	  public void onDateSet(DatePicker view, int selectedYear,
+	    int selectedMonth, int selectedDay) {
+		  mEditTextDOB.setText(selectedDay + "/" + (selectedMonth + 1) + "/"
+	     + selectedYear);
+	  }
+	 };
 
 }

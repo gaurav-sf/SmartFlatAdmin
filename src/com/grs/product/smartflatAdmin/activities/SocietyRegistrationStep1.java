@@ -72,11 +72,6 @@ public class SocietyRegistrationStep1 extends Activity {
 			mEditTextAddressLine1.setError("Please enter address line 1");
 			return false;
 		}
-		if(mEditTextAddressLine2.getText().toString().equals(""))
-		{
-			mEditTextAddressLine2.setError("Please enter address line 2");
-			return false;
-		}
 		if(mEditTextCity.getText().toString().equals(""))
 		{
 			mEditTextCity.setError("Please enter city");
