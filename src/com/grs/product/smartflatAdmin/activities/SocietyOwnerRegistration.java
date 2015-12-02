@@ -46,8 +46,8 @@ public class SocietyOwnerRegistration extends Activity {
 		mEditTextAge.setVisibility(View.GONE);
 		mEditTextContactNo = (EditText) findViewById(R.id.editTextContactNo);
 		mEditTextEmailId =  (EditText) findViewById(R.id.editTextEmailId);
-		mEditTextAddressLine2 = (EditText) findViewById(R.id.editTextAddressLine1);
-		mEditTextAddressLine1 = (EditText) findViewById(R.id.editTextAddressLine2);
+		mEditTextAddressLine1 = (EditText) findViewById(R.id.editTextAddressLine1);
+		mEditTextAddressLine2 = (EditText) findViewById(R.id.editTextAddressLine2);
 		mEditTextCity = (EditText) findViewById(R.id.editTextCity);
 		mEditTextState = (EditText) findViewById(R.id.editTextState);
 		mEditTextPIN = (EditText) findViewById(R.id.editTextPin);	

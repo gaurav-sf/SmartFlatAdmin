@@ -16,6 +16,7 @@ import com.grs.product.smartflatAdmin.models.RequestDetails;
 import com.grs.product.smartflatAdmin.models.RequestMessages;
 import com.grs.product.smartflatAdmin.models.SocietyDetails;
 import com.grs.product.smartflatAdmin.models.SocietyOwnerDetails;
+import com.grs.product.smartflatAdmin.models.VisitorDetails;
 import com.grs.product.smartflatAdmin.response.Response;
 import com.grs.product.smartflatAdmin.utils.Param;
 import com.grs.product.smartflatAdmin.utils.Utilities;
@@ -69,6 +70,10 @@ public class SmartFlatAdminAPI {
 	
 	public Response sendMesssage(String message, String requestNumber, String flatOwnerCode) throws SmartFlatAdminError{
 		return sendMessageCall(message, requestNumber, flatOwnerCode);
+	}
+	
+	public Response saveVisitor(VisitorDetails details) throws SmartFlatAdminError{
+		return saveVisitorCall(details);
 	}
 
 	private Response getRegistrationCall(SocietyDetails societyDetails, SocietyOwnerDetails societyOwnerDetails)
@@ -274,6 +279,37 @@ public class SmartFlatAdminAPI {
 			object.add(new BasicNameValuePair("requestNumber",requestNumber));
 			object.add(new BasicNameValuePair("societyCode",SmartFlatAdminApplication.getSocietyCodeFromSharedPreferences()));
 			object.add(new BasicNameValuePair("flatOwnerCode",flatOwnerCode));
+			object.add(new BasicNameValuePair("isSocietyMessage","1"));
+			object.add(new BasicNameValuePair("messageDateTime",Utilities.getCurrentDateTime()));
+
+			ServerConnecter serverConnecter = new ServerConnecter();
+			String URL = Param.baseURL + "sendMessage.php";
+			JSONObject objJson = serverConnecter.getJSONFromUrl(URL, object);
+			JSONSingleObjectDecode objectjson = new JSONSingleObjectDecode();
+			return objectjson.getStatus(objJson);	
+
+		} 
+		catch (JSONException e) 
+		{
+			throw new SmartFlatAdminError("Server error occured. Please try again later", "Server Error");
+		}
+		catch (Exception e)
+		{
+			throw new SmartFlatAdminError("Please try again later", "Server Error");
+		}	
+	}
+	
+	private Response saveVisitorCall(VisitorDetails details) throws SmartFlatAdminError{
+
+		try{
+			ArrayList<NameValuePair> object = new ArrayList<NameValuePair>();
+			object.add(new BasicNameValuePair("visitorName","1"));
+
+			object.add(new BasicNameValuePair("isSocietyMessage","1"));
+			object.add(new BasicNameValuePair("isSocietyMessage","1"));
+			object.add(new BasicNameValuePair("isSocietyMessage","1"));
+
+			object.add(new BasicNameValuePair("societyCode",SmartFlatAdminApplication.getSocietyCodeFromSharedPreferences()));
 			object.add(new BasicNameValuePair("isSocietyMessage","1"));
 			object.add(new BasicNameValuePair("messageDateTime",Utilities.getCurrentDateTime()));
 

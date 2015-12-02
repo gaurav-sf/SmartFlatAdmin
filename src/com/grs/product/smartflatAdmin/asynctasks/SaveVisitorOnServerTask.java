@@ -15,7 +15,7 @@ public class SaveVisitorOnServerTask extends AsyncTask<Void, Void, SmartFlatAdmi
 	private static final String TAG = LoginTask.class.getName();
 	final Context context;
 	private AsyncTaskCompleteListener<Response> listener = null;
-	Response mMessageStatus;
+	Response mVisitorStatus;
 	private VisitorDetails mVisitorDetails;
 	
 	public SaveVisitorOnServerTask(Context ctx, AsyncTaskCompleteListener<Response> listener, VisitorDetails details) 
@@ -37,7 +37,7 @@ public class SaveVisitorOnServerTask extends AsyncTask<Void, Void, SmartFlatAdmi
 		SmartFlatAdminAPI smartFlatAPI = new SmartFlatAdminAPI(context);
 		try 
 		{
-			mMessageStatus =  smartFlatAPI.sendMesssage(message, requestNumber, flatOwnerCode);
+			mVisitorStatus =  smartFlatAPI.saveVisitor(mVisitorDetails);
 		}
 		catch (SmartFlatAdminError e) 
 		{
@@ -51,12 +51,12 @@ public class SaveVisitorOnServerTask extends AsyncTask<Void, Void, SmartFlatAdmi
 	@Override
 	protected void onPostExecute(SmartFlatAdminError error) {
 		
-		if(mMessageStatus!=null)
+		if(mVisitorStatus!=null)
 		{
 			if(listener!=null)
 			{
 				listener.onStoped();
-				listener.onTaskComplete(mMessageStatus);
+				listener.onTaskComplete(mVisitorStatus);
 				listener = null;
 			}
 		}

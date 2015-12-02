@@ -630,19 +630,22 @@ public class SmartFlatAdminDatabase {
 		values.put(TableMessageDetails.MESSAGE_DATETIME,message.getmMessageDateTime());
 
 		try {
-			mDb.beginTransaction();
-			isAdded = mDb.insert(TableNames.MESSAGE_DETAILS, null, values) > 0;
-			mDb.setTransactionSuccessful();
+			if(getSingleMessages(message.getmMessageNumber()).getCount()<=0){
+				mDb.beginTransaction();
+				isAdded = mDb.insert(TableNames.MESSAGE_DETAILS, null, values) > 0;
+				mDb.setTransactionSuccessful();	
+				mDb.endTransaction();
+			}
 		} catch (Exception e) {
 			Log.e("Error in transaction", e.toString());
 		} finally {
-			mDb.endTransaction();
+			//mDb.endTransaction();
 		}	
 		return isAdded;	
 	}
 	
 	public Cursor getMessages(String requestNumber){
-		String selectQuery = "SELECT  * FROM " + TableNames.MESSAGE_DETAILS + " WHERE " + TableMessageDetails.REQUEST_NUMBER +"= '"+ requestNumber+"' ORDER BY "+TableMessageDetails.MESSAGE_DATETIME + "  DESC";
+		String selectQuery = "SELECT  * FROM " + TableNames.MESSAGE_DETAILS + " WHERE " + TableMessageDetails.REQUEST_NUMBER +"= '"+ requestNumber+"' ORDER BY "+TableMessageDetails.MESSAGE_DATETIME + "  ASC";
 		Cursor cursor = mDb.rawQuery(selectQuery, null);	
 		if (cursor != null && cursor.getCount()>0) {
 			cursor.moveToNext();
@@ -664,6 +667,15 @@ public class SmartFlatAdminDatabase {
 		} finally {
 			mDb.endTransaction();
 		}		
+	}
+	
+	public Cursor getSingleMessages(String messageNumber){
+		String selectQuery = "SELECT  * FROM " + TableNames.MESSAGE_DETAILS + " WHERE " + TableMessageDetails.MESSAGE_NUMBER +"= '"+ messageNumber+"'";
+		Cursor cursor = mDb.rawQuery(selectQuery, null);	
+		if (cursor != null && cursor.getCount()>0) {
+			cursor.moveToNext();
+		}
+		return cursor;			
 	}
 
 }

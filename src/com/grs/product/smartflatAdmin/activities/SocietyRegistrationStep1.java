@@ -36,8 +36,8 @@ public class SocietyRegistrationStep1 extends Activity {
 	
 	private void initializeUI(){
 		mEditTextName = (EditText) findViewById(R.id.editTextSocietyName);
-		mEditTextAddressLine2 = (EditText) findViewById(R.id.editTextAddressLine1);
-		mEditTextAddressLine1 = (EditText) findViewById(R.id.editTextAddressLine2);
+		mEditTextAddressLine1 = (EditText) findViewById(R.id.editTextAddressLine1);
+		mEditTextAddressLine2 = (EditText) findViewById(R.id.editTextAddressLine2);
 		mEditTextCity = (EditText) findViewById(R.id.editTextCity);
 		mEditTextState = (EditText) findViewById(R.id.editTextState);
 		mEditTextPIN = (EditText) findViewById(R.id.editTextPin);	
