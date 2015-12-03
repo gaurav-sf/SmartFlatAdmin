@@ -19,11 +19,13 @@ import com.grs.product.smartflatAdmin.database.SmartFlatAdminDBTables.TableNames
 import com.grs.product.smartflatAdmin.database.SmartFlatAdminDBTables.TableRequestDetails;
 import com.grs.product.smartflatAdmin.database.SmartFlatAdminDBTables.TableSocietyDetails;
 import com.grs.product.smartflatAdmin.database.SmartFlatAdminDBTables.TableSocietyOwnerDetails;
+import com.grs.product.smartflatAdmin.database.SmartFlatAdminDBTables.TableVisitorDetails;
 import com.grs.product.smartflatAdmin.models.FlatOwnerDetails;
 import com.grs.product.smartflatAdmin.models.RequestDetails;
 import com.grs.product.smartflatAdmin.models.RequestMessages;
 import com.grs.product.smartflatAdmin.models.SocietyDetails;
 import com.grs.product.smartflatAdmin.models.SocietyOwnerDetails;
+import com.grs.product.smartflatAdmin.models.VisitorDetails;
 
 public class SmartFlatAdminDatabase {
 	private SQLiteDatabase mDb;
@@ -676,6 +678,52 @@ public class SmartFlatAdminDatabase {
 			cursor.moveToNext();
 		}
 		return cursor;			
+	}
+	
+	public Cursor getFlatOwnerCode(String searchValue){
+
+		String selectQuery = "SELECT  * FROM " + TableNames.FLAT_OWNER_DETAILS + " WHERE " + TableFlatOwnerDetails.FLAT_OWNER_CODE +" LIKE '%"+ searchValue+"%'";
+		Cursor cursor = mDb.rawQuery(selectQuery, null);	
+		if (cursor != null && cursor.getCount()>0) {
+			cursor.moveToNext();
+		}
+		return cursor;			
+	
+	}
+	
+	public boolean saveVisitor(VisitorDetails details){
+		boolean isAdded = false;
+		ContentValues values = new ContentValues();
+		values.put(TableVisitorDetails.VISITOR_CODE,details.getmVisitorCode());
+		values.put(TableVisitorDetails.VISITOR_NAME,details.getmVisitorName());
+		values.put(TableVisitorDetails.VISITOR_IN_TIME,details.getmVisitorInTime());
+		values.put(TableVisitorDetails.NO_OF_VISITORS,details.getmNoofVisitors());
+		values.put(TableVisitorDetails.VISIT_PURPOSE,details.getmVisitPurpose());
+		values.put(TableVisitorDetails.VISITOR_CONTACT_NO,details.getmVisitorContacNo());
+		values.put(TableVisitorDetails.VISITOR_VEHICLE_NO,details.getmVisitorVehicleNo());
+		values.put(TableVisitorDetails.FLAT_OWNER_CODE,details.getmFlatOwnerCode());
+		values.put(TableVisitorDetails.IS_OFFLINE_ENTRY,details.ismIsOfflineEntry());
+		values.put(TableVisitorDetails.SOCIETY_CODE,SmartFlatAdminApplication.getSocietyCodeFromSharedPreferences());
+		try 
+		{
+			mDb.beginTransaction();
+			isAdded = mDb.insert(TableNames.VISITOR_DETAILS, null, values) > 0;
+			mDb.setTransactionSuccessful();
+		} catch (Exception e) {
+			Log.e("Error in transaction", e.toString());
+		} finally {
+			mDb.endTransaction();
+		}
+		return isAdded;	
+	}
+	
+	public Cursor getVisitors(){
+		String selectQuery = "SELECT  * FROM " + TableNames.VISITOR_DETAILS +" ORDER BY "+TableVisitorDetails.VISITOR_IN_TIME + "  DESC";
+		Cursor cursor = mDb.rawQuery(selectQuery, null);	
+		if (cursor != null && cursor.getCount()>0) {
+			cursor.moveToNext();
+		}
+		return cursor;		
 	}
 
 }

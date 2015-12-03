@@ -14,7 +14,7 @@ import com.grs.product.smartflatAdmin.models.RequestMessages;
 
 public class GetMessagesTask   extends AsyncTask<Void, Void, SmartFlatAdminError>{
 
-	private static final String TAG = GetRequestAndComplaintTask.class.getName();
+	private static final String TAG = GetMessagesTask.class.getName();
 	final Context mContext;
 	private AsyncTaskCompleteListener<List<RequestMessages>> listener = null;
 	List<RequestMessages> listMessages;

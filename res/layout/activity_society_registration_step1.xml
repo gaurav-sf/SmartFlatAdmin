@@ -106,15 +106,28 @@
                     android:padding="5dp" 
                     android:inputType="number"/>
 
+                
+                <LinearLayout android:id="@+id/layoutEditTextContainer"
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="10dp"
+                    android:orientation="vertical">
                 <EditText
                     android:id="@+id/editTextBuildingName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
                     android:background="@drawable/edittext_bg"
                     android:ems="10"
                     android:hint="Building Name"
-                    android:padding="5dp" />
+                    android:padding="5dp"/>
+                </LinearLayout>
+                
+                <Button android:id="@+id/buttonAddEditText"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:ems="2"
+                    android:layout_gravity="right"
+                    android:text="Add"/>
 
                 <EditText
                     android:id="@+id/editTextTotalFloors"

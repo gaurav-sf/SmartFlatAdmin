@@ -303,18 +303,17 @@ public class SmartFlatAdminAPI {
 
 		try{
 			ArrayList<NameValuePair> object = new ArrayList<NameValuePair>();
-			object.add(new BasicNameValuePair("visitorName","1"));
-
-			object.add(new BasicNameValuePair("isSocietyMessage","1"));
-			object.add(new BasicNameValuePair("isSocietyMessage","1"));
-			object.add(new BasicNameValuePair("isSocietyMessage","1"));
-
+			object.add(new BasicNameValuePair("visitorName",details.getmVisitorName()));
+			object.add(new BasicNameValuePair("noOfVisitors",details.getmNoofVisitors()));
+			object.add(new BasicNameValuePair("visitorInTime",details.getmVisitorInTime()));
+			object.add(new BasicNameValuePair("visitorContactNo",details.getmVisitorContacNo()));
+			object.add(new BasicNameValuePair("visitorVehicleNo",details.getmVisitorVehicleNo()));
+			object.add(new BasicNameValuePair("visitPurpose",details.getmVisitPurpose()));
+			object.add(new BasicNameValuePair("flatOwnerCode",details.getmFlatOwnerCode()));
 			object.add(new BasicNameValuePair("societyCode",SmartFlatAdminApplication.getSocietyCodeFromSharedPreferences()));
-			object.add(new BasicNameValuePair("isSocietyMessage","1"));
-			object.add(new BasicNameValuePair("messageDateTime",Utilities.getCurrentDateTime()));
-
+			
 			ServerConnecter serverConnecter = new ServerConnecter();
-			String URL = Param.baseURL + "sendMessage.php";
+			String URL = Param.baseURL + "saveVisitor.php";
 			JSONObject objJson = serverConnecter.getJSONFromUrl(URL, object);
 			JSONSingleObjectDecode objectjson = new JSONSingleObjectDecode();
 			return objectjson.getStatus(objJson);	

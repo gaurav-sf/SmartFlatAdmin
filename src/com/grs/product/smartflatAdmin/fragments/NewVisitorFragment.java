@@ -4,11 +4,28 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.grs.product.smartflatAdmin.R;
+import com.grs.product.smartflatAdmin.SmartFlatAdminApplication;
+import com.grs.product.smartflatAdmin.activities.LoginActivity;
+import com.grs.product.smartflatAdmin.activities.LoginActivity.LoginTaskListener;
+import com.grs.product.smartflatAdmin.apicall.AsyncTaskCompleteListener;
+import com.grs.product.smartflatAdmin.asynctasks.LoginTask;
+import com.grs.product.smartflatAdmin.asynctasks.SaveVisitorOnServerTask;
+import com.grs.product.smartflatAdmin.database.SmartFlatAdminDBManager;
+import com.grs.product.smartflatAdmin.database.SmartFlatAdminDBTables.TableFlatOwnerDetails;
+import com.grs.product.smartflatAdmin.database.SmartFlatAdminDBTables.TableSocietyDetails;
+import com.grs.product.smartflatAdmin.error.SmartFlatAdminError;
 import com.grs.product.smartflatAdmin.models.SocietyDetails;
+import com.grs.product.smartflatAdmin.models.VisitorDetails;
+import com.grs.product.smartflatAdmin.response.Response;
+import com.grs.product.smartflatAdmin.utils.CustomProgressDialog;
+import com.grs.product.smartflatAdmin.utils.NetworkDetector;
 import com.grs.product.smartflatAdmin.utils.Utilities;
 
+import android.database.Cursor;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -18,6 +35,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.RadioGroup.OnCheckedChangeListener;
 import android.widget.Spinner;
 
 public class NewVisitorFragment extends Fragment{
@@ -28,7 +46,7 @@ public class NewVisitorFragment extends Fragment{
 	private RadioGroup mRadioGroupFlatType;
 	private RadioButton mRadioButtonFlatNo, mRadioButtonOwnerName;
 	private Button mButtonAddVisitor;
-	
+	private VisitorDetails mVisitorDetails;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -41,8 +59,7 @@ public class NewVisitorFragment extends Fragment{
 		View rootView = inflater.inflate(R.layout.fragment_new_visitor, container, false);	
 		initialiseUI(rootView);
 		createSpinnerData();
-		addListeners();
-		
+		addListeners();	
         return rootView;
 		}
 	
@@ -69,13 +86,32 @@ public class NewVisitorFragment extends Fragment{
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				
+				if(isValidateUiEntries()){
+					mVisitorDetails = getVisitorDetails();
+					saveVisitor();
+				}
+			}
+		});
+		
+		mRadioGroupFlatType.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+			
+			@Override
+			public void onCheckedChanged(RadioGroup group, int checkedId) {
+				// TODO Auto-generated method stub
+				 switch(checkedId)
+                 {
+                 case R.id.radioButtonFlatNo:
+                     // TODO Add function to visible and disable contents
+                     break;
+                 case R.id.radioButtonOwnerName:
+                     // TODO Add function to visible and disable contents
+                     break;
+                 }
 			}
 		});
 		
 	}
-	
-	
+		
 	private void createSpinnerData(){
 		SocietyDetails mSocietyDetails = Utilities.getSocietyDetails();
 		List<String> listBuilidingName = new ArrayList<String>();
@@ -100,12 +136,130 @@ public class NewVisitorFragment extends Fragment{
 		//Create adapter for no of visitor spinner
 		List<String> listNoOfVisitors = new ArrayList<String>();
 		for(int i =1; i<=10;i++){
-			listFloorNo.add(String.valueOf(i));	
+			listNoOfVisitors.add(String.valueOf(i));	
 		}
 		ArrayAdapter<String> adapterNoOfVisitors = new ArrayAdapter<String>
 		(getActivity(), android.R.layout.simple_dropdown_item_1line, listNoOfVisitors);
 		adapterFloorNo.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);		
 		mSpinnerNoOfVisitors.setAdapter(adapterNoOfVisitors);	
+	}
+	
+	private boolean isValidateUiEntries(){
+		
+		if(mEditTextVisitorName.getText().toString().equals(""))
+		{
+			mEditTextVisitorName.setError("Please enter visitor Name");
+			return false;
+		}
+		
+		if(mEditTextFlatNo.getText().toString().equals(""))
+		{
+			mEditTextFlatNo.setError("Please enter flat number");
+			return false;
+		}
+		
+		if(mEditTextVisitPurpose.getText().toString().equals(""))
+		{
+			mEditTextVisitPurpose.setError("Please enter visit purpose");
+			return false;
+		}
+		
+		if(mEditTextVisitorContactNo.getText().toString().equals(""))
+		{
+			mEditTextVisitorContactNo.setError("Please enter visitor contact no");
+			return false;
+		}
+
+		return true;
+	}
+	
+	private VisitorDetails getVisitorDetails(){
+		 VisitorDetails tempDetails = new VisitorDetails();
+		 tempDetails.setmVisitorName(mEditTextVisitorName.getText().toString());
+		 tempDetails.setmNoofVisitors(mSpinnerNoOfVisitors.getSelectedItem().toString());
+		 tempDetails.setmVisitorInTime(mEditTextVisitorInTime.getText().toString());
+		 tempDetails.setmVisitorContacNo(mEditTextVisitorContactNo.getText().toString());
+		 tempDetails.setmVisitorVehicleNo(mEditTextVisitorVehicleNo.getText().toString());
+		 tempDetails.setmVisitPurpose(mEditTextVisitPurpose.getText().toString());
+		 
+		 String buildingName = mSpinnerBuildingName.getSelectedItem().toString();
+		 String floorNo = mSpinnerFloorNo.getSelectedItem().toString();
+		 String flatNo = mEditTextFlatNo.getText().toString();
+		 
+		 tempDetails.setmFlatOwnerCode(getFlatOwnerCode(buildingName+floorNo+"@"+flatNo));
+			
+		return tempDetails;
+	}
+	
+	private String getFlatOwnerCode(String searchValue){
+		String flatOwnerCode = "";
+		SmartFlatAdminDBManager dbManager = new SmartFlatAdminDBManager();
+		Cursor details = dbManager.getFlatOwnerCode(searchValue);
+		if(details!=null && details.getCount()>0){
+			details.moveToFirst();
+			flatOwnerCode = details.getString(details.getColumnIndex(TableFlatOwnerDetails.FLAT_OWNER_CODE));
+		}
+		return flatOwnerCode;
+	}
+	
+	private void saveVisitor(){
+		
+		if (NetworkDetector.init(getActivity()).isNetworkAvailable()) 
+		{
+			new SaveVisitorOnServerTask(getActivity(), new SaveVisitorOnServerTaskListener() , mVisitorDetails)
+			.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+		} 
+		else 
+		{
+			mVisitorDetails.setmIsOfflineEntry(true);
+			saveVisitorInLocalDB("");
+		}			
+	
+	
+		
+	}
+	
+	public class SaveVisitorOnServerTaskListener implements AsyncTaskCompleteListener<Response>{
+
+		@Override
+		public void onStarted() {
+			CustomProgressDialog.showProgressDialog(getActivity(), "", false);
+		}
+
+		@Override
+		public void onTaskComplete(Response result) {
+			if (result != null) 
+			{
+				if (result.getStatus().equalsIgnoreCase("success")) 
+				{
+					mVisitorDetails.setmIsOfflineEntry(false);
+					saveVisitorInLocalDB(result.getMessage());
+				}else{
+					mVisitorDetails.setmIsOfflineEntry(true);
+					saveVisitorInLocalDB("");
+
+				}
+			}	
+		}
+
+		@Override
+		public void onStoped() {
+			CustomProgressDialog.removeDialog();
+		}
+
+		@Override
+		public void onStopedWithError(SmartFlatAdminError e) {
+			CustomProgressDialog.removeDialog();
+			Utilities.ShowAlertBox(getActivity(), "Error", "Server Error please try later");
+		}
+	}
+	
+	private void saveVisitorInLocalDB(String visitorCode){
+		SmartFlatAdminDBManager dbManager = new SmartFlatAdminDBManager();
+		boolean isAdded = dbManager.saveVisitor(mVisitorDetails);
+		if (isAdded) {
+			Log.e("Visitor Detaisl", "Inserted Successfully");
+		}
 	}
 
 }

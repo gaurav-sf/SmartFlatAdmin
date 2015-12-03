@@ -1,5 +1,8 @@
 package com.grs.product.smartflatAdmin.activities;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.grs.product.smartflatAdmin.R;
 import com.grs.product.smartflatAdmin.apicall.AsyncTaskCompleteListener;
 import com.grs.product.smartflatAdmin.asynctasks.RegistrationTask;
@@ -18,13 +21,17 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.LinearLayout.LayoutParams;
 
 public class SocietyRegistrationStep1 extends Activity {
 	
 	private EditText mEditTextName, mEditTextAddressLine1, mEditTextAddressLine2, mEditTextBuildingName, mEditTextTotalFloors;
 	private EditText mEditTextCity,mEditTextState, mEditTextPIN;
-	private Button mButtonNext;
+	private Button mButtonNext, mButtonAddEditText;
+	private List<EditText> mListAllBuildingNameEdittext;
 	public static SocietyDetails mSocietyDetails;
+	private LinearLayout mEdittextContainer;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +51,10 @@ public class SocietyRegistrationStep1 extends Activity {
 		mEditTextBuildingName = (EditText) findViewById(R.id.editTextBuildingName);	
 		mEditTextTotalFloors = (EditText) findViewById(R.id.editTextTotalFloors);	
 		mButtonNext = (Button) findViewById(R.id.buttonNext);
+		mButtonAddEditText = (Button) findViewById(R.id.buttonAddEditText);
+		mListAllBuildingNameEdittext = new ArrayList<EditText>();
+		mListAllBuildingNameEdittext.add(mEditTextBuildingName);
+		mEdittextContainer = (LinearLayout) findViewById(R.id.layoutEditTextContainer);
 		mSocietyDetails = new SocietyDetails();
 	}
 	
@@ -59,6 +70,16 @@ public class SocietyRegistrationStep1 extends Activity {
 				}
 			}
 		});	
+		
+		mButtonAddEditText.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				EditText temp = createNewEditText();
+				mEdittextContainer.addView(temp);
+				mListAllBuildingNameEdittext.add(temp);
+			}
+		});
 	}
 	
 	private boolean isValidateUiEntries(){
@@ -107,7 +128,13 @@ public class SocietyRegistrationStep1 extends Activity {
 		mSocietyDetails.setmSocietyAddressCity(mEditTextCity.getText().toString());
 		mSocietyDetails.setmSocietyAddressState(mEditTextState.getText().toString());
 		mSocietyDetails.setmSocietyAddressPIN(mEditTextPIN.getText().toString());
-		mSocietyDetails.setmBuildingName(mEditTextBuildingName.getText().toString());
+		String buildingNames = "";
+		for (int i = 0; i < mListAllBuildingNameEdittext.size(); i++) {
+			buildingNames = buildingNames + "@" +mListAllBuildingNameEdittext.get(i).getText().toString();
+		}
+		if(buildingNames.startsWith("@"))
+			buildingNames.replaceFirst("@", "");
+		mSocietyDetails.setmBuildingName(buildingNames.trim());
 		mSocietyDetails.setmTotalFloorNumber(Integer.parseInt(mEditTextTotalFloors.getText().toString()));		
 	}
 	
@@ -168,7 +195,19 @@ public class SocietyRegistrationStep1 extends Activity {
 			if(e!=null){
 				Utilities.ShowAlertBox(SocietyRegistrationStep1.this, "Error", "Server Error. Please try after some time.");							
 			}
-		}
-		
+		}	
+	}
+	
+	private EditText createNewEditText() {
+	    final LayoutParams lparams = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
+	    lparams.setMargins(0, 10, 0, 0);
+	    final EditText edittext = new EditText(this);    
+	    edittext.setLayoutParams(lparams);
+	    edittext.setBackgroundResource(R.drawable.edittext_bg);
+	    edittext.setEms(10);
+	    edittext.setPadding(5, 5, 5, 5);
+	    
+	    edittext.setHint("Building Name");
+	    return edittext;
 	}
 }

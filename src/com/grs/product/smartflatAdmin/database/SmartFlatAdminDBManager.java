@@ -6,6 +6,7 @@ import com.grs.product.smartflatAdmin.models.RequestDetails;
 import com.grs.product.smartflatAdmin.models.RequestMessages;
 import com.grs.product.smartflatAdmin.models.SocietyDetails;
 import com.grs.product.smartflatAdmin.models.SocietyOwnerDetails;
+import com.grs.product.smartflatAdmin.models.VisitorDetails;
 
 
 public class SmartFlatAdminDBManager {
@@ -161,5 +162,27 @@ public class SmartFlatAdminDBManager {
 		SmartFlatAdminDatabase.getInstance().open();
 		SmartFlatAdminDatabase.getInstance().UpdateActivationFlag(flatOwnerCode);
 		SmartFlatAdminDatabase.getInstance().close();
+	}
+	
+	public Cursor getFlatOwnerCode(String searchValue){
+		SmartFlatAdminDatabase.getInstance().open();
+		Cursor details = SmartFlatAdminDatabase.getInstance().getFlatOwnerCode(searchValue);
+		SmartFlatAdminDatabase.getInstance().close();
+		return details;	
+	}
+	
+	public boolean saveVisitor(VisitorDetails details){
+		boolean isAdded = false;
+		SmartFlatAdminDatabase.getInstance().open();
+		isAdded = SmartFlatAdminDatabase.getInstance().saveVisitor(details);
+		SmartFlatAdminDatabase.getInstance().close();
+		return isAdded;
+	}
+	
+	public Cursor getVisitors(){
+		SmartFlatAdminDatabase.getInstance().open();
+		Cursor details = SmartFlatAdminDatabase.getInstance().getVisitors();
+		SmartFlatAdminDatabase.getInstance().close();
+		return details;	
 	}
 }
