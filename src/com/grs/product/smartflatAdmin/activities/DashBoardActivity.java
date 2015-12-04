@@ -21,6 +21,7 @@ import com.grs.product.smartflatAdmin.SmartFlatAdminApplication;
 import com.grs.product.smartflatAdmin.adapter.NavDrawerItem;
 import com.grs.product.smartflatAdmin.adapter.NavDrawerListAdapter;
 import com.grs.product.smartflatAdmin.fragments.HomeFragment;
+import com.grs.product.smartflatAdmin.fragments.MainContactsFragment;
 import com.grs.product.smartflatAdmin.fragments.MainNoticeFragment;
 import com.grs.product.smartflatAdmin.fragments.MainRequestFragment;
 import com.grs.product.smartflatAdmin.fragments.MainUsersFragment;
@@ -213,6 +214,7 @@ public class DashBoardActivity extends FragmentActivity {
 	        getSupportFragmentManager().beginTransaction()
 	        .replace(R.id.fragment_container, mainRequestFragment).commit();
 			break;	
+		//Visitor	
 		case 4:
 			status = "created";
 			MainVisirtorFragment mainVisirtorFragment = new MainVisirtorFragment();
@@ -230,10 +232,10 @@ public class DashBoardActivity extends FragmentActivity {
 		
 		//Contacts	
 		case 6:
-/*			status = "created";
-			ContactsFragment contactsFragment = new ContactsFragment();
+			status = "created";
+			MainContactsFragment contactsFragment = new MainContactsFragment();
 			getSupportFragmentManager().beginTransaction()
-			.replace(R.id.fragment_container, contactsFragment).commit();*/
+			.replace(R.id.fragment_container, contactsFragment).commit();
 			break;
 			
 		//	AboutApp

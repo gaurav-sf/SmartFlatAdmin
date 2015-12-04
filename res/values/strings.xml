@@ -12,6 +12,7 @@
     <string name="sent_notice">Sent</string>
     <string name= "new_visitor">New</string>
     <string name= "visited_visitor">Visited</string>
+    <string name="added">Added</string>
 
     <string-array name="nav_drawer_items">
         <item>Home</item>

@@ -11,6 +11,7 @@ import android.content.Context;
 import android.util.Log;
 import com.grs.product.smartflatAdmin.SmartFlatAdminApplication;
 import com.grs.product.smartflatAdmin.error.SmartFlatAdminError;
+import com.grs.product.smartflatAdmin.models.ContactDetails;
 import com.grs.product.smartflatAdmin.models.FlatOwnerDetails;
 import com.grs.product.smartflatAdmin.models.RequestDetails;
 import com.grs.product.smartflatAdmin.models.RequestMessages;
@@ -74,6 +75,10 @@ public class SmartFlatAdminAPI {
 	
 	public Response saveVisitor(VisitorDetails details) throws SmartFlatAdminError{
 		return saveVisitorCall(details);
+	}
+	
+	public Response saveContact(ContactDetails details) throws SmartFlatAdminError{
+		return saveContactCall(details);
 	}
 
 	private Response getRegistrationCall(SocietyDetails societyDetails, SocietyOwnerDetails societyOwnerDetails)
@@ -314,6 +319,33 @@ public class SmartFlatAdminAPI {
 			
 			ServerConnecter serverConnecter = new ServerConnecter();
 			String URL = Param.baseURL + "saveVisitor.php";
+			JSONObject objJson = serverConnecter.getJSONFromUrl(URL, object);
+			JSONSingleObjectDecode objectjson = new JSONSingleObjectDecode();
+			return objectjson.getStatus(objJson);	
+
+		} 
+		catch (JSONException e) 
+		{
+			throw new SmartFlatAdminError("Server error occured. Please try again later", "Server Error");
+		}
+		catch (Exception e)
+		{
+			throw new SmartFlatAdminError("Please try again later", "Server Error");
+		}	
+	}
+	
+	private Response saveContactCall(ContactDetails details) throws SmartFlatAdminError{
+
+		try{
+			ArrayList<NameValuePair> object = new ArrayList<NameValuePair>();
+			object.add(new BasicNameValuePair("contactName",details.getmContactName()));
+			object.add(new BasicNameValuePair("contactNo",details.getmContactNumber()));
+			object.add(new BasicNameValuePair("emailId",details.getmContactNumber()));
+			object.add(new BasicNameValuePair("occupation",details.getmContactNumber()));
+			object.add(new BasicNameValuePair("societyCode",SmartFlatAdminApplication.getSocietyCodeFromSharedPreferences()));
+			
+			ServerConnecter serverConnecter = new ServerConnecter();
+			String URL = Param.baseURL + "saveContact.php";
 			JSONObject objJson = serverConnecter.getJSONFromUrl(URL, object);
 			JSONSingleObjectDecode objectjson = new JSONSingleObjectDecode();
 			return objectjson.getStatus(objJson);	

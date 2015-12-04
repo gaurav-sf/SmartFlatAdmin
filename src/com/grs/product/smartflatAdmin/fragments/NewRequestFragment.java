@@ -71,7 +71,7 @@ public class NewRequestFragment extends Fragment {
 		} 
 		else 
 		{
-			Utilities.ShowAlertBox(getActivity(),"Error", "Please check your Internet");
+			showDataInListView();
 		}				
 	
 	}

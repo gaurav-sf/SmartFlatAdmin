@@ -15,6 +15,8 @@ import com.grs.product.smartflatAdmin.utils.CustomProgressDialog;
 import com.grs.product.smartflatAdmin.utils.NetworkDetector;
 import com.grs.product.smartflatAdmin.utils.Utilities;
 
+import android.app.Dialog;
+import android.content.Context;
 import android.database.Cursor;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -24,7 +26,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 
 public class NewRegisteredUsersFragment  extends Fragment{
 	
@@ -56,8 +60,7 @@ public class NewRegisteredUsersFragment  extends Fragment{
 		} 
 		else 
 		{
-			Utilities.ShowAlertBox(getActivity(),"Message", "You are offline. Data shown is as per last sync details.");
-			showOfflineData();
+			showAlertBox(getActivity(),"Message", "You are offline. Data shown is as per last sync details.");		
 		}				
 	}
 	
@@ -109,7 +112,7 @@ public class NewRegisteredUsersFragment  extends Fragment{
 			mNewRegisteredUserListAdapter = new NewRegisteredUserListAdapter(getActivity(), mListNewRegisterUser);
 			mListViewNewRegisterUser.setAdapter(mNewRegisteredUserListAdapter);		}else
 		{
-			Utilities.ShowAlertBox(getActivity(), "Message", "There is no user to display");
+			Utilities.ShowAlertBox(getActivity(), "Message", "There is no new registered user to display");
 		}
 
 	}
@@ -142,6 +145,29 @@ public class NewRegisteredUsersFragment  extends Fragment{
 	public  void deleteUserFromList(int position){
 		mListNewRegisterUser.remove(position);
 		mNewRegisteredUserListAdapter.notifyDataSetChanged();
+	}
+	
+	public void showAlertBox(final Context context, String title,
+			String message) {
+		final Dialog mDialog = new Dialog(context,
+				android.R.style.Theme_Translucent_NoTitleBar);
+		View layout = LayoutInflater.from(context)
+				.inflate(R.layout.alert, null);
+		TextView tvAlert = (TextView) layout.findViewById(R.id.tvAlert);
+		TextView tvAlertMsg = (TextView) layout.findViewById(R.id.tvAlertMsg);
+		tvAlertMsg.setText(message);
+		tvAlert.setText(title);
+		mDialog.setContentView(layout);
+		Button btnOk = (Button) layout.findViewById(R.id.btnOk);
+		btnOk.setOnClickListener(new View.OnClickListener() {
+
+			@Override
+			public void onClick(final View view) {
+				mDialog.dismiss();
+				showOfflineData();
+			}
+		});
+		mDialog.show();
 	}
 	
 

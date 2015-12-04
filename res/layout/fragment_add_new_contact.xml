@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    android:orientation="vertical"
+    android:padding="5dp" >
+
+    <TextView
+        android:id="@+id/textViewlable"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Add Contact"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <EditText
+        android:id="@+id/editTextContactName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/edittext_bg"
+        android:ems="10" 
+        android:hint="Name">
+    </EditText>
+
+    <EditText
+        android:id="@+id/editTextContactNo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/edittext_bg"
+        android:ems="10" 
+        android:hint="Contact Number"/>
+    
+    <EditText
+        android:id="@+id/editTextEmailId"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/edittext_bg"
+        android:ems="10" 
+        android:hint="Email Id"/>
+    <Spinner
+        android:id="@+id/spinnerOccupation"
+        android:layout_width="match_parent"
+        android:layout_height="40sp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/spinner_bg"
+        android:ems="10"
+        android:hint="Occupation"
+        android:popupBackground="@color/spinner_popup" />
+    
+        <EditText
+        android:id="@+id/editTextOccupation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/edittext_bg"
+        android:ems="10" 
+        android:hint="Occupation"
+        android:visibility="gone"/>
+
+    <Button
+        android:id="@+id/buttonAddContact"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/btnbg"
+        android:text="ADD CONTACT"
+        android:textColor="#ffffff" />
+
+</LinearLayout>

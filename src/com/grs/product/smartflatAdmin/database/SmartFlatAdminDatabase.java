@@ -13,6 +13,7 @@ import android.database.sqlite.SQLiteDatabase.CursorFactory;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 import com.grs.product.smartflatAdmin.SmartFlatAdminApplication;
+import com.grs.product.smartflatAdmin.database.SmartFlatAdminDBTables.TableContactDetails;
 import com.grs.product.smartflatAdmin.database.SmartFlatAdminDBTables.TableFlatOwnerDetails;
 import com.grs.product.smartflatAdmin.database.SmartFlatAdminDBTables.TableMessageDetails;
 import com.grs.product.smartflatAdmin.database.SmartFlatAdminDBTables.TableNames;
@@ -20,6 +21,7 @@ import com.grs.product.smartflatAdmin.database.SmartFlatAdminDBTables.TableReque
 import com.grs.product.smartflatAdmin.database.SmartFlatAdminDBTables.TableSocietyDetails;
 import com.grs.product.smartflatAdmin.database.SmartFlatAdminDBTables.TableSocietyOwnerDetails;
 import com.grs.product.smartflatAdmin.database.SmartFlatAdminDBTables.TableVisitorDetails;
+import com.grs.product.smartflatAdmin.models.ContactDetails;
 import com.grs.product.smartflatAdmin.models.FlatOwnerDetails;
 import com.grs.product.smartflatAdmin.models.RequestDetails;
 import com.grs.product.smartflatAdmin.models.RequestMessages;
@@ -724,6 +726,37 @@ public class SmartFlatAdminDatabase {
 			cursor.moveToNext();
 		}
 		return cursor;		
+	}
+	
+	public boolean saveContact(ContactDetails details){
+		boolean isAdded = false;
+		ContentValues values = new ContentValues();
+		values.put(TableContactDetails.CONTACT_NAME,details.getmContactName());
+		values.put(TableContactDetails.CONTACT_NUMBER,details.getmContactNumber());
+		values.put(TableContactDetails.CONTACT_EMAIL_ID,details.getmContactEmailId());
+		values.put(TableContactDetails.CONTACT_OCCUPATION,details.getmContactOccupation());
+	try 
+		{
+			mDb.beginTransaction();
+			isAdded = mDb.insert(TableNames.CONTACT_DETAILS, null, values) > 0;
+			mDb.setTransactionSuccessful();
+		} catch (Exception e) {
+			Log.e("Error in transaction", e.toString());
+		} finally {
+			mDb.endTransaction();
+		}
+		return isAdded;		
+	}
+	
+	public Cursor getAllContacts(){
+
+		String selectQuery = "SELECT  * FROM " + TableNames.CONTACT_DETAILS;
+		Cursor cursor = mDb.rawQuery(selectQuery, null);	
+		if (cursor != null && cursor.getCount()>0) {
+			cursor.moveToNext();
+		}
+		return cursor;		
+	
 	}
 
 }
