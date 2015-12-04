@@ -326,13 +326,13 @@ public class SmartFlatAdminDatabase {
 				isAdded = mDb.insert(TableNames.FLAT_OWNER_DETAILS, null, values) > 0;
 				mDb.setTransactionSuccessful();	
 				mDb.endTransaction();
-			}else{
+			}else{/*
 				String where_clause = TableFlatOwnerDetails.FLAT_OWNER_CODE +"= '"+ details.getmFlatOwnerCode()+"'";
 				mDb.beginTransaction();
 				isAdded = mDb.update(TableNames.FLAT_OWNER_DETAILS, values, where_clause, null) > 0;
 				mDb.setTransactionSuccessful();	
 				mDb.endTransaction();
-			}
+			*/}
 
 		} catch (Exception e) {
 			Log.e("Error in transaction", e.toString());
@@ -344,7 +344,7 @@ public class SmartFlatAdminDatabase {
 
 
 	public Cursor getAllFlatOwnerDetails(String activationCode){
-		String selectQuery = "SELECT  * FROM " + TableNames.FLAT_OWNER_DETAILS + "WHERE "+ TableFlatOwnerDetails.IS_ACTIVE+" = '"+activationCode+"'";
+		String selectQuery = "SELECT  * FROM " + TableNames.FLAT_OWNER_DETAILS + " WHERE "+ TableFlatOwnerDetails.IS_ACTIVE+" = '"+activationCode+"'";
 		Cursor cursor = mDb.rawQuery(selectQuery, null);	
 		if (cursor != null && cursor.getCount()>0) {
 			cursor.moveToNext();
@@ -647,7 +647,7 @@ public class SmartFlatAdminDatabase {
 	}
 	
 	public Cursor getMessages(String requestNumber){
-		String selectQuery = "SELECT  * FROM " + TableNames.MESSAGE_DETAILS + " WHERE " + TableMessageDetails.REQUEST_NUMBER +"= '"+ requestNumber+"' ORDER BY "+TableMessageDetails.MESSAGE_DATETIME + "  ASC";
+		String selectQuery = "SELECT  * FROM " + TableNames.MESSAGE_DETAILS + " WHERE " + TableMessageDetails.REQUEST_NUMBER +"= '"+ requestNumber+"' ORDER BY "+TableMessageDetails.MESSAGE_DATETIME + "  DESC";
 		Cursor cursor = mDb.rawQuery(selectQuery, null);	
 		if (cursor != null && cursor.getCount()>0) {
 			cursor.moveToNext();
@@ -657,7 +657,7 @@ public class SmartFlatAdminDatabase {
 	
 	public void UpdateActivationFlag(String flatOwnerCode){
 		ContentValues values = new ContentValues();		
-		values.put(TableFlatOwnerDetails.IS_ACTIVE,"1");		
+		values.put(TableFlatOwnerDetails.IS_ACTIVE,true);		
 		String WHERE = TableFlatOwnerDetails.FLAT_OWNER_CODE + "= '"+flatOwnerCode+"'";
 
 		try {

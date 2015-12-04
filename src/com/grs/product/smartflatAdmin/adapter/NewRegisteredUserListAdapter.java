@@ -26,6 +26,7 @@ public class NewRegisteredUserListAdapter extends BaseAdapter {
 	private Context context;
 	private List<FlatOwnerDetails> listFlatOwnerDetails  = new ArrayList<FlatOwnerDetails>();
 	public String flatOwnerCode;
+	private int mPosition;
 	
 	public NewRegisteredUserListAdapter(Context context,
 			List<FlatOwnerDetails> listFlatOwnerDetails) {
@@ -62,6 +63,7 @@ public class NewRegisteredUserListAdapter extends BaseAdapter {
 		 TextView mUserName = (TextView) rowView.findViewById(R.id.textViewUserName);
 		 mUserName.setText(temp.getmFlatOwnerCode());
 		 Button mButtonActivate= (Button) rowView.findViewById(R.id.buttonActivate);
+		 mPosition = position;
 		 mButtonActivate.setOnClickListener(new OnClickListener() {
 			
 			@Override
@@ -101,6 +103,8 @@ public class NewRegisteredUserListAdapter extends BaseAdapter {
 				{
 					Utilities.ShowAlertBox(context, "Message", result.getMessage());
 					updateInDB(flatOwnerCode);
+					listFlatOwnerDetails.remove(mPosition);
+					notifyDataSetChanged();
 				}else if (result.getStatus().equals("failure")){
 					Utilities.ShowAlertBox(context, "Message", result.getMessage());
 				}else{

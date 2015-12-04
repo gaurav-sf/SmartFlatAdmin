@@ -185,8 +185,12 @@ public class NewVisitorFragment extends Fragment{
 		 String buildingName = mSpinnerBuildingName.getSelectedItem().toString();
 		 String floorNo = mSpinnerFloorNo.getSelectedItem().toString();
 		 String flatNo = mEditTextFlatNo.getText().toString();
-		 
-		 tempDetails.setmFlatOwnerCode(getFlatOwnerCode(buildingName+floorNo+"@"+flatNo));
+		 String flatOwnerCode = getFlatOwnerCode(buildingName+floorNo+"@"+flatNo);
+		 if(flatOwnerCode.equals("")){
+			 tempDetails.setmFlatOwnerCode(buildingName+floorNo+"@"+flatNo);	 
+		 }else{
+			 tempDetails.setmFlatOwnerCode(flatOwnerCode);	 
+		 }
 			
 		return tempDetails;
 	}
@@ -202,8 +206,7 @@ public class NewVisitorFragment extends Fragment{
 		return flatOwnerCode;
 	}
 	
-	private void saveVisitor(){
-		
+	private void saveVisitor(){	
 		if (NetworkDetector.init(getActivity()).isNetworkAvailable()) 
 		{
 			new SaveVisitorOnServerTask(getActivity(), new SaveVisitorOnServerTaskListener() , mVisitorDetails)
@@ -212,11 +215,8 @@ public class NewVisitorFragment extends Fragment{
 		else 
 		{
 			mVisitorDetails.setmIsOfflineEntry(true);
-			saveVisitorInLocalDB("");
-		}			
-	
-	
-		
+			saveVisitorInLocalDB("TEMP");
+		}				
 	}
 	
 	public class SaveVisitorOnServerTaskListener implements AsyncTaskCompleteListener<Response>{
@@ -237,7 +237,6 @@ public class NewVisitorFragment extends Fragment{
 				}else{
 					mVisitorDetails.setmIsOfflineEntry(true);
 					saveVisitorInLocalDB("");
-
 				}
 			}	
 		}
@@ -256,10 +255,22 @@ public class NewVisitorFragment extends Fragment{
 	
 	private void saveVisitorInLocalDB(String visitorCode){
 		SmartFlatAdminDBManager dbManager = new SmartFlatAdminDBManager();
+		mVisitorDetails.setmVisitorCode(visitorCode);
 		boolean isAdded = dbManager.saveVisitor(mVisitorDetails);
 		if (isAdded) {
-			Log.e("Visitor Detaisl", "Inserted Successfully");
+			Log.e("Visitor Details", "Inserted Successfully");
 		}
+		clearUIentries();
+	}
+	
+	private void clearUIentries(){
+		mEditTextVisitorName.setText("");
+		createSpinnerData();
+		mEditTextFlatNo.setText("");
+		mEditTextVisitorInTime.setText(Utilities.getCurrentDateTime());
+		mEditTextVisitPurpose.setText("");
+		mEditTextVisitorContactNo.setText("");
+		mEditTextVisitorVehicleNo.setText("");	
 	}
 
 }

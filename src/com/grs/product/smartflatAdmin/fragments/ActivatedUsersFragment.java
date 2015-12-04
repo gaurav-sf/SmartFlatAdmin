@@ -33,7 +33,7 @@ public class ActivatedUsersFragment  extends Fragment{
 	}
 	
 	private void initialiseUI(View rootView){
-		mListViewNewRegisterUser = (ListView) rootView.findViewById(R.id.listViewNewRegisterUser);
+		mListViewNewRegisterUser = (ListView) rootView.findViewById(R.id.listViewActivatedUser);
 		mListNewRegisterUser = new ArrayList<FlatOwnerDetails>();
 	}
 	
@@ -67,7 +67,7 @@ public class ActivatedUsersFragment  extends Fragment{
 			showDataInList(listNewRegisterUser);
 		}else
 		{
-			Utilities.ShowAlertBox(getActivity(), "Message", "Ther is no user to display");
+			Utilities.ShowAlertBox(getActivity(), "Message", "There is no user to display");
 		}
 	}
 

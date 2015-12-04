@@ -35,7 +35,7 @@ public class VisitedVisitorFrgament extends Fragment{
 
 		View rootView = inflater.inflate(R.layout.fragment_visited_visitors, container, false);	
 		initialiseUI(rootView);
-		getVisitorDetails();
+		//getVisitorDetails();
 		addListeners();
 
 		return rootView;
@@ -46,6 +46,7 @@ public class VisitedVisitorFrgament extends Fragment{
 		mListVisitors = new ArrayList<VisitorDetails>();
 		mListVisitors = getVisitorDetails();		
 		mVisitedVisitorsListAdapter = new VisitedVisitorsListAdapter(getActivity(), mListVisitors);
+		mListViewVisitedVisitors.setAdapter(mVisitedVisitorsListAdapter);
 	}
 
 	private void addListeners(){

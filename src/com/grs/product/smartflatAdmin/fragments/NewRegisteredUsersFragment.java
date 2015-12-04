@@ -37,8 +37,9 @@ public class NewRegisteredUsersFragment  extends Fragment{
 	public View onCreateView(LayoutInflater inflater,
 			@Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 		View rootView = inflater.inflate(R.layout.fragment_new_registered_users, container, false);
-		getUserDetails();
 		initialiseUI(rootView);
+		getUserDetails();
+		//initialiseUI(rootView);
         return rootView;
 	}
 	
@@ -72,7 +73,8 @@ public class NewRegisteredUsersFragment  extends Fragment{
 			if(result!=null){
 				saveDataInDB(result);
 				mListNewRegisterUser = result;
-				showDataInList(mListNewRegisterUser);
+				showOfflineData();
+				//showDataInList(mListNewRegisterUser);
 			}
 		}
 
@@ -102,12 +104,12 @@ public class NewRegisteredUsersFragment  extends Fragment{
 		}		
 	}
 	
-	private void showDataInList(List<FlatOwnerDetails> listDetails){
-		if(listDetails.size()>0){
-			mNewRegisteredUserListAdapter = new NewRegisteredUserListAdapter(getActivity(), listDetails);
+	private void showDataInList(){
+		if(mListNewRegisterUser.size()>0){
+			mNewRegisteredUserListAdapter = new NewRegisteredUserListAdapter(getActivity(), mListNewRegisterUser);
 			mListViewNewRegisterUser.setAdapter(mNewRegisteredUserListAdapter);		}else
 		{
-			Utilities.ShowAlertBox(getActivity(), "Message", "Ther is no user to display");
+			Utilities.ShowAlertBox(getActivity(), "Message", "There is no user to display");
 		}
 
 	}
@@ -115,7 +117,8 @@ public class NewRegisteredUsersFragment  extends Fragment{
 	public void showOfflineData(){
 		SmartFlatAdminDBManager objManager = new SmartFlatAdminDBManager();
 		Cursor deails = objManager.getAllFlatOwnerDetails("0");
-		 List<FlatOwnerDetails> listNewRegisterUser = new ArrayList<FlatOwnerDetails>();
+	//	 List<FlatOwnerDetails> listNewRegisterUser = new ArrayList<FlatOwnerDetails>();
+		mListNewRegisterUser.clear();
 		for(int i = 0; i<=deails.getCount();i++){
 			boolean isdata = deails.moveToPosition(i);
 			if(isdata)
@@ -130,10 +133,15 @@ public class NewRegisteredUsersFragment  extends Fragment{
 				flatOwnerDetails.setmFlatOwnerCreatedDateTime(deails.getString(deails.getColumnIndex(TableFlatOwnerDetails.FLAT_OWNER_CREATED_DATETIME)));
 				flatOwnerDetails.setmFlatOwnerCode(deails.getString(deails.getColumnIndex(TableFlatOwnerDetails.FLAT_OWNER_CODE)));
 				flatOwnerDetails.setActive(Boolean.parseBoolean(deails.getString(deails.getColumnIndex(TableFlatOwnerDetails.IS_ACTIVE))));
-				listNewRegisterUser.add(flatOwnerDetails);
+				mListNewRegisterUser.add(flatOwnerDetails);
 			}
 		}
-		showDataInList(listNewRegisterUser);
+		showDataInList();
+	}
+	
+	public  void deleteUserFromList(int position){
+		mListNewRegisterUser.remove(position);
+		mNewRegisteredUserListAdapter.notifyDataSetChanged();
 	}
 	
 

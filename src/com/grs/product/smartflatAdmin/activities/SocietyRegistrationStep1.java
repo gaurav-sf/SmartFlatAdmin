@@ -130,10 +130,12 @@ public class SocietyRegistrationStep1 extends Activity {
 		mSocietyDetails.setmSocietyAddressPIN(mEditTextPIN.getText().toString());
 		String buildingNames = "";
 		for (int i = 0; i < mListAllBuildingNameEdittext.size(); i++) {
-			buildingNames = buildingNames + "@" +mListAllBuildingNameEdittext.get(i).getText().toString();
+			if (i==0) {
+				buildingNames = mListAllBuildingNameEdittext.get(i).getText().toString();	
+			}else{
+				buildingNames = buildingNames + "@" +mListAllBuildingNameEdittext.get(i).getText().toString();
+			}
 		}
-		if(buildingNames.startsWith("@"))
-			buildingNames.replaceFirst("@", "");
 		mSocietyDetails.setmBuildingName(buildingNames.trim());
 		mSocietyDetails.setmTotalFloorNumber(Integer.parseInt(mEditTextTotalFloors.getText().toString()));		
 	}
