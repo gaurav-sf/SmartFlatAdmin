@@ -1,30 +1,36 @@
 package com.grs.product.smartflatAdmin.activities;
 
-import com.grs.product.smartflatAdmin.R;
-import com.grs.product.smartflatAdmin.SmartFlatAdminApplication;
-import com.grs.product.smartflatAdmin.activities.SocietyRegistrationStep2.SaveSocietyOwnerCredentialTaskListener;
-import com.grs.product.smartflatAdmin.apicall.AsyncTaskCompleteListener;
-import com.grs.product.smartflatAdmin.asynctasks.LoginTask;
-import com.grs.product.smartflatAdmin.asynctasks.SaveSocietyOwnerCredentialTask;
-import com.grs.product.smartflatAdmin.error.SmartFlatAdminError;
-import com.grs.product.smartflatAdmin.response.Response;
-import com.grs.product.smartflatAdmin.utils.CustomProgressDialog;
-import com.grs.product.smartflatAdmin.utils.NetworkDetector;
-import com.grs.product.smartflatAdmin.utils.Utilities;
+import java.io.IOException;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+import com.google.android.gms.gcm.GoogleCloudMessaging;
+import com.grs.product.smartflatAdmin.R;
+import com.grs.product.smartflatAdmin.SmartFlatAdminApplication;
+import com.grs.product.smartflatAdmin.apicall.AsyncTaskCompleteListener;
+import com.grs.product.smartflatAdmin.asynctasks.LoginTask;
+import com.grs.product.smartflatAdmin.asynctasks.SendPushTokenToServerTask;
+import com.grs.product.smartflatAdmin.error.SmartFlatAdminError;
+import com.grs.product.smartflatAdmin.response.Response;
+import com.grs.product.smartflatAdmin.utils.CustomProgressDialog;
+import com.grs.product.smartflatAdmin.utils.NetworkDetector;
+import com.grs.product.smartflatAdmin.utils.Param;
+import com.grs.product.smartflatAdmin.utils.Utilities;
 
 public class LoginActivity extends Activity{
 
 	private EditText mEditTextUsername, mEditTextPassword;
 	private Button mButtonLogin;
+	private GoogleCloudMessaging gcmObj;
+	String regId = "";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -83,7 +89,8 @@ public class LoginActivity extends Activity{
 				if (result.getStatus().equalsIgnoreCase("success")) 
 				{
 					SmartFlatAdminApplication.saveSocietyOwnerAccessCodeInSharedPreferences("TEMP");
-					gotoNextActivity();
+					getPushTokenFromServer(mEditTextUsername.getText().toString());
+					//gotoNextActivity();
 				}
 				else if (result.getStatus().equalsIgnoreCase("failure"))
 				{
@@ -113,5 +120,87 @@ public class LoginActivity extends Activity{
 		Intent intentDashboard = new Intent(LoginActivity.this, DashBoardActivity.class);
 		startActivity(intentDashboard);
 		finish();
+	}
+	
+	private void getPushTokenFromServer(String flatOwnerCode){
+
+		new AsyncTask<Void, Void, String>() {
+			@Override
+			protected String doInBackground(Void... params) {
+				String msg = "";
+				try {
+					if (gcmObj == null) {
+						gcmObj = GoogleCloudMessaging
+								.getInstance(getApplicationContext());
+					}
+					regId = gcmObj
+							.register(Param.GOOGLE_PROJ_ID);
+					msg = "Registration ID :" + regId;
+
+				} catch (IOException ex) {
+					msg = "Error :" + ex.getMessage();
+				}
+				return msg;
+			}
+
+			@Override
+			protected void onPostExecute(String msg) {
+				if (!TextUtils.isEmpty(regId)) {
+					SmartFlatAdminApplication.saveSocietyOwnerPushTokenInSharedPreferences(regId);
+					sendPushTokenToServer();
+					Log.e("Push Token Success", msg);
+				} else {
+					Log.e("Push Token Failure", msg);
+				}
+			}
+		}.execute(null, null, null);
+}
+	
+	private void sendPushTokenToServer(){
+
+
+		if (NetworkDetector.init(getApplicationContext()).isNetworkAvailable()) 
+		{
+			new SendPushTokenToServerTask(getApplicationContext(), new SendPushTokenToServerTaskListener(),regId )
+			.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+		} 
+		else 
+		{
+			Utilities.ShowAlertBox(LoginActivity.this,"Error", "Please check your Internet");
+		}		
+	}
+	
+	public class SendPushTokenToServerTaskListener implements AsyncTaskCompleteListener<Response> {
+
+		@Override
+		public void onStarted() {
+		//	CustomProgressDialog.showProgressDialog(LoginActivity.this, "", false);		
+		}
+
+		@Override
+		public void onTaskComplete(Response result) {
+			if (result != null) 
+			{
+				if (result.getStatus().equalsIgnoreCase("success")) 
+				{
+					gotoNextActivity();
+					
+				}else{
+					Utilities.ShowAlertBox(LoginActivity.this,"Error",result.getMessage());		
+				}
+			}	
+		}
+
+		@Override
+		public void onStoped() {
+		//	CustomProgressDialog.removeDialog();	
+		}
+
+		@Override
+		public void onStopedWithError(SmartFlatAdminError e) {
+			Utilities.ShowAlertBox(LoginActivity.this,"Error",e.getMessage());		
+		//	CustomProgressDialog.removeDialog();	
+		}
+		
 	}
 }
