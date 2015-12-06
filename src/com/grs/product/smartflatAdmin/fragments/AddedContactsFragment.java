@@ -53,7 +53,7 @@ public class AddedContactsFragment extends Fragment{
 				if(isdata)
 				{
 					ContactDetails temp = new ContactDetails();
-					temp.setmContactNumber(cursorDetails.getString(cursorDetails.getColumnIndex(TableContactDetails.CONTACT_NAME)));
+					temp.setmContactName(cursorDetails.getString(cursorDetails.getColumnIndex(TableContactDetails.CONTACT_NAME)));
 					temp.setmContactNumber(cursorDetails.getString(cursorDetails.getColumnIndex(TableContactDetails.CONTACT_NUMBER)));
 					temp.setmContactEmailId(cursorDetails.getString(cursorDetails.getColumnIndex(TableContactDetails.CONTACT_EMAIL_ID)));
 					temp.setmContactOccupation(cursorDetails.getString(cursorDetails.getColumnIndex(TableContactDetails.CONTACT_OCCUPATION)));

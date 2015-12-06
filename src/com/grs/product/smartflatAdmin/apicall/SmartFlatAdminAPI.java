@@ -340,8 +340,8 @@ public class SmartFlatAdminAPI {
 			ArrayList<NameValuePair> object = new ArrayList<NameValuePair>();
 			object.add(new BasicNameValuePair("contactName",details.getmContactName()));
 			object.add(new BasicNameValuePair("contactNo",details.getmContactNumber()));
-			object.add(new BasicNameValuePair("emailId",details.getmContactNumber()));
-			object.add(new BasicNameValuePair("occupation",details.getmContactNumber()));
+			object.add(new BasicNameValuePair("emailId",details.getmContactEmailId()));
+			object.add(new BasicNameValuePair("occupation",details.getmContactOccupation()));
 			object.add(new BasicNameValuePair("societyCode",SmartFlatAdminApplication.getSocietyCodeFromSharedPreferences()));
 			
 			ServerConnecter serverConnecter = new ServerConnecter();
