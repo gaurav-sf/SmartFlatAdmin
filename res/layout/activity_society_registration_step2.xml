@@ -1,36 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
+    android:background="@drawable/background_image"
     android:padding="20sp" >
 
-    <TextView
-        android:id="@+id/textView1"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/container"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:gravity="center"
-        android:text="Society Registration \nStep 2/2"
-        android:textColor="#595959"
-        android:textSize="25sp" />
-    
-    <View
-            android:id="@+id/view1"
-            android:layout_width="150dp"
-            android:layout_height="1dp"
-            android:layout_below="@id/textView1"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="18dp"
-            android:background="#469196" />
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:text="Society Registration \nStep 2/2"
+            android:textColor="@color/theme_color"
+            android:textSize="22sp" />
+    </LinearLayout>
 
     <ScrollView
         android:id="@+id/scrollView1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20sp" 
-        android:layout_above="@+id/buttonNext"
-        android:layout_below="@+id/view1">
+        android:layout_above="@+id/buttonSubmit"
+        android:layout_below="@+id/container"
+        android:layout_marginTop="20sp"
+        android:padding="5dp"
+        android:paddingBottom="10dp" >
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -41,23 +42,27 @@
                 android:id="@+id/editTextUsername"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@drawable/trans_edittext_bg"
                 android:editable="false"
                 android:ems="10"
                 android:hint="Username"
                 android:inputType="none"
-                android:background="@drawable/edittext_bg"
-                android:padding="10dp"/>
+                android:padding="10dp"
+                android:textColor="@color/text_color"
+                android:textColorHint="@color/text_hint_color" />
 
             <EditText
                 android:id="@+id/editTextPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/trans_edittext_bg"
                 android:ems="10"
                 android:hint="password"
                 android:inputType="textPassword"
-                android:layout_marginTop="20dp"
-                android:background="@drawable/edittext_bg"
-                android:padding="10dp" />
+                android:padding="10dp"
+                android:textColor="@color/text_color"
+                android:textColorHint="@color/text_hint_color" />
 
             <Spinner
                 android:id="@+id/spinnerSecurityQue"
@@ -73,23 +78,25 @@
                 android:id="@+id/editTextAnswer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/trans_edittext_bg"
                 android:ems="10"
                 android:hint="answer"
-                android:layout_marginTop="20dp"
-                android:background="@drawable/edittext_bg"
-                android:padding="10dp"/>
-
-            
+                android:padding="10dp"
+                android:textColor="@color/text_color"
+                android:textColorHint="@color/text_hint_color" />
         </LinearLayout>
     </ScrollView>
-    <Button
-                android:id="@+id/buttonSubmit"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:ems="10"
-                android:text="SUBMIT" 
-                android:background="@drawable/btnbg"
-                android:textColor="#ffffff"/>
 
-</LinearLayout>
+    <Button
+        android:id="@+id/buttonSubmit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/btnbg"
+        android:ems="10"
+        android:text="SUBMIT"
+        android:textColor="@drawable/btn_text_color" />
+
+</RelativeLayout>
