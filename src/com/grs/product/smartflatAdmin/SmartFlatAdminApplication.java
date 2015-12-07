@@ -87,5 +87,16 @@ public class SmartFlatAdminApplication extends Application{
 		String restoredText = sharedpreferences.getString("VisitorLastSyncTime", null);		
 		return restoredText;	
 	}
+	
+	public static void saveSocietyOwnerPushTokenInSharedPreferences(String flatOwnerCode){
+		SharedPreferences.Editor editor = sharedpreferences.edit();           
+        editor.putString("SocietyOwnerPushToken", flatOwnerCode);
+        editor.commit();	
+	}
+	
+	public static String getSocietyOwnerPushTokenFromSharedPreferences(){		
+		String restoredText = sharedpreferences.getString("SocietyOwnerPushToken", null);		
+		return restoredText;	
+	}
 
 }
