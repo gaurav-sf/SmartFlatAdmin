@@ -1,5 +1,10 @@
 package com.grs.product.smartflatAdmin;
 
+import java.util.List;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -9,6 +14,9 @@ import android.util.Log;
 
 import com.google.android.gcm.GCMBaseIntentService;
 import com.grs.product.smartflatAdmin.activities.DashBoardActivity;
+import com.grs.product.smartflatAdmin.apicall.JSONSingleObjectDecode;
+import com.grs.product.smartflatAdmin.database.SmartFlatAdminDBManager;
+import com.grs.product.smartflatAdmin.models.FlatOwnerDetails;
 import com.grs.product.smartflatAdmin.utils.Param;
 
 public class GCMIntentService extends GCMBaseIntentService {
@@ -31,6 +39,20 @@ public class GCMIntentService extends GCMBaseIntentService {
 		// TODO Auto-generated method stub
 		
 		String message = intent.getExtras().getString("message");
+		if(message.equalsIgnoreCase("New User Registered"))
+		{
+			JSONObject json;
+			try {
+				json = new JSONObject(intent.getExtras().getString("jsonData"));
+				JSONSingleObjectDecode objectjson = new JSONSingleObjectDecode();
+				saveUserDataInDB(objectjson.getFlatUsers(json));
+			} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+		}
+		//Log.e(TAG, "new JSON= "+json);
 		Log.i(TAG, "new message= "+message);
 		generateNotification(context, message);
 		
@@ -94,6 +116,18 @@ public class GCMIntentService extends GCMBaseIntentService {
 		notification.setLatestEventInfo(context, title, message, intent);
 		notification.flags |= Notification.FLAG_AUTO_CANCEL;
 		notificationManager.notify(0, notification);
+	}
+	
+	private void saveUserDataInDB(List<FlatOwnerDetails> listDetails){		
+		SmartFlatAdminDBManager objManager = new SmartFlatAdminDBManager();
+		for (int i = 0; i < listDetails.size(); i++)
+		{
+			boolean result = objManager.saveFlatOwnerDeatils(listDetails.get(i));
+			if(result)
+			{
+				Log.e("From Service", "Flat Owner Details Insertion Successful");
+			}
+		}		
 	}
 
 }
