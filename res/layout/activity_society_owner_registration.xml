@@ -2,6 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background_image"
     android:padding="20sp" >
 
     <LinearLayout
@@ -17,75 +18,81 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="Personel Registration"
-            android:textColor="#595959"
-            android:textSize="25sp" />
+            android:textColor="@color/theme_color"
+            android:textSize="22sp" />
+    </LinearLayout>
 
-        <View
-            android:id="@+id/view1"
-            android:layout_width="150dp"
-            android:layout_height="1dp"
-            android:layout_below="@id/textView1"
-            android:layout_gravity="center"
-            android:layout_marginTop="18dp"
-            android:background="#469196" />
-</LinearLayout>
-        <ScrollView
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/buttonNext"
+        android:layout_below="@+id/container"
+        android:layout_marginTop="20dp"
+        android:paddingBottom="10dp" >
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_above="@+id/buttonNext"
-            android:layout_marginTop="20dp"
-            android:paddingBottom="10dp"
-            android:layout_below="@+id/container">
+            android:orientation="vertical" >
+
+            <EditText
+                android:id="@+id/editTextName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/trans_edittext_bg"
+                android:ems="10"
+                android:hint="Name"
+                android:padding="5dp"
+                android:textColor="@color/text_color"
+                android:textColorHint="@color/text_hint_color" />
+
+            <EditText
+                android:id="@+id/editTextDOB"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/trans_edittext_bg"
+                android:ems="10"
+                android:hint="DOB --- dd/mm/yyyy"
+                android:padding="5dp"
+                android:textColor="@color/text_color"
+                android:textColorHint="@color/text_hint_color" />
+
+            <EditText
+                android:id="@+id/editTextAge"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/trans_edittext_bg"
+                android:ems="10"
+                android:hint="Age"
+                android:inputType="number"
+                android:padding="5dp"
+                android:textColor="@color/text_color"
+                android:textColorHint="@color/text_hint_color" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical" >
-
-                <EditText
-                    android:id="@+id/editTextName"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/edittext_bg"
-                    android:ems="10"
-                    android:hint="Name"
-                    android:padding="5dp" />
-
-                <EditText
-                    android:id="@+id/editTextDOB"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:background="@drawable/edittext_bg"
-                    android:ems="10"
-                    android:hint="DOB --- dd/mm/yyyy"
-                    android:padding="5dp" />
-
-                <EditText
-                    android:id="@+id/editTextAge"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:background="@drawable/edittext_bg"
-                    android:ems="10"
-                    android:hint="Age"
-                    android:inputType="number"
-                    android:padding="5dp" />
+                android:layout_marginTop="10dp"
+                android:background="@drawable/trans_edittext_bg"
+                android:orientation="vertical"
+                android:padding="5dp" >
 
                 <TextView
                     android:id="@+id/textView2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
-                    android:layout_marginTop="25dp"
+                    android:layout_marginTop="5dp"
                     android:text="Gender"
-                    android:textColor="#595959" />
+                    android:textColor="@color/text_color" />
 
                 <RadioGroup
                     android:id="@+id/RadioGroupGender"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
+                    android:layout_marginTop="5dp"
                     android:orientation="horizontal" >
 
                     <RadioButton
@@ -94,101 +101,117 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:checked="true"
-                        android:text="Male" />
+                        android:text="Male"
+                        android:textColor="@color/text_color" />
 
                     <RadioButton
                         android:id="@+id/radioButtonFemale"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="Female" />
+                        android:text="Female"
+                        android:textColor="@color/text_color" />
                 </RadioGroup>
-
-                <EditText
-                    android:id="@+id/editTextContactNo"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:background="@drawable/edittext_bg"
-                    android:ems="10"
-                    android:hint="Contact Number"
-                    android:padding="5dp" 
-                    android:inputType="number"/>
-
-                <EditText
-                    android:id="@+id/editTextEmailId"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:background="@drawable/edittext_bg"
-                    android:ems="10"
-                    android:hint="Email id"
-                    android:inputType="textEmailAddress"
-                    android:padding="5dp" />
-
-                <EditText
-                    android:id="@+id/editTextAddressLine1"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:background="@drawable/edittext_bg"
-                    android:ems="10"
-                    android:hint="Address Line 1"
-                    android:padding="5dp" />
-
-                <EditText
-                    android:id="@+id/editTextAddressLine2"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:background="@drawable/edittext_bg"
-                    android:ems="10"
-                    android:hint="Address Line 2"
-                    android:padding="5dp" />
-
-                <EditText
-                    android:id="@+id/editTextCity"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:background="@drawable/edittext_bg"
-                    android:ems="10"
-                    android:hint="City"
-                    android:padding="5dp" />
-
-                <EditText
-                    android:id="@+id/editTextState"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:background="@drawable/edittext_bg"
-                    android:ems="10"
-                    android:hint="State"
-                    android:padding="5dp" />
-
-                <EditText
-                    android:id="@+id/editTextPin"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:background="@drawable/edittext_bg"
-                    android:ems="10"
-                    android:hint="PIN Code"
-                    android:padding="5dp" 
-                    android:inputType="number"/>
             </LinearLayout>
-        </ScrollView>
-    
+
+            <EditText
+                android:id="@+id/editTextContactNo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/trans_edittext_bg"
+                android:ems="10"
+                android:hint="Contact Number"
+                android:inputType="number"
+                android:padding="5dp"
+                android:textColor="@color/text_color"
+                android:textColorHint="@color/text_hint_color" />
+
+            <EditText
+                android:id="@+id/editTextEmailId"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/trans_edittext_bg"
+                android:ems="10"
+                android:hint="Email id"
+                android:inputType="textEmailAddress"
+                android:padding="5dp"
+                android:textColor="@color/text_color"
+                android:textColorHint="@color/text_hint_color" />
+
+            <EditText
+                android:id="@+id/editTextAddressLine1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/trans_edittext_bg"
+                android:ems="10"
+                android:hint="Address Line 1"
+                android:padding="5dp"
+                android:textColor="@color/text_color"
+                android:textColorHint="@color/text_hint_color" />
+
+            <EditText
+                android:id="@+id/editTextAddressLine2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/trans_edittext_bg"
+                android:ems="10"
+                android:hint="Address Line 2"
+                android:padding="5dp"
+                android:textColor="@color/text_color"
+                android:textColorHint="@color/text_hint_color" />
+
+            <EditText
+                android:id="@+id/editTextCity"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/trans_edittext_bg"
+                android:ems="10"
+                android:hint="City"
+                android:padding="5dp"
+                android:textColor="@color/text_color"
+                android:textColorHint="@color/text_hint_color" />
+
+            <EditText
+                android:id="@+id/editTextState"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/trans_edittext_bg"
+                android:ems="10"
+                android:hint="State"
+                android:padding="5dp"
+                android:textColor="@color/text_color"
+                android:textColorHint="@color/text_hint_color" />
+
+            <EditText
+                android:id="@+id/editTextPin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/trans_edittext_bg"
+                android:ems="10"
+                android:hint="PIN Code"
+                android:inputType="number"
+                android:padding="5dp"
+                android:textColor="@color/text_color"
+                android:textColorHint="@color/text_hint_color" />
+        </LinearLayout>
+    </ScrollView>
 
     <Button
         android:id="@+id/buttonNext"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:background="@drawable/btnbg"
         android:layout_centerHorizontal="true"
+        android:background="@drawable/btnbg"
         android:ems="10"
         android:text="NEXT"
-        android:textColor="#ffffff" />
+        android:textColor="@drawable/btn_text_color" />
 
 </RelativeLayout>

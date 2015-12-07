@@ -3,8 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" 
-    android:padding="10dp"
-    android:background="#fdfbfb">
+    android:background="#e6e6e6">
     
          <TextView
         android:id="@+id/textView1"
@@ -21,6 +20,7 @@
         android:layout_width="match_parent"
         android:layout_height="35sp"
         android:ems="10" 
+        android:layout_margin="10dp"
         android:popupBackground="#469196"
         android:background="@drawable/spinner_bg"/>
     
@@ -28,9 +28,7 @@
         android:id="@+id/listViewNewRequestAndCompliant"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:cacheColorHint="@android:color/transparent"
-        android:divider="@android:color/transparent"
+        android:layout_marginTop="10dp"
         android:dividerHeight="10dp" >
     </ListView>
     

@@ -3,7 +3,7 @@
     android:id="@+id/LinearLayout1"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/lv_background_item"
+    android:background="#ffffff"
     android:orientation="vertical"
     android:padding="5dp" >
 
@@ -33,6 +33,13 @@
             android:layout_gravity="right"
             android:textSize="16sp" />
     </LinearLayout>
+    
+     <View
+                android:id="@+id/viewLineRequestComplaint"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="2dp"
+                android:background="#e6e6e6" />
 
     <TextView
         android:id="@+id/textViewCategory"

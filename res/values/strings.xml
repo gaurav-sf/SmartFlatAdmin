@@ -38,5 +38,10 @@
         <item>@drawable/ic_whats_hot</item>
         <item>@drawable/ic_launcher</item>
     </array>
+    
+    <string name="create_new"><u>Create Account</u></string>
+    <string name="forgot_password"><u>Forgot Password</u></string>
+    <string name="smartflat_title"><u>SmartFlat</u></string>
+    <string name="poweredby"><u>Powered by : GRS</u></string>
 
 </resources>
