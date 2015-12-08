@@ -649,7 +649,7 @@ public class SmartFlatAdminDatabase {
 	}
 	
 	public Cursor getMessages(String requestNumber){
-		String selectQuery = "SELECT  * FROM " + TableNames.MESSAGE_DETAILS + " WHERE " + TableMessageDetails.REQUEST_NUMBER +"= '"+ requestNumber+"' ORDER BY "+TableMessageDetails.MESSAGE_DATETIME + "  DESC";
+		String selectQuery = "SELECT  * FROM " + TableNames.MESSAGE_DETAILS + " WHERE " + TableMessageDetails.REQUEST_NUMBER +"= '"+ requestNumber+"' ORDER BY "+TableMessageDetails.MESSAGE_DATETIME + "  ASC";
 		Cursor cursor = mDb.rawQuery(selectQuery, null);	
 		if (cursor != null && cursor.getCount()>0) {
 			cursor.moveToNext();
