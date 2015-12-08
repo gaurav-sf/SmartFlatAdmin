@@ -215,11 +215,13 @@ public class RequestDetailsActivity extends Activity{
 		
 		mRequestDetails.getmMessageList().add(tempMessages);
 		mMessageListAdapter.notifyDataSetChanged();
+		mListViewMessages.setSelection(mMessageListAdapter.getCount() - 1);
 		mEditTextMessage.setText("");
 	}
 	
 	private void showUpdatedDataInList(){
 		mMessageListAdapter = new MessageListAdapter(getApplicationContext(), mRequestDetails.getmMessageList());
 		mListViewMessages.setAdapter(mMessageListAdapter);
+		mListViewMessages.setSelection(mMessageListAdapter.getCount() - 1);
 	}
 }
