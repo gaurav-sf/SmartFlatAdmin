@@ -5,19 +5,20 @@ import java.util.List;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.google.android.gcm.GCMBaseIntentService;
+import com.grs.product.smartflatAdmin.activities.DashBoardActivity;
+import com.grs.product.smartflatAdmin.apicall.JSONSingleObjectDecode;
+import com.grs.product.smartflatAdmin.database.SmartFlatAdminDBManager;
+import com.grs.product.smartflatAdmin.models.FlatOwnerDetails;
+import com.grs.product.smartflatAdmin.models.RequestMessages;
+import com.grs.product.smartflatAdmin.utils.Param;
+
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
-
-import com.google.android.gcm.GCMBaseIntentService;
-import com.grs.product.smartflatAdmin.activities.DashBoardActivity;
-import com.grs.product.smartflatAdmin.apicall.JSONSingleObjectDecode;
-import com.grs.product.smartflatAdmin.database.SmartFlatAdminDBManager;
-import com.grs.product.smartflatAdmin.models.FlatOwnerDetails;
-import com.grs.product.smartflatAdmin.utils.Param;
 
 public class GCMIntentService extends GCMBaseIntentService {
 	
@@ -51,9 +52,22 @@ public class GCMIntentService extends GCMBaseIntentService {
 				e.printStackTrace();
 			}
 			
+		} else if(message.equalsIgnoreCase("New Message"))
+		{
+			JSONObject json;
+			try {
+				json = new JSONObject(intent.getExtras().getString("jsonData"));
+				JSONSingleObjectDecode objectjson = new JSONSingleObjectDecode();
+				saveMessageInDB(objectjson.getMessages(json));
+			} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
 		}
+		
 		//Log.e(TAG, "new JSON= "+json);
-		Log.i(TAG, "new message= "+message);
+		Log.i(TAG, "message from server= "+message);
 		generateNotification(context, message);
 		
 	}
@@ -128,6 +142,20 @@ public class GCMIntentService extends GCMBaseIntentService {
 				Log.e("From Service", "Flat Owner Details Insertion Successful");
 			}
 		}		
+	}
+	
+	private void saveMessageInDB(List<RequestMessages> listMessages){
+		
+		SmartFlatAdminDBManager objManager = new SmartFlatAdminDBManager();
+		for (int i = 0; i < listMessages.size(); i++)
+		{
+			boolean result = objManager.saveMessage(listMessages.get(i));
+			if(result)
+			{
+				Log.e("Message Details", " Insertion Successful");
+			}
+		}		
+	
 	}
 
 }
