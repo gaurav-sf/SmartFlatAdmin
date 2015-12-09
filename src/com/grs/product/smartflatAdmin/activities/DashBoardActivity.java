@@ -3,19 +3,6 @@ package com.grs.product.smartflatAdmin.activities;
 
 import java.util.ArrayList;
 
-import android.app.ActionBar;
-import android.content.res.Configuration;
-import android.content.res.TypedArray;
-import android.os.Bundle;
-import android.support.v4.app.ActionBarDrawerToggle;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.widget.DrawerLayout;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ListView;
-
 import com.grs.product.smartflatAdmin.R;
 import com.grs.product.smartflatAdmin.SmartFlatAdminApplication;
 import com.grs.product.smartflatAdmin.adapter.NavDrawerItem;
@@ -27,7 +14,21 @@ import com.grs.product.smartflatAdmin.fragments.MainRequestFragment;
 import com.grs.product.smartflatAdmin.fragments.MainUsersFragment;
 import com.grs.product.smartflatAdmin.fragments.MainVisirtorFragment;
 import com.grs.product.smartflatAdmin.fragments.SocietyDetailsFragment;
-import com.grs.product.smartflatAdmin.utils.Utilities;
+
+import android.app.ActionBar;
+import android.content.res.Configuration;
+import android.content.res.TypedArray;
+import android.os.Bundle;
+import android.os.Handler;
+import android.support.v4.app.ActionBarDrawerToggle;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.widget.DrawerLayout;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ListView;
+import android.widget.Toast;
 
 
 @SuppressWarnings("deprecation")
@@ -48,7 +49,8 @@ public class DashBoardActivity extends FragmentActivity {
 
 	private ArrayList<NavDrawerItem> navDrawerItems;
 	private NavDrawerListAdapter adapter;
-
+	private boolean doubleBackToExitPressedOnce = false;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -301,10 +303,21 @@ public class DashBoardActivity extends FragmentActivity {
 	}
 	
 	@Override
-	public void onBackPressed() {
-		// TODO Auto-generated method stub
-		super.onBackPressed();
-	}
+	public void onBackPressed() {if (doubleBackToExitPressedOnce) {
+        super.onBackPressed();
+        return;
+    }
+
+    this.doubleBackToExitPressedOnce = true;
+    Toast.makeText(this, "Please click BACK again to exit", Toast.LENGTH_SHORT).show();
+
+    new Handler().postDelayed(new Runnable() {
+
+        @Override
+        public void run() {
+            doubleBackToExitPressedOnce=false;                       
+        }
+    }, 2000);}
 
 }
 

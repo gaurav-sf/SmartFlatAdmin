@@ -122,6 +122,13 @@ public class AddNewContactFragment extends Fragment{
 			mEditTextContactNumber.setError("Please enter Contact Number");
 			return false;
 		}
+		if(!mEditTextContactEmailId.getText().toString().equals(""))
+		{
+			if(!Utilities.isValidEmail(mEditTextContactEmailId.getText().toString())){
+				mEditTextContactEmailId.setError("Please enter valid email id");	
+				return false;
+			}
+		}
 		
 		return true;
 	}
