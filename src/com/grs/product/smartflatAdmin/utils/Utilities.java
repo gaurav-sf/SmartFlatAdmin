@@ -15,6 +15,7 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.database.Cursor;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -88,5 +89,9 @@ public class Utilities {
 		actionBar.setCustomView(mCustomView);
 		actionBar.setDisplayShowCustomEnabled(true);
 	}
+	
+	public static boolean isValidEmail(String email) {
+	        return !TextUtils.isEmpty(email) && android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches();
+	    }
 
 }

@@ -1,9 +1,9 @@
 package com.grs.product.smartflatAdmin.activities;
 
 import java.util.Calendar;
-
 import com.grs.product.smartflatAdmin.R;
 import com.grs.product.smartflatAdmin.models.SocietyOwnerDetails;
+import com.grs.product.smartflatAdmin.utils.Utilities;
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
@@ -112,6 +112,11 @@ public class SocietyOwnerRegistration extends Activity {
 		{
 			mEditTextEmailId.setError("Please enter your email id");
 			return false;
+		}else{
+			if(!Utilities.isValidEmail(mEditTextEmailId.getText().toString())){
+				mEditTextEmailId.setError("Please enter valid email id");	
+				return false;
+			}
 		}
 		if(mEditTextAddressLine1.getText().toString().equals(""))
 		{
