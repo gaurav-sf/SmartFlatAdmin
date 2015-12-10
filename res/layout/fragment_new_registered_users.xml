@@ -4,11 +4,20 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="#e6e6e6" 
-    android:paddingTop="10dp">
+    android:paddingTop="3dp">
+    
+    <Spinner
+        android:id="@+id/spinnertSortingRegisteredUserType"
+        android:layout_width="match_parent"
+        android:layout_height="35sp"
+        android:ems="10" android:layout_margin="7dp"
+        android:popupBackground="@drawable/edittext_bg"
+        android:background="@drawable/spinner_bg"/>
 
     <ListView
         android:id="@+id/listViewNewRegisterUser"
         android:layout_width="match_parent"
+        android:layout_marginTop="3dp"
         android:layout_height="wrap_content" 
         android:dividerHeight="10dp">
     </ListView>

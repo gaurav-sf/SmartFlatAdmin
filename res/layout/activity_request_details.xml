@@ -20,8 +20,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
-                android:src="@drawable/close"
-                android:text="CLOSE"
+                android:src="@drawable/close_icon"
                 android:background="@null"
                 android:textColor="#000000" />
 
@@ -33,7 +32,7 @@
                 android:layout_centerVertical="true"
                 android:gravity="center_horizontal"
                 android:text="temp"
-                android:textColor="#469196"
+                android:textColor="@color/theme_color"
                 android:textSize="22sp"
                 android:textStyle="bold|italic" />
         </RelativeLayout>

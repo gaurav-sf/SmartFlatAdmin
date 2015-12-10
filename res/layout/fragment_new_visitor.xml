@@ -1,23 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:padding="20sp" >
 
     <ScrollView
+        android:id="@+id/scrollView1"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true" >
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical" >
 
+            <TextView
+                android:id="@+id/textViewVisitorName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:text="visitor Name"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="#5d5c5c" />
+
             <EditText
                 android:id="@+id/editTextVisitorName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="25dp"
+                android:layout_marginTop="5dp"
                 android:background="@drawable/edittext_bg"
                 android:ems="10"
                 android:hint="visitor Name"
@@ -76,32 +87,62 @@
                 android:hint="Floor No"
                 android:popupBackground="@color/spinner_popup" />
 
+            <TextView
+                android:id="@+id/textViewFlatNo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="20dp"
+                android:text="FlatNo"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="#5d5c5c" />
+
             <EditText
                 android:id="@+id/editTextFlatNo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="25dp"
+                android:layout_marginTop="5dp"
                 android:background="@drawable/edittext_bg"
                 android:ems="10"
                 android:hint="Flat No"
                 android:padding="10sp" />
 
+            <TextView
+                android:id="@+id/textViewVisitorInTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="20dp"
+                android:text="Visitor In Time"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="#5d5c5c" />
+
             <EditText
                 android:id="@+id/editTextVisitorInTime"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="25dp"
+                android:layout_marginTop="5dp"
                 android:background="@drawable/edittext_bg"
-                android:ems="10"
                 android:editable="false"
+                android:ems="10"
                 android:hint="visitor In Time"
                 android:padding="10sp" />
+
+            <TextView
+                android:id="@+id/textViewVisitPurpose"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="20dp"
+                android:text="Visit Purpose"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="#5d5c5c" />
 
             <EditText
                 android:id="@+id/editTextVisitPurpose"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="25dp"
+                android:layout_marginTop="5dp"
                 android:background="@drawable/edittext_bg"
                 android:ems="10"
                 android:hint="visit Purpose"
@@ -109,36 +150,56 @@
                 android:padding="10sp"
                 android:singleLine="false" />
 
+            <TextView
+                android:id="@+id/textViewContactNo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="20dp"
+                android:text="Contact No"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="#5d5c5c" />
+
             <EditText
                 android:id="@+id/editTextVisitorContactNo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="25dp"
+                android:layout_marginTop="5dp"
                 android:background="@drawable/edittext_bg"
                 android:ems="10"
                 android:hint="Contact No"
                 android:inputType="number"
                 android:padding="10sp" />
 
+            <TextView
+                android:id="@+id/textViewVehicleNo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="20dp"
+                android:text="Vehicle no"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="#5d5c5c" />
+
             <EditText
                 android:id="@+id/editTextVisitorVehicleNo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="25dp"
+                android:layout_marginTop="5dp"
                 android:background="@drawable/edittext_bg"
                 android:ems="10"
                 android:hint="Vehicle no"
                 android:padding="10sp" />
-
-            <Button
-                android:id="@+id/buttonAddVisitor"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:background="@drawable/btnbg"
-                android:text="ADD VISITOR"
-                android:textColor="#ffffff" />
         </LinearLayout>
     </ScrollView>
 
-</LinearLayout>
+    <Button
+        android:id="@+id/buttonAddVisitor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/btnbg"
+        android:text="ADD VISITOR"
+        android:textColor="@drawable/btn_text_color" />
+
+</RelativeLayout>
