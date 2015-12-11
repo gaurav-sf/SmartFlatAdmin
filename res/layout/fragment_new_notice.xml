@@ -1,9 +1,139 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" 
-    android:background="#658454">
-    
+    android:padding="2dp" >
 
-</LinearLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/buttonNext"
+        android:padding="5dp" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="20dp" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="10" >
+
+                <TextView
+                    android:id="@+id/textView1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="9"
+                    android:text="To,"
+                    android:textSize="20sp" />
+
+                <ImageView
+                    android:id="@+id/imageView1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:src="@drawable/board_pin" />
+            </LinearLayout>
+
+            <EditText
+                android:id="@+id/editText1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/edittext_bg"
+                android:ems="10"
+                android:hint="Enter Name"
+                android:padding="5dp" />
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Subject :"
+                android:textSize="18sp" />
+
+            <EditText
+                android:id="@+id/editText2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/edittext_bg"
+                android:ems="10"
+                android:hint="Enter Subject"
+                android:padding="5dp" />
+
+            <EditText
+                android:id="@+id/editText3"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/edittext_bg"
+                android:ems="10"
+                android:hint="Message"
+                android:padding="5dp" />
+
+        </LinearLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/LinearLayoutFooter"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal"
+        android:weightSum="4" >
+
+        <Button
+            android:id="@+id/buttonSendNotice"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="0dp"
+            android:layout_height="35dp"
+            android:layout_margin="2dp"
+            android:layout_weight="1"
+            android:background="@drawable/btnbg"
+            android:text="Send Notice"
+            android:textColor="@drawable/btn_text_color"
+            android:textSize="12sp" />
+
+        <Button
+            android:id="@+id/buttonSaveAsDraft"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="0dp"
+            android:layout_height="35dp"
+            android:layout_margin="2dp"
+            android:layout_weight="1"
+            android:background="@drawable/btnbg"
+            android:text="Save as Draft"
+            android:textColor="@drawable/btn_text_color"
+            android:textSize="12sp" />
+
+        <Button
+            android:id="@+id/buttonDeleteNotice"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="0dp"
+            android:layout_height="35dp"
+            android:layout_margin="2dp"
+            android:layout_weight="1"
+            android:background="@drawable/btnbg"
+            android:text="Delete Notice"
+            android:textColor="@drawable/btn_text_color"
+            android:textSize="12sp" />
+
+        <Button
+            android:id="@+id/buttonSendViaSMS"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="0dp"
+            android:layout_height="35dp"
+            android:layout_margin="2dp"
+            android:layout_weight="1"
+            android:background="@drawable/btnbg"
+            android:text="Send SMS"
+            android:textColor="@drawable/btn_text_color"
+            android:textSize="12sp" />
+    </LinearLayout>
+
+</RelativeLayout>

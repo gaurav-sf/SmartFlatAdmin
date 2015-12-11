@@ -3,15 +3,98 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" 
-    android:padding="10dp">
+    android:padding="10dp"
+    android:background="@color/white">
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="10">
+
+        <ImageView
+            android:id="@+id/imageViewVisitor"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:src="@drawable/usericon" />
     
         <TextView
         android:id="@+id/textViewVisitorName"
         android:layout_width="wrap_content"
+        android:layout_marginLeft="5dp"
         android:layout_height="wrap_content"
         android:text="Large Text"
         android:textSize="18sp"
-        android:layout_gravity="center_vertical" />
+        android:textColor="@color/theme_color"
+        android:layout_gravity="center" />
+  </LinearLayout>  
+  
+    <View
+                android:id="@+id/viewLineRequest"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="2dp"
+                android:background="@color/theme_color" />
     
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="10"
+        android:layout_marginTop="3dp">
+
+    <TextView
+        android:id="@+id/textViewFlatNo"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Flat no :- "
+        android:layout_weight="5"
+        android:textColor="#ff847979"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/textViewVisitorInTime"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Visitor in time :"
+        android:textColor="#ff847979"
+        android:layout_weight="5"
+        android:textSize="16sp" />
+</LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="10">
+
+    <TextView
+        android:id="@+id/textViewContactNo"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Contact no :- "
+        android:layout_weight="5"
+        android:textColor="#ff847979"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/textViewVehicleNo"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Vehicle no :"
+        android:textColor="#ff847979"
+        android:layout_weight="5"
+        android:textSize="16sp" />
+</LinearLayout>
+
+    <TextView
+        android:id="@+id/textViewPurpose"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Purpose :-"
+        android:textSize="18sp"
+        android:textColor="#ff847979" />
 
 </LinearLayout>

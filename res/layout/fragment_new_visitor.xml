@@ -2,13 +2,16 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="20sp" >
+    android:padding="20sp" 
+    android:background="#f9f9f9">
 
     <ScrollView
         android:id="@+id/scrollView1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true" >
+        android:layout_alignParentTop="true" 
+        android:paddingBottom="5dp"
+        android:layout_above="@+id/buttonAddVisitor">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -20,25 +23,35 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
-                android:text="visitor Name"
-                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Visitor name"
+                android:textSize="16sp"
                 android:textColor="#5d5c5c" />
 
             <EditText
                 android:id="@+id/editTextVisitorName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="3dp"
                 android:background="@drawable/edittext_bg"
                 android:ems="10"
                 android:hint="visitor Name"
-                android:padding="10sp" />
+                android:padding="8sp" />
+            
+            <TextView
+                android:id="@+id/textViewNoOfVisitors"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="20dp"
+                android:text="No of visitors"
+                android:textSize="16sp"
+                android:textColor="#5d5c5c" />
 
             <Spinner
                 android:id="@+id/spinnerNoOfVisitors"
                 android:layout_width="match_parent"
-                android:layout_height="40sp"
-                android:layout_marginTop="25dp"
+                android:layout_height="35sp"
+                android:layout_marginTop="5dp"
                 android:background="@drawable/spinner_bg"
                 android:ems="10"
                 android:hint="No Of Visitors"
@@ -48,7 +61,7 @@
                 android:id="@+id/radioGroupFlatType"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
+                android:layout_marginTop="15dp"
                 android:orientation="horizontal" >
 
                 <RadioButton
@@ -57,31 +70,53 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:checked="true"
-                    android:text="Flat No" />
+                    android:button="@drawable/custom_radio_button" 
+                    android:text=" Flat No" />
 
                 <RadioButton
                     android:id="@+id/radioButtonOwnerName"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:button="@drawable/custom_radio_button" 
                     android:layout_weight="1"
-                    android:text="Owner Name" />
+                    android:text=" Owner Name" />
             </RadioGroup>
+            
+            <TextView
+                android:id="@+id/textViewBuildingName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="20dp"
+                android:text="Building name"
+                android:textSize="16sp"
+                android:textColor="#5d5c5c" />
 
             <Spinner
                 android:id="@+id/spinnerBuildingName"
                 android:layout_width="match_parent"
-                android:layout_height="40sp"
-                android:layout_marginTop="25dp"
+                android:layout_height="35sp"
+                android:layout_marginTop="5dp"
                 android:background="@drawable/spinner_bg"
                 android:ems="10"
                 android:hint="Building Name"
                 android:popupBackground="@color/spinner_popup" />
+            
+            <TextView
+                android:id="@+id/textViewFloorNo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="20dp"
+                android:text="Floor no"
+                android:textSize="16sp"
+                android:textColor="#5d5c5c" />
 
             <Spinner
                 android:id="@+id/spinnerFloorNo"
                 android:layout_width="match_parent"
-                android:layout_height="40sp"
-                android:layout_marginTop="25dp"
+                android:layout_height="35sp"
+                android:layout_marginTop="5dp"
                 android:background="@drawable/spinner_bg"
                 android:ems="10"
                 android:hint="Floor No"
@@ -93,19 +128,19 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
                 android:layout_marginTop="20dp"
-                android:text="FlatNo"
-                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Flat no"
+                android:textSize="16sp"
                 android:textColor="#5d5c5c" />
 
             <EditText
                 android:id="@+id/editTextFlatNo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="3dp"
                 android:background="@drawable/edittext_bg"
                 android:ems="10"
                 android:hint="Flat No"
-                android:padding="10sp" />
+                android:padding="8sp" />
 
             <TextView
                 android:id="@+id/textViewVisitorInTime"
@@ -113,20 +148,20 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
                 android:layout_marginTop="20dp"
-                android:text="Visitor In Time"
-                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Visitor in time"
+                android:textSize="16sp"
                 android:textColor="#5d5c5c" />
 
             <EditText
                 android:id="@+id/editTextVisitorInTime"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="3dp"
                 android:background="@drawable/edittext_bg"
                 android:editable="false"
                 android:ems="10"
                 android:hint="visitor In Time"
-                android:padding="10sp" />
+                android:padding="8sp" />
 
             <TextView
                 android:id="@+id/textViewVisitPurpose"
@@ -134,20 +169,20 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
                 android:layout_marginTop="20dp"
-                android:text="Visit Purpose"
-                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Visit purpose"
+                android:textSize="16sp"
                 android:textColor="#5d5c5c" />
 
             <EditText
                 android:id="@+id/editTextVisitPurpose"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="3dp"
                 android:background="@drawable/edittext_bg"
                 android:ems="10"
                 android:hint="visit Purpose"
                 android:minLines="3"
-                android:padding="10sp"
+                android:padding="8sp"
                 android:singleLine="false" />
 
             <TextView
@@ -156,20 +191,20 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
                 android:layout_marginTop="20dp"
-                android:text="Contact No"
-                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Contact no"
+                android:textSize="16sp"
                 android:textColor="#5d5c5c" />
 
             <EditText
                 android:id="@+id/editTextVisitorContactNo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="3dp"
                 android:background="@drawable/edittext_bg"
                 android:ems="10"
                 android:hint="Contact No"
                 android:inputType="number"
-                android:padding="10sp" />
+                android:padding="8sp" />
 
             <TextView
                 android:id="@+id/textViewVehicleNo"
@@ -178,18 +213,18 @@
                 android:layout_marginLeft="5dp"
                 android:layout_marginTop="20dp"
                 android:text="Vehicle no"
-                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textSize="16sp"
                 android:textColor="#5d5c5c" />
 
             <EditText
                 android:id="@+id/editTextVisitorVehicleNo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="3dp"
                 android:background="@drawable/edittext_bg"
                 android:ems="10"
                 android:hint="Vehicle no"
-                android:padding="10sp" />
+                android:padding="8sp" />
         </LinearLayout>
     </ScrollView>
 
