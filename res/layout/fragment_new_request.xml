@@ -21,7 +21,7 @@
         android:layout_height="35sp"
         android:ems="10" 
         android:layout_margin="10dp"
-        android:popupBackground="@color/spinner_popup"
+        android:popupBackground="@drawable/trans_spinner_bg"
         android:background="@drawable/spinner_bg"/>
     
         <ListView
