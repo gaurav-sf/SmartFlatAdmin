@@ -10,12 +10,13 @@ import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.animation.Animation.AnimationListener;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 public class SplashActivity extends Activity {
 
 	private Animation mZoomIn;
-	private TextView mTextViewAppName;
+	private ImageView mImageViewAppName;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -29,10 +30,10 @@ public class SplashActivity extends Activity {
 				WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
 		setContentView(R.layout.activity_splash);
-		mTextViewAppName = (TextView) findViewById(R.id.tv_title);
+		mImageViewAppName = (ImageView) findViewById(R.id.iv_title);
 		mZoomIn = AnimationUtils.loadAnimation(getApplicationContext(), R.animator.zoom_in);
 		addListner();
-		mTextViewAppName.setAnimation(mZoomIn);
+		mImageViewAppName.setAnimation(mZoomIn);
 		// goToNextActivity();
 	}
 

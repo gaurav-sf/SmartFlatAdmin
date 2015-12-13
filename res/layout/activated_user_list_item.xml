@@ -41,10 +41,10 @@
                 android:background="@color/theme_color" />
 
     <TextView
-        android:id="@+id/textViewEmailId"
+        android:id="@+id/textViewFlatNo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Email Id :- "
+        android:text="Flat No and Wing:- "
         android:textColor="#ff847979"
         android:textSize="16sp" />
 

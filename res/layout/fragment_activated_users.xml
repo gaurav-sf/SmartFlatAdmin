@@ -5,6 +5,15 @@
     android:background="#e6e6e6"
     android:orientation="vertical" 
     android:paddingTop="10dp">
+    
+    <Spinner
+        android:id="@+id/spinnerSortingActivatedUser"
+        android:layout_width="match_parent"
+        android:layout_height="35sp"
+        android:ems="10" 
+        android:layout_margin="10dp"
+        android:popupBackground="@drawable/trans_spinner_bg"
+        android:background="@drawable/spinner_bg"/>
 
     <ListView
         android:id="@+id/listViewActivatedUser"
