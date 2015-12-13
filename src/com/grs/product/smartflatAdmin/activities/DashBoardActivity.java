@@ -132,6 +132,17 @@ public class DashBoardActivity extends FragmentActivity {
 			// on first time display view for first nav item
 			displayView(0);
 		}
+		
+		Bundle extras = getIntent().getExtras();
+		if(extras!=null)
+		{
+			if(!extras.getString("fromGCM").equals(null) || extras.getString("fromGCM")!=null){
+				if(extras.getString("fromGCM").equals("request"))
+				{
+					displayView(3);
+				}
+			}
+		}
 	}
 
 	/**

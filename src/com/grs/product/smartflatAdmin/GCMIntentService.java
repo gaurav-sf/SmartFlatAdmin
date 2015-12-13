@@ -4,15 +4,15 @@ import java.util.List;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import com.google.android.gcm.GCMBaseIntentService;
-import com.grs.product.smartflatAdmin.activities.DashBoardActivity;
+import com.grs.product.smartflatAdmin.activities.RequestDetailsActivity;
 import com.grs.product.smartflatAdmin.apicall.JSONSingleObjectDecode;
 import com.grs.product.smartflatAdmin.database.SmartFlatAdminDBManager;
+import com.grs.product.smartflatAdmin.fragments.MainUsersFragment;
 import com.grs.product.smartflatAdmin.models.FlatOwnerDetails;
+import com.grs.product.smartflatAdmin.models.RequestDetails;
 import com.grs.product.smartflatAdmin.models.RequestMessages;
 import com.grs.product.smartflatAdmin.utils.Param;
-
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -23,6 +23,7 @@ import android.util.Log;
 public class GCMIntentService extends GCMBaseIntentService {
 	
 	public static String registerid="";
+	private static int uniqueId = 0;
 
 	
 	public GCMIntentService() {
@@ -40,7 +41,7 @@ public class GCMIntentService extends GCMBaseIntentService {
 		// TODO Auto-generated method stub
 		
 		String message = intent.getExtras().getString("message");
-		if(message.equalsIgnoreCase("New User Registered"))
+		if(message.contains("New User Registered"))
 		{
 			JSONObject json;
 			try {
@@ -52,8 +53,19 @@ public class GCMIntentService extends GCMBaseIntentService {
 				e.printStackTrace();
 			}
 			
-		} else if(message.equalsIgnoreCase("New Message"))
+		} else if(message.contains("New Request"))
 		{
+			JSONObject json;
+			try {
+				json = new JSONObject(intent.getExtras().getString("jsonData"));
+				JSONSingleObjectDecode objectjson = new JSONSingleObjectDecode();
+				saveRequestAndComplaintInDB(objectjson.getRequestAndComplaint(json));
+			} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+		}else if(message.contains("New Message")){
 			JSONObject json;
 			try {
 				json = new JSONObject(intent.getExtras().getString("jsonData"));
@@ -95,22 +107,13 @@ public class GCMIntentService extends GCMBaseIntentService {
 	/**
 	 * Issues a notification to inform the user that server has sent a message.
 	 */
+	@SuppressWarnings("deprecation")
 	private static void generateNotification(Context context, String message) {
 		
-		boolean isHash = false, isStar = false, isnews = false;
-		Intent notificationIntent;
+		Intent notificationIntent = null;
 		int icon = R.drawable.ic_launcher;
 		long when = System.currentTimeMillis();
 		
-		if(message.contains("#")){
-			isHash = true;			
-		}else if(message.contains("*")){
-			isStar = true;
-		}else{
-			isnews = true;
-		}
-		message = message.replace("#", "");
-		message = message.replace("*", "");
 		NotificationManager notificationManager = (NotificationManager) context
 				.getSystemService(Context.NOTIFICATION_SERVICE);
 		Notification notification = new Notification(icon, message, when);
@@ -119,8 +122,16 @@ public class GCMIntentService extends GCMBaseIntentService {
 		  notification.defaults |= Notification.DEFAULT_VIBRATE;
 		  
 		String title = context.getString(R.string.app_name);
-
-		     notificationIntent = new Intent(context, DashBoardActivity.class);
+		if(message.contains("New Message")){
+			 notificationIntent = new Intent(context, RequestDetailsActivity.class);
+			 notificationIntent.putExtra("requestno", message.split("-")[1].trim());
+		}else if(message.equalsIgnoreCase("New User Registered")){
+			notificationIntent = new Intent(context, MainUsersFragment.class);
+		}else if(message.contains("New Request")){
+			notificationIntent = new Intent(context, RequestDetailsActivity.class);
+			 notificationIntent.putExtra("requestno", message.split("-")[1].trim());
+		}
+		     
 		
 		//Intent notificationIntent = new Intent(context, OrderReceivedActivity.class);
 		notificationIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP
@@ -129,6 +140,7 @@ public class GCMIntentService extends GCMBaseIntentService {
 				notificationIntent, 0);
 		notification.setLatestEventInfo(context, title, message, intent);
 		notification.flags |= Notification.FLAG_AUTO_CANCEL;
+		//uniqueId++;
 		notificationManager.notify(0, notification);
 	}
 	
@@ -156,6 +168,18 @@ public class GCMIntentService extends GCMBaseIntentService {
 			}
 		}		
 	
+	}
+	
+	private void saveRequestAndComplaintInDB(List<RequestDetails> mListRequestDetails){		
+		SmartFlatAdminDBManager objManager = new SmartFlatAdminDBManager();
+		for (int i = 0; i < mListRequestDetails.size(); i++)
+		{
+			boolean result = objManager.saveRequestDetails(mListRequestDetails.get(i));
+			if(result)
+			{
+				Log.e("From GCM Receiver", "Request Insertion Successful");
+			}
+		}		
 	}
 
 }
