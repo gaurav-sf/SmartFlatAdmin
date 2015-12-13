@@ -35,7 +35,7 @@ public class RequestDetailsActivity extends Activity{
 	private TextView mTextViewRequestNo, mTextViewPriorityType, mTextViewCategory,mTextViewDetails;
 	private ImageButton mButtonClose,mButtonSendMessage;
 	private EditText mEditTextMessage;
-	private String mRequestNumber;
+	private String mRequestNumber="";
 	private RequestDetails mRequestDetails;
 	private MessageListAdapter mMessageListAdapter;
 	private ListView mListViewMessages;
