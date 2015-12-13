@@ -39,7 +39,6 @@ public class GCMIntentService extends GCMBaseIntentService {
 	@Override
 	protected void onMessage(Context context, Intent intent) {
 		// TODO Auto-generated method stub
-		
 		String message = intent.getExtras().getString("message");
 		if(message.contains("New User Registered"))
 		{
@@ -125,10 +124,12 @@ public class GCMIntentService extends GCMBaseIntentService {
 		if(message.contains("New Message")){
 			 notificationIntent = new Intent(context, RequestDetailsActivity.class);
 			 notificationIntent.putExtra("requestno", message.split("-")[1].trim());
-		}else if(message.equalsIgnoreCase("New User Registered")){
+		}
+		else if(message.equalsIgnoreCase("New User Registered")){
 			notificationIntent = new Intent(context, MainUsersFragment.class);
-		}else if(message.contains("New Request")){
-			notificationIntent = new Intent(context, RequestDetailsActivity.class);
+		}
+		else if(message.contains("New Request")){
+			 notificationIntent = new Intent(context, RequestDetailsActivity.class);
 			 notificationIntent.putExtra("requestno", message.split("-")[1].trim());
 		}
 		     
