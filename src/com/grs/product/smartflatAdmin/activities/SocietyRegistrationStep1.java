@@ -206,7 +206,7 @@ public class SocietyRegistrationStep1 extends Activity {
 	    final EditText edittext = new EditText(this);    
 	    edittext.setLayoutParams(lparams);
 	    edittext.setBackgroundResource(R.drawable.trans_edittext_bg);
-	    edittext.setHintTextColor(getResources().getColor(R.color.text_hint_color));
+	   // edittext.setHintTextColor(getResources().getColor(R.color.text_hint_color));
 	    edittext.setEms(10);
 	    edittext.setPadding(5, 5, 5, 5);
 	    

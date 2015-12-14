@@ -77,7 +77,13 @@ public class Utilities {
 	}
 	
 	public static String getCurrentDateTime(){
-		return DateFormat.getDateTimeInstance().format(new Date());
+		String dateTime="";
+		Date date = new Date();		
+		DateFormat converter = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+		converter.setTimeZone(TimeZone.getTimeZone("UTC"));
+		dateTime=converter.format(date);
+		
+		return dateTime;
 	}
 	
 	public static void addCustomActionBar(Activity activity){

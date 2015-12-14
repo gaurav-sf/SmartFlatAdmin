@@ -46,9 +46,15 @@ public class VisitedVisitorsListAdapter  extends BaseAdapter {
 					.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 			rowView = infalInflater.inflate(R.layout.visited_visitor_list_item, null);
 		}
-		 VisitorDetails temp = listVisitorDetails.get(position);
+		 VisitorDetails temp = listVisitorDetails.get(position);		 
+		 TextView whomeToVisit = (TextView) rowView.findViewById(R.id.textViewWhomToVisit);
+		 whomeToVisit.setText(temp.getmFlatOwnerCode());
 		 TextView visitorName = (TextView) rowView.findViewById(R.id.textViewVisitorName);
-		 visitorName.setText(temp.getmVisitorName()+"\n"+temp.getmVisitorContacNo());
+		 visitorName.setText(temp.getmVisitorName());
+		 TextView visitPurpose = (TextView) rowView.findViewById(R.id.textViewVisitPurpose);
+		 visitPurpose.setText(temp.getmVisitPurpose());
+		 TextView visitorInTime = (TextView) rowView.findViewById(R.id.textViewVisitorInTime);
+		 visitorInTime.setText(temp.getmVisitorInTime());
 
 		return rowView;
 	}
