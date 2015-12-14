@@ -99,10 +99,10 @@ public class SmartFlatAdminDBTableCreation {
 			+"( "
 			+ TableSocietyNotices.ID + " INTEGER PRIMARY KEY, "
 			+ TableSocietyNotices.NOTICE_NUMBER + " TEXT, "
-			+ TableSocietyNotices.NOTICE_FOR + " TEXT, "
-			+ TableSocietyNotices.NOTICE_PRIORITY + " TEXT, "
+			+ TableSocietyNotices.NOTICE_MESSAGE + " TEXT, "
+			+ TableSocietyNotices.NOTICE_TO + " TEXT, "
 			+ TableSocietyNotices.NOTICE_DATETIME + " TEXT, "
-			+ TableSocietyNotices.NOTICE_DETAILS + " TEXT);";
+			+ TableSocietyNotices.NOTICE_SUBJECT + " TEXT);";
 	
 	public static final String TABLE_CONTACT_DETAILS_CREATION_QUERY = "Create table if not exists "+TableNames.CONTACT_DETAILS
 			+"( "

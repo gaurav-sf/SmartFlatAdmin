@@ -132,7 +132,7 @@ public class GCMIntentService extends GCMBaseIntentService {
 			 notificationIntent = new Intent(context, RequestDetailsActivity.class);
 			 notificationIntent.putExtra("requestno", message.split("-")[1].trim());
 		}
-		     
+		    
 		
 		//Intent notificationIntent = new Intent(context, OrderReceivedActivity.class);
 		notificationIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP
