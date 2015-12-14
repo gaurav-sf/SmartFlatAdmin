@@ -4,10 +4,11 @@ public class NoticeDetails {
 	
 	private String mNoticeNumber;	
 	private String mSocietyCode;
-	private String mNoticeDateTime;	
-	private String mNoticePriority;	
-	private String mNoticeDetails;
-	private String mNoticeFor;
+	private String mNoticeDateTime;
+	private String mNoticeTo;
+	private String mNoticeSubject;
+	private String mNoticeMessage;
+
 	
 	public String getmNoticeNumber() {
 		return mNoticeNumber;
@@ -32,29 +33,29 @@ public class NoticeDetails {
 	public void setmNoticeDateTime(String mNoticeDateTime) {
 		this.mNoticeDateTime = mNoticeDateTime;
 	}
-	
-	public String getmNoticePriority() {
-		return mNoticePriority;
-	}
-	
-	public void setmNoticePriority(String mNoticePriority) {
-		this.mNoticePriority = mNoticePriority;
-	}
-	
-	public String getmNoticeDetails() {
-		return mNoticeDetails;
-	}
-	
-	public void setmNoticeDetails(String mNoticeDetails) {
-		this.mNoticeDetails = mNoticeDetails;
+
+	public String getmNoticeTo() {
+		return mNoticeTo;
 	}
 
-	public String getmNoticeFor() {
-		return mNoticeFor;
+	public void setmNoticeTo(String mNoticeTo) {
+		this.mNoticeTo = mNoticeTo;
 	}
 
-	public void setmNoticeFor(String mNoticeFor) {
-		this.mNoticeFor = mNoticeFor;
+	public String getmNoticeSubject() {
+		return mNoticeSubject;
+	}
+
+	public void setmNoticeSubject(String mNoticeSubject) {
+		this.mNoticeSubject = mNoticeSubject;
+	}
+
+	public String getmNoticeMessage() {
+		return mNoticeMessage;
+	}
+
+	public void setmNoticeMessage(String mNoticeMessage) {
+		this.mNoticeMessage = mNoticeMessage;
 	}	
 
 }

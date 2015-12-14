@@ -38,14 +38,15 @@
                     android:src="@drawable/board_pin" />
             </LinearLayout>
 
-            <EditText
-                android:id="@+id/editText1"
+            <AutoCompleteTextView
+                android:id="@+id/autoCompleteTextViewTo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:background="@drawable/edittext_bg"
                 android:ems="10"
                 android:hint="Enter Name"
+                android:completionThreshold="1"
                 android:padding="5dp" />
 
             <TextView
@@ -57,7 +58,7 @@
                 android:textSize="18sp" />
 
             <EditText
-                android:id="@+id/editText2"
+                android:id="@+id/editTextSubject"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
@@ -67,7 +68,7 @@
                 android:padding="5dp" />
 
             <EditText
-                android:id="@+id/editText3"
+                android:id="@+id/editTextMessage"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
                 android:layout_marginTop="10dp"
@@ -87,17 +88,7 @@
         android:orientation="horizontal"
         android:weightSum="4" >
 
-        <Button
-            android:id="@+id/buttonSendNotice"
-            style="?android:attr/buttonStyleSmall"
-            android:layout_width="0dp"
-            android:layout_height="35dp"
-            android:layout_margin="2dp"
-            android:layout_weight="1"
-            android:background="@drawable/btnbg"
-            android:text="Send Notice"
-            android:textColor="@drawable/btn_text_color"
-            android:textSize="12sp" />
+        
 
         <Button
             android:id="@+id/buttonSaveAsDraft"
@@ -109,7 +100,8 @@
             android:background="@drawable/btnbg"
             android:text="Save as Draft"
             android:textColor="@drawable/btn_text_color"
-            android:textSize="12sp" />
+            android:textSize="12sp" 
+            android:visibility="invisible"/>
 
         <Button
             android:id="@+id/buttonDeleteNotice"
@@ -121,7 +113,8 @@
             android:background="@drawable/btnbg"
             android:text="Delete Notice"
             android:textColor="@drawable/btn_text_color"
-            android:textSize="12sp" />
+            android:textSize="12sp"
+            android:visibility="invisible" />
 
         <Button
             android:id="@+id/buttonSendViaSMS"
@@ -132,6 +125,19 @@
             android:layout_weight="1"
             android:background="@drawable/btnbg"
             android:text="Send SMS"
+            android:textColor="@drawable/btn_text_color"
+            android:textSize="12sp" 
+            android:visibility="invisible"/>
+        
+        <Button
+            android:id="@+id/buttonSendNotice"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="0dp"
+            android:layout_height="35dp"
+            android:layout_margin="2dp"
+            android:layout_weight="1"
+            android:background="@drawable/btnbg"
+            android:text="Send Notice"
             android:textColor="@drawable/btn_text_color"
             android:textSize="12sp" />
     </LinearLayout>

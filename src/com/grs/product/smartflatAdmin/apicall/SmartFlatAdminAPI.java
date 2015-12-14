@@ -84,6 +84,10 @@ public class SmartFlatAdminAPI {
 	public Response sendPushToken(String pushToen) throws SmartFlatAdminError{
 		return sendPushTokenCall(pushToen);
 	}
+	
+	public Response sendNotice(String noticeTo, String noticeSubject, String noticeMessage) throws SmartFlatAdminError{
+		return sendNoticeCall(noticeTo, noticeSubject, noticeMessage);
+	}
 
 	private Response getRegistrationCall(SocietyDetails societyDetails, SocietyOwnerDetails societyOwnerDetails)
 			throws SmartFlatAdminError{
@@ -388,6 +392,33 @@ public class SmartFlatAdminAPI {
 		{
 			throw new SmartFlatAdminError("Please try again later", "Server Error");
 		}
+	}
+	
+	private Response sendNoticeCall(String noticeTo, String noticeSubject, String noticeMessage) throws SmartFlatAdminError{
+
+		try{
+			ArrayList<NameValuePair> object = new ArrayList<NameValuePair>();
+			object.add(new BasicNameValuePair("noticeTo", noticeTo));
+			object.add(new BasicNameValuePair("noticeSubject",noticeSubject));
+			object.add(new BasicNameValuePair("noticeMessage",noticeMessage));
+			object.add(new BasicNameValuePair("societyCode",SmartFlatAdminApplication.getSocietyCodeFromSharedPreferences()));
+			object.add(new BasicNameValuePair("noticeDateTime",Utilities.getCurrentDateTime()));
+
+			ServerConnecter serverConnecter = new ServerConnecter();
+			String URL = Param.baseURL + "sendNotice.php";
+			JSONObject objJson = serverConnecter.getJSONFromUrl(URL, object);
+			JSONSingleObjectDecode objectjson = new JSONSingleObjectDecode();
+			return objectjson.getStatus(objJson);	
+
+		} 
+		catch (JSONException e) 
+		{
+			throw new SmartFlatAdminError("Server error occured. Please try again later", "Server Error");
+		}
+		catch (Exception e)
+		{
+			throw new SmartFlatAdminError("Please try again later", "Server Error");
+		}	
 	}
 
 

@@ -4,6 +4,7 @@ package com.grs.product.smartflatAdmin.database;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
+
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -12,6 +13,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteDatabase.CursorFactory;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
+
 import com.grs.product.smartflatAdmin.SmartFlatAdminApplication;
 import com.grs.product.smartflatAdmin.database.SmartFlatAdminDBTables.TableContactDetails;
 import com.grs.product.smartflatAdmin.database.SmartFlatAdminDBTables.TableFlatOwnerDetails;
@@ -19,10 +21,12 @@ import com.grs.product.smartflatAdmin.database.SmartFlatAdminDBTables.TableMessa
 import com.grs.product.smartflatAdmin.database.SmartFlatAdminDBTables.TableNames;
 import com.grs.product.smartflatAdmin.database.SmartFlatAdminDBTables.TableRequestDetails;
 import com.grs.product.smartflatAdmin.database.SmartFlatAdminDBTables.TableSocietyDetails;
+import com.grs.product.smartflatAdmin.database.SmartFlatAdminDBTables.TableSocietyNotices;
 import com.grs.product.smartflatAdmin.database.SmartFlatAdminDBTables.TableSocietyOwnerDetails;
 import com.grs.product.smartflatAdmin.database.SmartFlatAdminDBTables.TableVisitorDetails;
 import com.grs.product.smartflatAdmin.models.ContactDetails;
 import com.grs.product.smartflatAdmin.models.FlatOwnerDetails;
+import com.grs.product.smartflatAdmin.models.NoticeDetails;
 import com.grs.product.smartflatAdmin.models.RequestDetails;
 import com.grs.product.smartflatAdmin.models.RequestMessages;
 import com.grs.product.smartflatAdmin.models.SocietyDetails;
@@ -757,6 +761,63 @@ public class SmartFlatAdminDatabase {
 		}
 		return cursor;		
 	
+	}
+	
+	public Cursor getFlatOwnerData(String searchText) throws SQLException{
+
+        String queryString =
+                "SELECT * FROM " + TableNames.FLAT_OWNER_DETAILS;
+        if (searchText != null) {
+        	searchText = searchText.trim() + "%";
+            queryString += " WHERE "+TableFlatOwnerDetails.FLAT_OWNER_NAME+" LIKE ?";
+        }
+        String params[] = { searchText };
+
+        if (searchText == null) {
+            params = null;
+        }
+        try {
+            Cursor cursor = mDb.rawQuery(queryString, params);
+            if (cursor != null) {
+                cursor.moveToFirst();
+                return cursor;
+            }
+        }
+        catch (SQLException e) {
+            Log.e("AutoCompleteDbAdapter", e.toString());
+            throw e;
+        }
+        return null;
+    }
+	
+	public boolean saveNotice(NoticeDetails details){
+		boolean isAdded = false;
+		ContentValues values = new ContentValues();
+		values.put(TableSocietyNotices.NOTICE_NUMBER,details.getmNoticeNumber());
+		values.put(TableSocietyNotices.NOTICE_TO,details.getmNoticeTo());
+		values.put(TableSocietyNotices.NOTICE_SUBJECT,details.getmNoticeSubject());
+		values.put(TableSocietyNotices.NOTICE_MESSAGE,details.getmNoticeMessage());
+		values.put(TableSocietyNotices.NOTICE_DATETIME,details.getmNoticeDateTime());		
+	try 
+		{
+			mDb.beginTransaction();
+			isAdded = mDb.insert(TableNames.SOCIETY_NOTICES, null, values) > 0;
+			mDb.setTransactionSuccessful();
+		} catch (Exception e) {
+			Log.e("Error in transaction", e.toString());
+		} finally {
+			mDb.endTransaction();
+		}
+		return isAdded;		
+	}
+	
+	public Cursor getAllNotice(){
+		String selectQuery = "SELECT  * FROM " + TableNames.SOCIETY_NOTICES;
+		Cursor cursor = mDb.rawQuery(selectQuery, null);	
+		if (cursor != null && cursor.getCount()>0) {
+			cursor.moveToNext();
+		}
+		return cursor;	
 	}
 
 }

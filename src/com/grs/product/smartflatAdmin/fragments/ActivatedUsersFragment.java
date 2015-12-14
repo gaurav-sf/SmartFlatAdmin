@@ -45,7 +45,7 @@ public class ActivatedUsersFragment  extends Fragment{
 	public void getUserDetails(){
 		SmartFlatAdminDBManager objManager = new SmartFlatAdminDBManager();
 		Cursor deails = objManager.getAllFlatOwnerDetails("1");
-		 List<FlatOwnerDetails> listNewRegisterUser = new ArrayList<FlatOwnerDetails>();
+		List<FlatOwnerDetails> listNewRegisterUser = new ArrayList<FlatOwnerDetails>();
 		for(int i = 0; i<=deails.getCount();i++){
 			boolean isdata = deails.moveToPosition(i);
 			if(isdata)
