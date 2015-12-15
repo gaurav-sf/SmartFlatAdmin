@@ -37,7 +37,7 @@
         android:layout_marginTop="3dp">
         
         <TextView
-            android:id="@+id/textViewDetails"
+            android:id="@+id/textViewVisitorName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
@@ -45,12 +45,12 @@
             android:textColor="#ff847979" />
         
         <TextView
-            android:id="@+id/textViewMemberWithVisitor"
+            android:id="@+id/textViewNoOfVisitors"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
             android:layout_marginLeft="15dp"
-            android:text="No of member with visitor :"
+            android:text="No of visitors :"
             android:textColor="#ff847979" />
         </LinearLayout>
         
@@ -68,18 +68,11 @@
             android:layout_marginTop="15dp"
             android:text="Vehicle No :"
             android:textColor="#ff847979" />
-        <TextView
-            android:id="@+id/textViewNoOfVehicle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
-            android:layout_marginTop="15dp"
-            android:text="No of Vehicle :"
-            android:textColor="#ff847979" />
+        
         </LinearLayout>
         
          <TextView
-            android:id="@+id/textViewPurpose"
+            android:id="@+id/textViewVisitPurpose"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"

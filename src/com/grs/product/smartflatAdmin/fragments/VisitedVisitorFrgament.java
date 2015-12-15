@@ -4,17 +4,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.grs.product.smartflatAdmin.R;
+import com.grs.product.smartflatAdmin.activities.RequestDetailsActivity;
+import com.grs.product.smartflatAdmin.activities.VisitorDetailsActivity;
 import com.grs.product.smartflatAdmin.adapter.VisitedVisitorsListAdapter;
 import com.grs.product.smartflatAdmin.database.SmartFlatAdminDBManager;
 import com.grs.product.smartflatAdmin.database.SmartFlatAdminDBTables.TableVisitorDetails;
 import com.grs.product.smartflatAdmin.models.VisitorDetails;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
 public class VisitedVisitorFrgament extends Fragment{
@@ -50,6 +55,17 @@ public class VisitedVisitorFrgament extends Fragment{
 	}
 
 	private void addListeners(){
+		mListViewVisitedVisitors.setOnItemClickListener(new OnItemClickListener() {
+
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+				Intent singleVisitorDetails = new Intent(getActivity(), VisitorDetailsActivity.class);
+				singleVisitorDetails.putExtra("visitorCode", mListVisitors.get(position).getmVisitorCode());
+				singleVisitorDetails.putExtra("flatOwnerCode", mListVisitors.get(position).getmFlatOwnerCode());
+				startActivity(singleVisitorDetails);
+				
+			}
+		});
 
 	}
 

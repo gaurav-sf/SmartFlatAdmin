@@ -139,9 +139,9 @@ public class SmartFlatAdminDBManager {
 		return details;
 	}
 	
-	public Cursor getSinbleRequestDetails(String requestNumber){
+	public Cursor getSingleRequestDetails(String requestNumber){
 		SmartFlatAdminDatabase.getInstance().open();
-		Cursor details = SmartFlatAdminDatabase.getInstance().getSinbleRequestDetails(requestNumber);
+		Cursor details = SmartFlatAdminDatabase.getInstance().getSingleRequestDetails(requestNumber);
 		SmartFlatAdminDatabase.getInstance().close();
 		return details;
 	}
@@ -224,6 +224,20 @@ public class SmartFlatAdminDBManager {
 		Cursor details = SmartFlatAdminDatabase.getInstance().getAllNotice();
 		SmartFlatAdminDatabase.getInstance().close();
 		return details;		
+	}
+	
+	public Cursor getSingleVisitorDetails(String visitorNumber){
+		SmartFlatAdminDatabase.getInstance().open();
+		Cursor details = SmartFlatAdminDatabase.getInstance().getSingleVisitorDetails(visitorNumber);
+		SmartFlatAdminDatabase.getInstance().close();
+		return details;
+	}
+	
+	public Cursor getSingleFlatOwnerData(String flatOwnerCode){
+		SmartFlatAdminDatabase.getInstance().open();
+		Cursor details = SmartFlatAdminDatabase.getInstance().getSingleFlatOwnerData(flatOwnerCode);
+		SmartFlatAdminDatabase.getInstance().close();
+		return details;
 	}
 	
 }

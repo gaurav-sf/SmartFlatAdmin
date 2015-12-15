@@ -84,7 +84,7 @@ public class RequestDetailsActivity extends Activity{
 	private RequestDetails getRequestDataFromDB(String requestNumber){
 		SmartFlatAdminDBManager objDbManager = new SmartFlatAdminDBManager();
 		RequestDetails tempRequestDetails = new RequestDetails();
-		Cursor requestDetailsCursor = objDbManager.getSinbleRequestDetails(requestNumber);
+		Cursor requestDetailsCursor = objDbManager.getSingleRequestDetails(requestNumber);
 			boolean isdata = requestDetailsCursor.moveToFirst();
 			if(isdata)
 			{

@@ -618,7 +618,7 @@ public class SmartFlatAdminDatabase {
 		return cursor;			
 	}
 	
-	public Cursor getSinbleRequestDetails(String requestNumber){
+	public Cursor getSingleRequestDetails(String requestNumber){
 		String selectQuery = "SELECT  * FROM " + TableNames.REQUEST_DETAILS + " WHERE " + TableRequestDetails.REQUEST_NUMBER +"= '"+ requestNumber+"'";
 		Cursor cursor = mDb.rawQuery(selectQuery, null);	
 		if (cursor != null && cursor.getCount()>0) {
@@ -818,6 +818,24 @@ public class SmartFlatAdminDatabase {
 			cursor.moveToNext();
 		}
 		return cursor;	
+	}
+	
+	public Cursor getSingleVisitorDetails(String visitorNumber){
+		String selectQuery = "SELECT  * FROM " + TableNames.VISITOR_DETAILS + " WHERE " + TableVisitorDetails.VISITOR_CODE +"= '"+ visitorNumber+"'";
+		Cursor cursor = mDb.rawQuery(selectQuery, null);	
+		if (cursor != null && cursor.getCount()>0) {
+			cursor.moveToNext();
+		}
+		return cursor;			
+	}
+	
+	public Cursor getSingleFlatOwnerData(String flatOwnerCode){
+		String selectQuery = "SELECT  * FROM " + TableNames.FLAT_OWNER_DETAILS + " WHERE " + TableVisitorDetails.FLAT_OWNER_CODE +"= '"+ flatOwnerCode+"'";
+		Cursor cursor = mDb.rawQuery(selectQuery, null);	
+		if (cursor != null && cursor.getCount()>0) {
+			cursor.moveToNext();
+		}
+		return cursor;			
 	}
 
 }
