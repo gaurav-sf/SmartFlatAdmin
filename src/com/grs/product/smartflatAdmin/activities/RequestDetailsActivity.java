@@ -3,6 +3,24 @@ package com.grs.product.smartflatAdmin.activities;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import android.app.Activity;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.database.Cursor;
+import android.graphics.Color;
+import android.os.AsyncTask;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.ListView;
+import android.widget.TextView;
+
 import com.grs.product.smartflatAdmin.R;
 import com.grs.product.smartflatAdmin.adapter.MessageListAdapter;
 import com.grs.product.smartflatAdmin.apicall.AsyncTaskCompleteListener;
@@ -16,19 +34,8 @@ import com.grs.product.smartflatAdmin.models.RequestMessages;
 import com.grs.product.smartflatAdmin.response.Response;
 import com.grs.product.smartflatAdmin.utils.CustomProgressDialog;
 import com.grs.product.smartflatAdmin.utils.NetworkDetector;
+import com.grs.product.smartflatAdmin.utils.Param;
 import com.grs.product.smartflatAdmin.utils.Utilities;
-import android.app.Activity;
-import android.database.Cursor;
-import android.graphics.Color;
-import android.os.AsyncTask;
-import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.widget.EditText;
-import android.widget.ImageButton;
-import android.widget.ListView;
-import android.widget.TextView;
 
 public class RequestDetailsActivity extends Activity{
 	private Bundle extras;
@@ -48,6 +55,8 @@ public class RequestDetailsActivity extends Activity{
 		mRequestDetails = getRequestDataFromDB(mRequestNumber);
 		setUIData();
 		addListeners();
+		registerReceiver(mHandleMessageReceived, new IntentFilter(
+				Param.DISPLAY_MESSAGE_ACTION));
 	}
 	
 	private void initializeUI(){
@@ -223,5 +232,44 @@ public class RequestDetailsActivity extends Activity{
 		mMessageListAdapter = new MessageListAdapter(getApplicationContext(), mRequestDetails.getmMessageList());
 		mListViewMessages.setAdapter(mMessageListAdapter);
 		mListViewMessages.setSelection(mMessageListAdapter.getCount() - 1);
+	}
+	
+	@Override
+	protected void onNewIntent(Intent intent) {
+		// TODO Auto-generated method stub
+		//super.onNewIntent(intent);
+		extras = getIntent().getExtras();
+		mRequestNumber = extras.getString("requestno");
+		Log.e("GAurav", mRequestNumber);
+	}
+	
+	private final BroadcastReceiver mHandleMessageReceived = new BroadcastReceiver() {
+		
+		@Override
+		public void onReceive(Context context, Intent intent) {
+			if(intent!=null){
+				
+				//String receiveMessage = intent.getStringExtra("newMessage");
+				//Log.e("Message", receiveMessage);
+				
+				String receiveMessage1 = intent.getStringExtra("Message");
+				Log.e("Message1", receiveMessage1);
+				
+				mRequestDetails.setmMessageList(getMessagesFromDB());
+				mMessageListAdapter = new MessageListAdapter(getApplicationContext(), mRequestDetails.getmMessageList());
+				mListViewMessages.setAdapter(mMessageListAdapter);
+				mListViewMessages.setSelection(mMessageListAdapter.getCount() - 1);
+			}
+			
+		}
+	};
+	
+	protected void onDestroy() {
+		try {
+			unregisterReceiver(mHandleMessageReceived);
+		} catch (Exception e) {
+			Log.e("UnRegister Receiver Error", "> " + e.getMessage());
+		}
+		super.onDestroy();
 	}
 }
