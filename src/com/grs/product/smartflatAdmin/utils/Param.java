@@ -6,5 +6,7 @@ public class Param {
 	//public static final String baseURL = "http://192.168.43.48/SmartFlat/";
 
 	public static final String GOOGLE_PROJ_ID = "1057994784133";
+	
+	public static final String DISPLAY_MESSAGE_ACTION = "Display_Message_Received";
 
 }
