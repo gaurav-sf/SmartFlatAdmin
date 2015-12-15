@@ -79,6 +79,7 @@ public class VisitedVisitorFrgament extends Fragment{
 				if(isdata)
 				{
 					VisitorDetails tempDetails = new VisitorDetails();
+					tempDetails.setmVisitorCode(cursorVisitors.getString(cursorVisitors.getColumnIndex(TableVisitorDetails.VISITOR_CODE)));
 					tempDetails.setmVisitorName(cursorVisitors.getString(cursorVisitors.getColumnIndex(TableVisitorDetails.VISITOR_NAME)));
 					tempDetails.setmNoofVisitors(cursorVisitors.getString(cursorVisitors.getColumnIndex(TableVisitorDetails.NO_OF_VISITORS)));
 					tempDetails.setmVisitorInTime(cursorVisitors.getString(cursorVisitors.getColumnIndex(TableVisitorDetails.VISITOR_IN_TIME)));

@@ -12,6 +12,7 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 
 public class VisitorDetailsActivity extends Activity{
 	
@@ -20,7 +21,7 @@ public class VisitorDetailsActivity extends Activity{
 	private String visitorNumber;
 	private String flatOwnerCode;
 	private Bundle extras;
-	private EditText mTextViewOwnername,mTextViewFlatDetail,mTextViewVisitorName,mTextViewNoOfVisitors,
+	private TextView mTextViewOwnername,mTextViewFlatDetail,mTextViewVisitorName,mTextViewNoOfVisitors,
 	mTextViewVehicleNo,mTextViewVisitPurpose,mTextViewVisitorInTime;
 	
 	@Override
@@ -74,13 +75,13 @@ public class VisitorDetailsActivity extends Activity{
 	}
 	
 	private void initialiseUI(){
-		mTextViewOwnername = (EditText) findViewById(R.id.textViewOwnername);
-		mTextViewFlatDetail = (EditText) findViewById(R.id.textViewFlatDetail);
-		mTextViewVisitorName = (EditText) findViewById(R.id.textViewVisitorName);
-		mTextViewNoOfVisitors = (EditText) findViewById(R.id.textViewNoOfVisitors);
-		mTextViewVehicleNo = (EditText) findViewById(R.id.textViewVehicleNo);
-		mTextViewVisitPurpose = (EditText) findViewById(R.id.textViewVisitPurpose);
-		mTextViewVisitorInTime = (EditText) findViewById(R.id.textViewVisitorInTime);
+		mTextViewOwnername = (TextView) findViewById(R.id.textViewOwnername);
+		mTextViewFlatDetail = (TextView) findViewById(R.id.textViewFlatDetail);
+		mTextViewVisitorName = (TextView) findViewById(R.id.textViewVisitorName);
+		mTextViewNoOfVisitors = (TextView) findViewById(R.id.textViewNoOfVisitors);
+		mTextViewVehicleNo = (TextView) findViewById(R.id.textViewVehicleNo);
+		mTextViewVisitPurpose = (TextView) findViewById(R.id.textViewVisitPurpose);
+		mTextViewVisitorInTime = (TextView) findViewById(R.id.textViewVisitorInTime);
 	}
 	
 	private void showData(){
@@ -88,7 +89,7 @@ public class VisitorDetailsActivity extends Activity{
 			mTextViewOwnername.setText(mFlatOwnerDetails.getmFlatOwnerName());
 			mTextViewFlatDetail.setText(mFlatOwnerDetails.getmBuildingName()+"-"+mFlatOwnerDetails.getmFloorNo()+""+mFlatOwnerDetails.getmFlatno());
 		}else{
-			mTextViewOwnername.setVisibility(View.INVISIBLE);
+			mTextViewOwnername.setText(flatOwnerCode);
 			mTextViewFlatDetail.setText(flatOwnerCode);
 		}
 		mTextViewVisitorName.setText(mVisitorDetails.getmVisitorName());
