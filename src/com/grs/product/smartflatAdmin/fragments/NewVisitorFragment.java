@@ -4,16 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.grs.product.smartflatAdmin.R;
-import com.grs.product.smartflatAdmin.SmartFlatAdminApplication;
-import com.grs.product.smartflatAdmin.activities.LoginActivity;
-import com.grs.product.smartflatAdmin.activities.LoginActivity.LoginTaskListener;
 import com.grs.product.smartflatAdmin.apicall.AsyncTaskCompleteListener;
-import com.grs.product.smartflatAdmin.asynctasks.LoginTask;
 import com.grs.product.smartflatAdmin.asynctasks.SaveVisitorOnServerTask;
 import com.grs.product.smartflatAdmin.database.SmartFlatAdminDBManager;
 import com.grs.product.smartflatAdmin.database.SmartFlatAdminDBTables.TableFlatOwnerDetails;
-import com.grs.product.smartflatAdmin.database.SmartFlatAdminDBTables.TableSocietyDetails;
 import com.grs.product.smartflatAdmin.error.SmartFlatAdminError;
+import com.grs.product.smartflatAdmin.fragments.NewNoticeFragment.AutoCompleteFlatOwnerNameAdapter;
 import com.grs.product.smartflatAdmin.models.SocietyDetails;
 import com.grs.product.smartflatAdmin.models.VisitorDetails;
 import com.grs.product.smartflatAdmin.response.Response;
@@ -21,6 +17,7 @@ import com.grs.product.smartflatAdmin.utils.CustomProgressDialog;
 import com.grs.product.smartflatAdmin.utils.NetworkDetector;
 import com.grs.product.smartflatAdmin.utils.Utilities;
 
+import android.content.Context;
 import android.database.Cursor;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -30,13 +27,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.CursorAdapter;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.RadioGroup.OnCheckedChangeListener;
 import android.widget.Spinner;
+import android.widget.TextView;
+import android.widget.Toast;
 
 public class NewVisitorFragment extends Fragment{
 	
@@ -47,6 +49,7 @@ public class NewVisitorFragment extends Fragment{
 	private RadioButton mRadioButtonFlatNo, mRadioButtonOwnerName;
 	private Button mButtonAddVisitor;
 	private VisitorDetails mVisitorDetails;
+	private AutoCompleteTextView mAutoCompleteTextViewFlatOwnerName;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -78,6 +81,10 @@ public class NewVisitorFragment extends Fragment{
 		mRadioButtonFlatNo = (RadioButton) rootView.findViewById(R.id.radioButtonFlatNo);
 		mRadioButtonOwnerName = (RadioButton) rootView.findViewById(R.id.radioButtonOwnerName);
 		mButtonAddVisitor = (Button) rootView.findViewById(R.id.buttonAddVisitor);
+		mAutoCompleteTextViewFlatOwnerName = (AutoCompleteTextView) rootView.findViewById(R.id.autoCompleteTextViewFlatOwnerName);
+		AutoCompleteFlatOwnerNameAdapter adapter = new AutoCompleteFlatOwnerNameAdapter();
+		mAutoCompleteTextViewFlatOwnerName.setAdapter(adapter);
+		mAutoCompleteTextViewFlatOwnerName.setOnItemClickListener(adapter);
 	}
 	
 	private void addListeners(){
@@ -101,10 +108,16 @@ public class NewVisitorFragment extends Fragment{
 				 switch(checkedId)
                  {
                  case R.id.radioButtonFlatNo:
-                     // TODO Add function to visible and disable contents
+                     mAutoCompleteTextViewFlatOwnerName.setVisibility(View.GONE);
+                	 mSpinnerBuildingName.setVisibility(View.VISIBLE);
+                	 mSpinnerFloorNo.setVisibility(View.VISIBLE);
+                	 mEditTextFlatNo.setVisibility(View.VISIBLE);
                      break;
                  case R.id.radioButtonOwnerName:
-                     // TODO Add function to visible and disable contents
+                	 mAutoCompleteTextViewFlatOwnerName.setVisibility(View.VISIBLE);
+                	 mSpinnerBuildingName.setVisibility(View.GONE);
+                	 mSpinnerFloorNo.setVisibility(View.GONE);
+                	 mEditTextFlatNo.setVisibility(View.GONE);
                      break;
                  }
 			}
@@ -271,6 +284,58 @@ public class NewVisitorFragment extends Fragment{
 		mEditTextVisitPurpose.setText("");
 		mEditTextVisitorContactNo.setText("");
 		mEditTextVisitorVehicleNo.setText("");	
+	}
+	
+	public class AutoCompleteFlatOwnerNameAdapter extends CursorAdapter
+	implements android.widget.AdapterView.OnItemClickListener {		
+		SmartFlatAdminDBManager dbManager;		
+		public AutoCompleteFlatOwnerNameAdapter() {
+			super(getActivity(), null);
+			dbManager = new SmartFlatAdminDBManager();
+		}
+		
+		@Override
+		public Cursor runQueryOnBackgroundThread(CharSequence constraint) {
+	        Cursor cursor = dbManager.getFlatOwnerData(
+	                (constraint != null ? constraint.toString() : null));
+	        return cursor;
+		}
+		
+		@Override
+		public String convertToString(Cursor cursor) {
+	        final int columnIndex = cursor.getColumnIndexOrThrow(TableFlatOwnerDetails.FLAT_OWNER_NAME);
+	        final String str = cursor.getString(columnIndex);
+	        return str;
+		}
+				
+
+		@Override
+		public void onItemClick(AdapterView<?> listView, View view, int position,
+				long id) {
+	        // Get the cursor, positioned to the corresponding row in the result set
+	        Cursor cursor = (Cursor) listView.getItemAtPosition(position);
+	        // Get the state's capital from this row in the database.
+	        String flatOwnerCode = cursor.getString(cursor.getColumnIndexOrThrow(TableFlatOwnerDetails.FLAT_OWNER_CODE));
+	        // Update the parent class's TextView
+	        Toast.makeText(getActivity(),flatOwnerCode, Toast.LENGTH_LONG).show();
+	        
+	        mAutoCompleteTextViewFlatOwnerName.setText(mAutoCompleteTextViewFlatOwnerName.getText().toString()+";"+flatOwnerCode);
+	    }
+
+		@Override
+		public View newView(Context context, Cursor cursor, ViewGroup parent) {
+	        final LayoutInflater inflater = LayoutInflater.from(context);
+	        final View view =
+	                inflater.inflate(android.R.layout.simple_dropdown_item_1line,
+	                        parent, false);
+	       return view;
+	    }
+
+		@Override
+		public void bindView(View view, Context context, Cursor cursor) {
+	        final String text = convertToString(cursor);
+	        ((TextView) view).setText(text);		
+		}
 	}
 
 }

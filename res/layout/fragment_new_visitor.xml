@@ -82,6 +82,18 @@
                     android:text=" Owner Name" />
             </RadioGroup>
             
+             <AutoCompleteTextView
+                android:id="@+id/autoCompleteTextViewFlatOwnerName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/edittext_bg"
+                android:ems="10"
+                android:hint="Enter flat owner name"
+                android:completionThreshold="1"
+                android:padding="5dp" 
+                android:visibility="gone"/>
+            
             <TextView
                 android:id="@+id/textViewBuildingName"
                 android:layout_width="wrap_content"

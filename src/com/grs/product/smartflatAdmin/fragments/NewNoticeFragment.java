@@ -170,6 +170,8 @@ public class NewNoticeFragment extends Fragment{
 	        String flatOwnerCode = cursor.getString(cursor.getColumnIndexOrThrow(TableFlatOwnerDetails.FLAT_OWNER_CODE));
 	        // Update the parent class's TextView
 	        Toast.makeText(getActivity(),flatOwnerCode, Toast.LENGTH_LONG).show();
+	        
+	        mAutoCompleteTextViewTo.setText(mAutoCompleteTextViewTo.getText().toString()+";"+flatOwnerCode);
 	    }
 
 		@Override
