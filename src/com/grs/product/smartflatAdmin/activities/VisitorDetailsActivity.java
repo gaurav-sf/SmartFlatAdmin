@@ -86,17 +86,17 @@ public class VisitorDetailsActivity extends Activity{
 	
 	private void showData(){
 		if(mFlatOwnerDetails!=null){
-			mTextViewOwnername.setText(mFlatOwnerDetails.getmFlatOwnerName());
-			mTextViewFlatDetail.setText(mFlatOwnerDetails.getmBuildingName()+"-"+mFlatOwnerDetails.getmFloorNo()+""+mFlatOwnerDetails.getmFlatno());
+			mTextViewOwnername.setText("To visit :"+mFlatOwnerDetails.getmFlatOwnerName());
+			mTextViewFlatDetail.setText("Flat detail :"+mFlatOwnerDetails.getmBuildingName()+"-"+mFlatOwnerDetails.getmFloorNo()+""+mFlatOwnerDetails.getmFlatno());
 		}else{
-			mTextViewOwnername.setText(flatOwnerCode);
-			mTextViewFlatDetail.setText(flatOwnerCode);
+			mTextViewOwnername.setText("To visit :"+flatOwnerCode);
+			mTextViewFlatDetail.setText("Flat detail :"+flatOwnerCode);
 		}
-		mTextViewVisitorName.setText(mVisitorDetails.getmVisitorName());
-		mTextViewNoOfVisitors.setText(mVisitorDetails.getmNoofVisitors());
-		mTextViewVehicleNo.setText(mVisitorDetails.getmVisitorVehicleNo());
-		mTextViewVisitPurpose.setText(mVisitorDetails.getmVisitPurpose());
-		mTextViewVisitorInTime.setText(mVisitorDetails.getmVisitorInTime());
+		mTextViewVisitorName.setText("Viitor name :"+mVisitorDetails.getmVisitorName());
+		mTextViewNoOfVisitors.setText("No of visitors :"+mVisitorDetails.getmNoofVisitors());
+		mTextViewVehicleNo.setText("Vehicle detail :"+mVisitorDetails.getmVisitorVehicleNo());
+		mTextViewVisitPurpose.setText("Visit purpose :"+mVisitorDetails.getmVisitPurpose());
+		mTextViewVisitorInTime.setText("Time :"+mVisitorDetails.getmVisitorInTime());
 	}
 
 }

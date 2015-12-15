@@ -5,7 +5,7 @@
 
     <LinearLayout
         android:layout_width="300dp"
-        android:layout_height="400dp"
+        android:layout_height="wrap_content"
         android:background="@drawable/background_item"
         android:orientation="vertical"
         android:padding="10dp" >
@@ -21,74 +21,83 @@
             android:textColor="@color/theme_color"
             android:textSize="20sp" />
 
+        <View
+            android:id="@+id/viewLineVisitor"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="2dp"
+            android:background="@color/theme_color" />
+
         <TextView
             android:id="@+id/textViewFlatDetail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
+            android:layout_marginLeft="5dp"
             android:text="Flat no and Wing name :"
-            android:textColor="#ff847979"/>
+            android:textColor="#ff847979" />
 
-         <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:weightSum="10"
-        android:layout_marginTop="3dp">
-        
-        <TextView
-            android:id="@+id/textViewVisitorName"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:text="Visitor name :"
-            android:textColor="#ff847979" />
-        
-        <TextView
-            android:id="@+id/textViewNoOfVisitors"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:layout_marginLeft="15dp"
-            android:text="No of visitors :"
-            android:textColor="#ff847979" />
+            android:layout_marginTop="3dp"
+            android:orientation="horizontal"
+            android:weightSum="10" 
+            android:layout_marginLeft="5dp">
+
+            <TextView
+                android:id="@+id/textViewVisitorName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:text="Visitor name :"
+                android:textColor="#ff847979" />
+
+            <TextView
+                android:id="@+id/textViewNoOfVisitors"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="15dp"
+                android:text="No of visitors :"
+                android:textColor="#ff847979" />
         </LinearLayout>
-        
-          <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:weightSum="10"
-        android:layout_marginTop="3dp">
-         
-        <TextView
-            android:id="@+id/textViewVehicleNo"
-            android:layout_width="wrap_content"
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:text="Vehicle No :"
-            android:textColor="#ff847979" />
-        
+            android:layout_marginTop="3dp"
+            android:orientation="horizontal"
+            android:weightSum="10" >
+
+            <TextView
+                android:id="@+id/textViewVehicleNo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:text="Vehicle No :"
+                android:layout_marginLeft="5dp"
+                android:textColor="#ff847979" />
         </LinearLayout>
-        
-         <TextView
+
+        <TextView
             android:id="@+id/textViewVisitPurpose"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
             android:text="Purpose :"
+            android:layout_marginLeft="5dp"
             android:textColor="#ff847979" />
-         
-         <TextView
-        android:id="@+id/textViewVisitorInTime"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Visitor in time :"
-        android:textColor="#ff847979"
-        android:textSize="16sp" 
-        android:layout_marginTop="20dp"
-        android:layout_gravity="right"/>
-         
+
+        <TextView
+            android:id="@+id/textViewVisitorInTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_marginTop="20dp"
+            android:text="Visitor in time :"
+            android:textColor="#ff847979"
+            android:textSize="16sp" />
     </LinearLayout>
 
 </RelativeLayout>
