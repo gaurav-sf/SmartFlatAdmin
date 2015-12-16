@@ -3,7 +3,26 @@ package com.grs.product.smartflatAdmin.fragments;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.app.Dialog;
+import android.content.Context;
+import android.content.Intent;
+import android.database.Cursor;
+import android.os.AsyncTask;
+import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.Button;
+import android.widget.ListView;
+import android.widget.TextView;
+
 import com.grs.product.smartflatAdmin.R;
+import com.grs.product.smartflatAdmin.activities.NewRegisteredUsersDetails;
 import com.grs.product.smartflatAdmin.adapter.NewRegisteredUserListAdapter;
 import com.grs.product.smartflatAdmin.apicall.AsyncTaskCompleteListener;
 import com.grs.product.smartflatAdmin.asynctasks.GetFlatUsersTask;
@@ -14,21 +33,6 @@ import com.grs.product.smartflatAdmin.models.FlatOwnerDetails;
 import com.grs.product.smartflatAdmin.utils.CustomProgressDialog;
 import com.grs.product.smartflatAdmin.utils.NetworkDetector;
 import com.grs.product.smartflatAdmin.utils.Utilities;
-
-import android.app.Dialog;
-import android.content.Context;
-import android.database.Cursor;
-import android.os.AsyncTask;
-import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.ListView;
-import android.widget.TextView;
 
 public class NewRegisteredUsersFragment  extends Fragment{
 	
@@ -43,7 +47,7 @@ public class NewRegisteredUsersFragment  extends Fragment{
 		View rootView = inflater.inflate(R.layout.fragment_new_registered_users, container, false);
 		initialiseUI(rootView);
 		getUserDetails();
-		//initialiseUI(rootView);
+		addListeners();
         return rootView;
 	}
 	
@@ -135,6 +139,7 @@ public class NewRegisteredUsersFragment  extends Fragment{
 				flatOwnerDetails.setmFlatno(deails.getString(deails.getColumnIndex(TableFlatOwnerDetails.FLAT_NO)));
 				flatOwnerDetails.setmFlatOwnerCreatedDateTime(deails.getString(deails.getColumnIndex(TableFlatOwnerDetails.FLAT_OWNER_CREATED_DATETIME)));
 				flatOwnerDetails.setmFlatOwnerCode(deails.getString(deails.getColumnIndex(TableFlatOwnerDetails.FLAT_OWNER_CODE)));
+				flatOwnerDetails.setmGender(deails.getString(deails.getColumnIndex(TableFlatOwnerDetails.GENDER)));
 				flatOwnerDetails.setActive(Boolean.parseBoolean(deails.getString(deails.getColumnIndex(TableFlatOwnerDetails.IS_ACTIVE))));
 				mListNewRegisterUser.add(flatOwnerDetails);
 			}
@@ -170,5 +175,17 @@ public class NewRegisteredUsersFragment  extends Fragment{
 		mDialog.show();
 	}
 	
+	private void addListeners(){
+		mListViewNewRegisterUser.setOnItemClickListener(new OnItemClickListener() {
+
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view,
+					int position, long id) {
+				Intent gotoFlatOwnerDetails = new Intent(getActivity(),NewRegisteredUsersDetails.class);
+				gotoFlatOwnerDetails.putExtra("flatOwnerCode", mListNewRegisterUser.get(position).getmFlatOwnerCode());
+				startActivity(gotoFlatOwnerDetails);
+			}
+		});
+	}
 
 }

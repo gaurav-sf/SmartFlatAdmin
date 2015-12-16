@@ -12,6 +12,7 @@ public class FlatOwnerDetails {
 	private String mFlatno;	
 	private String mFlatOwnerCreatedDateTime;
 	private boolean isActive;
+	private String mGender;
 	
 	
 	public String getmFlatOwnerName() {
@@ -92,6 +93,14 @@ public class FlatOwnerDetails {
 
 	public void setActive(boolean isActive) {
 		this.isActive = isActive;
+	}
+
+	public String getmGender() {
+		return mGender;
+	}
+
+	public void setmGender(String mGender) {
+		this.mGender = mGender;
 	}		
 	
 }

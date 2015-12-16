@@ -70,6 +70,7 @@ public class VisitorDetailsActivity extends Activity{
 				mFlatOwnerDetails.setmFlatno(details.getString(details.getColumnIndex(TableFlatOwnerDetails.FLAT_NO)));
 				mFlatOwnerDetails.setmFlatOwnerCreatedDateTime(details.getString(details.getColumnIndex(TableFlatOwnerDetails.FLAT_OWNER_CREATED_DATETIME)));
 				mFlatOwnerDetails.setmFlatOwnerCode(details.getString(details.getColumnIndex(TableFlatOwnerDetails.FLAT_OWNER_CODE)));
+				mFlatOwnerDetails.setmGender(details.getString(details.getColumnIndex(TableFlatOwnerDetails.GENDER)));
 				mFlatOwnerDetails.setActive(Boolean.parseBoolean(details.getString(details.getColumnIndex(TableFlatOwnerDetails.IS_ACTIVE))));
 		}
 	}
