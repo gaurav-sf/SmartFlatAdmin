@@ -15,56 +15,90 @@
         android:textColor="@color/theme_color"
         android:textSize="22sp" />
 
+    <TextView
+        android:id="@+id/textViewName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Name"
+        android:layout_marginLeft="2dp"
+        android:layout_marginTop="20dp"
+        android:textColor="#5d5c5c"
+        android:textSize="16sp" />
+
     <EditText
         android:id="@+id/editTextContactName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="5dp"
         android:background="@drawable/edittext_bg"
-        android:ems="10" 
-        android:padding="10dp"
-        android:hint="Name">
+        android:ems="10"
+        android:hint="Name"
+        android:inputType="textCapWords"
+        android:padding="10dp" >
     </EditText>
+    
+    <TextView
+        android:id="@+id/textViewContactNo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Name"
+        android:layout_marginLeft="2dp"
+        android:layout_marginTop="15dp"
+        android:textColor="#5d5c5c"
+        android:textSize="16sp" />
 
     <EditText
         android:id="@+id/editTextContactNo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="2dp"
         android:background="@drawable/edittext_bg"
-        android:ems="10" 
-        android:hint="Contact Number"
-        android:padding="10dp"/>
+        android:ems="10"
+        android:hint="Contact number"
+        android:maxLength="10"
+        android:padding="10dp" />
     
+    <TextView
+        android:id="@+id/textViewEmailId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Email id"
+        android:layout_marginLeft="2dp"
+        android:layout_marginTop="15dp"
+        android:textColor="#5d5c5c"
+        android:textSize="16sp" />
+
     <EditText
         android:id="@+id/editTextEmailId"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="2dp"
         android:background="@drawable/edittext_bg"
-        android:ems="10" 
+        android:ems="10"
+        android:inputType="textEmailAddress"
         android:hint="Email Id"
-        android:padding="10dp"/>
+        android:padding="10dp" />
+
     <Spinner
         android:id="@+id/spinnerOccupation"
         android:layout_width="match_parent"
         android:layout_height="40sp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="15dp"
         android:background="@drawable/spinner_bg"
         android:ems="10"
         android:hint="Occupation"
         android:popupBackground="@color/spinner_popup" />
-    
-        <EditText
+
+    <EditText
         android:id="@+id/editTextOccupation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:background="@drawable/edittext_bg"
-        android:ems="10" 
+        android:ems="10"
         android:hint="Occupation"
-        android:visibility="gone"
-        android:padding="10dp"/>
+        android:padding="10dp"
+        android:visibility="gone" />
 
     <Button
         android:id="@+id/buttonAddContact"

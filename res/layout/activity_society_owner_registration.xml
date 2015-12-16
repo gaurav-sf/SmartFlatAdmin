@@ -42,6 +42,7 @@
                 android:background="@drawable/trans_edittext_bg"
                 android:ems="10"
                 android:hint="Name"
+                android:inputType="textCapWords"
                 android:padding="5dp"
                 android:textColor="@color/text_color"
                 android:textColorHint="@color/text_hint_color" />
@@ -53,20 +54,7 @@
                 android:layout_marginTop="10dp"
                 android:background="@drawable/trans_edittext_bg"
                 android:ems="10"
-                android:hint="DOB --- dd/mm/yyyy"
-                android:padding="5dp"
-                android:textColor="@color/text_color"
-                android:textColorHint="@color/text_hint_color" />
-
-            <EditText
-                android:id="@+id/editTextAge"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/trans_edittext_bg"
-                android:ems="10"
-                android:hint="Age"
-                android:inputType="number"
+                android:hint="DOB"
                 android:padding="5dp"
                 android:textColor="@color/text_color"
                 android:textColorHint="@color/text_hint_color" />
@@ -101,6 +89,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:checked="true"
+                        android:button="@drawable/custom_radio_button"
                         android:text="Male"
                         android:textColor="@color/text_color" />
 
@@ -110,6 +99,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="Female"
+                        android:button="@drawable/custom_radio_button"
                         android:textColor="@color/text_color" />
                 </RadioGroup>
             </LinearLayout>
@@ -124,6 +114,7 @@
                 android:hint="Contact Number"
                 android:inputType="number"
                 android:padding="5dp"
+                android:maxLength="10"
                 android:textColor="@color/text_color"
                 android:textColorHint="@color/text_hint_color" />
 
@@ -148,6 +139,8 @@
                 android:background="@drawable/trans_edittext_bg"
                 android:ems="10"
                 android:hint="Address Line 1"
+                android:inputType="textCapSentences|textMultiLine"
+                android:maxLines="3"
                 android:padding="5dp"
                 android:textColor="@color/text_color"
                 android:textColorHint="@color/text_hint_color" />
@@ -160,6 +153,8 @@
                 android:background="@drawable/trans_edittext_bg"
                 android:ems="10"
                 android:hint="Address Line 2"
+                android:inputType="textCapSentences|textMultiLine"
+                android:maxLines="3"
                 android:padding="5dp"
                 android:textColor="@color/text_color"
                 android:textColorHint="@color/text_hint_color" />
@@ -172,6 +167,7 @@
                 android:background="@drawable/trans_edittext_bg"
                 android:ems="10"
                 android:hint="City"
+                android:inputType="textCapSentences"
                 android:padding="5dp"
                 android:textColor="@color/text_color"
                 android:textColorHint="@color/text_hint_color" />
@@ -183,6 +179,7 @@
                 android:layout_marginTop="10dp"
                 android:background="@drawable/trans_edittext_bg"
                 android:ems="10"
+                android:inputType="textCapSentences"
                 android:hint="State"
                 android:padding="5dp"
                 android:textColor="@color/text_color"
@@ -197,6 +194,7 @@
                 android:ems="10"
                 android:hint="PIN Code"
                 android:inputType="number"
+                android:maxLength="6"
                 android:padding="5dp"
                 android:textColor="@color/text_color"
                 android:textColorHint="@color/text_hint_color" />
