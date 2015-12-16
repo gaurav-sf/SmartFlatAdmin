@@ -34,7 +34,7 @@
                 android:layout_marginTop="3dp"
                 android:background="@drawable/edittext_bg"
                 android:ems="10"
-                android:hint="visitor Name"
+                android:hint="Visitor name"
                 android:padding="8sp" />
             
             <TextView
@@ -151,7 +151,7 @@
                 android:layout_marginTop="3dp"
                 android:background="@drawable/edittext_bg"
                 android:ems="10"
-                android:hint="Flat No"
+                android:hint="Flat no"
                 android:padding="8sp" />
 
             <TextView
@@ -172,7 +172,7 @@
                 android:background="@drawable/edittext_bg"
                 android:editable="false"
                 android:ems="10"
-                android:hint="visitor In Time"
+                android:hint="visitor in time"
                 android:padding="8sp" />
 
             <TextView
@@ -181,7 +181,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
                 android:layout_marginTop="20dp"
-                android:text="Visit purpose"
+                android:text="Visite purpose"
                 android:textSize="16sp"
                 android:textColor="#5d5c5c" />
 
@@ -192,9 +192,10 @@
                 android:layout_marginTop="3dp"
                 android:background="@drawable/edittext_bg"
                 android:ems="10"
-                android:hint="visit Purpose"
+                android:hint="Visite purpose"
                 android:minLines="3"
                 android:padding="8sp"
+                android:gravity="top"
                 android:singleLine="false" />
 
             <TextView
@@ -214,7 +215,8 @@
                 android:layout_marginTop="3dp"
                 android:background="@drawable/edittext_bg"
                 android:ems="10"
-                android:hint="Contact No"
+                android:maxLength="10"
+                android:hint="Contact no"
                 android:inputType="number"
                 android:padding="8sp" />
 

@@ -16,27 +16,15 @@
             android:orientation="vertical"
             android:padding="20dp" >
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:weightSum="10" >
+           
 
                 <TextView
-                    android:id="@+id/textView1"
-                    android:layout_width="0dp"
+                    android:id="@+id/textViewTo"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="9"
                     android:text="To,"
-                    android:textSize="20sp" />
-
-                <ImageView
-                    android:id="@+id/imageView1"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:src="@drawable/board_pin" />
-            </LinearLayout>
+                    android:textColor="#5d5c5c"
+                    android:textSize="18sp" />
 
             <AutoCompleteTextView
                 android:id="@+id/autoCompleteTextViewTo"
@@ -50,11 +38,12 @@
                 android:padding="5dp" />
 
             <TextView
-                android:id="@+id/textView2"
+                android:id="@+id/textViewSubject"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:text="Subject :"
+                android:textColor="#5d5c5c"
                 android:textSize="18sp" />
 
             <EditText
@@ -74,6 +63,7 @@
                 android:layout_marginTop="10dp"
                 android:background="@drawable/edittext_bg"
                 android:ems="10"
+                android:gravity="top"
                 android:hint="Message"
                 android:padding="5dp" />
 

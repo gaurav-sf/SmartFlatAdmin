@@ -72,7 +72,7 @@
         android:layout_marginTop="5dp"
         android:background="@drawable/trans_edittext_bg"
         android:ems="10"
-        android:hint="password"
+        android:hint="Enter password"
         android:inputType="textPassword"
         android:padding="10sp"
         android:textColor="@color/text_color"
