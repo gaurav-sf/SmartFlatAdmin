@@ -350,7 +350,7 @@ public class SmartFlatAdminDatabase {
 
 
 	public Cursor getAllFlatOwnerDetails(String activationCode){
-		String selectQuery = "SELECT  * FROM " + TableNames.FLAT_OWNER_DETAILS + " WHERE "+ TableFlatOwnerDetails.IS_ACTIVE+" = '"+activationCode+"'";
+		String selectQuery = "SELECT  * FROM " + TableNames.FLAT_OWNER_DETAILS + " WHERE "+ TableFlatOwnerDetails.IS_ACTIVE+" = '"+activationCode+"' ORDER BY "+TableFlatOwnerDetails.FLAT_OWNER_CREATED_DATETIME + "  ASC";
 		Cursor cursor = mDb.rawQuery(selectQuery, null);	
 		if (cursor != null && cursor.getCount()>0) {
 			cursor.moveToNext();
