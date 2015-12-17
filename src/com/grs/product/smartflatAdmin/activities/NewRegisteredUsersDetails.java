@@ -44,7 +44,7 @@ public class NewRegisteredUsersDetails extends Activity{
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		//setContentView(R.layout.activity_registered_user_details);
+		setContentView(R.layout.activity_registered_user_details);
 		extras = getIntent().getExtras();
 		mFlatOwnerCode = extras.getString("flatOwnerCode");
 		getFlatOwnerData(mFlatOwnerCode);	
@@ -60,9 +60,9 @@ public class NewRegisteredUsersDetails extends Activity{
 		mEditTextContactNo = (EditText) findViewById(R.id.editTextContactNo);
 		mEditTextEmailId =  (EditText) findViewById(R.id.editTextEmailId);
 		mEditTextFlatNo = (EditText) findViewById(R.id.editTextFlatNo);
-	//	mSpinnerBuildingName = (Spinner) findViewById(R.id.spinnertBuildingName);
-		//mSpinnerFloorNo = (Spinner) findViewById(R.id.spinnerTextFloorNo);
-		//mButtonEdit = (Button) findViewById(R.id.buttonEdit);
+		mSpinnerBuildingName = (Spinner) findViewById(R.id.spinnertBuildingName);
+		mSpinnerFloorNo = (Spinner) findViewById(R.id.spinnerTextFloorNo);
+		mButtonEdit = (Button) findViewById(R.id.buttonEdit);
 		mButtonActivate = (Button) findViewById(R.id.buttonActivate);
 		mRadioGroupGender = (RadioGroup) findViewById(R.id.RadioGroupGender);
 		mRadioButtonMale = (RadioButton) findViewById(R.id.radioButtonMale);

@@ -46,5 +46,10 @@
     <string name="forgot_password"><u>Forgot Password</u></string>
     <string name="smartflat_title"><u>SmartFlat</u></string>
     <string name="poweredby"><u>Powered by : GRS</u></string>
+    <string name="text_request">Request</string>
+    <string name="text_notice">Notice</string>
+    <string name="text_vehicle">Vehicle</string>
+    <string name="text_user_details">User Details</string>
+    <string name="text_visitors">Visitors</string>
 
 </resources>

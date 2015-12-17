@@ -20,39 +20,27 @@ public class ActivatedUserDetails extends FragmentActivity{
 	    HorizontalScrollView hs;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_activated_user_details);
-/*	       mTabHost = (FragmentTabHost)findViewById(R.id.tabhost);
-	     //  mTabHost = (FragmentTabHost)findViewById(android.R.id.tabhost);
-	       
-	        //hs = (HorizontalScrollView)findViewById(R.id.horizontalScrollView);
-	        //mTabHost.setup(ActivatedUserDetails.this, getSupportFragmentManager(), android.R.id.tabcontent);
-	       mTabHost.setup(ActivatedUserDetails.this, getSupportFragmentManager(), R.id.fragmentContent);
-*/	 
+		
 		  mTabHost = (FragmentTabHost) findViewById(android.R.id.tabhost);
 		    mTabHost.setup(this, getSupportFragmentManager(), android.R.id.tabcontent);
 
 	        mTabHost.addTab(
-	                mTabHost.newTabSpec("tab1").setIndicator(getTabIndicator(mTabHost.getContext(), R.string.new_notice)),
+	                mTabHost.newTabSpec("tab1").setIndicator(getTabIndicator(mTabHost.getContext(), R.string.text_user_details)),
 	                NewNoticeFragment.class, null);
 	        mTabHost.addTab(
-	                mTabHost.newTabSpec("tab2").setIndicator(getTabIndicator(mTabHost.getContext(), R.string.sent_notice)),
+	                mTabHost.newTabSpec("tab2").setIndicator(getTabIndicator(mTabHost.getContext(), R.string.text_vehicle)),
 	                SentNoticeFragment.class, null);
 	        mTabHost.addTab(
-	                mTabHost.newTabSpec("tab2").setIndicator(getTabIndicator(mTabHost.getContext(), R.string.app_name)),
+	                mTabHost.newTabSpec("tab3").setIndicator(getTabIndicator(mTabHost.getContext(), R.string.text_request)),
 	                SentNoticeFragment.class, null);
 	        mTabHost.addTab(
-	                mTabHost.newTabSpec("tab2").setIndicator(getTabIndicator(mTabHost.getContext(), R.string.activated_users)),
+	                mTabHost.newTabSpec("tab4").setIndicator(getTabIndicator(mTabHost.getContext(), R.string.text_visitors)),
 	                SentNoticeFragment.class, null);
 	        mTabHost.addTab(
-	                mTabHost.newTabSpec("tab2").setIndicator(getTabIndicator(mTabHost.getContext(), R.string.visited_visitor)),
+	                mTabHost.newTabSpec("tab5").setIndicator(getTabIndicator(mTabHost.getContext(), R.string.text_notice)),
 	                SentNoticeFragment.class, null);
-	        mTabHost.addTab(
-	                mTabHost.newTabSpec("tab2").setIndicator(getTabIndicator(mTabHost.getContext(), R.string.sent_notice)),
-	                SentNoticeFragment.class, null);
-	        
-
 	}
 	
     private View getTabIndicator(Context context, int title) {

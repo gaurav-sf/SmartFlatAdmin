@@ -59,13 +59,18 @@ public class ActivatedUsersListAdapter extends BaseAdapter {
 		if (rowView == null) {
 			LayoutInflater infalInflater = (LayoutInflater) context
 					.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-			rowView = infalInflater.inflate(R.layout.new_register_user_list_item, null);
+			rowView = infalInflater.inflate(R.layout.activated_user_list_item, null);
 		}
 		final FlatOwnerDetails temp = listFlatOwnerDetails.get(position);
 		 TextView mUserName = (TextView) rowView.findViewById(R.id.textViewUserName);
-		 mUserName.setText(temp.getmFlatOwnerCode());
-		 Button mButtonActivate= (Button) rowView.findViewById(R.id.buttonActivate);
-		 mButtonActivate.setVisibility(View.GONE);
+		 mUserName.setText(temp.getmFlatOwnerName());
+		 TextView flatNo = (TextView) rowView.findViewById(R.id.textViewFlatNo);
+		 flatNo.setText(temp.getmBuildingName()+ "--"+temp.getmFloorNo()+"--"+temp.getmFlatno());
+		 TextView contactNo = (TextView) rowView.findViewById(R.id.textViewContactNo);
+		 contactNo.setText(temp.getmFlatOwnerContactNo());
+		 TextView datetime = (TextView) rowView.findViewById(R.id.textViewDatetime);
+		 datetime.setText(temp.getmFlatOwnerCreatedDateTime());
+
 		return rowView;
 	}
 	

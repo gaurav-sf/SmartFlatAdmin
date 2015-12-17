@@ -64,8 +64,12 @@ public class NewRegisteredUserListAdapter extends BaseAdapter {
 		 mUserName.setText(temp.getmFlatOwnerName());
 		 TextView flatNo = (TextView) rowView.findViewById(R.id.textViewFlatNo);
 		 flatNo.setText(temp.getmBuildingName()+ "--"+temp.getmFloorNo()+"--"+temp.getmFlatno());
+		 TextView contactNo = (TextView) rowView.findViewById(R.id.textViewContactNo);
+		 contactNo.setText(temp.getmFlatOwnerContactNo());
+		 TextView datetime = (TextView) rowView.findViewById(R.id.textViewDatetime);
+		 datetime.setText(temp.getmFlatOwnerCreatedDateTime());
 		 
-		 Button mButtonActivate= (Button) rowView.findViewById(R.id.buttonActivate);
+/*		 Button mButtonActivate= (Button) rowView.findViewById(R.id.buttonActivate);
 		 mPosition = position;
 		 mButtonActivate.setOnClickListener(new OnClickListener() {
 			
@@ -75,7 +79,7 @@ public class NewRegisteredUserListAdapter extends BaseAdapter {
 				//activateFlatOwnerCall(flatOwnerCode);
 				
 			}
-		});
+		});*/
 		return rowView;
 	}
 	
