@@ -58,7 +58,7 @@
                 android:layout_marginTop="20dp"
                 android:background="@drawable/trans_edittext_bg"
                 android:ems="10"
-                android:hint="password"
+                android:hint="Create password"
                 android:inputType="textPassword"
                 android:padding="10dp"
                 android:textColor="@color/text_color"
@@ -83,6 +83,7 @@
                 android:ems="10"
                 android:hint="answer"
                 android:padding="10dp"
+                android:inputType="textCapSentences"
                 android:textColor="@color/text_color"
                 android:textColorHint="@color/text_hint_color" />
         </LinearLayout>

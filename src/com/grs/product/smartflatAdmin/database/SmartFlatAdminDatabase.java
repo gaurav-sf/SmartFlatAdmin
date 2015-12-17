@@ -324,6 +324,7 @@ public class SmartFlatAdminDatabase {
 		values.put(TableFlatOwnerDetails.FLAT_NO, details.getmFlatno());
 		values.put(TableFlatOwnerDetails.FLAT_OWNER_CREATED_DATETIME, details.getmFlatOwnerCreatedDateTime());
 		values.put(TableFlatOwnerDetails.FLAT_OWNER_CODE, details.getmFlatOwnerCode());
+		values.put(TableFlatOwnerDetails.GENDER, details.getmGender());
 		values.put(TableFlatOwnerDetails.IS_ACTIVE, details.isActive());
 		try {
 			if(getFlatOwnerDetails(details.getmFlatOwnerCode()).getCount()<=0)

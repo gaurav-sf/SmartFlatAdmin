@@ -72,7 +72,7 @@ public class NewRegisteredUserListAdapter extends BaseAdapter {
 			@Override
 			public void onClick(View v) {
 				flatOwnerCode = temp.getmFlatOwnerCode();
-				activateFlatOwnerCall(flatOwnerCode);
+				//activateFlatOwnerCall(flatOwnerCode);
 				
 			}
 		});

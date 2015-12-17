@@ -63,6 +63,7 @@ public class JSONSingleObjectDecode {
 		flatOwnerDetails.setmFlatno(json.getString("Flat_No"));
 		flatOwnerDetails.setmFlatOwnerCreatedDateTime(json.getString("Flat_Owner_Created_DateTime"));
 		flatOwnerDetails.setmFlatOwnerCode(json.getString("Flat_Owner_Code"));
+		flatOwnerDetails.setmGender(json.getString("Gender"));
 		flatOwnerDetails.setActive(Boolean.parseBoolean(json.getString("Is_Active")));
 
 		return flatOwnerDetails;

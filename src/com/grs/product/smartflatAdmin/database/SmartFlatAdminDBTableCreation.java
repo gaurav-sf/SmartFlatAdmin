@@ -24,6 +24,7 @@ public class SmartFlatAdminDBTableCreation {
 			+ TableFlatOwnerDetails.FLAT_BUILDING_NAME + " TEXT, "
 			+ TableFlatOwnerDetails.FLOOR_NO + " TEXT, "
 			+ TableFlatOwnerDetails.FLAT_NO + " TEXT, "
+			+ TableFlatOwnerDetails.GENDER + " TEXT, "
 			+ TableFlatOwnerDetails.IS_ACTIVE + " BOOLEAN, "
 			+ TableFlatOwnerDetails.FLAT_OWNER_CREATED_DATETIME + " TEXT); ";
 

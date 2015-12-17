@@ -122,6 +122,7 @@ public class SmartFlatAdminDBTables {
 		public static final String FLOOR_NO = "Floor_No";	
 		public static final String FLAT_NO = "Flat_no";	
 		public static final String FLAT_OWNER_CREATED_DATETIME = "Flat_Owner_Created_DateTime";	
+		public static final String GENDER = "Gender";
 		public static final String IS_ACTIVE = "Is_Active";			
 	}
 	

@@ -19,7 +19,7 @@ import android.widget.RadioGroup;
 
 public class SocietyOwnerRegistration extends Activity {
 	
-	private EditText mEditTextName, mEditTextDOB, mEditTextAge, mEditTextContactNo, mEditTextEmailId, mEditTextAddressLine2, mEditTextAddressLine1;
+	private EditText mEditTextName, mEditTextDOB, mEditTextContactNo, mEditTextEmailId, mEditTextAddressLine2, mEditTextAddressLine1;
 	private EditText mEditTextCity,mEditTextState, mEditTextPIN;
 	private Button mButtonNext;
 	public static SocietyOwnerDetails mSocietyOwnerDetails;
@@ -41,9 +41,6 @@ public class SocietyOwnerRegistration extends Activity {
 	private void initializeUI(){
 		mEditTextName = (EditText) findViewById(R.id.editTextName);
 		mEditTextDOB = (EditText) findViewById(R.id.editTextDOB);
-		mEditTextAge = (EditText) findViewById(R.id.editTextAge);
-		mEditTextAge.setText("25"); 
-		mEditTextAge.setVisibility(View.GONE);
 		mEditTextContactNo = (EditText) findViewById(R.id.editTextContactNo);
 		mEditTextEmailId =  (EditText) findViewById(R.id.editTextEmailId);
 		mEditTextAddressLine1 = (EditText) findViewById(R.id.editTextAddressLine1);
@@ -98,11 +95,7 @@ public class SocietyOwnerRegistration extends Activity {
 			mEditTextDOB.setError("Please enter your DOB");
 			return false;
 		}
-		if(mEditTextAge.getText().toString().equals(""))
-		{
-			mEditTextAge.setError("Please enter your Age");
-			return false;
-		}
+		
 		if(mEditTextContactNo.getText().toString().equals(""))
 		{
 			mEditTextContactNo.setError("Please enter your contact no");
@@ -144,7 +137,6 @@ public class SocietyOwnerRegistration extends Activity {
 	private void saveSocietyOwnerData(){
 		mSocietyOwnerDetails.setmSocietyOwnerName(mEditTextName.getText().toString());
 		mSocietyOwnerDetails.setmSocietyOwnerDOB(mEditTextDOB.getText().toString());
-		mSocietyOwnerDetails.setmSocietyOwnerAge(mEditTextAge.getText().toString());
 		mSocietyOwnerDetails.setmSocietyOwnerContactNo(mEditTextContactNo.getText().toString());
 		mSocietyOwnerDetails.setmSocietyOwnerEmailId(mEditTextEmailId.getText().toString());
 		mSocietyOwnerDetails.setmSocietyOwnerAddressLine1(mEditTextAddressLine1.getText().toString());
