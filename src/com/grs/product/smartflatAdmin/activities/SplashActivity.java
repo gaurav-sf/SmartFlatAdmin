@@ -57,8 +57,8 @@ public class SplashActivity extends Activity {
 		});
 	}
 
-	private void goToNextActivity(){	
-		
+	private void goToNextActivity(){/*	
+
 		if(SmartFlatAdminApplication.getSocietyCodeFromSharedPreferences()==null || 
 				SmartFlatAdminApplication.getSocietyCodeFromSharedPreferences().equals(null))
 		{
@@ -78,7 +78,20 @@ public class SplashActivity extends Activity {
 			finish();
 
 		}
+	 */
 
+		if(SmartFlatAdminApplication.getSocietyOwnerPushTokenFromSharedPreferences()==null || 
+				SmartFlatAdminApplication.getSocietyOwnerPushTokenFromSharedPreferences().equals(null)){
+			Intent goToLoginScreen = new Intent(SplashActivity.this,LoginActivity.class);
+			startActivity(goToLoginScreen);
+			finish();
 
+		}else{
+			Intent goToDashboardScreen = new Intent(SplashActivity.this,DashBoardActivity.class);
+			startActivity(goToDashboardScreen);
+			finish();
+
+		}
+		
 	}
 }

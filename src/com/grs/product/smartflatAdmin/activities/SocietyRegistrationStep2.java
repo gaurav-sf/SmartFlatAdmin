@@ -122,8 +122,8 @@ public class SocietyRegistrationStep2 extends Activity {
 			{
 				if (result.getStatus().equalsIgnoreCase("success")) 
 				{
-					SmartFlatAdminApplication.saveSocietyCodeInSharedPreferences(extras.getString("societyCode"));
-					saveDataInDB();
+				//	SmartFlatAdminApplication.saveSocietyCodeInSharedPreferences(extras.getString("societyCode"));
+				//	saveDataInDB();
 					gotoNextActivity();
 					
 				}else{

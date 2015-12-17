@@ -271,7 +271,7 @@ public class DashBoardActivity extends FragmentActivity {
 		case 9:
 			status = "created";
     		overridePendingTransition(R.animator.slide_in_bottom, R.animator.slide_out_bottom);
-    		SmartFlatAdminApplication.saveSocietyOwnerAccessCodeInSharedPreferences(null);
+    		SmartFlatAdminApplication.saveSocietyOwnerPushTokenInSharedPreferences(null);
 			finish();
 			break;
 			
