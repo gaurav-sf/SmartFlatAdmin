@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import com.google.android.gms.gcm.GoogleCloudMessaging;
 import com.grs.product.smartflatAdmin.R;
 import com.grs.product.smartflatAdmin.SmartFlatAdminApplication;
@@ -29,6 +30,7 @@ public class LoginActivity extends Activity{
 
 	private EditText mEditTextUsername, mEditTextPassword;
 	private Button mButtonLogin;
+	private TextView mTextViewCreateAccount, mTextViewForgotPassword;
 	private GoogleCloudMessaging gcmObj;
 	String regId = "";
 
@@ -46,6 +48,8 @@ public class LoginActivity extends Activity{
 		mEditTextUsername.setText(SmartFlatAdminApplication.getSocietyCodeFromSharedPreferences());
 		mEditTextPassword = (EditText) findViewById(R.id.editTextPassword); 
 		mButtonLogin = (Button) findViewById(R.id.buttonLogin);	
+		mTextViewForgotPassword = (TextView) findViewById(R.id.textViewForgetPassword);
+		mTextViewCreateAccount = (TextView) findViewById(R.id.textViewCreateAccount);
 	}
 
 	private void addListeners(){
@@ -58,6 +62,26 @@ public class LoginActivity extends Activity{
 				//startActivity(i);
 				getLoginCall();
 			}
+		});
+		
+		mTextViewCreateAccount.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+        		Intent goToRegistration = new Intent(LoginActivity.this,SocietyOwnerRegistration.class);
+        		startActivity(goToRegistration);
+        		finish();
+			}
+		});
+		
+		mTextViewForgotPassword.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {/*
+        		Intent goToRegistration = new Intent(LoginActivity.this,ForgotPasswordActivity.class);
+        		startActivity(goToRegistration);
+        		finish();	
+			*/}
 		});
 	}
 	
@@ -88,7 +112,7 @@ public class LoginActivity extends Activity{
 			{
 				if (result.getStatus().equalsIgnoreCase("success")) 
 				{
-					SmartFlatAdminApplication.saveSocietyOwnerAccessCodeInSharedPreferences("TEMP");
+					//SmartFlatAdminApplication.saveSocietyOwnerAccessCodeInSharedPreferences("TEMP");
 					getPushTokenFromServer(mEditTextUsername.getText().toString());
 					//gotoNextActivity();
 				}
@@ -116,10 +140,17 @@ public class LoginActivity extends Activity{
 
 	}
 
-	private void gotoNextActivity(){
+	private void gotoNextActivity()
+	{
+		/*
 		Intent intentDashboard = new Intent(LoginActivity.this, DashBoardActivity.class);
 		startActivity(intentDashboard);
-		finish();
+		finish();*/
+		
+		Intent intentDataCheckActivity = new Intent(LoginActivity.this, PreviousDataCheckActivity.class);
+		intentDataCheckActivity.putExtra("societyCode", mEditTextUsername.getText().toString());
+		startActivity(intentDataCheckActivity);
+		finish();			
 	}
 	
 	private void getPushTokenFromServer(String flatOwnerCode){

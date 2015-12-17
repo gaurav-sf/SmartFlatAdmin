@@ -1,7 +1,6 @@
 package com.grs.product.smartflatAdmin.database;
 
 import android.database.Cursor;
-
 import com.grs.product.smartflatAdmin.models.ContactDetails;
 import com.grs.product.smartflatAdmin.models.FlatOwnerDetails;
 import com.grs.product.smartflatAdmin.models.NoticeDetails;
@@ -238,6 +237,12 @@ public class SmartFlatAdminDBManager {
 		Cursor details = SmartFlatAdminDatabase.getInstance().getSingleFlatOwnerData(flatOwnerCode);
 		SmartFlatAdminDatabase.getInstance().close();
 		return details;
+	}
+	
+	public void deleteDataFromAllTables(){
+		SmartFlatAdminDatabase.getInstance().open();
+		SmartFlatAdminDatabase.getInstance().deleteDataFromAllTables();
+		SmartFlatAdminDatabase.getInstance().close();
 	}
 	
 }
