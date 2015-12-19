@@ -13,9 +13,17 @@ public class SocietyOwnerDetails {
 	private String mSocietyOwnerCity;	
 	private String mSocietyOwnerState;	
 	private String mSocietyOwnerPIN;
-	private String mSocietyCode;	
-
+	private String mSocietyCode;
+	private String mUsername;	
+	private String mPassword;	
+	private String mSecurityQuestion;	
+	private String mAnswer;
+	private String mPushToken;	
+	private String mAccessToken;
 	private String mSocietyOwnerCreatedDateTime;
+	private int mAvailableCredits;
+	private int mNoOfRegisteredUsers;
+	private int mNoOfActivatedUsers;
 	
 	public String getmSocietyOwnerName() {
 		return mSocietyOwnerName;
@@ -119,6 +127,77 @@ public class SocietyOwnerDetails {
 
 	public void setmGender(String mGender) {
 		this.mGender = mGender;
+	}
+	public String getmUsername() {
+		return mUsername;
+	}
+	
+	public void setmUsername(String mUsername) {
+		this.mUsername = mUsername;
+	}
+	
+	public String getmPassword() {
+		return mPassword;
+	}
+	
+	public void setmPassword(String mPassword) {
+		this.mPassword = mPassword;
+	}
+	
+	public String getmSecurityQuestion() {
+		return mSecurityQuestion;
+	}
+	
+	public void setmSecurityQuestion(String mSecurityQuestion) {
+		this.mSecurityQuestion = mSecurityQuestion;
+	}
+	
+	public String getmAnswer() {
+		return mAnswer;
+	}
+	
+	public void setmAnswer(String mAnswer) {
+		this.mAnswer = mAnswer;
+	}
+	
+	public String getmPushToken() {
+		return mPushToken;
+	}
+	
+	public void setmPushToken(String mPushToken) {
+		this.mPushToken = mPushToken;
+	}
+	
+	public String getmAccessToken() {
+		return mAccessToken;
+	}
+	
+	public void setmAccessToken(String mAccessToken) {
+		this.mAccessToken = mAccessToken;
+	}
+
+	public int getmAvailableCredits() {
+		return mAvailableCredits;
+	}
+
+	public void setmAvailableCredits(int mAvailableCredits) {
+		this.mAvailableCredits = mAvailableCredits;
+	}
+
+	public int getmNoOfRegisteredUsers() {
+		return mNoOfRegisteredUsers;
+	}
+
+	public void setmNoOfRegisteredUsers(int mNoOfRegisteredUsers) {
+		this.mNoOfRegisteredUsers = mNoOfRegisteredUsers;
+	}
+
+	public int getmNoOfActivatedUsers() {
+		return mNoOfActivatedUsers;
+	}
+
+	public void setmNoOfActivatedUsers(int mNoOfActivatedUsers) {
+		this.mNoOfActivatedUsers = mNoOfActivatedUsers;
 	}
 	
 }

@@ -219,6 +219,7 @@ public class NewRequestFragment extends Fragment {
 				tempRequestDetails.setmRequestType(requestDetailsCursor.getString(requestDetailsCursor.getColumnIndex(TableRequestDetails.REQUEST_TYPE)));
 				tempRequestDetails.setmRequestStatus(requestDetailsCursor.getString(requestDetailsCursor.getColumnIndex(TableRequestDetails.REQUEST_STATUS)));
 				tempRequestDetails.setmRequestDateTime(requestDetailsCursor.getString(requestDetailsCursor.getColumnIndex(TableRequestDetails.REQUEST_DATETIME)));
+				tempRequestDetails.setmUnreadMessageCount(getUnreadMessageCount(requestDetailsCursor.getString(requestDetailsCursor.getColumnIndex(TableRequestDetails.REQUEST_NUMBER))));
 				mListRequestDetails.add(tempRequestDetails);
 			}
 		}
@@ -240,6 +241,7 @@ public class NewRequestFragment extends Fragment {
 				tempRequestDetails.setmRequestType(requestDetailsCursor.getString(requestDetailsCursor.getColumnIndex(TableRequestDetails.REQUEST_TYPE)));
 				tempRequestDetails.setmRequestStatus(requestDetailsCursor.getString(requestDetailsCursor.getColumnIndex(TableRequestDetails.REQUEST_STATUS)));
 				tempRequestDetails.setmRequestDateTime(requestDetailsCursor.getString(requestDetailsCursor.getColumnIndex(TableRequestDetails.REQUEST_DATETIME)));
+				tempRequestDetails.setmUnreadMessageCount(getUnreadMessageCount(requestDetailsCursor.getString(requestDetailsCursor.getColumnIndex(TableRequestDetails.REQUEST_NUMBER))));
 				mListRequestDetails.add(tempRequestDetails);
 			}
 		}	
@@ -261,6 +263,7 @@ public class NewRequestFragment extends Fragment {
 				tempRequestDetails.setmRequestType(requestDetailsCursor.getString(requestDetailsCursor.getColumnIndex(TableRequestDetails.REQUEST_TYPE)));
 				tempRequestDetails.setmRequestStatus(requestDetailsCursor.getString(requestDetailsCursor.getColumnIndex(TableRequestDetails.REQUEST_STATUS)));
 				tempRequestDetails.setmRequestDateTime(requestDetailsCursor.getString(requestDetailsCursor.getColumnIndex(TableRequestDetails.REQUEST_DATETIME)));
+				tempRequestDetails.setmUnreadMessageCount(getUnreadMessageCount(requestDetailsCursor.getString(requestDetailsCursor.getColumnIndex(TableRequestDetails.REQUEST_NUMBER))));
 				mListRequestDetails.add(tempRequestDetails);
 			}
 		}
@@ -282,6 +285,7 @@ public class NewRequestFragment extends Fragment {
 				tempRequestDetails.setmRequestType(requestDetailsCursor.getString(requestDetailsCursor.getColumnIndex(TableRequestDetails.REQUEST_TYPE)));
 				tempRequestDetails.setmRequestStatus(requestDetailsCursor.getString(requestDetailsCursor.getColumnIndex(TableRequestDetails.REQUEST_STATUS)));
 				tempRequestDetails.setmRequestDateTime(requestDetailsCursor.getString(requestDetailsCursor.getColumnIndex(TableRequestDetails.REQUEST_DATETIME)));
+				tempRequestDetails.setmUnreadMessageCount(getUnreadMessageCount(requestDetailsCursor.getString(requestDetailsCursor.getColumnIndex(TableRequestDetails.REQUEST_NUMBER))));
 				mListRequestDetails.add(tempRequestDetails);
 			}
 		}	
@@ -303,6 +307,7 @@ public class NewRequestFragment extends Fragment {
 				tempRequestDetails.setmRequestType(requestDetailsCursor.getString(requestDetailsCursor.getColumnIndex(TableRequestDetails.REQUEST_TYPE)));
 				tempRequestDetails.setmRequestStatus(requestDetailsCursor.getString(requestDetailsCursor.getColumnIndex(TableRequestDetails.REQUEST_STATUS)));
 				tempRequestDetails.setmRequestDateTime(requestDetailsCursor.getString(requestDetailsCursor.getColumnIndex(TableRequestDetails.REQUEST_DATETIME)));
+				tempRequestDetails.setmUnreadMessageCount(getUnreadMessageCount(requestDetailsCursor.getString(requestDetailsCursor.getColumnIndex(TableRequestDetails.REQUEST_NUMBER))));
 				mListRequestDetails.add(tempRequestDetails);
 			}
 		}		
@@ -359,6 +364,15 @@ public class NewRequestFragment extends Fragment {
 				Log.e(LOG, " Insertion Successful");
 			}
 		}		
+	}
+	
+	private int getUnreadMessageCount(String requestNumber){
+		SmartFlatAdminDBManager dbManager = new SmartFlatAdminDBManager();
+		Cursor details = dbManager.getUnreadMessageCountForRequest(requestNumber);
+		if (details!=null && details.getCount()>0) {
+			return details.getCount();			
+		}
+		return 0;
 	}
 
 }

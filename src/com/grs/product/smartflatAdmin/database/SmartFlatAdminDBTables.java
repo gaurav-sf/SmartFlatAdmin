@@ -44,7 +44,10 @@ public class SmartFlatAdminDBTables {
 		public static final String SOCIETY_OWNER_PIN = "Society_Owner_PIN";	
 		public static final String SOCIETY_OWNER_CREATED_DATETIME = "Society_Owner_Created_DateTime";	
 		public static final String PUSH_TOKEN = "Push_Token";	
-		public static final String ACCESS_TOKEN = "Access_Token";	
+		public static final String ACCESS_TOKEN = "Access_Token";
+		public static final String AVAILABLE_CREDITS = "Available_Credits";
+		public static final String NO_OF_USER_REGISTERED = "No_of_user_Registered";
+		public static final String NO_OF_USER_ACTIVATED ="No_of_user_Activated";
 	}
 
 	public static final class TableSocietyDetails implements BaseColumns{
@@ -115,7 +118,7 @@ public class SmartFlatAdminDBTables {
 		public static final String ID = "_id";
 		public static final String FLAT_OWNER_CODE = "Flat_Owner_Code";
 		public static final String FLAT_OWNER_NAME = "Flat_Owner_Name"	;
-		//public static final String FLAT_OWNER_DOB = "Flat_Owner_DOB";	
+		public static final String FLAT_OWNER_DOB = "Flat_Owner_DOB";	
 		public static final String FLAT_OWNER_CONTACT_NO = "Flat_Owner_Contact_No";
 		public static final String FLAT_OWNER_EMAIL_ID = "Flat_Owner_Email_id";
 		public static final String FLAT_BUILDING_NAME = "Building_Name";	
@@ -145,6 +148,7 @@ public class SmartFlatAdminDBTables {
 		public static final String SOCIETY_CODE = "Society_Code";
 		public static final String IS_SOCIETY_MESSAGE = "Is_Society_Message";
 		public static final String MESSAGE_DATETIME = "Message_DateTime";
+		public static final String IS_READ = "Is_Read";
 	}
 	
 	public static final class TableVisitorDetails implements BaseColumns{

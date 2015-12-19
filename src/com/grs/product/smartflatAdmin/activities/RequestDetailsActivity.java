@@ -3,7 +3,6 @@ package com.grs.product.smartflatAdmin.activities;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -20,7 +19,6 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
-
 import com.grs.product.smartflatAdmin.R;
 import com.grs.product.smartflatAdmin.adapter.MessageListAdapter;
 import com.grs.product.smartflatAdmin.apicall.AsyncTaskCompleteListener;
@@ -77,6 +75,7 @@ public class RequestDetailsActivity extends Activity{
 			
 			@Override
 			public void onClick(View arg0) {
+				setallMessagesRead();
 				finish();
 			}
 		});
@@ -214,6 +213,7 @@ public class RequestDetailsActivity extends Activity{
 		tempMessages.setmMessageContent(mEditTextMessage.getText().toString());
 		tempMessages.setmRequestNumber(mRequestNumber);
 		tempMessages.setmIsSocietyMessage(true);
+		tempMessages.setmIsRead(true);
 		tempMessages.setmMessageDateTime(Utilities.getCurrentDateTime());
 		
 		SmartFlatAdminDBManager objDbManager = new SmartFlatAdminDBManager();
@@ -271,5 +271,11 @@ public class RequestDetailsActivity extends Activity{
 			Log.e("UnRegister Receiver Error", "> " + e.getMessage());
 		}
 		super.onDestroy();
+	}
+	
+	private void setallMessagesRead()
+	{
+		SmartFlatAdminDBManager objDbManager = new SmartFlatAdminDBManager();
+		objDbManager.setMessagesRead(mRequestNumber);
 	}
 }

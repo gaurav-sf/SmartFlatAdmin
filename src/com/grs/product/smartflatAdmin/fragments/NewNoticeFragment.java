@@ -42,13 +42,13 @@ public class NewNoticeFragment extends Fragment{
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater,
-			 ViewGroup container,  Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
+			 ViewGroup container,  Bundle savedInstanceState) 
+	{
 		View rootView = inflater.inflate(R.layout.fragment_new_notice, container, false);
 		initialiseUI(rootView);
 		addListeners();
-        return rootView;	
-        }
+        return rootView;	       
+	}
 	
 	private void initialiseUI(View rootView){
 		mAutoCompleteTextViewTo = (AutoCompleteTextView) rootView.findViewById(R.id.autoCompleteTextViewTo);

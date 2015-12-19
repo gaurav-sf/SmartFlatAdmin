@@ -245,4 +245,26 @@ public class SmartFlatAdminDBManager {
 		SmartFlatAdminDatabase.getInstance().close();
 	}
 	
+	public boolean saveSocietyNoticeDetails(NoticeDetails details){
+		boolean isAdded = false;
+		SmartFlatAdminDatabase.getInstance().open();
+		isAdded = SmartFlatAdminDatabase.getInstance().saveSocietyNoticeDetails(details);
+		SmartFlatAdminDatabase.getInstance().close();
+		return isAdded;
+	}
+	
+	public Cursor getUnreadMessageCountForRequest(String requestNumber){
+		SmartFlatAdminDatabase.getInstance().open();
+		Cursor details = SmartFlatAdminDatabase.getInstance().getUnreadMessageCountForRequest(requestNumber);
+		SmartFlatAdminDatabase.getInstance().close();
+		return details;
+	}
+	
+	public void setMessagesRead(String requestNumber)
+	{
+		SmartFlatAdminDatabase.getInstance().open();
+		SmartFlatAdminDatabase.getInstance().setMessagesRead(requestNumber);
+		SmartFlatAdminDatabase.getInstance().close();
+	}
+	
 }

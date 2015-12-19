@@ -7,23 +7,23 @@ import android.util.Log;
 import com.grs.product.smartflatAdmin.apicall.AsyncTaskCompleteListener;
 import com.grs.product.smartflatAdmin.apicall.SmartFlatAdminAPI;
 import com.grs.product.smartflatAdmin.error.SmartFlatAdminError;
+import com.grs.product.smartflatAdmin.models.FlatOwnerDetails;
 import com.grs.product.smartflatAdmin.response.Response;
+import com.grs.product.smartflatAdmin.utils.Utilities;
 
-public class SendPushTokenToServerTask  extends AsyncTask<Void, Void, SmartFlatAdminError> {
+public class UpdateFlatUserDetailsTask   extends AsyncTask<Void, Void, SmartFlatAdminError> {
 
 	private static final String TAG = LoginTask.class.getName();
 	final Context context;
 	private AsyncTaskCompleteListener<Response> listener = null;
-	String pushToken;
-	String societyCode;
-	Response mLoginStatus;
+	private FlatOwnerDetails mFlatOwnerDetails;
+	Response mRegistrationStatus;
 	
-	public SendPushTokenToServerTask(Context ctx, AsyncTaskCompleteListener<Response> listener, String pushToken,String societyCode) 
+	public UpdateFlatUserDetailsTask(Context ctx, AsyncTaskCompleteListener<Response> listener, FlatOwnerDetails mFlatOwnerDetails) 
 	{
 		this.context = ctx;
 		this.listener = listener;
-		this.pushToken = pushToken;	
-		this.societyCode = societyCode;
+		this.mFlatOwnerDetails=mFlatOwnerDetails;
 	}
 	
 	@Override
@@ -35,10 +35,10 @@ public class SendPushTokenToServerTask  extends AsyncTask<Void, Void, SmartFlatA
 	@Override
 	protected SmartFlatAdminError doInBackground(Void... params) {
 		
-		SmartFlatAdminAPI smartFlatAdminAPI = new SmartFlatAdminAPI(context);
+		SmartFlatAdminAPI smartFlatAPI = new SmartFlatAdminAPI(context);
 		try 
 		{
-			mLoginStatus =  smartFlatAdminAPI.sendPushToken(pushToken,societyCode);
+			mRegistrationStatus =  smartFlatAPI.updateFlatOwnerDetails(mFlatOwnerDetails);
 		}
 		catch (SmartFlatAdminError e) 
 		{
@@ -52,12 +52,12 @@ public class SendPushTokenToServerTask  extends AsyncTask<Void, Void, SmartFlatA
 	@Override
 	protected void onPostExecute(SmartFlatAdminError error) {
 		
-		if(mLoginStatus!=null)
+		if(mRegistrationStatus!=null)
 		{
 			if(listener!=null)
 			{
 				listener.onStoped();
-				listener.onTaskComplete(mLoginStatus);
+				listener.onTaskComplete(mRegistrationStatus);
 				listener = null;
 			}
 		}
@@ -67,6 +67,7 @@ public class SendPushTokenToServerTask  extends AsyncTask<Void, Void, SmartFlatA
 			{
 				if(error!=null)
 				{
+					Utilities.ShowAlertBox(context, error.errorType, error.errorMessage);
 					listener.onStopedWithError(error);
 				}
 				

@@ -8,6 +8,7 @@ import com.grs.product.smartflatAdmin.apicall.AsyncTaskCompleteListener;
 import com.grs.product.smartflatAdmin.apicall.SmartFlatAdminAPI;
 import com.grs.product.smartflatAdmin.error.SmartFlatAdminError;
 import com.grs.product.smartflatAdmin.models.SocietyDetails;
+import com.grs.product.smartflatAdmin.models.SocietyOwnerDetails;
 import com.grs.product.smartflatAdmin.response.Response;
 
 public class SaveSocietyOwnerCredentialTask  extends AsyncTask<Void, Void, SmartFlatAdminError>{
@@ -16,11 +17,11 @@ public class SaveSocietyOwnerCredentialTask  extends AsyncTask<Void, Void, Smart
 	final Context mContext;
 	private AsyncTaskCompleteListener<Response> listener = null;
 	Response mResponseStatus;
-	private SocietyDetails mSocietyDetails;
+	private SocietyOwnerDetails mSocietyDetails;
 	
 	public SaveSocietyOwnerCredentialTask(Context mContext,
 			AsyncTaskCompleteListener<Response> listener,
-			SocietyDetails mSocietyDetails) {
+			SocietyOwnerDetails mSocietyDetails) {
 		
 		this.mContext = mContext;
 		this.listener = listener;

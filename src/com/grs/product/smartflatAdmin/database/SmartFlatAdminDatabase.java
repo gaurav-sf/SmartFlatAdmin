@@ -249,7 +249,10 @@ public class SmartFlatAdminDatabase {
 	public boolean saveSocietyOwnerDetails(SocietyOwnerDetails details){
 		boolean isAdded = false;
 		ContentValues values = new ContentValues();
+		values.put(TableSocietyOwnerDetails.SOCIETY_CODE,details.getmSocietyCode());
 		values.put(TableSocietyOwnerDetails.SOCIETY_OWNER_NAME,details.getmSocietyOwnerName());
+		values.put(TableSocietyOwnerDetails.SOCIETY_OWNER_DOB,details.getmSocietyOwnerDOB());
+		values.put(TableSocietyOwnerDetails.GENDER,details.getmGender());
 		values.put(TableSocietyOwnerDetails.SOCIETY_OWNER_ADDRESS_LINE1,details.getmSocietyOwnerAddressLine1());
 		values.put(TableSocietyOwnerDetails.SOCIETY_OWNER_ADDRESS_LINE2,details.getmSocietyOwnerAddressLine2());
 		values.put(TableSocietyOwnerDetails.SOCIETY_OWNER_CITY,details.getmSocietyOwnerCity());
@@ -257,6 +260,9 @@ public class SmartFlatAdminDatabase {
 		values.put(TableSocietyOwnerDetails.SOCIETY_OWNER_PIN,details.getmSocietyOwnerPIN());
 		values.put(TableSocietyOwnerDetails.SOCIETY_OWNER_CONTACT_NO,details.getmSocietyOwnerContactNo());
 		values.put(TableSocietyOwnerDetails.SOCIETY_OWNER_EMAIL_ID,details.getmSocietyOwnerEmailId());
+		values.put(TableSocietyOwnerDetails.AVAILABLE_CREDITS,details.getmAvailableCredits());
+		values.put(TableSocietyOwnerDetails.NO_OF_USER_REGISTERED,details.getmNoOfRegisteredUsers());
+		values.put(TableSocietyOwnerDetails.NO_OF_USER_ACTIVATED,details.getmNoOfActivatedUsers());
 
 		try {
 			mDb.beginTransaction();
@@ -316,7 +322,7 @@ public class SmartFlatAdminDatabase {
 		boolean isAdded = false;
 		ContentValues values = new ContentValues();
 		values.put(TableFlatOwnerDetails.FLAT_OWNER_NAME, details.getmFlatOwnerName());
-		//values.put(TableFlatOwnerDetails.FLAT_OWNER_DOB, details.getmFlatOwnerDOB());
+		values.put(TableFlatOwnerDetails.FLAT_OWNER_DOB, details.getmFlatOwnerDOB());
 		values.put(TableFlatOwnerDetails.FLAT_OWNER_CONTACT_NO, details.getmFlatOwnerContactNo());
 		values.put(TableFlatOwnerDetails.FLAT_OWNER_EMAIL_ID, details.getmFlatOwnerEmailId());
 		values.put(TableFlatOwnerDetails.FLAT_BUILDING_NAME, details.getmBuildingName());
@@ -636,6 +642,7 @@ public class SmartFlatAdminDatabase {
 		values.put(TableMessageDetails.REQUEST_NUMBER,message.getmRequestNumber());
 		values.put(TableMessageDetails.FLAT_OWNER_CODE,message.getmFlatOwnerCode());
 		values.put(TableMessageDetails.IS_SOCIETY_MESSAGE,message.ismIsSocietyMessage());
+		values.put(TableMessageDetails.IS_READ,message.ismIsRead());
 		values.put(TableMessageDetails.MESSAGE_DATETIME,message.getmMessageDateTime());
 
 		try {
@@ -946,5 +953,61 @@ public class SmartFlatAdminDatabase {
 			mDb.endTransaction();
 		}			
 	}
+	
+	public boolean saveSocietyNoticeDetails(NoticeDetails details){
+		boolean isAdded = false;
+		ContentValues values = new ContentValues();		
+		values.put(TableSocietyNotices.NOTICE_NUMBER, details.getmNoticeNumber());
+		values.put(TableSocietyNotices.NOTICE_TO, details.getmNoticeTo());
+		values.put(TableSocietyNotices.NOTICE_SUBJECT, details.getmNoticeSubject());
+		values.put(TableSocietyNotices.NOTICE_MESSAGE, details.getmNoticeMessage());
+		values.put(TableSocietyNotices.NOTICE_DATETIME, details.getmNoticeDateTime());
+		try {			
+			if(getSingleNotice(details.getmNoticeNumber()).getCount()<=0)
+		{
+			mDb.beginTransaction();
+			isAdded = mDb.insert(TableNames.SOCIETY_NOTICES, null, values) > 0;
+			mDb.setTransactionSuccessful();
+			mDb.endTransaction();
+		}
+		} catch (Exception e) {
+			Log.e("Error in transaction", e.toString());
+		} finally {
+			//mDb.endTransaction();
+		}	
+		return isAdded;
+	}
+	
+	private Cursor getSingleNotice(String noticeNumber){
+		String selectQuery = "SELECT  * FROM " + TableNames.SOCIETY_NOTICES + " WHERE " + TableSocietyNotices.NOTICE_NUMBER +"= '"+ noticeNumber+"'";
+		Cursor cursor = mDb.rawQuery(selectQuery, null);	
+		if (cursor != null && cursor.getCount()>0) {
+			cursor.moveToNext();
+		}
+		return cursor;			
+	}
+	
+public Cursor getUnreadMessageCountForRequest(String requestNumber)
+{
+	String selectQuery = "SELECT  * FROM " + TableNames.MESSAGE_DETAILS + " WHERE " + TableMessageDetails.REQUEST_NUMBER +"= '"+ requestNumber+"' AND "+TableMessageDetails.IS_READ+" = '0' AND "+TableMessageDetails.IS_SOCIETY_MESSAGE +" = '0'";
+	Cursor cursor = mDb.rawQuery(selectQuery, null);	
+	if (cursor != null && cursor.getCount()>0) {
+		cursor.moveToNext();
+	}
+	return cursor;			
+}
+
+public void setMessagesRead(String requestNumber){
+	try {
+		mDb.beginTransaction();
+		String selectQuery = "UPDATE "+ TableNames.MESSAGE_DETAILS +" SET "+TableMessageDetails.IS_READ +" = '1' WHERE " + TableMessageDetails.REQUEST_NUMBER +"= '"+ requestNumber+"'";
+		mDb.execSQL(selectQuery);
+		mDb.setTransactionSuccessful();
+	} catch (SQLException e) {
+		e.printStackTrace();
+	}finally{
+		mDb.endTransaction();
+	}					
+}
 
 }

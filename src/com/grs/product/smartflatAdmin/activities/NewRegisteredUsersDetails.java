@@ -2,7 +2,6 @@ package com.grs.product.smartflatAdmin.activities;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import android.app.Activity;
 import android.database.Cursor;
 import android.os.AsyncTask;
@@ -18,6 +17,7 @@ import android.widget.Spinner;
 import com.grs.product.smartflatAdmin.R;
 import com.grs.product.smartflatAdmin.apicall.AsyncTaskCompleteListener;
 import com.grs.product.smartflatAdmin.asynctasks.ActivateFlatOwnerTask;
+import com.grs.product.smartflatAdmin.asynctasks.UpdateFlatUserDetailsTask;
 import com.grs.product.smartflatAdmin.database.SmartFlatAdminDBManager;
 import com.grs.product.smartflatAdmin.database.SmartFlatAdminDBTables.TableFlatOwnerDetails;
 import com.grs.product.smartflatAdmin.database.SmartFlatAdminDBTables.TableSocietyDetails;
@@ -91,7 +91,8 @@ public class NewRegisteredUsersDetails extends Activity{
 					mButtonEdit.setText("UPDATE");
 					enableAllUIFields();		
 				}else{
-				// TODO Call API to update USER data
+					getUpdatedUserDetails();
+					updateUserData();
 				}
 						
 			}
@@ -113,9 +114,11 @@ public class NewRegisteredUsersDetails extends Activity{
 		Cursor details = objManager.getSingleFlatOwnerData(flatOwnerCode);
 		if(details!=null&& details.getCount()>0){
 			details.moveToFirst();
+			    mFlatOwnerDetails = new FlatOwnerDetails();
 				mFlatOwnerDetails.setmFlatOwnerName(details.getString(details.getColumnIndex(TableFlatOwnerDetails.FLAT_OWNER_NAME)));
 				mFlatOwnerDetails.setmFlatOwnerContactNo(details.getString(details.getColumnIndex(TableFlatOwnerDetails.FLAT_OWNER_CONTACT_NO)));
 				mFlatOwnerDetails.setmFlatOwnerEmailId(details.getString(details.getColumnIndex(TableFlatOwnerDetails.FLAT_OWNER_EMAIL_ID)));
+				mFlatOwnerDetails.setmFlatOwnerDOB(details.getString(details.getColumnIndex(TableFlatOwnerDetails.FLAT_OWNER_DOB)));
 				mFlatOwnerDetails.setmBuildingName(details.getString(details.getColumnIndex(TableFlatOwnerDetails.FLAT_BUILDING_NAME)));
 				mFlatOwnerDetails.setmFloorNo(details.getString(details.getColumnIndex(TableFlatOwnerDetails.FLOOR_NO)));
 				mFlatOwnerDetails.setmFlatno(details.getString(details.getColumnIndex(TableFlatOwnerDetails.FLAT_NO)));
@@ -126,11 +129,14 @@ public class NewRegisteredUsersDetails extends Activity{
 		}
 	}
 	
-	private void getSocietyDetails(){
+	private void getSocietyDetails()
+	{
 		SmartFlatAdminDBManager objManager = new SmartFlatAdminDBManager();
 		Cursor details = objManager.getSocietyDetails();
-		if(details!=null&& details.getCount()>0){
+		if(details!=null&& details.getCount()>0)
+		{
 			details.moveToFirst();
+			mSocietyDetails = new SocietyDetails();
 			mSocietyDetails.setmBuildingName(details.getString(details.getColumnIndex(TableSocietyDetails.BUILDING_NAME)));
 			mSocietyDetails.setmTotalFloorNumber(details.getInt(details.getColumnIndex(TableSocietyDetails.TOTAL_FLOOR_NUMBER)));
 			//mSocietyDetails.setmBuildingName(details.getString(details.getColumnIndex(TableSocietyDetails.BUILDING_NAME)));
@@ -165,8 +171,10 @@ public class NewRegisteredUsersDetails extends Activity{
 		mSpinnerFloorNo.setSelection(adapterBuildingName.getPosition(mFlatOwnerDetails.getmFloorNo()));
 	}
 	
-	private void enableAllUIFields(){
+	private void enableAllUIFields()
+	{
 		mEditTextName.setEnabled(true);
+		mEditTextName.setFocusable(true);
 		mEditTextDOB.setEnabled(true);
 		mEditTextContactNo.setEnabled(true);
 		mEditTextEmailId.setEnabled(true);
@@ -174,6 +182,8 @@ public class NewRegisteredUsersDetails extends Activity{
 		mSpinnerBuildingName.setEnabled(true);
 		mSpinnerFloorNo.setEnabled(true);
 		mRadioGroupGender.setEnabled(true);
+		mRadioButtonMale.setClickable(true);
+		mRadioButtonFemale.setClickable(true);
 	}
 	
 	private void activateFlatOwnerCall(String flatOwnerCode){
@@ -233,6 +243,70 @@ public class NewRegisteredUsersDetails extends Activity{
 	@Override
 	public void onBackPressed() {
 		finish();
+	}
+	
+	private void getUpdatedUserDetails(){
+			mFlatOwnerDetails.setmFlatOwnerName(mEditTextName.getText().toString());
+			mFlatOwnerDetails.setmFlatOwnerContactNo(mEditTextContactNo.getText().toString());
+			mFlatOwnerDetails.setmFlatOwnerEmailId(mEditTextEmailId.getText().toString());
+			mFlatOwnerDetails.setmBuildingName(mSpinnerBuildingName.getSelectedItem().toString());
+			mFlatOwnerDetails.setmFloorNo(mSpinnerFloorNo.getSelectedItem().toString());
+			mFlatOwnerDetails.setmFlatno(mEditTextName.getText().toString());
+			String gender = "";
+			if (mRadioButtonFemale.isSelected())
+			{
+				gender = "Female";
+			}else{
+				gender = "Male";
+			}					
+			mFlatOwnerDetails.setmGender(gender);
+	
+	}
+	
+	private void updateUserData()
+	{
+		if (NetworkDetector.init(getApplicationContext()).isNetworkAvailable()) 
+		{
+			new UpdateFlatUserDetailsTask(NewRegisteredUsersDetails.this, new UpdateFlatUserDetailsTaskListener(), mFlatOwnerDetails)
+			.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+		} 
+		else 
+		{
+			Utilities.ShowAlertBox(NewRegisteredUsersDetails.this,"Error", "Please check your Internet");
+		}				
+	}
+	
+	public class UpdateFlatUserDetailsTaskListener implements AsyncTaskCompleteListener<Response> {
+
+		@Override
+		public void onStarted() {
+			CustomProgressDialog.showProgressDialog(NewRegisteredUsersDetails.this, "", false);		
+		}
+
+		@Override
+		public void onTaskComplete(Response result) {
+			if (result != null) 
+			{
+				if (result.getStatus().equalsIgnoreCase("success")) 
+				{
+					Utilities.ShowAlertBox(NewRegisteredUsersDetails.this,"Message","User details updated successfully");
+				}else{
+					Utilities.ShowAlertBox(NewRegisteredUsersDetails.this,"Message",result.getMessage());	
+				}
+			}	
+		}
+
+		@Override
+		public void onStoped() {
+			CustomProgressDialog.removeDialog();	
+		}
+
+		@Override
+		public void onStopedWithError(SmartFlatAdminError e) {
+			Utilities.ShowAlertBox(NewRegisteredUsersDetails.this,"Error",e.getMessage());		
+			CustomProgressDialog.removeDialog();	
+		}
+		
 	}
 
 }

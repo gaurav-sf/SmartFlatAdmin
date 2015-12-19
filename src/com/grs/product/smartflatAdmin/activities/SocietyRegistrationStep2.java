@@ -91,7 +91,7 @@ public class SocietyRegistrationStep2 extends Activity {
 		{
 			new SaveSocietyOwnerCredentialTask(getApplicationContext(), 
 					new SaveSocietyOwnerCredentialTaskListener(), 
-					SocietyRegistrationStep1.mSocietyDetails)
+					SocietyOwnerRegistration.mSocietyOwnerDetails)
 			.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
 		} 
 		else 
@@ -103,10 +103,10 @@ public class SocietyRegistrationStep2 extends Activity {
 	
 	private void saveUserData()
 	{
-		SocietyRegistrationStep1.mSocietyDetails.setmUsername(mEditTextUsername.getText().toString());
-		SocietyRegistrationStep1.mSocietyDetails.setmPassword(mEditTextPassword.getText().toString());
-		SocietyRegistrationStep1.mSocietyDetails.setmSecurityQuestion(mSpinnerSecurityQue.getSelectedItem().toString());
-		SocietyRegistrationStep1.mSocietyDetails.setmAnswer(mEditTextAnswer.getText().toString());
+		SocietyOwnerRegistration.mSocietyOwnerDetails.setmUsername(mEditTextUsername.getText().toString());
+		SocietyOwnerRegistration.mSocietyOwnerDetails.setmPassword(mEditTextPassword.getText().toString());
+		SocietyOwnerRegistration.mSocietyOwnerDetails.setmSecurityQuestion(mSpinnerSecurityQue.getSelectedItem().toString());
+		SocietyOwnerRegistration.mSocietyOwnerDetails.setmAnswer(mEditTextAnswer.getText().toString());
 	}
 	
 	public class SaveSocietyOwnerCredentialTaskListener implements AsyncTaskCompleteListener<Response>{

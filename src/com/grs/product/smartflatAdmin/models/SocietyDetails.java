@@ -2,10 +2,6 @@ package com.grs.product.smartflatAdmin.models;
 
 public class SocietyDetails {
 	
-	private String mUsername;	
-	private String mPassword;	
-	private String mSecurityQuestion;	
-	private String mAnswer;
 	private String mSocietyCode;	
 	private String mSocietyName;	
 	private String mBuildingName;	
@@ -15,40 +11,6 @@ public class SocietyDetails {
 	private String mSocietyAddressCity;	
 	private String mSocietyAddressState;	
 	private String mSocietyAddressPIN;
-	private String mPushToken;	
-	private String mAccessToken;
-	
-	public String getmUsername() {
-		return mUsername;
-	}
-	
-	public void setmUsername(String mUsername) {
-		this.mUsername = mUsername;
-	}
-	
-	public String getmPassword() {
-		return mPassword;
-	}
-	
-	public void setmPassword(String mPassword) {
-		this.mPassword = mPassword;
-	}
-	
-	public String getmSecurityQuestion() {
-		return mSecurityQuestion;
-	}
-	
-	public void setmSecurityQuestion(String mSecurityQuestion) {
-		this.mSecurityQuestion = mSecurityQuestion;
-	}
-	
-	public String getmAnswer() {
-		return mAnswer;
-	}
-	
-	public void setmAnswer(String mAnswer) {
-		this.mAnswer = mAnswer;
-	}
 	
 	public String getmSocietyCode() {
 		return mSocietyCode;
@@ -121,21 +83,4 @@ public class SocietyDetails {
 	public void setmSocietyAddressPIN(String mSocietyAddressPIN) {
 		this.mSocietyAddressPIN = mSocietyAddressPIN;
 	}
-	
-	public String getmPushToken() {
-		return mPushToken;
-	}
-	
-	public void setmPushToken(String mPushToken) {
-		this.mPushToken = mPushToken;
-	}
-	
-	public String getmAccessToken() {
-		return mAccessToken;
-	}
-	
-	public void setmAccessToken(String mAccessToken) {
-		this.mAccessToken = mAccessToken;
-	}
-
 }

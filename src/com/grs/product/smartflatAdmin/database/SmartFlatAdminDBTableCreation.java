@@ -18,7 +18,7 @@ public class SmartFlatAdminDBTableCreation {
 			+ TableFlatOwnerDetails.ID + " INTEGER PRIMARY KEY, "
 			+ TableFlatOwnerDetails.FLAT_OWNER_CODE + " TEXT, "
 			+ TableFlatOwnerDetails.FLAT_OWNER_NAME + " TEXT, "
-			//+ TableFlatOwnerDetails.FLAT_OWNER_DOB+ " TEXT, "
+			+ TableFlatOwnerDetails.FLAT_OWNER_DOB+ " TEXT, "
 			+ TableFlatOwnerDetails.FLAT_OWNER_CONTACT_NO + " TEXT, "
 			+ TableFlatOwnerDetails.FLAT_OWNER_EMAIL_ID + " TEXT, "
 			+ TableFlatOwnerDetails.FLAT_BUILDING_NAME + " TEXT, "
@@ -62,6 +62,9 @@ public class SmartFlatAdminDBTableCreation {
 			+ TableSocietyOwnerDetails.SOCIETY_OWNER_PIN + " TEXT, "
 			+ TableSocietyOwnerDetails.SOCIETY_OWNER_CREATED_DATETIME + " TEXT, "
 			+ TableSocietyOwnerDetails.PUSH_TOKEN + " TEXT, "
+			+ TableSocietyOwnerDetails.AVAILABLE_CREDITS + " INTEGER, "
+			+ TableSocietyOwnerDetails.NO_OF_USER_REGISTERED + " INTEGER, "
+			+ TableSocietyOwnerDetails.NO_OF_USER_ACTIVATED + " INTEGER, "
 			+ TableSocietyOwnerDetails.ACCESS_TOKEN + " TEXT); ";
 			
 
@@ -122,6 +125,7 @@ public class SmartFlatAdminDBTableCreation {
 			+ TableMessageDetails.FLAT_OWNER_CODE + " TEXT, "
 			+ TableMessageDetails.SOCIETY_CODE + " TEXT, "
 			+ TableMessageDetails.IS_SOCIETY_MESSAGE + " BOOLEAN, "
+			+ TableMessageDetails.IS_READ + " BOOLEAN, "
 			+ TableMessageDetails.MESSAGE_DATETIME + " TEXT);";
 	
 	public static final String TABLE_VISITOR_DETAILS_CREATION_QUERY = "Create table if not exists "+TableNames.VISITOR_DETAILS

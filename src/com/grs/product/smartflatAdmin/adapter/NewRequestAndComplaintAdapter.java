@@ -69,6 +69,11 @@ public class NewRequestAndComplaintAdapter  extends BaseAdapter {
 			textViewPriority.setTextColor(Color.GREEN);
 			textViewPriority.setText("Low");	
 		}
+		if(tempRequestDetails.getmUnreadMessageCount()>0){
+		TextView textViewUnreadMessageCount = (TextView) rowView.findViewById(R.id.textViewUnreadMessageCount);
+		textViewUnreadMessageCount.setText(tempRequestDetails.getmUnreadMessageCount()+"");
+		textViewUnreadMessageCount.setVisibility(View.VISIBLE);
+		}
 		return rowView;
 	}
 }

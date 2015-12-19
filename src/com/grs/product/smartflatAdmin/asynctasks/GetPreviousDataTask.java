@@ -9,20 +9,18 @@ import com.grs.product.smartflatAdmin.apicall.SmartFlatAdminAPI;
 import com.grs.product.smartflatAdmin.error.SmartFlatAdminError;
 import com.grs.product.smartflatAdmin.response.Response;
 
-public class SendPushTokenToServerTask  extends AsyncTask<Void, Void, SmartFlatAdminError> {
+public class GetPreviousDataTask  extends AsyncTask<Void, Void, SmartFlatAdminError> {
 
-	private static final String TAG = LoginTask.class.getName();
+	private static final String TAG = GetPreviousDataTask.class.getName();
 	final Context context;
 	private AsyncTaskCompleteListener<Response> listener = null;
-	String pushToken;
 	String societyCode;
-	Response mLoginStatus;
+	Response mStatus;
 	
-	public SendPushTokenToServerTask(Context ctx, AsyncTaskCompleteListener<Response> listener, String pushToken,String societyCode) 
+	public GetPreviousDataTask(Context ctx, AsyncTaskCompleteListener<Response> listener, String societyCode) 
 	{
 		this.context = ctx;
 		this.listener = listener;
-		this.pushToken = pushToken;	
 		this.societyCode = societyCode;
 	}
 	
@@ -38,7 +36,7 @@ public class SendPushTokenToServerTask  extends AsyncTask<Void, Void, SmartFlatA
 		SmartFlatAdminAPI smartFlatAdminAPI = new SmartFlatAdminAPI(context);
 		try 
 		{
-			mLoginStatus =  smartFlatAdminAPI.sendPushToken(pushToken,societyCode);
+			mStatus =  smartFlatAdminAPI.getPreviousData(societyCode);
 		}
 		catch (SmartFlatAdminError e) 
 		{
@@ -52,12 +50,12 @@ public class SendPushTokenToServerTask  extends AsyncTask<Void, Void, SmartFlatA
 	@Override
 	protected void onPostExecute(SmartFlatAdminError error) {
 		
-		if(mLoginStatus!=null)
+		if(mStatus!=null)
 		{
 			if(listener!=null)
 			{
 				listener.onStoped();
-				listener.onTaskComplete(mLoginStatus);
+				listener.onTaskComplete(mStatus);
 				listener = null;
 			}
 		}

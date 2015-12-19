@@ -41,7 +41,7 @@
         android:id="@+id/textViewContactNo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Name"
+        android:text="Contact number"
         android:layout_marginLeft="2dp"
         android:layout_marginTop="15dp"
         android:textColor="#5d5c5c"
@@ -55,6 +55,7 @@
         android:background="@drawable/edittext_bg"
         android:ems="10"
         android:hint="Contact number"
+        android:inputType="number"
         android:maxLength="10"
         android:padding="10dp" />
     

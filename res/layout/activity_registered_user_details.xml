@@ -103,7 +103,8 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
                     android:orientation="horizontal"
-                     android:enabled="false" >
+                     android:enabled="false"
+                     android:clickable="false" >
 
                     <RadioButton
                         android:id="@+id/radioButtonMale"
@@ -112,7 +113,8 @@
                         android:layout_weight="1"
                         android:checked="true"
                         android:text="Male"
-                        android:textColor="@color/white" />
+                        android:textColor="@color/white"
+                        android:clickable="false"/>
 
                     <RadioButton
                         android:id="@+id/radioButtonFemale"
@@ -120,7 +122,8 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="Female"
-                        android:textColor="@color/white"/>
+                        android:textColor="@color/white"
+                        android:clickable="false"/>
                 </RadioGroup>
             </LinearLayout>
 
@@ -188,7 +191,8 @@
                 android:hint="Building Name"
                 android:popupBackground="@drawable/trans_spinner_bg"
                 android:textColor="@color/white" 
-                 android:enabled="false"/>
+                 android:enabled="false"
+                 android:clickable="false"/>
 
             <TextView
                 android:id="@+id/textViewFloorNo"
@@ -209,7 +213,9 @@
                 android:hint="Floor Number"
                 android:popupBackground="@drawable/trans_spinner_bg"
                 android:textColor="@color/white" 
-                 android:enabled="false"/>
+                 android:enabled="false"
+                 android:clickable="false"
+                 />
 
             <TextView
                 android:id="@+id/textViewFlatNo"
@@ -225,7 +231,6 @@
                 android:id="@+id/editTextFlatNo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="25dp"
                 android:background="@drawable/trans_edittext_bg"
                 android:ems="10"
                 android:hint="Flat Number"

@@ -80,6 +80,6 @@
         android:layout_height="wrap_content"
         android:text="Visitor in time :"
         android:textColor="#ff847979"
-        android:textSize="16sp" 
+        android:textSize="12sp" 
         android:layout_gravity="right"/>
 </LinearLayout>
