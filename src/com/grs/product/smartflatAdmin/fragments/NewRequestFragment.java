@@ -375,4 +375,20 @@ public class NewRequestFragment extends Fragment {
 		return 0;
 	}
 
+	
+	@Override
+	public void onResume() {
+		// TODO Auto-generated method stub
+		super.onResume();
+		if(mListRequestDetails!=null){
+			showDataInListView();
+		}
+	}
+	
+	@Override
+	public void onPause() {
+		// TODO Auto-generated method stub
+		super.onPause();
+	}
+
 }

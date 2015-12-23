@@ -1010,4 +1010,78 @@ public void setMessagesRead(String requestNumber){
 	}					
 }
 
+public Cursor getRaisedRequestDetailsForFlatOwner(String flatOwnerCode){
+	String selectQuery = "SELECT  * FROM " + TableNames.REQUEST_DETAILS + " WHERE "+TableRequestDetails.REQUEST_STATUS +" IN ('Raised','Processed') AND "+TableRequestDetails.REQUEST_RAISED_BY+" = '"+flatOwnerCode+"' ORDER BY "+TableRequestDetails.REQUEST_DATETIME + "  DESC";
+	Cursor cursor = mDb.rawQuery(selectQuery, null);	
+	if (cursor != null && cursor.getCount()>0) {
+		cursor.moveToNext();
+	}
+	return cursor;			
+}
+
+public Cursor getRaisedRequestDetailsByCategoryForFlatOwner(String flatOwnerCode){
+	String selectQuery = "SELECT  * FROM " + TableNames.REQUEST_DETAILS + " WHERE "+TableRequestDetails.REQUEST_STATUS +" IN ('Raised','Processed') AND "+TableRequestDetails.REQUEST_RAISED_BY+" = '"+flatOwnerCode+"' ORDER BY "+TableRequestDetails.REQUEST_CATEGORY + "  ASC";
+	Cursor cursor = mDb.rawQuery(selectQuery, null);	
+	if (cursor != null && cursor.getCount()>0) {
+		cursor.moveToNext();
+	}
+	return cursor;			
+}
+
+
+public Cursor getRaisedRequestDetailsByTypeForFlatOwner(String flatOwnerCode){
+	String selectQuery = "SELECT  * FROM " + TableNames.REQUEST_DETAILS + " WHERE "+TableRequestDetails.REQUEST_STATUS +" IN ('Raised','Processed') AND "+TableRequestDetails.REQUEST_RAISED_BY+" = '"+flatOwnerCode+"'  ORDER BY "+TableRequestDetails.REQUEST_TYPE + "  ASC";
+	Cursor cursor = mDb.rawQuery(selectQuery, null);	
+	if (cursor != null && cursor.getCount()>0) {
+		cursor.moveToNext();
+	}
+	return cursor;			
+}
+
+public Cursor getRaisedRequestDetailsByPriorityHtoLForFlatOwner(String flatOwnerCode){
+	String selectQuery = "SELECT  * FROM " + TableNames.REQUEST_DETAILS + " WHERE "+TableRequestDetails.REQUEST_STATUS +" IN ('Raised','Processed') AND "+TableRequestDetails.REQUEST_RAISED_BY+" = '"+flatOwnerCode+"' ORDER BY "+TableRequestDetails.REQUEST_PRIORITY + "  ASC";
+	Cursor cursor = mDb.rawQuery(selectQuery, null);	
+	if (cursor != null && cursor.getCount()>0) {
+		cursor.moveToNext();
+	}
+	return cursor;			
+}
+
+public Cursor getRaisedRequestDetailsByPriorityLtoHForFlatOwner(String flatOwnerCode){
+	String selectQuery = "SELECT  * FROM " + TableNames.REQUEST_DETAILS + " WHERE "+TableRequestDetails.REQUEST_STATUS +" IN ('Raised','Processed') AND "+TableRequestDetails.REQUEST_RAISED_BY+" = '"+flatOwnerCode+"' ORDER BY "+TableRequestDetails.REQUEST_PRIORITY + "  DESC";
+	Cursor cursor = mDb.rawQuery(selectQuery, null);	
+	if (cursor != null && cursor.getCount()>0) {
+		cursor.moveToNext();
+	}
+	return cursor;			
+}
+
+public Cursor getVisitorsForFlatOwner(String flatOwnerCode){
+	String selectQuery = "SELECT  * FROM " + TableNames.VISITOR_DETAILS+" WHERE "+TableVisitorDetails.FLAT_OWNER_CODE+" LIKE '%"+flatOwnerCode +"%' ORDER BY "+TableVisitorDetails.VISITOR_IN_TIME + "  DESC";
+	Cursor cursor = mDb.rawQuery(selectQuery, null);	
+	if (cursor != null && cursor.getCount()>0) {
+		cursor.moveToNext();
+	}
+	return cursor;		
+}
+
+public Cursor getAllNoticeForFlatOwner(String flatOwnerCode){
+	String selectQuery = "SELECT  * FROM " + TableNames.SOCIETY_NOTICES+" WHERE "+TableSocietyNotices.NOTICE_TO+" LIKE '%"+flatOwnerCode +"%'";
+	Cursor cursor = mDb.rawQuery(selectQuery, null);	
+	if (cursor != null && cursor.getCount()>0) {
+		cursor.moveToNext();
+	}
+	return cursor;	
+}
+
+
+public Cursor getNoticeDetails(String noticeNumber){
+	String selectQuery = "SELECT  * FROM " + TableNames.SOCIETY_NOTICES + " WHERE " + TableSocietyNotices.NOTICE_NUMBER +"= '"+ noticeNumber+"'";
+	Cursor cursor = mDb.rawQuery(selectQuery, null);	
+	if (cursor != null && cursor.getCount()>0) {
+		cursor.moveToNext();
+	}
+	return cursor;			
+}
+
 }

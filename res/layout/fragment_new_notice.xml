@@ -36,6 +36,18 @@
                 android:hint="Enter Name"
                 android:completionThreshold="1"
                 android:padding="5dp" />
+            
+                                     <EditText
+                android:id="@+id/editTextFlatOwnerName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:background="@drawable/edittext_bg"
+                android:ems="10"
+                android:hint="To"
+                android:editable="false"
+                android:inputType="none"
+                android:padding="8sp"/>
 
             <TextView
                 android:id="@+id/textViewSubject"

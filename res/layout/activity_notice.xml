@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#f7f4f4" 
+    android:paddingLeft="15dp"
+    android:paddingRight="15dp"
+    android:paddingTop="20dp"
+    android:paddingBottom="20dp">
+    
+    <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" 
+    android:padding="15dp"
+    android:background="@drawable/shadow_bg">
+
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/board_pin" 
+        android:layout_gravity="right"/>
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Notice"
+        android:textColor="@color/theme_color"
+        android:layout_gravity="center_horizontal"
+        android:textSize="22sp"
+        android:textStyle="bold" />
+    
+        <TextView
+        android:id="@+id/textViewNoticeDateTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="DateTime"
+        android:textColor="@color/label_color"
+        android:layout_gravity="right"
+        android:textSize="15sp" 
+        android:layout_marginTop="10dp"/>
+    
+    <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal" 
+    android:layout_marginTop="20dp">
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/label_color"
+        android:text="Notice No : " 
+        android:textSize="18sp"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/textViewNoticeNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Whatever"
+        android:textColor="@color/label_color"
+        android:layout_marginLeft="10sp" 
+        android:textSize="18sp"/>
+
+</LinearLayout>
+
+    <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal" 
+    android:layout_marginTop="20dp">
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Subject : " 
+        android:textColor="@color/label_color"
+        android:textSize="18sp"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/textViewNoticeSubject"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Subject title"
+        android:layout_marginLeft="10sp" 
+        android:textColor="@color/label_color"
+        android:textSize="18sp"/>
+
+</LinearLayout>
+
+    <TextView
+        android:id="@+id/textViewNoticeMessage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="	India is my country, all Indians are gaurav's brother and sister. our first product is smart flat android application, where we are gives many facilities to users. GRS is a palangtod team.  "
+        android:textSize="18sp"
+        android:textColor="@color/label_color"
+        android:layout_marginTop="20dp"/>
+
+</LinearLayout>
+</LinearLayout>

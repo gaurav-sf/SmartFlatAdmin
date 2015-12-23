@@ -2,16 +2,16 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="20sp" 
-    android:background="#f9f9f9">
+    android:background="#f9f9f9"
+    android:padding="20sp" >
 
     <ScrollView
         android:id="@+id/scrollView1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true" 
-        android:paddingBottom="5dp"
-        android:layout_above="@+id/buttonAddVisitor">
+        android:layout_above="@+id/buttonAddVisitor"
+        android:layout_alignParentTop="true"
+        android:paddingBottom="5dp" >
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -24,8 +24,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
                 android:text="Visitor name"
-                android:textSize="16sp"
-                android:textColor="#5d5c5c" />
+                android:textColor="#5d5c5c"
+                android:textSize="16sp" />
 
             <EditText
                 android:id="@+id/editTextVisitorName"
@@ -36,7 +36,7 @@
                 android:ems="10"
                 android:hint="Visitor name"
                 android:padding="8sp" />
-            
+
             <TextView
                 android:id="@+id/textViewNoOfVisitors"
                 android:layout_width="wrap_content"
@@ -44,8 +44,8 @@
                 android:layout_marginLeft="5dp"
                 android:layout_marginTop="20dp"
                 android:text="No of visitors"
-                android:textSize="16sp"
-                android:textColor="#5d5c5c" />
+                android:textColor="#5d5c5c"
+                android:textSize="16sp" />
 
             <Spinner
                 android:id="@+id/spinnerNoOfVisitors"
@@ -69,31 +69,54 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:button="@drawable/custom_radio_button"
                     android:checked="true"
-                    android:button="@drawable/custom_radio_button" 
                     android:text=" Flat No" />
 
                 <RadioButton
                     android:id="@+id/radioButtonOwnerName"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:button="@drawable/custom_radio_button" 
                     android:layout_weight="1"
+                    android:button="@drawable/custom_radio_button"
                     android:text=" Owner Name" />
             </RadioGroup>
-            
-             <AutoCompleteTextView
+
+            <TextView
+                android:id="@+id/textViewOwnerName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="20dp"
+                android:text="Owner Name"
+                android:textColor="#5d5c5c"
+                android:textSize="16sp"
+                android:visibility="gone" />
+
+            <AutoCompleteTextView
                 android:id="@+id/autoCompleteTextViewFlatOwnerName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="5dp"
                 android:background="@drawable/edittext_bg"
+                android:completionThreshold="1"
                 android:ems="10"
                 android:hint="Enter flat owner name"
-                android:completionThreshold="1"
-                android:padding="5dp" 
-                android:visibility="gone"/>
-            
+                android:padding="5dp"
+                android:visibility="gone" />
+
+            <EditText
+                android:id="@+id/editTextFlatOwnerName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:background="@drawable/edittext_bg"
+                android:editable="false"
+                android:ems="10"
+                android:inputType="none"
+                android:padding="8sp"
+                android:visibility="gone" />
+
             <TextView
                 android:id="@+id/textViewBuildingName"
                 android:layout_width="wrap_content"
@@ -101,8 +124,8 @@
                 android:layout_marginLeft="5dp"
                 android:layout_marginTop="20dp"
                 android:text="Building name"
-                android:textSize="16sp"
-                android:textColor="#5d5c5c" />
+                android:textColor="#5d5c5c"
+                android:textSize="16sp" />
 
             <Spinner
                 android:id="@+id/spinnerBuildingName"
@@ -113,7 +136,7 @@
                 android:ems="10"
                 android:hint="Building Name"
                 android:popupBackground="@color/spinner_popup" />
-            
+
             <TextView
                 android:id="@+id/textViewFloorNo"
                 android:layout_width="wrap_content"
@@ -121,8 +144,8 @@
                 android:layout_marginLeft="5dp"
                 android:layout_marginTop="20dp"
                 android:text="Floor no"
-                android:textSize="16sp"
-                android:textColor="#5d5c5c" />
+                android:textColor="#5d5c5c"
+                android:textSize="16sp" />
 
             <Spinner
                 android:id="@+id/spinnerFloorNo"
@@ -141,8 +164,8 @@
                 android:layout_marginLeft="5dp"
                 android:layout_marginTop="20dp"
                 android:text="Flat no"
-                android:textSize="16sp"
-                android:textColor="#5d5c5c" />
+                android:textColor="#5d5c5c"
+                android:textSize="16sp" />
 
             <EditText
                 android:id="@+id/editTextFlatNo"
@@ -161,8 +184,8 @@
                 android:layout_marginLeft="5dp"
                 android:layout_marginTop="20dp"
                 android:text="Visitor in time"
-                android:textSize="16sp"
-                android:textColor="#5d5c5c" />
+                android:textColor="#5d5c5c"
+                android:textSize="16sp" />
 
             <EditText
                 android:id="@+id/editTextVisitorInTime"
@@ -182,8 +205,8 @@
                 android:layout_marginLeft="5dp"
                 android:layout_marginTop="20dp"
                 android:text="Visite purpose"
-                android:textSize="16sp"
-                android:textColor="#5d5c5c" />
+                android:textColor="#5d5c5c"
+                android:textSize="16sp" />
 
             <EditText
                 android:id="@+id/editTextVisitPurpose"
@@ -192,10 +215,10 @@
                 android:layout_marginTop="3dp"
                 android:background="@drawable/edittext_bg"
                 android:ems="10"
+                android:gravity="top"
                 android:hint="Visite purpose"
                 android:minLines="3"
                 android:padding="8sp"
-                android:gravity="top"
                 android:singleLine="false" />
 
             <TextView
@@ -205,8 +228,8 @@
                 android:layout_marginLeft="5dp"
                 android:layout_marginTop="20dp"
                 android:text="Contact no"
-                android:textSize="16sp"
-                android:textColor="#5d5c5c" />
+                android:textColor="#5d5c5c"
+                android:textSize="16sp" />
 
             <EditText
                 android:id="@+id/editTextVisitorContactNo"
@@ -215,9 +238,9 @@
                 android:layout_marginTop="3dp"
                 android:background="@drawable/edittext_bg"
                 android:ems="10"
-                android:maxLength="10"
                 android:hint="Contact no"
                 android:inputType="number"
+                android:maxLength="10"
                 android:padding="8sp" />
 
             <TextView
@@ -227,8 +250,8 @@
                 android:layout_marginLeft="5dp"
                 android:layout_marginTop="20dp"
                 android:text="Vehicle no"
-                android:textSize="16sp"
-                android:textColor="#5d5c5c" />
+                android:textColor="#5d5c5c"
+                android:textSize="16sp" />
 
             <EditText
                 android:id="@+id/editTextVisitorVehicleNo"

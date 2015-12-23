@@ -128,7 +128,7 @@
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" >
         </activity>
-                <activity
+        <activity
             android:name="com.grs.product.smartflatAdmin.activities.NoticeDetailsActivity"
             android:configChanges="orientation"
             android:hardwareAccelerated="false"
@@ -136,7 +136,6 @@
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" >
         </activity>
-        
 
         <!-- Register Broadcast receiver -->
 

@@ -267,4 +267,60 @@ public class SmartFlatAdminDBManager {
 		SmartFlatAdminDatabase.getInstance().close();
 	}
 	
+	public Cursor getRaisedRequestDetailsForFlatOwner(String flatOwnerCode){
+		SmartFlatAdminDatabase.getInstance().open();
+		Cursor details = SmartFlatAdminDatabase.getInstance().getRaisedRequestDetailsForFlatOwner(flatOwnerCode);
+		SmartFlatAdminDatabase.getInstance().close();
+		return details;
+	}
+	
+	public Cursor getRaisedRequestDetailsByCategoryForFlatOwner(String flatOwnerCode){
+		SmartFlatAdminDatabase.getInstance().open();
+		Cursor details = SmartFlatAdminDatabase.getInstance().getRaisedRequestDetailsByCategoryForFlatOwner(flatOwnerCode);
+		SmartFlatAdminDatabase.getInstance().close();
+		return details;
+	}
+	
+	public Cursor getRaisedRequestDetailsByTypeForFlatOwner(String flatOwnerCode){
+		SmartFlatAdminDatabase.getInstance().open();
+		Cursor details = SmartFlatAdminDatabase.getInstance().getRaisedRequestDetailsByTypeForFlatOwner(flatOwnerCode);
+		SmartFlatAdminDatabase.getInstance().close();
+		return details;
+	}
+	
+	public Cursor getRaisedRequestDetailsByPriorityHtoLForFlatOwner(String flatOwnerCode){
+		SmartFlatAdminDatabase.getInstance().open();
+		Cursor details = SmartFlatAdminDatabase.getInstance().getRaisedRequestDetailsByPriorityHtoLForFlatOwner(flatOwnerCode);
+		SmartFlatAdminDatabase.getInstance().close();
+		return details;
+	}
+	
+	public Cursor getRaisedRequestDetailsByPriorityLtoHForFlatOwner(String flatOwnerCode){
+		SmartFlatAdminDatabase.getInstance().open();
+		Cursor details = SmartFlatAdminDatabase.getInstance().getRaisedRequestDetailsByPriorityLtoHForFlatOwner(flatOwnerCode);
+		SmartFlatAdminDatabase.getInstance().close();
+		return details;
+	}
+	
+	public Cursor getVisitorsForFlatOwner(String flatOwnerCode){
+		SmartFlatAdminDatabase.getInstance().open();
+		Cursor details = SmartFlatAdminDatabase.getInstance().getVisitorsForFlatOwner(flatOwnerCode);
+		SmartFlatAdminDatabase.getInstance().close();
+		return details;	
+	}
+	
+	public Cursor getAllNoticeForFlatOwner(String flatOwnerCode){
+		SmartFlatAdminDatabase.getInstance().open();
+		Cursor details = SmartFlatAdminDatabase.getInstance().getAllNoticeForFlatOwner(flatOwnerCode);
+		SmartFlatAdminDatabase.getInstance().close();
+		return details;		
+	}
+	
+	public Cursor getNoticeDetails(String noticeNumber){
+		SmartFlatAdminDatabase.getInstance().open();
+		Cursor details = SmartFlatAdminDatabase.getInstance().getNoticeDetails(noticeNumber);
+		SmartFlatAdminDatabase.getInstance().close();
+		return details;
+	}
+	
 }

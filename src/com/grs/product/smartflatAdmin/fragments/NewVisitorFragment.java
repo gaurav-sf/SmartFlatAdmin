@@ -2,21 +2,18 @@ package com.grs.product.smartflatAdmin.fragments;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import com.grs.product.smartflatAdmin.R;
 import com.grs.product.smartflatAdmin.apicall.AsyncTaskCompleteListener;
 import com.grs.product.smartflatAdmin.asynctasks.SaveVisitorOnServerTask;
 import com.grs.product.smartflatAdmin.database.SmartFlatAdminDBManager;
 import com.grs.product.smartflatAdmin.database.SmartFlatAdminDBTables.TableFlatOwnerDetails;
 import com.grs.product.smartflatAdmin.error.SmartFlatAdminError;
-import com.grs.product.smartflatAdmin.fragments.NewNoticeFragment.AutoCompleteFlatOwnerNameAdapter;
 import com.grs.product.smartflatAdmin.models.SocietyDetails;
 import com.grs.product.smartflatAdmin.models.VisitorDetails;
 import com.grs.product.smartflatAdmin.response.Response;
 import com.grs.product.smartflatAdmin.utils.CustomProgressDialog;
 import com.grs.product.smartflatAdmin.utils.NetworkDetector;
 import com.grs.product.smartflatAdmin.utils.Utilities;
-
 import android.content.Context;
 import android.database.Cursor;
 import android.os.AsyncTask;
@@ -43,17 +40,18 @@ import android.widget.Toast;
 public class NewVisitorFragment extends Fragment{
 	
 	private EditText mEditTextVisitorName, mEditTextVisitorInTime, mEditTextVisitPurpose,
-					 mEditTextFlatNo, mEditTextVisitorContactNo,mEditTextVisitorVehicleNo;
+					 mEditTextFlatNo, mEditTextVisitorContactNo,mEditTextVisitorVehicleNo,
+					 mEditTextFlatOwnerName;
 	private Spinner mSpinnerNoOfVisitors, mSpinnerBuildingName, mSpinnerFloorNo;
 	private RadioGroup mRadioGroupFlatType;
 	private RadioButton mRadioButtonFlatNo, mRadioButtonOwnerName;
 	private Button mButtonAddVisitor;
 	private VisitorDetails mVisitorDetails;
 	private AutoCompleteTextView mAutoCompleteTextViewFlatOwnerName;
+	private TextView mTextViewOwnerName,mTextViewBuildingName,mTextViewFloorNo,mTextViewFlatNo;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 	}
 	
@@ -85,6 +83,11 @@ public class NewVisitorFragment extends Fragment{
 		AutoCompleteFlatOwnerNameAdapter adapter = new AutoCompleteFlatOwnerNameAdapter();
 		mAutoCompleteTextViewFlatOwnerName.setAdapter(adapter);
 		mAutoCompleteTextViewFlatOwnerName.setOnItemClickListener(adapter);
+		mTextViewBuildingName = (TextView) rootView.findViewById(R.id.textViewBuildingName);
+		mTextViewOwnerName = (TextView) rootView.findViewById(R.id.textViewOwnerName);
+		mTextViewFloorNo = (TextView) rootView.findViewById(R.id.textViewFloorNo);
+		mTextViewFlatNo = (TextView) rootView.findViewById(R.id.textViewFlatNo);
+		mEditTextFlatOwnerName = (EditText) rootView.findViewById(R.id.editTextFlatOwnerName);
 	}
 	
 	private void addListeners(){
@@ -92,7 +95,6 @@ public class NewVisitorFragment extends Fragment{
 			
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				if(isValidateUiEntries()){
 					mVisitorDetails = getVisitorDetails();
 					saveVisitor();
@@ -104,7 +106,6 @@ public class NewVisitorFragment extends Fragment{
 			
 			@Override
 			public void onCheckedChanged(RadioGroup group, int checkedId) {
-				// TODO Auto-generated method stub
 				 switch(checkedId)
                  {
                  case R.id.radioButtonFlatNo:
@@ -112,12 +113,22 @@ public class NewVisitorFragment extends Fragment{
                 	 mSpinnerBuildingName.setVisibility(View.VISIBLE);
                 	 mSpinnerFloorNo.setVisibility(View.VISIBLE);
                 	 mEditTextFlatNo.setVisibility(View.VISIBLE);
+                	 mTextViewBuildingName.setVisibility(View.VISIBLE);
+                	 mTextViewFlatNo.setVisibility(View.VISIBLE);
+                	 mTextViewFloorNo.setVisibility(View.VISIBLE);
+                	 mTextViewOwnerName.setVisibility(View.GONE);
+                	 mEditTextFlatOwnerName.setVisibility(View.GONE);
                      break;
                  case R.id.radioButtonOwnerName:
                 	 mAutoCompleteTextViewFlatOwnerName.setVisibility(View.VISIBLE);
                 	 mSpinnerBuildingName.setVisibility(View.GONE);
                 	 mSpinnerFloorNo.setVisibility(View.GONE);
                 	 mEditTextFlatNo.setVisibility(View.GONE);
+                	 mTextViewBuildingName.setVisibility(View.GONE);
+                	 mTextViewFlatNo.setVisibility(View.GONE);
+                	 mTextViewFloorNo.setVisibility(View.GONE);
+                	 mTextViewOwnerName.setVisibility(View.VISIBLE);
+                	 mEditTextFlatOwnerName.setVisibility(View.VISIBLE);
                      break;
                  }
 			}
@@ -198,11 +209,17 @@ public class NewVisitorFragment extends Fragment{
 		 String buildingName = mSpinnerBuildingName.getSelectedItem().toString();
 		 String floorNo = mSpinnerFloorNo.getSelectedItem().toString();
 		 String flatNo = mEditTextFlatNo.getText().toString();
-		 String flatOwnerCode = getFlatOwnerCode(buildingName+floorNo+"@"+flatNo);
-		 if(flatOwnerCode.equals("")){
-			 tempDetails.setmFlatOwnerCode(buildingName+floorNo+"@"+flatNo);	 
+		 if(mRadioButtonFlatNo.isSelected())
+		 {
+			 String flatOwnerCode = getFlatOwnerCode(buildingName+floorNo+"@"+flatNo);
+			 if(flatOwnerCode.equals("")){
+				 tempDetails.setmFlatOwnerCode(buildingName+floorNo+"@"+flatNo);	 
+			 }else{
+				 tempDetails.setmFlatOwnerCode(flatOwnerCode);	 
+			 }
+			 
 		 }else{
-			 tempDetails.setmFlatOwnerCode(flatOwnerCode);	 
+			 tempDetails.setmFlatOwnerCode(mEditTextFlatOwnerName.getText().toString());	
 		 }
 			
 		return tempDetails;
@@ -296,8 +313,21 @@ public class NewVisitorFragment extends Fragment{
 		
 		@Override
 		public Cursor runQueryOnBackgroundThread(CharSequence constraint) {
+/*			String arrayOfUsers[]=null;
+			Cursor cursor = null;
+			if(constraint!=null)
+			{
+				if(constraint.toString().contains(";")){
+					arrayOfUsers = constraint.toString().split(";");
+				}
+				
+				 cursor = dbManager.getFlatOwnerData(
+		                (arrayOfUsers != null ? arrayOfUsers[arrayOfUsers.length-1] : constraint.toString()));
+			}*/
 	        Cursor cursor = dbManager.getFlatOwnerData(
 	                (constraint != null ? constraint.toString() : null));
+			//Cursor cursor = dbManager.getFlatOwnerData(
+	        //        (constraint != null ? constraint.toString() : null));
 	        return cursor;
 		}
 		
@@ -317,9 +347,12 @@ public class NewVisitorFragment extends Fragment{
 	        // Get the state's capital from this row in the database.
 	        String flatOwnerCode = cursor.getString(cursor.getColumnIndexOrThrow(TableFlatOwnerDetails.FLAT_OWNER_CODE));
 	        // Update the parent class's TextView
-	        Toast.makeText(getActivity(),flatOwnerCode, Toast.LENGTH_LONG).show();
-	        
-	        mAutoCompleteTextViewFlatOwnerName.setText(mAutoCompleteTextViewFlatOwnerName.getText().toString()+";"+flatOwnerCode);
+	        if(mEditTextFlatOwnerName.getText().toString().contains(";")){
+	        	mEditTextFlatOwnerName.setText(mEditTextFlatOwnerName.getText().toString()+flatOwnerCode+";");
+	        }else{
+	        	mEditTextFlatOwnerName.setText(flatOwnerCode+";");	
+	        }
+	        mAutoCompleteTextViewFlatOwnerName.setText("");	        
 	    }
 
 		@Override

@@ -36,7 +36,7 @@ import com.grs.product.smartflatAdmin.utils.Utilities;
 
 public class NewNoticeFragment extends Fragment{
 	
-	private EditText mEditTextSubject,mEditTextMessage;
+	private EditText mEditTextSubject,mEditTextMessage,mEditTextFlatOwnerName;
 	 private AutoCompleteTextView mAutoCompleteTextViewTo;
 	 private Button mButtonSendNotice;
 	
@@ -58,6 +58,7 @@ public class NewNoticeFragment extends Fragment{
 		AutoCompleteFlatOwnerNameAdapter adapter = new AutoCompleteFlatOwnerNameAdapter();
 		mAutoCompleteTextViewTo.setAdapter(adapter);
 		mAutoCompleteTextViewTo.setOnItemClickListener(adapter);
+		mEditTextFlatOwnerName = (EditText) rootView.findViewById(R.id.editTextFlatOwnerName);
 	}
 	
 	private void addListeners(){
@@ -169,9 +170,12 @@ public class NewNoticeFragment extends Fragment{
 	        // Get the state's capital from this row in the database.
 	        String flatOwnerCode = cursor.getString(cursor.getColumnIndexOrThrow(TableFlatOwnerDetails.FLAT_OWNER_CODE));
 	        // Update the parent class's TextView
-	        Toast.makeText(getActivity(),flatOwnerCode, Toast.LENGTH_LONG).show();
-	        
-	        mAutoCompleteTextViewTo.setText(mAutoCompleteTextViewTo.getText().toString()+";"+flatOwnerCode);
+	        if(mEditTextFlatOwnerName.getText().toString().contains(";")){
+	        	mEditTextFlatOwnerName.setText(mEditTextFlatOwnerName.getText().toString()+flatOwnerCode+";");
+	        }else{
+	        	mEditTextFlatOwnerName.setText(flatOwnerCode+";");	
+	        }
+	        mAutoCompleteTextViewTo.setText("");	        
 	    }
 
 		@Override
@@ -208,6 +212,4 @@ public class NewNoticeFragment extends Fragment{
 		mEditTextSubject.setText("");
 		mEditTextMessage.setText("");
 	}
-
-
 }

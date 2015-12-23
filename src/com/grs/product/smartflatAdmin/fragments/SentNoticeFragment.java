@@ -3,21 +3,21 @@ package com.grs.product.smartflatAdmin.fragments;
 import java.util.ArrayList;
 import java.util.List;
 
-import android.app.ActionBar.Tab;
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
-
 import com.grs.product.smartflatAdmin.R;
+import com.grs.product.smartflatAdmin.activities.NoticeDetailsActivity;
 import com.grs.product.smartflatAdmin.adapter.SentNoticeListAdapter;
 import com.grs.product.smartflatAdmin.database.SmartFlatAdminDBManager;
-import com.grs.product.smartflatAdmin.database.SmartFlatAdminDBTables.TableFlatOwnerDetails;
 import com.grs.product.smartflatAdmin.database.SmartFlatAdminDBTables.TableSocietyNotices;
-import com.grs.product.smartflatAdmin.models.FlatOwnerDetails;
 import com.grs.product.smartflatAdmin.models.NoticeDetails;
 import com.grs.product.smartflatAdmin.utils.Utilities;
 
@@ -30,18 +30,30 @@ public class SentNoticeFragment extends Fragment{
 	public View onCreateView(LayoutInflater inflater,
 			ViewGroup container,  Bundle savedInstanceState) 
 	{
-		// TODO Auto-generated method stub
 		View rootView = inflater.inflate(R.layout.fragment_sent_notice, container, false);
-		//getUserDetails();
 		initialiseUI(rootView);
+		addListener();
 		return rootView;	      
 	}
 
 	private void initialiseUI(View rootView){
 		mListViewNoticeDetails = (ListView) rootView.findViewById(R.id.listViewNotice);
-		mListNoticeDetails = new ArrayList<NoticeDetails>();
-		
+		mListNoticeDetails = new ArrayList<NoticeDetails>();	
 		getNoticesFromDB();
+	}
+	
+	private void addListener(){
+		mListViewNoticeDetails.setOnItemClickListener(new OnItemClickListener() {
+
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view,
+					int position, long id) {
+				Intent noticeDetails = new Intent(getActivity(),NoticeDetailsActivity.class);
+				noticeDetails.putExtra("noticeNumber", mListNoticeDetails.get(position).getmNoticeNumber());
+				startActivity(noticeDetails);
+			}
+		});
+		
 	}
 
 	private void getNoticesFromDB()
@@ -72,5 +84,4 @@ public class SentNoticeFragment extends Fragment{
 			mListViewNoticeDetails.setAdapter(mNoticeListAdapter);
 		}
 	}
-
 }
