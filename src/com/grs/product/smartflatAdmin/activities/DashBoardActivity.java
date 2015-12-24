@@ -3,21 +3,10 @@ package com.grs.product.smartflatAdmin.activities;
 
 import java.util.ArrayList;
 
-import com.grs.product.smartflatAdmin.R;
-import com.grs.product.smartflatAdmin.SmartFlatAdminApplication;
-import com.grs.product.smartflatAdmin.adapter.NavDrawerItem;
-import com.grs.product.smartflatAdmin.adapter.NavDrawerListAdapter;
-import com.grs.product.smartflatAdmin.fragments.HomeFragment;
-import com.grs.product.smartflatAdmin.fragments.MainContactsFragment;
-import com.grs.product.smartflatAdmin.fragments.MainNoticeFragment;
-import com.grs.product.smartflatAdmin.fragments.MainRequestFragment;
-import com.grs.product.smartflatAdmin.fragments.MainUsersFragment;
-import com.grs.product.smartflatAdmin.fragments.MainVisirtorFragment;
-import com.grs.product.smartflatAdmin.fragments.SocietyDetailsFragment;
-
 import android.app.ActionBar;
 import android.content.res.Configuration;
 import android.content.res.TypedArray;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.ActionBarDrawerToggle;
@@ -29,6 +18,24 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
+
+import com.grs.product.smartflatAdmin.R;
+import com.grs.product.smartflatAdmin.SmartFlatAdminApplication;
+import com.grs.product.smartflatAdmin.adapter.NavDrawerItem;
+import com.grs.product.smartflatAdmin.adapter.NavDrawerListAdapter;
+import com.grs.product.smartflatAdmin.apicall.AsyncTaskCompleteListener;
+import com.grs.product.smartflatAdmin.asynctasks.SignOutTask;
+import com.grs.product.smartflatAdmin.error.SmartFlatAdminError;
+import com.grs.product.smartflatAdmin.fragments.HomeFragment;
+import com.grs.product.smartflatAdmin.fragments.MainContactsFragment;
+import com.grs.product.smartflatAdmin.fragments.MainNoticeFragment;
+import com.grs.product.smartflatAdmin.fragments.MainRequestFragment;
+import com.grs.product.smartflatAdmin.fragments.MainUsersFragment;
+import com.grs.product.smartflatAdmin.fragments.MainVisirtorFragment;
+import com.grs.product.smartflatAdmin.fragments.SocietyDetailsFragment;
+import com.grs.product.smartflatAdmin.response.Response;
+import com.grs.product.smartflatAdmin.utils.CustomProgressDialog;
+import com.grs.product.smartflatAdmin.utils.Utilities;
 
 
 @SuppressWarnings("deprecation")
@@ -77,7 +84,7 @@ public class DashBoardActivity extends FragmentActivity {
 		// Home
 		navDrawerItems.add(new NavDrawerItem(navMenuTitles[0], navMenuIcons.getResourceId(0, -1)));
 		// Users
-		navDrawerItems.add(new NavDrawerItem(navMenuTitles[1], navMenuIcons.getResourceId(1, -1)));
+		navDrawerItems.add(new NavDrawerItem(navMenuTitles[1], navMenuIcons.getResourceId(4, -1)));
 		// Society
 		navDrawerItems.add(new NavDrawerItem(navMenuTitles[2], navMenuIcons.getResourceId(2, -1)));		
 		// Requests
@@ -270,10 +277,8 @@ public class DashBoardActivity extends FragmentActivity {
 		//Sign Out	
 		case 9:
 			status = "created";
-    		overridePendingTransition(R.animator.slide_in_bottom, R.animator.slide_out_bottom);
-    		SmartFlatAdminApplication.saveSocietyOwnerPushTokenInSharedPreferences(null);
-			finish();
-			break;
+			signOutCall();		
+ 			break;
 			
 		default:
 			break;
@@ -329,6 +334,45 @@ public class DashBoardActivity extends FragmentActivity {
             doubleBackToExitPressedOnce=false;                       
         }
     }, 2000);}
+	
+	private void signOutCall(){
+		new SignOutTask(DashBoardActivity.this, new SignOutTaskListener())
+		.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+	}
+	
+	public class SignOutTaskListener implements AsyncTaskCompleteListener<Response> {
+
+		@Override
+		public void onStarted() {
+			CustomProgressDialog.showProgressDialog(DashBoardActivity.this, "", false);		
+		}
+
+		@Override
+		public void onTaskComplete(Response result) {
+			if (result != null) 
+			{
+				if (result.getStatus().equalsIgnoreCase("success")) 
+				{   		overridePendingTransition(R.animator.slide_in_bottom, R.animator.slide_out_bottom);
+	    		SmartFlatAdminApplication.saveSocietyOwnerPushTokenInSharedPreferences(null);
+				finish();
+				}else{
+					
+				}
+			}	
+		}
+
+		@Override
+		public void onStoped() {
+			CustomProgressDialog.removeDialog();	
+		}
+
+		@Override
+		public void onStopedWithError(SmartFlatAdminError e) {
+			Utilities.ShowAlertBox(DashBoardActivity.this,"Error",e.getMessage());		
+			CustomProgressDialog.removeDialog();	
+		}
+		
+	}
 
 }
 

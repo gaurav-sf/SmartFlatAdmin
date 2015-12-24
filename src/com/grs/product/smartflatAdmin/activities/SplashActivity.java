@@ -16,7 +16,8 @@ import android.widget.TextView;
 public class SplashActivity extends Activity {
 
 	private Animation mZoomIn;
-	private ImageView mImageViewAppName;
+	//private ImageView mImageViewAppName;
+	private ImageView mImageViewSmartFlatLogo;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -30,10 +31,11 @@ public class SplashActivity extends Activity {
 				WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
 		setContentView(R.layout.activity_splash);
-		mImageViewAppName = (ImageView) findViewById(R.id.iv_title);
+	//	mImageViewAppName = (ImageView) findViewById(R.id.iv_title);
+        mImageViewSmartFlatLogo = (ImageView) findViewById(R.id.imageViewSmartFlatLogo);
 		mZoomIn = AnimationUtils.loadAnimation(getApplicationContext(), R.animator.zoom_in);
 		addListner();
-		mImageViewAppName.setAnimation(mZoomIn);
+		mImageViewSmartFlatLogo.setAnimation(mZoomIn);
 		// goToNextActivity();
 	}
 

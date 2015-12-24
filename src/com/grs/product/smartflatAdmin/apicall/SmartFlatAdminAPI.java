@@ -97,6 +97,12 @@ public class SmartFlatAdminAPI {
 		return updateFlatOwnerDetailsCall(flatOwnerDetails);
 	}
 	
+	public Response getSignOut()
+			throws SmartFlatAdminError
+	{
+		return getSignOutCall();
+	}
+	
 
 	private Response getRegistrationCall(SocietyDetails societyDetails, SocietyOwnerDetails societyOwnerDetails)
 			throws SmartFlatAdminError{
@@ -485,6 +491,29 @@ public class SmartFlatAdminAPI {
 			throw new SmartFlatAdminError("Please try again later", "Server Error");
 		}
 	
+	}
+	
+	private Response getSignOutCall()
+			throws SmartFlatAdminError{
+		try{
+			ArrayList<NameValuePair> object = new ArrayList<NameValuePair>();
+			object.add(new BasicNameValuePair("societyCode",SmartFlatAdminApplication.getSocietyCodeFromSharedPreferences()));
+
+			ServerConnecter serverConnecter = new ServerConnecter();
+			String URL = Param.baseURL + "signOutSocietyOwner.php";
+			JSONObject objJson = serverConnecter.getJSONFromUrl(URL, object);
+			JSONSingleObjectDecode objectjson = new JSONSingleObjectDecode();
+			return objectjson.getStatus(objJson);	
+
+		} 
+		catch (JSONException e) 
+		{
+			throw new SmartFlatAdminError("Server error occured. Please try again later", "Server Error");
+		}
+		catch (Exception e)
+		{
+			throw new SmartFlatAdminError("Please try again later", "Server Error");
+		}
 	}
 
 
