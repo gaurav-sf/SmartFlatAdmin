@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background_image"
+    android:background="@drawable/building"
     android:padding="20sp" >
 
     <LinearLayout
@@ -37,55 +37,87 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical" >
+            
+            <TextView
+                android:id="@+id/textViewUserName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:layout_marginTop="10dp"
+                android:text="Username"
+                android:textColor="#000000"
+                android:textSize="16sp" />
 
             <EditText
                 android:id="@+id/editTextUsername"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/trans_edittext_bg"
                 android:editable="false"
                 android:ems="10"
-                android:hint="Username"
                 android:inputType="none"
-                android:padding="10dp"
-                android:textColor="@color/text_color"
-                android:textColorHint="@color/text_hint_color" />
+                android:padding="5dp"
+                android:layout_marginTop="3dp"
+                android:textColor="#000000"/>
+            
+            <TextView
+                android:id="@+id/textViewPasword"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:layout_marginTop="10dp"
+                android:text="Password"
+                android:textColor="#000000"
+                android:textSize="16sp" />
 
             <EditText
                 android:id="@+id/editTextPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:background="@drawable/trans_edittext_bg"
+                android:layout_marginTop="3dp"
                 android:ems="10"
-                android:hint="Create password"
                 android:inputType="textPassword"
-                android:padding="10dp"
-                android:textColor="@color/text_color"
-                android:textColorHint="@color/text_hint_color" />
+                android:padding="5dp"
+                android:textColor="#000000"/>
 
+            <TextView
+                android:id="@+id/textViewFloorNumber"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:layout_marginTop="10dp"
+                android:text="Floor number"
+                android:textColor="#000000"
+                android:textSize="16sp" />
+            
             <Spinner
                 android:id="@+id/spinnerSecurityQue"
                 android:layout_width="match_parent"
-                android:layout_height="40sp"
-                android:layout_marginTop="25dp"
+                android:layout_height="35sp"
+                android:layout_marginTop="5dp"
                 android:background="@drawable/spinner_bg"
                 android:ems="10"
                 android:hint="Floor Number"
                 android:popupBackground="@drawable/trans_spinner_bg" />
+            
+            <TextView
+                android:id="@+id/textViewUserAnswer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:layout_marginTop="10dp"
+                android:text="Answer"
+                android:textColor="#000000"
+                android:textSize="16sp" />
 
             <EditText
                 android:id="@+id/editTextAnswer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:background="@drawable/trans_edittext_bg"
+                android:layout_marginTop="3dp"
                 android:ems="10"
-                android:hint="answer"
-                android:padding="10dp"
+                android:padding="5dp"
                 android:inputType="textCapSentences"
-                android:textColor="@color/text_color"
-                android:textColorHint="@color/text_hint_color" />
+                android:textColor="#000000"/>
         </LinearLayout>
     </ScrollView>
 

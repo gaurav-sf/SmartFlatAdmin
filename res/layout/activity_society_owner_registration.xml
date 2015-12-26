@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background_image"
+    android:background="@drawable/building"
     android:padding="20sp" >
 
     <LinearLayout
@@ -34,38 +34,51 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical" >
+            
+            <TextView
+                android:id="@+id/textViewUserName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:layout_marginTop="10dp"
+                android:text="Name"
+                android:textColor="#000000"
+                android:textSize="16sp" />
 
             <EditText
                 android:id="@+id/editTextName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/trans_edittext_bg"
                 android:ems="10"
-                android:hint="Name"
                 android:inputType="textCapWords"
                 android:padding="5dp"
-                android:textColor="@color/text_color"
-                android:textColorHint="@color/text_hint_color" />
+                android:layout_marginTop="3dp"
+                android:textColor="#000000"/>
+            
+            <TextView
+                android:id="@+id/textViewUserDOB"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:layout_marginTop="10dp"
+                android:text="DOB"
+                android:textColor="#000000"
+                android:textSize="16sp" />
 
             <EditText
                 android:id="@+id/editTextDOB"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/trans_edittext_bg"
+                android:layout_marginTop="3dp"
                 android:ems="10"
-                android:hint="DOB"
                 android:padding="5dp"
-                android:textColor="@color/text_color"
-                android:textColorHint="@color/text_hint_color" />
+                android:textColor="#000000"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:background="@drawable/trans_edittext_bg"
-                android:orientation="vertical"
-                android:padding="5dp" >
+                android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/textView2"
@@ -74,7 +87,7 @@
                     android:layout_marginLeft="5dp"
                     android:layout_marginTop="5dp"
                     android:text="Gender"
-                    android:textColor="@color/text_color" />
+                    android:textColor="#000000" />
 
                 <RadioGroup
                     android:id="@+id/RadioGroupGender"
@@ -91,7 +104,7 @@
                         android:checked="true"
                         android:button="@drawable/custom_radio_button"
                         android:text="Male"
-                        android:textColor="@color/text_color" />
+                        android:textColor="#000000" />
 
                     <RadioButton
                         android:id="@+id/radioButtonFemale"
@@ -100,104 +113,153 @@
                         android:layout_weight="1"
                         android:text="Female"
                         android:button="@drawable/custom_radio_button"
-                        android:textColor="@color/text_color" />
+                        android:textColor="#000000" />
                 </RadioGroup>
             </LinearLayout>
+            
+            <TextView
+                android:id="@+id/textViewContactNo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:layout_marginTop="10dp"
+                android:text="Contact no"
+                android:textColor="#000000"
+                android:textSize="16sp" />
 
             <EditText
                 android:id="@+id/editTextContactNo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/trans_edittext_bg"
+                android:layout_marginTop="3dp"
                 android:ems="10"
-                android:hint="Contact Number"
                 android:inputType="number"
                 android:padding="5dp"
                 android:maxLength="10"
-                android:textColor="@color/text_color"
-                android:textColorHint="@color/text_hint_color" />
+                android:textColor="#000000" />
+            
+            <TextView
+                android:id="@+id/textViewEmailId"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:layout_marginTop="10dp"
+                android:text="Email id"
+                android:textColor="#000000"
+                android:textSize="16sp" />
 
             <EditText
                 android:id="@+id/editTextEmailId"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/trans_edittext_bg"
+                android:layout_marginTop="3dp"
                 android:ems="10"
-                android:hint="Email id"
                 android:inputType="textEmailAddress"
                 android:padding="5dp"
-                android:textColor="@color/text_color"
-                android:textColorHint="@color/text_hint_color" />
+                android:textColor="#000000"/>
+            
+            <TextView
+                android:id="@+id/textViewAddressLine1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:layout_marginTop="10dp"
+                android:text="Address line 1"
+                android:textColor="#000000"
+                android:textSize="16sp" />
 
             <EditText
                 android:id="@+id/editTextAddressLine1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/trans_edittext_bg"
+                android:layout_marginTop="3dp"
                 android:ems="10"
-                android:hint="Address Line 1"
                 android:inputType="textCapSentences|textMultiLine"
                 android:maxLines="3"
                 android:padding="5dp"
-                android:textColor="@color/text_color"
-                android:textColorHint="@color/text_hint_color" />
+                android:textColor="#000000"/>
+            
+            <TextView
+                android:id="@+id/textViewAddressLine2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:layout_marginTop="10dp"
+                android:text="Address line 2"
+                android:textColor="#000000"
+                android:textSize="16sp" />
 
             <EditText
                 android:id="@+id/editTextAddressLine2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/trans_edittext_bg"
+                android:layout_marginTop="3dp"
                 android:ems="10"
-                android:hint="Address Line 2"
                 android:inputType="textCapSentences|textMultiLine"
                 android:maxLines="3"
                 android:padding="5dp"
-                android:textColor="@color/text_color"
-                android:textColorHint="@color/text_hint_color" />
+                android:textColor="#000000"/>
+            
+            <TextView
+                android:id="@+id/textViewCity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:layout_marginTop="10dp"
+                android:text="City"
+                android:textColor="#000000"
+                android:textSize="16sp" />
 
             <EditText
                 android:id="@+id/editTextCity"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/trans_edittext_bg"
+                android:layout_marginTop="3dp"
                 android:ems="10"
-                android:hint="City"
                 android:inputType="textCapSentences"
                 android:padding="5dp"
-                android:textColor="@color/text_color"
-                android:textColorHint="@color/text_hint_color" />
+                android:textColor="#000000" />
+            <TextView
+                android:id="@+id/textViewState"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:layout_marginTop="10dp"
+                android:text="State"
+                android:textColor="#000000"
+                android:textSize="16sp" />
 
             <EditText
                 android:id="@+id/editTextState"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/trans_edittext_bg"
+                android:layout_marginTop="3dp"
                 android:ems="10"
                 android:inputType="textCapSentences"
-                android:hint="State"
                 android:padding="5dp"
-                android:textColor="@color/text_color"
-                android:textColorHint="@color/text_hint_color" />
+                android:textColor="#000000"/>
+            
+            <TextView
+                android:id="@+id/textViewPin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:layout_marginTop="10dp"
+                android:text="Pin code"
+                android:textColor="#000000"
+                android:textSize="16sp" />
 
             <EditText
                 android:id="@+id/editTextPin"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:background="@drawable/trans_edittext_bg"
                 android:ems="10"
                 android:hint="PIN Code"
                 android:inputType="number"
                 android:maxLength="6"
                 android:padding="5dp"
-                android:textColor="@color/text_color"
-                android:textColorHint="@color/text_hint_color" />
+                android:textColor="#000000" />
         </LinearLayout>
     </ScrollView>
 

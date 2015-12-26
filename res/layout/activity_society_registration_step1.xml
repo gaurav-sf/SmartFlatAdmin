@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background_image"
+    android:background="@drawable/building"
     android:padding="20sp" >
 
     <LinearLayout
@@ -28,7 +28,6 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/buttonNext"
         android:layout_below="@+id/container"
-        android:layout_marginTop="20dp"
         android:padding="5dp"
         android:paddingBottom="10dp" >
 
@@ -36,86 +35,129 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical" >
+            
+            <TextView
+                android:id="@+id/textViewSocietyName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:layout_marginTop="10dp"
+                android:text="Society name"
+                android:textColor="#000000"
+                android:textSize="16sp" />
 
             <EditText
                 android:id="@+id/editTextSocietyName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/trans_edittext_bg"
                 android:ems="10"
-                android:hint="Society Name"
                 android:inputType="textCapWords"
                 android:padding="5dp"
-                android:textColor="@color/text_color"
-                android:textColorHint="@color/text_hint_color" />
+                android:textColor="#000000"
+                android:layout_marginTop="3dp"/>
+            
+            <TextView
+                android:id="@+id/textViewAddressLine1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:layout_marginTop="10dp"
+                android:text="City"
+                android:textColor="#000000"
+                android:textSize="16sp" />
 
             <EditText
                 android:id="@+id/editTextAddressLine1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/trans_edittext_bg"
+                android:layout_marginTop="3dp"
                 android:ems="10"
-                android:hint="Address Line 1"
                 android:inputType="textCapSentences|textMultiLine"
                 android:maxLines="3"
                 android:padding="5dp"
-                android:textColor="@color/text_color"
-                android:textColorHint="@color/text_hint_color" />
+                android:textColor="#000000"/>
+            
+            <TextView
+                android:id="@+id/textViewAddressLine2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:layout_marginTop="10dp"
+                android:text="Address Line 2"
+                android:textColor="#000000"
+                android:textSize="16sp" />
 
             <EditText
                 android:id="@+id/editTextAddressLine2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/trans_edittext_bg"
+                android:layout_marginTop="3dp"
                 android:ems="10"
-                android:hint="Address Line 2"
                 android:inputType="textCapSentences|textMultiLine"
                 android:maxLines="3"
                 android:padding="5dp"
-                android:textColor="@color/text_color"
-                android:textColorHint="@color/text_hint_color" />
+                android:textColor="#000000" />
+            
+            <TextView
+                android:id="@+id/textViewCity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:layout_marginTop="10dp"
+                android:text="Address Line 2"
+                android:textColor="#000000"
+                android:textSize="16sp" />
 
             <EditText
                 android:id="@+id/editTextCity"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/trans_edittext_bg"
+                android:layout_marginTop="3dp"
                 android:ems="10"
-                android:hint="City"
                 android:inputType="textCapSentences"
                 android:padding="5dp"
-                android:textColor="@color/text_color"
-                android:textColorHint="@color/text_hint_color" />
+                android:textColor="#000000"/>
 
+            <TextView
+                android:id="@+id/textViewState"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:layout_marginTop="10dp"
+                android:text="City"
+                android:textColor="#000000"
+                android:textSize="16sp" />
+            
             <EditText
                 android:id="@+id/editTextState"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:background="@drawable/trans_edittext_bg"
                 android:ems="10"
-                android:hint="State"
                 android:inputType="textCapSentences"
                 android:padding="5dp"
-                android:textColor="@color/text_color"
-                android:textColorHint="@color/text_hint_color" />
+                android:textColor="#000000"/>
+            
+            <TextView
+                android:id="@+id/textViewPin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:layout_marginTop="10dp"
+                android:text="Pin code"
+                android:textColor="#000000"
+                android:textSize="16sp" />
 
             <EditText
                 android:id="@+id/editTextPin"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:background="@drawable/trans_edittext_bg"
                 android:ems="10"
-                android:hint="PIN Code"
                 android:inputType="number"
                 android:padding="5dp"
                 android:maxLength="6"
-                android:textColor="@color/text_color"
-                android:textColorHint="@color/text_hint_color" />
+                android:textColor="#000000"/>
 
             <LinearLayout
                 android:id="@+id/layoutEditTextContainer"
@@ -124,17 +166,26 @@
                 android:layout_marginTop="10dp"
                 android:orientation="vertical" >
 
+                <TextView
+                android:id="@+id/textViewBuildingName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:layout_marginTop="10dp"
+                android:text="City"
+                android:textColor="#000000"
+                android:textSize="16sp" />
+                
                 <EditText
                     android:id="@+id/editTextBuildingName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/trans_edittext_bg"
                     android:ems="10"
+                    android:layout_marginTop="3dp"
                     android:hint="Building Name"
                     android:inputType="textCapSentences"
                     android:padding="5dp"
-                    android:textColor="@color/text_color"
-                    android:textColorHint="@color/text_hint_color" />
+                    android:textColor="#000000" />
             </LinearLayout>
 
             <Button
@@ -147,6 +198,16 @@
                 android:ems="2"
                 android:text="Add"
                 android:textColor="@drawable/btn_text_color" />
+            
+            <TextView
+                android:id="@+id/textViewTotalFloors"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:layout_marginTop="10dp"
+                android:text="Total floors"
+                android:textColor="#000000"
+                android:textSize="16sp" />
 
             <EditText
                 android:id="@+id/editTextTotalFloors"
@@ -159,7 +220,7 @@
                 android:inputType="number"
                 android:padding="5dp"
                 android:maxLength="2"
-                android:textColor="@color/text_color"
+                android:textColor="#000000"
                 android:textColorHint="@color/text_hint_color" />
         </LinearLayout>
     </ScrollView>
