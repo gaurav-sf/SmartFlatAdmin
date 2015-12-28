@@ -8,6 +8,7 @@ import com.grs.product.smartflatAdmin.database.SmartFlatAdminDBTables.TableReque
 import com.grs.product.smartflatAdmin.database.SmartFlatAdminDBTables.TableSocietyDetails;
 import com.grs.product.smartflatAdmin.database.SmartFlatAdminDBTables.TableSocietyNotices;
 import com.grs.product.smartflatAdmin.database.SmartFlatAdminDBTables.TableSocietyOwnerDetails;
+import com.grs.product.smartflatAdmin.database.SmartFlatAdminDBTables.TableSocietyPollDetails;
 import com.grs.product.smartflatAdmin.database.SmartFlatAdminDBTables.TableVisitorDetails;
 
 
@@ -142,4 +143,22 @@ public class SmartFlatAdminDBTableCreation {
 			+ TableVisitorDetails.FLAT_OWNER_CODE + " TEXT, "
 			+ TableVisitorDetails.SOCIETY_CODE + " TEXT, "
 			+ TableVisitorDetails.IS_OFFLINE_ENTRY + " BOOLEAN);";
+	
+	public static final String TABLE_SOCIETY_POLL_DETAILS = "Create table if not exists "+TableNames.SOCIETY_POLL_DETAILS
+			+"( "
+			+ TableSocietyPollDetails.ID + " INTEGER PRIMARY KEY, "
+			+ TableSocietyPollDetails.POLL_ID + " TEXT, "
+			+ TableSocietyPollDetails.POLL_TOPIC + " TEXT, "
+			+ TableSocietyPollDetails.POLL_TOPIC_DETAILS + " TEXT, "
+			+ TableSocietyPollDetails.POLL_OPTION_1 + " TEXT, "
+			+ TableSocietyPollDetails.POLL_OPTION_2 + " TEXT, "
+			+ TableSocietyPollDetails.POLL_OPTION_3 + " TEXT, "
+			+ TableSocietyPollDetails.POLL_OPTION_4 + " TEXT, "
+			+ TableSocietyPollDetails.POLL_DURATION + " TEXT, "
+			+ TableSocietyPollDetails.POLL_OPTION_1_UPVOTED_FLAT_OWNER + " TEXT, "
+			+ TableSocietyPollDetails.POLL_OPTION_2_UPVOTED_FLAT_OWNER + " TEXT, "
+			+ TableSocietyPollDetails.POLL_OPTION_3_UPVOTED_FLAT_OWNER + " TEXT, "
+			+ TableSocietyPollDetails.POLL_OPTION_4_UPVOTED_FLAT_OWNER + " TEXT, "
+			+ TableSocietyPollDetails.POLL_CREATED_BY + " TEXT, "
+			+ TableSocietyPollDetails.POLL_CREATED_DATETIME + " TEXT);";
 	}

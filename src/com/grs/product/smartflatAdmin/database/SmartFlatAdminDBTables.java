@@ -19,6 +19,7 @@ public class SmartFlatAdminDBTables {
 		public static final String CONTACT_DETAILS = "Contact_Details";
 		public static final String MESSAGE_DETAILS = "Message_Details";
 		public static final String VISITOR_DETAILS = "Visitor_Details";
+		public static final String SOCIETY_POLL_DETAILS = "Society_Poll_Details";
 		
 	}
 
@@ -171,6 +172,25 @@ public class SmartFlatAdminDBTables {
 		public static final String VISITOR_EXPECTED_ARRIVE_TIME_FROM = "Visitor_Expected_Arrive_Time_from";
 		public static final String VISITOR_EXPECTED_ARRIVE_TIME_TO = "Visitor_Expected_Arrive_Time_to";
 */
+	}
+	
+	public static final class TableSocietyPollDetails implements BaseColumns{
+		private TableSocietyPollDetails(){}
+		public static final String ID = "ID";
+		public static final String POLL_ID = "Poll_Id";
+		public static final String POLL_TOPIC = "Poll_Topic";
+		public static final String POLL_TOPIC_DETAILS = "Poll_Topic_Details";
+		public static final String POLL_OPTION_1 = "Poll_Option_1";
+		public static final String POLL_OPTION_2 = "Poll_Option_2";
+		public static final String POLL_OPTION_3 = "Poll_Option_3";
+		public static final String POLL_OPTION_4 = "Poll_Option_4";
+		public static final String POLL_DURATION = "Poll_Duration";
+		public static final String POLL_OPTION_1_UPVOTED_FLAT_OWNER = "Poll_Option_1_Upvoted_Flat_Owner";
+		public static final String POLL_OPTION_2_UPVOTED_FLAT_OWNER = "Poll_Option_2_Upvoted_Flat_Owner";
+		public static final String POLL_OPTION_3_UPVOTED_FLAT_OWNER = "Poll_Option_3_Upvoted_Flat_Owner";
+		public static final String POLL_OPTION_4_UPVOTED_FLAT_OWNER = "Poll_Option_4_Upvoted_Flat_Owner";
+		public static final String POLL_CREATED_DATETIME = "Poll_Created_DateTime";
+		public static final String POLL_CREATED_BY = "Poll_Created_By";		
 	}
 
 }

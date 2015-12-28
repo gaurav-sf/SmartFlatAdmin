@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="20dp" >
+
+    <TextView
+        android:id="@+id/textViewPollTopic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Topic"
+        android:textColor="#5d5c5c"
+        android:textSize="18sp" />
+
+    <EditText
+        android:id="@+id/editTextPollTopic"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="3dp"
+        android:background="@drawable/edittext_bg"
+        android:ems="10"
+        android:inputType="none"
+        android:padding="8sp" />
+
+    <TextView
+        android:id="@+id/textViewDetails"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Details :"
+        android:textColor="#5d5c5c"
+        android:textSize="18sp" />
+
+    <EditText
+        android:id="@+id/editTextDetails"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/edittext_bg"
+        android:ems="10"
+        android:inputType="textCapSentences"
+        android:padding="5dp" />
+<TextView
+        android:id="@+id/textViewOptions"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Options :"
+        android:textColor="#5d5c5c"
+        android:textSize="18sp" />
+
+    <LinearLayout
+        android:id="@+id/layoutEditTextContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/edittext_bg"
+        android:orientation="vertical" >
+
+        <EditText
+            android:id="@+id/editTextPollOption1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/edittext_bg"
+            android:ems="10"
+            android:hint="Option one"
+            android:inputType="textCapSentences" />
+
+        <EditText
+            android:id="@+id/editTextPollOption2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/edittext_bg"
+            android:ems="10"
+            android:hint="Option two"
+            android:inputType="textCapSentences"
+            android:layout_gravity="center" />
+
+        <EditText
+            android:id="@+id/editTextPollOption3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/edittext_bg"
+            android:ems="10"
+            android:hint="Option three"
+            android:inputType="textCapSentences" 
+            android:layout_gravity="center"
+            android:visibility="gone"/>
+
+        <EditText
+            android:id="@+id/editTextPollOption4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/edittext_bg"
+            android:ems="10"
+            android:hint="Option four"
+            android:inputType="textCapSentences" 
+            android:layout_gravity="center"
+            android:visibility="gone"/>
+        
+            <Button
+        android:id="@+id/buttonAddEditText"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:layout_gravity="right"
+        android:layout_margin="5dp"
+        android:background="@drawable/btnbg"
+        android:text="Add option"
+        android:textSize="10dp"
+        android:textColor="@drawable/btn_text_color" />
+    </LinearLayout>
+    
+        <TextView
+        android:id="@+id/textViewPollDuration"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Poll duration :"
+        android:textColor="#5d5c5c"
+        android:textSize="18sp" />
+
+    <EditText
+        android:id="@+id/editTextPollDuration"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/edittext_bg"
+        android:ems="10"
+        android:hint="Max 30 days"
+        android:inputType="textCapSentences"
+        android:padding="5dp" />
+    
+
+                <Button
+        android:id="@+id/buttonPostPoll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/btnbg"
+        android:text="Post"
+        android:textColor="@drawable/btn_text_color" />
+
+
+</LinearLayout>
