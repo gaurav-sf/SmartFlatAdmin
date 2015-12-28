@@ -50,5 +50,6 @@
     <string name="text_vehicle">Vehicle</string>
     <string name="text_user_details">User Details</string>
     <string name="text_visitors">Visitors</string>
-
+ 	<string name="text_polls">Polls</string>
+    <string name="text_add_new">Add New</string>
 </resources>

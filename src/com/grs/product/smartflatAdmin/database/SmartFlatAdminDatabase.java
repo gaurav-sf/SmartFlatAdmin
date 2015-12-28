@@ -23,6 +23,7 @@ import com.grs.product.smartflatAdmin.database.SmartFlatAdminDBTables.TableReque
 import com.grs.product.smartflatAdmin.database.SmartFlatAdminDBTables.TableSocietyDetails;
 import com.grs.product.smartflatAdmin.database.SmartFlatAdminDBTables.TableSocietyNotices;
 import com.grs.product.smartflatAdmin.database.SmartFlatAdminDBTables.TableSocietyOwnerDetails;
+import com.grs.product.smartflatAdmin.database.SmartFlatAdminDBTables.TableSocietyPollDetails;
 import com.grs.product.smartflatAdmin.database.SmartFlatAdminDBTables.TableVisitorDetails;
 import com.grs.product.smartflatAdmin.models.ContactDetails;
 import com.grs.product.smartflatAdmin.models.FlatOwnerDetails;
@@ -31,6 +32,7 @@ import com.grs.product.smartflatAdmin.models.RequestDetails;
 import com.grs.product.smartflatAdmin.models.RequestMessages;
 import com.grs.product.smartflatAdmin.models.SocietyDetails;
 import com.grs.product.smartflatAdmin.models.SocietyOwnerDetails;
+import com.grs.product.smartflatAdmin.models.SocietyPollDetails;
 import com.grs.product.smartflatAdmin.models.VisitorDetails;
 
 public class SmartFlatAdminDatabase {
@@ -210,6 +212,18 @@ public class SmartFlatAdminDatabase {
 			db.endTransaction();
 		}	
 	}
+	
+	private void createSocietyPollDetailsTable(SQLiteDatabase db){
+		try {
+			db.beginTransaction();
+			db.execSQL(SmartFlatAdminDBTableCreation.TABLE_SOCIETY_POLL_DETAILS);
+			db.setTransactionSuccessful();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally{
+			db.endTransaction();
+		}	
+	}
 
 
 	//inner class
@@ -233,6 +247,7 @@ public class SmartFlatAdminDatabase {
 				createContactDetailsTable(db);
 				createMessageDetailsTable(db);
 				createVisitorDetailsTable(db);
+				createSocietyPollDetailsTable(db);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -1077,6 +1092,45 @@ public Cursor getAllNoticeForFlatOwner(String flatOwnerCode){
 
 public Cursor getNoticeDetails(String noticeNumber){
 	String selectQuery = "SELECT  * FROM " + TableNames.SOCIETY_NOTICES + " WHERE " + TableSocietyNotices.NOTICE_NUMBER +"= '"+ noticeNumber+"'";
+	Cursor cursor = mDb.rawQuery(selectQuery, null);	
+	if (cursor != null && cursor.getCount()>0) {
+		cursor.moveToNext();
+	}
+	return cursor;			
+}
+
+public boolean saveSocietyPoll(SocietyPollDetails societyPollDetails){
+	boolean isAdded = false;
+	ContentValues values = new ContentValues();		
+	values.put(TableSocietyPollDetails.POLL_ID, societyPollDetails.getmPollId());
+	values.put(TableSocietyPollDetails.POLL_TOPIC, societyPollDetails.getmPollTopic());
+	values.put(TableSocietyPollDetails.POLL_TOPIC_DETAILS, societyPollDetails.getmPollTopicDetails());
+	values.put(TableSocietyPollDetails.POLL_OPTION_1, societyPollDetails.getmPollOption1());
+	values.put(TableSocietyPollDetails.POLL_OPTION_2, societyPollDetails.getmPollOption2());
+	values.put(TableSocietyPollDetails.POLL_OPTION_3, societyPollDetails.getmPollOption3());
+	values.put(TableSocietyPollDetails.POLL_OPTION_4, societyPollDetails.getmPollOption4());
+	values.put(TableSocietyPollDetails.POLL_DURATION, societyPollDetails.getmPollDuration());
+	values.put(TableSocietyPollDetails.POLL_CREATED_BY, societyPollDetails.getmPollCreatedBy());
+	values.put(TableSocietyPollDetails.POLL_CREATED_DATETIME, societyPollDetails.getmPollCreatedDateTime());
+		
+	try {			
+		if(getSinglePoll(societyPollDetails.getmPollId()).getCount()<=0)
+	{
+		mDb.beginTransaction();
+		isAdded = mDb.insert(TableNames.SOCIETY_POLL_DETAILS, null, values) > 0;
+		mDb.setTransactionSuccessful();
+		mDb.endTransaction();
+	}
+	} catch (Exception e) {
+		Log.e("Error in transaction", e.toString());
+	} finally {
+		//mDb.endTransaction();
+	}	
+	return isAdded;
+}
+
+private Cursor getSinglePoll(String pollId){
+	String selectQuery = "SELECT  * FROM " + TableNames.SOCIETY_POLL_DETAILS + " WHERE " + TableSocietyPollDetails.POLL_ID+"= '"+ pollId+"'";
 	Cursor cursor = mDb.rawQuery(selectQuery, null);	
 	if (cursor != null && cursor.getCount()>0) {
 		cursor.moveToNext();

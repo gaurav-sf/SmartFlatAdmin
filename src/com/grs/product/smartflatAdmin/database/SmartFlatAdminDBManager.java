@@ -8,6 +8,7 @@ import com.grs.product.smartflatAdmin.models.RequestDetails;
 import com.grs.product.smartflatAdmin.models.RequestMessages;
 import com.grs.product.smartflatAdmin.models.SocietyDetails;
 import com.grs.product.smartflatAdmin.models.SocietyOwnerDetails;
+import com.grs.product.smartflatAdmin.models.SocietyPollDetails;
 import com.grs.product.smartflatAdmin.models.VisitorDetails;
 
 
@@ -321,6 +322,14 @@ public class SmartFlatAdminDBManager {
 		Cursor details = SmartFlatAdminDatabase.getInstance().getNoticeDetails(noticeNumber);
 		SmartFlatAdminDatabase.getInstance().close();
 		return details;
+	}
+	
+	public boolean saveSocietyPoll(SocietyPollDetails societyPollDetails){
+		boolean isAdded = false;
+		SmartFlatAdminDatabase.getInstance().open();
+		isAdded = SmartFlatAdminDatabase.getInstance().saveSocietyPoll(societyPollDetails);
+		SmartFlatAdminDatabase.getInstance().close();
+		return isAdded;
 	}
 	
 }

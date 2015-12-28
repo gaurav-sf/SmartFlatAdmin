@@ -17,6 +17,7 @@ import com.grs.product.smartflatAdmin.models.RequestDetails;
 import com.grs.product.smartflatAdmin.models.RequestMessages;
 import com.grs.product.smartflatAdmin.models.SocietyDetails;
 import com.grs.product.smartflatAdmin.models.SocietyOwnerDetails;
+import com.grs.product.smartflatAdmin.models.SocietyPollDetails;
 import com.grs.product.smartflatAdmin.models.VisitorDetails;
 import com.grs.product.smartflatAdmin.response.Response;
 import com.grs.product.smartflatAdmin.utils.Param;
@@ -101,6 +102,12 @@ public class SmartFlatAdminAPI {
 			throws SmartFlatAdminError
 	{
 		return getSignOutCall();
+	}
+	
+	public Response getUploadSocietyPoll(SocietyPollDetails societyPollDetails)
+			throws SmartFlatAdminError
+	{
+		return getUploadSocietyPollCall(societyPollDetails);
 	}
 	
 
@@ -501,6 +508,38 @@ public class SmartFlatAdminAPI {
 
 			ServerConnecter serverConnecter = new ServerConnecter();
 			String URL = Param.baseURL + "signOutSocietyOwner.php";
+			JSONObject objJson = serverConnecter.getJSONFromUrl(URL, object);
+			JSONSingleObjectDecode objectjson = new JSONSingleObjectDecode();
+			return objectjson.getStatus(objJson);	
+
+		} 
+		catch (JSONException e) 
+		{
+			throw new SmartFlatAdminError("Server error occured. Please try again later", "Server Error");
+		}
+		catch (Exception e)
+		{
+			throw new SmartFlatAdminError("Please try again later", "Server Error");
+		}
+	}
+	
+	private Response getUploadSocietyPollCall(SocietyPollDetails societyPollDetails)
+			throws SmartFlatAdminError{
+		try{
+			ArrayList<NameValuePair> object = new ArrayList<NameValuePair>();
+			object.add(new BasicNameValuePair("pollTopic", societyPollDetails.getmPollTopic()));
+			object.add(new BasicNameValuePair("pollTopicDetails", societyPollDetails.getmPollTopicDetails()));
+			object.add(new BasicNameValuePair("pollOption1", societyPollDetails.getmPollOption1()));
+			object.add(new BasicNameValuePair("pollOption2", societyPollDetails.getmPollOption2()));
+			object.add(new BasicNameValuePair("pollOption3", societyPollDetails.getmPollOption3()));
+			object.add(new BasicNameValuePair("pollOption4", societyPollDetails.getmPollOption4()));
+			object.add(new BasicNameValuePair("pollDuration", societyPollDetails.getmPollDuration()));
+			object.add(new BasicNameValuePair("pollCreatedBy", societyPollDetails.getmPollCreatedBy()));
+			object.add(new BasicNameValuePair("pollCreatedDateTime", societyPollDetails.getmPollCreatedDateTime()));
+			object.add(new BasicNameValuePair("societyCode",SmartFlatAdminApplication.getSocietyCodeFromSharedPreferences()));
+
+			ServerConnecter serverConnecter = new ServerConnecter();
+			String URL = Param.baseURL+ "uploadSocietyPoll.php";
 			JSONObject objJson = serverConnecter.getJSONFromUrl(URL, object);
 			JSONSingleObjectDecode objectjson = new JSONSingleObjectDecode();
 			return objectjson.getStatus(objJson);	
