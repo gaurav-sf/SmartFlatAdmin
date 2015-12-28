@@ -13,6 +13,7 @@ import com.grs.product.smartflatAdmin.models.RequestDetails;
 import com.grs.product.smartflatAdmin.models.RequestMessages;
 import com.grs.product.smartflatAdmin.models.SocietyDetails;
 import com.grs.product.smartflatAdmin.models.SocietyOwnerDetails;
+import com.grs.product.smartflatAdmin.models.SocietyPollDetails;
 import com.grs.product.smartflatAdmin.models.VisitorDetails;
 import com.grs.product.smartflatAdmin.response.Response;
 
@@ -472,6 +473,49 @@ public class JSONSingleObjectDecode {
 			}
 		}
 	
+	}
+	
+	public List<SocietyPollDetails> getPolls(JSONObject json) throws JSONException 
+	{
+		JSONArray allPollsArray = new JSONArray(json.getString("allPolls"));
+		if(allPollsArray!=null && allPollsArray.length()>0)
+		{
+			if(allPollsArray.getString(0)==null||
+					allPollsArray.getString(0).equalsIgnoreCase(null)||
+					allPollsArray.getString(0).equalsIgnoreCase("null"))
+			{
+				return null;
+			}
+			List<SocietyPollDetails> listPolls= new ArrayList<SocietyPollDetails>();
+			for (int i = 0; i < allPollsArray.length(); i++) 
+			{
+				listPolls.add(getSinglePoll(allPollsArray.getJSONObject(i)));
+			}
+			return listPolls;
+		}
+		else{
+			return null;
+		}		
+	}
+	
+	private SocietyPollDetails getSinglePoll(JSONObject json)
+			throws JSONException{
+		SocietyPollDetails societyPollDetails = new SocietyPollDetails();
+		societyPollDetails.setmPollId(json.getString("Poll_ID"));
+		societyPollDetails.setmPollTopic(json.getString("Poll_Topic"));
+		societyPollDetails.setmPollTopicDetails(json.getString("Poll_Topic_Details"));
+		societyPollDetails.setmPollOption1(json.getString("Poll_Option_1"));
+		societyPollDetails.setmPollOption2(json.getString("Poll_Option_2"));
+		societyPollDetails.setmPollOption3(json.getString("Poll_Option_3"));
+		societyPollDetails.setmPollOption4(json.getString("Poll_Option_4"));
+		societyPollDetails.setmPollCreatedBy(json.getString("Poll_Created_By"));
+		societyPollDetails.setmPollCreatedDateTime(json.getString("Poll_DateTime"));
+		societyPollDetails.setmPollDuration(json.getString("Poll_Duration"));
+		societyPollDetails.setmPollOption1UpvotedFlatOwner(json.getString("Poll_Option_1_Upvoted_Flat_Owner"));
+		societyPollDetails.setmPollOption2UpvotedFlatOwner(json.getString("Poll_Option_2_Upvoted_Flat_Owner"));
+		societyPollDetails.setmPollOption3UpvotedFlatOwner(json.getString("Poll_Option_3_Upvoted_Flat_Owner"));
+		societyPollDetails.setmPollOption4UpvotedFlatOwner(json.getString("Poll_Option_4_Upvoted_Flat_Owner"));
+		return societyPollDetails;
 	}
 	
 }

@@ -110,6 +110,11 @@ public class SmartFlatAdminAPI {
 		return getUploadSocietyPollCall(societyPollDetails);
 	}
 	
+	public List<SocietyPollDetails> getAllPolls()
+			throws SmartFlatAdminError
+	{
+		return getAllPollsCall();
+	}
 
 	private Response getRegistrationCall(SocietyDetails societyDetails, SocietyOwnerDetails societyOwnerDetails)
 			throws SmartFlatAdminError{
@@ -552,6 +557,31 @@ public class SmartFlatAdminAPI {
 		catch (Exception e)
 		{
 			throw new SmartFlatAdminError("Please try again later", "Server Error");
+		}
+	}
+	
+	private List<SocietyPollDetails> getAllPollsCall() 
+			throws SmartFlatAdminError
+	{
+		try
+		{
+			ArrayList<NameValuePair> object = new ArrayList<NameValuePair>();
+			object.add(new BasicNameValuePair("societyCode", SmartFlatAdminApplication.getSocietyCodeFromSharedPreferences()));
+
+			ServerConnecter obj = new ServerConnecter();
+			String URL = Param.baseURL + "getAllPolls.php";
+			JSONObject objJson = obj.getJSONFromUrl(URL, object);
+			JSONSingleObjectDecode objectjson = new JSONSingleObjectDecode();
+			return objectjson.getPolls(objJson);	
+
+		} 
+		catch (JSONException e) 
+		{
+			throw new SmartFlatAdminError("Server error occured. Please try again later", "Server Error");
+		}
+		catch (Exception e)
+		{
+			throw new SmartFlatAdminError("Server error occured. Please try again later", "Server Error");
 		}
 	}
 

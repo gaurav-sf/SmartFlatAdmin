@@ -69,56 +69,7 @@
                 android:padding="5sp"
                 android:textColor="@color/text_color"/>
 
-            <TextView
-                android:id="@+id/textViewLoginAsLabel"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="left"
-                android:layout_marginTop="10dp"
-                android:text="Login as"
-                android:textColor="#000000"
-                android:textSize="16sp" />
 
-            <RadioGroup
-                android:id="@+id/RadioGroupUserType"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="3dp"
-                android:orientation="horizontal"
-                android:padding="5dp" >
-
-                <RadioButton
-                    android:id="@+id/radioButtonOwner"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginLeft="10dp"
-                    android:layout_weight="1"
-                    android:button="@drawable/custom_radio_button"
-                    android:checked="true"
-                    android:text=" Owner"
-                    android:textColor="#000000" />
-
-                <RadioButton
-                    android:id="@+id/radioButtonFamilyMember"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_weight="1"
-                    android:button="@drawable/custom_radio_button"
-                    android:text=" Family Member"
-                    android:textColor="#000000" />
-
-                <RadioButton
-                    android:id="@+id/radioButtonTenant"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_weight="1"
-                    android:button="@drawable/custom_radio_button"
-                    android:text=" Tenant"
-                    android:textColor="#000000" />
-            </RadioGroup>
         </LinearLayout>
     </ScrollView>
 

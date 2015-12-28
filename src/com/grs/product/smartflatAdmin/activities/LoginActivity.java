@@ -60,7 +60,10 @@ public class LoginActivity extends Activity{
 			public void onClick(View v) {
 				//Intent i = new Intent(LoginActivity.this,DashBoardActivity.class);
 				//startActivity(i);
-				getLoginCall();
+				if (validateUIEntries()) {
+					getLoginCall();
+				}
+				
 			}
 		});
 		
@@ -83,6 +86,18 @@ public class LoginActivity extends Activity{
         		finish();	
 			*/}
 		});
+	}
+	
+	private boolean validateUIEntries(){
+		if(mEditTextUsername.getText().toString().equals("")){
+			mEditTextUsername.setError("Please enter username");
+			return false;
+		}
+		if(mEditTextPassword.getText().toString().equals("")){
+			mEditTextPassword.setError("Please enter password");
+			return false;
+		}
+		return true;
 	}
 	
 	private void getLoginCall(){
