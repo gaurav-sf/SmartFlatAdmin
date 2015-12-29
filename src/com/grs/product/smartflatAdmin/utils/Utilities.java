@@ -99,5 +99,18 @@ public class Utilities {
 	public static boolean isValidEmail(String email) {
 	        return !TextUtils.isEmpty(email) && android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches();
 	    }
+	public static String[] getAllStatesName(){
+		String[] state_name = {
+				"Andhra Pradesh (AP)","Arunachal Pradesh (AR)","Assam (AS)",
+				"Bihar (BR)","Chhattisgarh (CG)","Goa (GA)","Goa (GA)","Haryana (HR)",
+				"Himachal Pradesh (HP)","Jammu and Kashmir (JK)","Jharkhand (JH)",
+				"Karnataka (KA)","Kerala (KL)","Madhya Pradesh (MP)","Maharashtra (MH)",
+				"Manipur (MN)","Meghalaya (ML)","Mizoram (MZ)","Nagaland (NL)","Odisha(OR)",
+				"Punjab (PB)","Rajasthan (RJ)","Sikkim (SK)","Tamil Nadu (TN)","Tripura (TR)",
+				"Uttar Pradesh (UP)","Uttarakhand (UK)","West Bengal (WB)","Telangana",
+
+				};
+		return state_name;
+	}
 
 }
