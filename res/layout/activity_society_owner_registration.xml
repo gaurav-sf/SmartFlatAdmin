@@ -87,6 +87,7 @@
                     android:layout_marginLeft="5dp"
                     android:layout_marginTop="5dp"
                     android:text="Gender"
+                    android:textSize="16sp"
                     android:textColor="#000000" />
 
                 <RadioGroup
@@ -102,6 +103,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:checked="true"
+                        android:textSize="16sp"
                         android:button="@drawable/custom_radio_button"
                         android:text="Male"
                         android:textColor="#000000" />
@@ -112,6 +114,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="Female"
+                        android:textSize="16sp"
                         android:button="@drawable/custom_radio_button"
                         android:textColor="#000000" />
                 </RadioGroup>
@@ -255,7 +258,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:ems="10"
-                android:hint="PIN Code"
                 android:inputType="number"
                 android:maxLength="6"
                 android:padding="5dp"
