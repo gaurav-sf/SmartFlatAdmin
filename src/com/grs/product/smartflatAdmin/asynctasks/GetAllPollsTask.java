@@ -12,14 +12,14 @@ import com.grs.product.smartflatAdmin.error.SmartFlatAdminError;
 import com.grs.product.smartflatAdmin.models.FlatOwnerDetails;
 import com.grs.product.smartflatAdmin.models.SocietyPollDetails;
 
-public class getAllPollsTask extends AsyncTask<Void, Void, SmartFlatAdminError>{
+public class GetAllPollsTask extends AsyncTask<Void, Void, SmartFlatAdminError>{
 
 	private static final String TAG = SaveSocietyOwnerCredentialTask.class.getName();
 	final Context mContext;
 	private AsyncTaskCompleteListener<List<SocietyPollDetails>> listener = null;
-	List<SocietyPollDetails> listSocietyPollDetails;
+	private List<SocietyPollDetails> listSocietyPollDetails;
 	
-	public getAllPollsTask(Context mContext, 
+	public GetAllPollsTask(Context mContext, 
 			AsyncTaskCompleteListener<List<SocietyPollDetails>> listener) 
 	{
 		

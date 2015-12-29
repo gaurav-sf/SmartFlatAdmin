@@ -2,7 +2,6 @@ package com.grs.product.smartflatAdmin.fragments;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -10,14 +9,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
-
 import com.grs.product.smartflatAdmin.R;
+import com.grs.product.smartflatAdmin.adapter.SocietyPollListAdapter;
 import com.grs.product.smartflatAdmin.apicall.AsyncTaskCompleteListener;
-import com.grs.product.smartflatAdmin.asynctasks.UploadSocietyPollTask;
-import com.grs.product.smartflatAdmin.asynctasks.getAllPollsTask;
+import com.grs.product.smartflatAdmin.asynctasks.GetAllPollsTask;
 import com.grs.product.smartflatAdmin.error.SmartFlatAdminError;
-import com.grs.product.smartflatAdmin.fragments.AddNewPollFragment.UploadSocietyPollTaskListener;
-import com.grs.product.smartflatAdmin.models.FlatOwnerDetails;
 import com.grs.product.smartflatAdmin.models.SocietyPollDetails;
 import com.grs.product.smartflatAdmin.utils.CustomProgressDialog;
 import com.grs.product.smartflatAdmin.utils.NetworkDetector;
@@ -28,6 +24,7 @@ public class AllPollDetailsFragment  extends Fragment{
 	private SocietyPollDetails mSocietyPollDetails;
 	private List<SocietyPollDetails> mListSocietyPollDetails;
 	private ListView mListViewSocietyPollDetails;
+	private SocietyPollListAdapter mSocietyPollListAdapter;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -53,7 +50,7 @@ public class AllPollDetailsFragment  extends Fragment{
 		
 		if (NetworkDetector.init(getActivity()).isNetworkAvailable()) 
 		{
-			new getAllPollsTask(getActivity(),new getAllPollsTaskListener() )
+			new GetAllPollsTask(getActivity(),new getAllPollsTaskListener() )
 			.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
 		} 
 		else 
@@ -73,7 +70,8 @@ public class AllPollDetailsFragment  extends Fragment{
 		@Override
 		public void onTaskComplete(List<SocietyPollDetails> result) {
 			if(result!=null){
-				
+				mListSocietyPollDetails = result;
+				showDataInListView();
 			}
 		}
 
@@ -89,6 +87,10 @@ public class AllPollDetailsFragment  extends Fragment{
 			if (e!=null)
 			Utilities.ShowAlertBox(getActivity(), "Error", e.getMessage());	
 		}	
+	}
+	private void showDataInListView(){
+		mSocietyPollListAdapter = new SocietyPollListAdapter(getActivity(), mListSocietyPollDetails);
+		mListViewSocietyPollDetails.setAdapter(mSocietyPollListAdapter);
 	}
 
 }

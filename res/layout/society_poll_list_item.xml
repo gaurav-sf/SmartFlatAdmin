@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/edittext_bg"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/textViewLableTopic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:text="Topic : "
+        android:textColor="@color/black" />
+
+    <TextView
+        android:id="@+id/textViewTopic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="5dp"
+        android:text="Topic b jbjb gy fgbbubv   wbvub ubdbui  bvuy gdiytfguywfjvb vhb vus bv vbuigf be"
+        android:textColor="@color/black" />
+
+    <TextView
+        android:id="@+id/textViewLableDetails"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
+        android:text="Details : "
+        android:textColor="@color/black" />
+
+    <TextView
+        android:id="@+id/textViewDetails"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="5dp"
+        android:text="Topic b jbjb gy fgbbubv   wbvub ubdbui  bvuy gdiytfguywfjvb vhb vus bv vbuigf be"
+        android:textColor="@color/black" />
+
+    <RadioGroup
+        android:id="@+id/radioGroupOption"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:orientation="vertical" >
+
+        <RadioButton
+            android:id="@+id/radioButtonOptionOne"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@drawable/btnbg"
+            android:button="@null"
+            android:padding="3dp"
+            android:text="Option One"
+            android:textColor="@drawable/btn_text_color" />
+
+        <RadioButton
+            android:id="@+id/radioButtonOptionTwo"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="10dp"
+            android:layout_weight="1"
+            android:background="@drawable/btnbg"
+            android:button="@null"
+            android:padding="3dp"
+            android:text="Option Two"
+            android:textColor="@drawable/btn_text_color" />
+
+        <RadioButton
+            android:id="@+id/radioButtonOptionThree"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="10dp"
+            android:layout_weight="1"
+            android:background="@drawable/btnbg"
+            android:button="@null"
+            android:padding="3dp"
+            android:text="Option Three"
+            android:textColor="@drawable/btn_text_color" />
+
+        <RadioButton
+            android:id="@+id/radioButtonOptionFour"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="10dp"
+            android:layout_weight="1"
+            android:background="@drawable/btnbg"
+            android:button="@null"
+            android:padding="3dp"
+            android:text="Option Four"
+            android:textColor="@drawable/btn_text_color" />
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/buttonVote"
+        style="?android:attr/buttonBarButtonStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_gravity="right"
+        android:layout_marginBottom="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/btnbg"
+        android:text="VOTE"
+        android:textColor="@drawable/btn_text_color"
+        android:textStyle="bold" />
+
+</LinearLayout>
