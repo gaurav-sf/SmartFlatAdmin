@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background_image"
+    android:background="@drawable/building"
     android:padding="20sp" >
 
     <LinearLayout
@@ -42,19 +42,16 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
                 android:text="Name"
-                android:textColor="#5d5c5c"
+                android:textColor="@color/black"
                 android:textSize="16sp" />
 
             <EditText
                 android:id="@+id/editTextName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/trans_edittext_bg"
                 android:ems="10"
-                android:hint="Name"
                 android:padding="10sp"
-                android:textColor="@color/text_color"
-                android:textColorHint="@color/text_hint_color"
+                android:textColor="@color/black"
                 android:enabled="false" />
 
             <TextView
@@ -64,29 +61,21 @@
                 android:layout_marginLeft="5dp"
                 android:layout_marginTop="20dp"
                 android:text="DOB"
-                android:textColor="#5d5c5c"
+                android:textColor="@color/black"
                 android:textSize="16sp" />
 
             <EditText
                 android:id="@+id/editTextDOB"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/trans_edittext_bg"
                 android:ems="10"
-                android:hint="DOB --- dd/mm/yyyy"
                 android:padding="10sp"
-                android:textColor="@color/text_color"
-                android:textColorHint="@color/text_hint_color" 
+                android:textColor="@color/black"
                  android:enabled="false"/>
 
 
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:background="@drawable/trans_edittext_bg"
-                android:orientation="vertical" >
+            
 
                 <TextView
                     android:id="@+id/textViewGenderLabel"
@@ -95,7 +84,8 @@
                     android:layout_marginLeft="20dp"
                     android:layout_marginTop="20dp"
                     android:text="Gender"
-                    android:textColor="@color/white" />
+                    android:textSize="16sp"
+                    android:textColor="@color/black" />
 
                 <RadioGroup
                     android:id="@+id/RadioGroupGender"
@@ -113,7 +103,8 @@
                         android:layout_weight="1"
                         android:checked="true"
                         android:text="Male"
-                        android:textColor="@color/white"
+                        android:textSize="16sp"
+                        android:textColor="@color/black"
                         android:clickable="false"/>
 
                     <RadioButton
@@ -122,10 +113,10 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="Female"
-                        android:textColor="@color/white"
+                        android:textSize="16sp"
+                        android:textColor="@color/black"
                         android:clickable="false"/>
                 </RadioGroup>
-            </LinearLayout>
 
             <TextView
                 android:id="@+id/textViewContactNo"
@@ -134,20 +125,18 @@
                 android:layout_marginLeft="5dp"
                 android:layout_marginTop="20dp"
                 android:text="Contact Number"
-                android:textColor="#5d5c5c"
+                android:textColor="@color/black"
                 android:textSize="16sp" />
 
             <EditText
                 android:id="@+id/editTextContactNo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/trans_edittext_bg"
                 android:ems="10"
-                android:hint="Contact Number"
                 android:inputType="number"
+                android:maxLength="10"
                 android:padding="10sp"
-                android:textColor="@color/text_color"
-                android:textColorHint="@color/text_hint_color"
+                android:textColor="@color/black"
                  android:enabled="false" />
 
             <TextView
@@ -157,20 +146,17 @@
                 android:layout_marginLeft="5dp"
                 android:layout_marginTop="20dp"
                 android:text="Email Id"
-                android:textColor="#5d5c5c"
+                android:textColor="@color/black"
                 android:textSize="16sp" />
 
             <EditText
                 android:id="@+id/editTextEmailId"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/trans_edittext_bg"
                 android:ems="10"
-                android:hint="Email id"
                 android:inputType="textEmailAddress"
                 android:padding="10sp"
-                android:textColor="@color/text_color"
-                android:textColorHint="@color/text_hint_color" 
+                android:textColor="@color/black"
                  android:enabled="false"/>
 
             <TextView
@@ -180,7 +166,7 @@
                 android:layout_marginLeft="5dp"
                 android:layout_marginTop="20dp"
                 android:text="Building Name"
-                android:textColor="#5d5c5c"
+                android:textColor="@color/black"
                 android:textSize="16sp" />
 
             <Spinner
@@ -201,7 +187,7 @@
                 android:layout_marginLeft="5dp"
                 android:layout_marginTop="20dp"
                 android:text="Floor Number"
-                android:textColor="#5d5c5c"
+                android:textColor="@color/black"
                 android:textSize="16sp" />
 
             <Spinner
@@ -224,19 +210,16 @@
                 android:layout_marginLeft="5dp"
                 android:layout_marginTop="20dp"
                 android:text="Flat Number"
-                android:textColor="#5d5c5c"
+                android:textColor="@color/black"
                 android:textSize="16sp" />
 
             <EditText
                 android:id="@+id/editTextFlatNo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/trans_edittext_bg"
                 android:ems="10"
-                android:hint="Flat Number"
                 android:padding="10sp"
-                android:textColor="@color/text_color"
-                android:textColorHint="@color/text_hint_color" 
+                android:textColor="@color/black"
                  android:enabled="false"/>
         </LinearLayout>
     </ScrollView>
@@ -252,7 +235,7 @@
         <Button
             android:id="@+id/buttonEdit"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="35dp"
             android:layout_weight="1"
             android:background="@drawable/btnbg"
             android:text="EDIT"
@@ -263,7 +246,7 @@
         <Button
             android:id="@+id/buttonActivate"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="35dp"
             android:layout_marginLeft="20dp"
             android:layout_weight="1"
             android:background="@drawable/btnbg"

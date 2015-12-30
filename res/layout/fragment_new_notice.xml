@@ -16,15 +16,13 @@
             android:orientation="vertical"
             android:padding="20dp" >
 
-           
-
-                <TextView
-                    android:id="@+id/textViewTo"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="To,"
-                    android:textColor="#5d5c5c"
-                    android:textSize="18sp" />
+            <TextView
+                android:id="@+id/textViewTo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="To,"
+                android:textColor="#5d5c5c"
+                android:textSize="18sp" />
 
             <AutoCompleteTextView
                 android:id="@+id/autoCompleteTextViewTo"
@@ -32,22 +30,20 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:background="@drawable/edittext_bg"
-                android:ems="10"
-                android:hint="Enter Name"
                 android:completionThreshold="1"
+                android:ems="10"
                 android:padding="5dp" />
-            
-                                     <EditText
+
+            <EditText
                 android:id="@+id/editTextFlatOwnerName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="3dp"
                 android:background="@drawable/edittext_bg"
-                android:ems="10"
-                android:hint="To"
                 android:editable="false"
+                android:ems="10"
                 android:inputType="none"
-                android:padding="8sp"/>
+                android:padding="8sp" />
 
             <TextView
                 android:id="@+id/textViewSubject"
@@ -66,7 +62,6 @@
                 android:background="@drawable/edittext_bg"
                 android:ems="10"
                 android:inputType="textCapSentences"
-                android:hint="Enter Subject"
                 android:padding="5dp" />
 
             <EditText
@@ -76,11 +71,9 @@
                 android:layout_marginTop="10dp"
                 android:background="@drawable/edittext_bg"
                 android:ems="10"
-                android:inputType="textCapSentences"
                 android:gravity="top"
-                android:hint="Message"
+                android:inputType="textCapSentences"
                 android:padding="5dp" />
-
         </LinearLayout>
     </ScrollView>
 
@@ -92,8 +85,6 @@
         android:orientation="horizontal"
         android:weightSum="4" >
 
-        
-
         <Button
             android:id="@+id/buttonSaveAsDraft"
             style="?android:attr/buttonStyleSmall"
@@ -104,8 +95,8 @@
             android:background="@drawable/btnbg"
             android:text="Save as Draft"
             android:textColor="@drawable/btn_text_color"
-            android:textSize="12sp" 
-            android:visibility="invisible"/>
+            android:textSize="12sp"
+            android:visibility="invisible" />
 
         <Button
             android:id="@+id/buttonDeleteNotice"
@@ -130,9 +121,9 @@
             android:background="@drawable/btnbg"
             android:text="Send SMS"
             android:textColor="@drawable/btn_text_color"
-            android:textSize="12sp" 
-            android:visibility="invisible"/>
-        
+            android:textSize="12sp"
+            android:visibility="invisible" />
+
         <Button
             android:id="@+id/buttonSendNotice"
             style="?android:attr/buttonStyleSmall"

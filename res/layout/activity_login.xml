@@ -6,73 +6,6 @@
     android:orientation="vertical"
     android:paddingTop="20dp" >
 
-    
-
-    <ScrollView
-        android:id="@+id/scrollViewRegStep2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/buttonLogin"
-        android:layout_marginBottom="50dp"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp" >
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical" >
-
-            <ImageView
-        android:id="@+id/imageViewSmartFlatLogo"
-        android:layout_width="wrap_content"
-        android:layout_height="80dp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:src="@drawable/logo_smartflat" />
-            
-            <TextView
-                android:id="@+id/textViewUserNameLabel"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="left"
-                android:layout_marginTop="10dp"
-                android:text="Username"
-                android:textColor="#000000"
-                android:textSize="16sp" />
-
-            <EditText
-                android:id="@+id/editTextUsername"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:ems="10"
-                android:padding="5sp"
-                android:textColor="#000000"/>
-
-            <TextView
-                android:id="@+id/textViewPasswordLabel"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="left"
-                android:layout_marginTop="10dp"
-                android:text="Password"
-                android:textColor="#000000"
-                android:textSize="16sp" />
-
-            <EditText
-                android:id="@+id/editTextPassword"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:ems="10"
-                android:inputType="textPassword"
-                android:padding="5sp"
-                android:textColor="#000000"/>
-
-
-        </LinearLayout>
-    </ScrollView>
-
     <LinearLayout
         android:id="@+id/linearLayoutForForgetSignup"
         android:layout_width="match_parent"
@@ -114,5 +47,71 @@
         android:layout_marginRight="20dp"
         android:text="LOGIN"
         android:textColor="@drawable/btn_text_color" />
+
+    <ScrollView
+        android:id="@+id/scrollViewRegStep2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" 
+            android:layout_marginTop="50dp">
+
+            <ImageView
+                android:id="@+id/imageViewSmartFlatLogo"
+                android:layout_width="wrap_content"
+                android:layout_height="80dp"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/logo_smartflat" />
+
+            <TextView
+                android:id="@+id/textViewUserNameLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:layout_marginTop="20dp"
+                android:text="Username"
+                android:textColor="#000000"
+                android:textSize="16sp" />
+
+            <EditText
+                android:id="@+id/editTextUsername"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:ems="10"
+                android:padding="5sp"
+                android:textColor="#000000" >
+
+                <requestFocus />
+            </EditText>
+
+            <TextView
+                android:id="@+id/textViewPasswordLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:layout_marginTop="10dp"
+                android:text="Password"
+                android:textColor="#000000"
+                android:textSize="16sp" />
+
+            <EditText
+                android:id="@+id/editTextPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:ems="10"
+                android:inputType="textPassword"
+                android:padding="5sp"
+                android:textColor="#000000" />
+        </LinearLayout>
+    </ScrollView>
 
 </RelativeLayout>
