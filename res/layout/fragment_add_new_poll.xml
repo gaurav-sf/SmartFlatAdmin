@@ -9,7 +9,7 @@
         android:id="@+id/scrollView1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/buttonAddVisitor"
+        android:layout_above="@+id/buttonPostPoll"
         android:layout_alignParentTop="true"
         android:paddingBottom="5dp" >
 
