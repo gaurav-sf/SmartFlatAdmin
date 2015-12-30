@@ -5,6 +5,7 @@ import java.util.List;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,7 @@ import com.grs.product.smartflatAdmin.R;
 import com.grs.product.smartflatAdmin.adapter.SocietyPollListAdapter;
 import com.grs.product.smartflatAdmin.apicall.AsyncTaskCompleteListener;
 import com.grs.product.smartflatAdmin.asynctasks.GetAllPollsTask;
+import com.grs.product.smartflatAdmin.database.SmartFlatAdminDBManager;
 import com.grs.product.smartflatAdmin.error.SmartFlatAdminError;
 import com.grs.product.smartflatAdmin.models.SocietyPollDetails;
 import com.grs.product.smartflatAdmin.utils.CustomProgressDialog;
@@ -71,6 +73,7 @@ public class AllPollDetailsFragment  extends Fragment{
 		public void onTaskComplete(List<SocietyPollDetails> result) {
 			if(result!=null){
 				mListSocietyPollDetails = result;
+				saveSocietyPollInDB();
 				showDataInListView();
 			}
 		}
@@ -91,6 +94,16 @@ public class AllPollDetailsFragment  extends Fragment{
 	private void showDataInListView(){
 		mSocietyPollListAdapter = new SocietyPollListAdapter(getActivity(), mListSocietyPollDetails);
 		mListViewSocietyPollDetails.setAdapter(mSocietyPollListAdapter);
+	}
+	
+	private void saveSocietyPollInDB(){
+		SmartFlatAdminDBManager dbManager = new SmartFlatAdminDBManager();
+		for (int i = 0; i < mListSocietyPollDetails.size(); i++) {
+			boolean isAdded = dbManager.saveSocietyPoll(mSocietyPollDetails);
+			if (isAdded) {
+				Log.e("Poll Inserted", "Successfully");
+			}
+		}
 	}
 
 }

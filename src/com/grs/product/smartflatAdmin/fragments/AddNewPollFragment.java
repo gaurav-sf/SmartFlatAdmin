@@ -149,7 +149,8 @@ public class AddNewPollFragment extends Fragment{
 			{
 				if (result.getStatus().equalsIgnoreCase("success")) 
 				{
-					saveSocietyPollInDB(result.getMessage());				
+					Utilities.ShowAlertBox(getActivity(), "Message", "Poll uploaded successfully");
+					//saveSocietyPollInDB(result.getMessage());				
 				}else{
 
 				}

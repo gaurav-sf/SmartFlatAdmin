@@ -28,7 +28,7 @@ import com.grs.product.smartflatAdmin.utils.Utilities;
 public class SocietyPollListAdapter   extends BaseAdapter {
 	private Context context;
 	private List<SocietyPollDetails> listSocietyPollDetails = new ArrayList<SocietyPollDetails>();
-	SocietyPollDetails temp;
+	private SocietyPollDetails temp1 = null;
 	int position1;
 	String optionNumber = "";
 	
@@ -62,21 +62,11 @@ public class SocietyPollListAdapter   extends BaseAdapter {
 					.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 			rowView = infalInflater.inflate(R.layout.society_poll_list_item, null);
 		}
-		temp = listSocietyPollDetails.get(position);
+		SocietyPollDetails temp = listSocietyPollDetails.get(position);
 		TextView textViewTopic = (TextView) rowView.findViewById(R.id.textViewTopic);
 		textViewTopic.setText(temp.getmPollTopic());
 		TextView textViewDetails = (TextView) rowView.findViewById(R.id.textViewDetails);
 		textViewDetails.setText(temp.getmPollTopicDetails());
-		
-		Button buttonVote = (Button) rowView.findViewById(R.id.buttonVote);
-		if(temp.getmPollOption1UpvotedFlatOwner().contains(SmartFlatAdminApplication.getSocietyCodeFromSharedPreferences())
-				||temp.getmPollOption2UpvotedFlatOwner().contains(SmartFlatAdminApplication.getSocietyCodeFromSharedPreferences())
-				||temp.getmPollOption3UpvotedFlatOwner().contains(SmartFlatAdminApplication.getSocietyCodeFromSharedPreferences())
-				||temp.getmPollOption4UpvotedFlatOwner().contains(SmartFlatAdminApplication.getSocietyCodeFromSharedPreferences())){
-			buttonVote.setVisibility(View.GONE);
-		}
-		
-		
 		final RadioGroup radioGroupOption = (RadioGroup) rowView.findViewById(R.id.radioGroupOption);
 		final RadioButton radioButtonOptionOne = (RadioButton) rowView.findViewById(R.id.radioButtonOptionOne);
 		radioButtonOptionOne.setText(temp.getmPollOption1());
@@ -94,7 +84,13 @@ public class SocietyPollListAdapter   extends BaseAdapter {
 		}else{
 			radioButtonOptionFour.setText(temp.getmPollOption4());
 		}
-
+		Button buttonVote = (Button) rowView.findViewById(R.id.buttonVote);
+		if(temp.getmPollOption1UpvotedFlatOwner().contains(SmartFlatAdminApplication.getSocietyCodeFromSharedPreferences())
+				||temp.getmPollOption2UpvotedFlatOwner().contains(SmartFlatAdminApplication.getSocietyCodeFromSharedPreferences())
+				||temp.getmPollOption3UpvotedFlatOwner().contains(SmartFlatAdminApplication.getSocietyCodeFromSharedPreferences())
+				||temp.getmPollOption4UpvotedFlatOwner().contains(SmartFlatAdminApplication.getSocietyCodeFromSharedPreferences())){
+			buttonVote.setVisibility(View.GONE);
+		}
 		buttonVote.setOnClickListener(new OnClickListener() {
 			
 			@Override
@@ -125,9 +121,9 @@ public class SocietyPollListAdapter   extends BaseAdapter {
 					default:
 						break;
 					}
-					temp = listSocietyPollDetails.get(position);
+					temp1 = listSocietyPollDetails.get(position);
 					position1 = position;
-					uploadVote(temp,optionNumber);
+					uploadVote(temp1,optionNumber);
 				}			
 			}
 		});
@@ -162,8 +158,8 @@ public class SocietyPollListAdapter   extends BaseAdapter {
 				if (result.getStatus().equalsIgnoreCase("success")) 
 				{
 					Utilities.ShowAlertBox(context, "Message", "Vote Done");
-					calculatePollVote(temp);
-					listSocietyPollDetails.set(position1, temp);
+					calculatePollVote(temp1);
+					listSocietyPollDetails.set(position1, temp1);
 					notifyDataSetChanged();
 				}else{
 					Utilities.ShowAlertBox(context, "Message", "Vote Fail");	
@@ -189,17 +185,17 @@ public class SocietyPollListAdapter   extends BaseAdapter {
 		String[] getUsersVotedforOption2 = null;
 		String[] getUsersVotedforOption3=null;
 		String[] getUsersVotedforOption4=null;
-		if(!temp.getmPollOption1UpvotedFlatOwner().equalsIgnoreCase("")){
-			getUsersVotedforOption1 = temp.getmPollOption1UpvotedFlatOwner().replace("?", "").split("##"); 
+		if(!temp1.getmPollOption1UpvotedFlatOwner().equalsIgnoreCase("")){
+			getUsersVotedforOption1 = temp1.getmPollOption1UpvotedFlatOwner().replace("?", "").split("##"); 
 		}
-		if(!temp.getmPollOption2UpvotedFlatOwner().equalsIgnoreCase("")){
-			getUsersVotedforOption2 = temp.getmPollOption2UpvotedFlatOwner().replace("?", "").split("##"); 
+		if(!temp1.getmPollOption2UpvotedFlatOwner().equalsIgnoreCase("")){
+			getUsersVotedforOption2 = temp1.getmPollOption2UpvotedFlatOwner().replace("?", "").split("##"); 
 		}
-		if(!temp.getmPollOption3UpvotedFlatOwner().equalsIgnoreCase("")){
-			getUsersVotedforOption3 = temp.getmPollOption3UpvotedFlatOwner().replace("?", "").split("##"); 
+		if(!temp1.getmPollOption3UpvotedFlatOwner().equalsIgnoreCase("")){
+			getUsersVotedforOption3 = temp1.getmPollOption3UpvotedFlatOwner().replace("?", "").split("##"); 
 		}
-		if(!temp.getmPollOption4UpvotedFlatOwner().equalsIgnoreCase("")){
-			getUsersVotedforOption4 = temp.getmPollOption4UpvotedFlatOwner().replace("?", "").split("##"); 
+		if(!temp1.getmPollOption4UpvotedFlatOwner().equalsIgnoreCase("")){
+			getUsersVotedforOption4 = temp1.getmPollOption4UpvotedFlatOwner().replace("?", "").split("##"); 
 		}
 	
 		int totalUsersVoted = (getUsersVotedforOption1!=null?getUsersVotedforOption1.length:0) + (getUsersVotedforOption2!=null?getUsersVotedforOption2.length:0)+(getUsersVotedforOption3!=null?getUsersVotedforOption3.length:0)+(getUsersVotedforOption4!=null?getUsersVotedforOption4.length:0);
@@ -208,28 +204,38 @@ public class SocietyPollListAdapter   extends BaseAdapter {
 		{
 			double percentage = (getUsersVotedforOption1.length*100)/totalUsersVoted;
 			percentage = Math.round(percentage);
-			temp.setmPollOption1(temp.getmPollOption1()+"      "+percentage+"%");
+			temp1.setmPollOption1(temp1.getmPollOption1()+"      "+percentage+"%");
 		}
 		
 		if(getUsersVotedforOption2!=null&& getUsersVotedforOption2.length>0)
 		{
 			double percentage = (getUsersVotedforOption2.length*100)/totalUsersVoted;
 			percentage = Math.round(percentage);
-			temp.setmPollOption2(temp.getmPollOption2()+"      "+percentage+"%");
+			temp1.setmPollOption2(temp1.getmPollOption2()+"      "+percentage+"%");
 		}
 		
 		if(getUsersVotedforOption3!=null&& getUsersVotedforOption3.length>0)
 		{
 			double percentage = (getUsersVotedforOption3.length*100)/totalUsersVoted;
 			percentage = Math.round(percentage);
-			temp.setmPollOption3(temp.getmPollOption3()+"      "+percentage+"%");
+			temp1.setmPollOption3(temp1.getmPollOption3()+"      "+percentage+"%");
 		}
 		
 		if(getUsersVotedforOption4!=null&& getUsersVotedforOption4.length>0)
 		{
 			double percentage = (getUsersVotedforOption4.length*100)/totalUsersVoted;
 			percentage = Math.round(percentage);
-			temp.setmPollOption4(temp.getmPollOption4()+"      "+percentage+"%");
+			temp1.setmPollOption4(temp1.getmPollOption4()+"      "+percentage+"%");
+		}
+		
+		if(position1==1){
+			temp1.setmPollOption1UpvotedFlatOwner(temp1.getmPollOption1UpvotedFlatOwner()+"#?#"+SmartFlatAdminApplication.getSocietyCodeFromSharedPreferences());
+		}else if(position1==2){
+			temp1.setmPollOption2UpvotedFlatOwner(temp1.getmPollOption2UpvotedFlatOwner()+"#?#"+SmartFlatAdminApplication.getSocietyCodeFromSharedPreferences());
+		}else if(position1==3){
+			temp1.setmPollOption3UpvotedFlatOwner(temp1.getmPollOption3UpvotedFlatOwner()+"#?#"+SmartFlatAdminApplication.getSocietyCodeFromSharedPreferences());
+		}else if(position1==4){
+			temp1.setmPollOption4UpvotedFlatOwner(temp1.getmPollOption4UpvotedFlatOwner()+"#?#"+SmartFlatAdminApplication.getSocietyCodeFromSharedPreferences());
 		}
 	}	
 }
