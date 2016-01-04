@@ -13,7 +13,7 @@
         android:layout_alignParentTop="true"
         android:paddingBottom="5dp" >
 
-        <LinearLayout
+       <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical" >
@@ -49,12 +49,13 @@
             <Spinner
                 android:id="@+id/spinnerNoOfVisitors"
                 android:layout_width="match_parent"
-                android:layout_height="35sp"
+                android:layout_height="40sp"
                 android:layout_marginTop="5dp"
                 android:background="@drawable/spinner_bg"
-                android:ems="10"
-                android:hint="No Of Visitors"
-                android:popupBackground="@color/spinner_popup" />
+                android:ems="10"              
+                android:popupBackground="@drawable/trans_spinner_bg" />
+            
+
 
             <RadioGroup
                 android:id="@+id/radioGroupFlatType"
@@ -129,12 +130,11 @@
             <Spinner
                 android:id="@+id/spinnerBuildingName"
                 android:layout_width="match_parent"
-                android:layout_height="35sp"
+                android:layout_height="40sp"
                 android:layout_marginTop="5dp"
                 android:background="@drawable/spinner_bg"
                 android:ems="10"
-                android:hint="Building Name"
-                android:popupBackground="@color/spinner_popup" />
+                android:popupBackground="@drawable/trans_spinner_bg" />
 
             <TextView
                 android:id="@+id/textViewFloorNo"
@@ -149,12 +149,12 @@
             <Spinner
                 android:id="@+id/spinnerFloorNo"
                 android:layout_width="match_parent"
-                android:layout_height="35sp"
+                android:layout_height="40sp"
                 android:layout_marginTop="5dp"
                 android:background="@drawable/spinner_bg"
                 android:ems="10"
                 android:hint="Floor No"
-                android:popupBackground="@color/spinner_popup" />
+                android:popupBackground="@drawable/trans_spinner_bg" />
 
             <TextView
                 android:id="@+id/textViewFlatNo"

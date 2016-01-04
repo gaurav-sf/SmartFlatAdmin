@@ -182,7 +182,7 @@ public class NewNoticeFragment extends Fragment{
 		public View newView(Context context, Cursor cursor, ViewGroup parent) {
 	        final LayoutInflater inflater = LayoutInflater.from(context);
 	        final View view =
-	                inflater.inflate(android.R.layout.simple_dropdown_item_1line,
+	                inflater.inflate(R.layout.spinner_item,
 	                        parent, false);
 	       return view;
 	    }

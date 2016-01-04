@@ -145,8 +145,8 @@ public class NewVisitorFragment extends Fragment{
 		}	
 		//Create Adapter and set data to spinner building name
 		ArrayAdapter<String> adapterBuildingName = new ArrayAdapter<String>
-		(getActivity(), android.R.layout.simple_dropdown_item_1line, listBuilidingName);
-		adapterBuildingName.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);		
+		(getActivity(), R.layout.spinner_item, listBuilidingName);
+		adapterBuildingName.setDropDownViewResource(R.layout.spinner_item);		
 		mSpinnerBuildingName.setAdapter(adapterBuildingName);		
 		//Create Adapter and set data to spinner floor no
 		List<String> listFloorNo = new ArrayList<String>();
@@ -154,8 +154,8 @@ public class NewVisitorFragment extends Fragment{
 			listFloorNo.add(String.valueOf(i));	
 		}
 		ArrayAdapter<String> adapterFloorNo = new ArrayAdapter<String>
-		(getActivity(), android.R.layout.simple_dropdown_item_1line, listFloorNo);
-		adapterFloorNo.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);		
+		(getActivity(), R.layout.spinner_item, listFloorNo);
+		adapterFloorNo.setDropDownViewResource(R.layout.spinner_item);		
 		mSpinnerFloorNo.setAdapter(adapterFloorNo);			
 		//Create adapter for no of visitor spinner
 		List<String> listNoOfVisitors = new ArrayList<String>();
@@ -163,8 +163,8 @@ public class NewVisitorFragment extends Fragment{
 			listNoOfVisitors.add(String.valueOf(i));	
 		}
 		ArrayAdapter<String> adapterNoOfVisitors = new ArrayAdapter<String>
-		(getActivity(), android.R.layout.simple_dropdown_item_1line, listNoOfVisitors);
-		adapterFloorNo.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);		
+		(getActivity(), R.layout.spinner_item, listNoOfVisitors);
+		adapterFloorNo.setDropDownViewResource(R.layout.spinner_item);		
 		mSpinnerNoOfVisitors.setAdapter(adapterNoOfVisitors);	
 	}
 	
@@ -359,7 +359,7 @@ public class NewVisitorFragment extends Fragment{
 		public View newView(Context context, Cursor cursor, ViewGroup parent) {
 	        final LayoutInflater inflater = LayoutInflater.from(context);
 	        final View view =
-	                inflater.inflate(android.R.layout.simple_dropdown_item_1line,
+	                inflater.inflate(R.layout.spinner_item,
 	                        parent, false);
 	       return view;
 	    }

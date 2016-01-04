@@ -72,8 +72,8 @@ public class AddNewContactFragment extends Fragment{
 		listOccupationType.add("Plumber");
 		listOccupationType.add("Other");
 		ArrayAdapter<String> adapterOccupationName = new ArrayAdapter<String>
-		(getActivity(), android.R.layout.simple_dropdown_item_1line, listOccupationType);
-		adapterOccupationName.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);		
+		(getActivity(), R.layout.spinner_item, listOccupationType);
+		adapterOccupationName.setDropDownViewResource(R.layout.spinner_item);		
 		mSpinnerOccupation.setAdapter(adapterOccupationName);	
 	}
 	
