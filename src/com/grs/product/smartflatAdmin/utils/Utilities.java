@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.TimeZone;
 
+import com.google.android.gms.wearable.internal.GetDataItemResponse;
 import com.grs.product.smartflatAdmin.R;
 import com.grs.product.smartflatAdmin.database.SmartFlatAdminDBManager;
 import com.grs.product.smartflatAdmin.database.SmartFlatAdminDBTables.TableSocietyDetails;
@@ -16,6 +17,7 @@ import android.app.Dialog;
 import android.content.Context;
 import android.database.Cursor;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -80,7 +82,17 @@ public class Utilities {
 		String dateTime="";
 		Date date = new Date();		
 		DateFormat converter = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
-		converter.setTimeZone(TimeZone.getTimeZone("UTC"));
+		DateFormat converter1 = DateFormat.getDateTimeInstance(DateFormat.SHORT, DateFormat.SHORT);
+		DateFormat converter2 = DateFormat.getDateTimeInstance(DateFormat.MEDIUM, DateFormat.MEDIUM);
+		DateFormat converter3 = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG);
+
+		DateFormat converter4 = DateFormat.getDateTimeInstance(DateFormat.FULL, DateFormat.FULL);
+	
+	Log.e("Locale Short", converter1.format(date));
+	Log.e("Locale Medium", converter2.format(date));
+	Log.e("Locale Long", converter3.format(date));
+	Log.e("Locale Full", converter4.format(date));
+	//	converter.setTimeZone(TimeZone.getTimeZone("UTC"));
 		dateTime=converter.format(date);
 		
 		return dateTime;

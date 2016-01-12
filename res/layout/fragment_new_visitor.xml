@@ -52,8 +52,8 @@
                 android:layout_height="40sp"
                 android:layout_marginTop="5dp"
                 android:background="@drawable/spinner_bg"
-                android:ems="10"              
-                android:popupBackground="@drawable/trans_spinner_bg" />
+                android:popupBackground="@drawable/edittext_bg"
+                android:ems="10"/>
             
 
 
@@ -88,7 +88,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
                 android:layout_marginTop="20dp"
-                android:text="Owner Name"
+                android:text="Flat Owner Name"
                 android:textColor="#5d5c5c"
                 android:textSize="16sp"
                 android:visibility="gone" />
@@ -101,7 +101,6 @@
                 android:background="@drawable/edittext_bg"
                 android:completionThreshold="1"
                 android:ems="10"
-                android:hint="Enter flat owner name"
                 android:padding="5dp"
                 android:visibility="gone" />
 
@@ -134,7 +133,7 @@
                 android:layout_marginTop="5dp"
                 android:background="@drawable/spinner_bg"
                 android:ems="10"
-                android:popupBackground="@drawable/trans_spinner_bg" />
+                android:popupBackground="@drawable/edittext_bg" />
 
             <TextView
                 android:id="@+id/textViewFloorNo"
@@ -153,8 +152,7 @@
                 android:layout_marginTop="5dp"
                 android:background="@drawable/spinner_bg"
                 android:ems="10"
-                android:hint="Floor No"
-                android:popupBackground="@drawable/trans_spinner_bg" />
+                android:popupBackground="@drawable/edittext_bg" />
 
             <TextView
                 android:id="@+id/textViewFlatNo"

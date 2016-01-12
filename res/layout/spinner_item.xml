@@ -9,5 +9,4 @@
     android:layout_height="wrap_content"
     android:ellipsize="marquee"
     android:textColor="@color/black"
-    android:layout_marginTop="3dp"
-    android:background="@drawable/trans_spinner_bg"/>
+    android:layout_marginTop="3dp"/>

@@ -31,6 +31,7 @@ public class SocietyPollListAdapter   extends BaseAdapter {
 	private SocietyPollDetails temp1 = null;
 	int position1;
 	String optionNumber = "";
+	ItemHolder itemHolder = null;
 	
 	public SocietyPollListAdapter(Context context,
 			List<SocietyPollDetails> listSocietyPollDetails) {
@@ -53,8 +54,21 @@ public class SocietyPollListAdapter   extends BaseAdapter {
 	public long getItemId(int position) {
 		return 0;
 	}
+	
+	public static class ItemHolder {
+		public TextView empName;
+		public RadioButton radioButton;
+		public TextView textViewTopic;
+		public TextView textViewDetails;
+		public RadioGroup radioGroupOption;
+		public RadioButton radioButtonOptionOne;
+		public RadioButton radioButtonOptionTwo;
+		public RadioButton radioButtonOptionThree;
+		public RadioButton radioButtonOptionFour;
+		public Button buttonVote;
+	}
 
-	@Override
+/*	@Override
 	public View getView(final int position, View convertView, ViewGroup parent) {
 		View rowView = convertView;
 		if (rowView == null) {
@@ -90,6 +104,12 @@ public class SocietyPollListAdapter   extends BaseAdapter {
 				||temp.getmPollOption3UpvotedFlatOwner().contains(SmartFlatAdminApplication.getSocietyCodeFromSharedPreferences())
 				||temp.getmPollOption4UpvotedFlatOwner().contains(SmartFlatAdminApplication.getSocietyCodeFromSharedPreferences())){
 			buttonVote.setVisibility(View.GONE);
+			temp1 = listSocietyPollDetails.get(position);
+			position1 = position;
+			calculatePollVote(temp1);
+			listSocietyPollDetails.set(position1, temp1);
+			notifyDataSetChanged();
+
 		}
 		buttonVote.setOnClickListener(new OnClickListener() {
 			
@@ -129,7 +149,98 @@ public class SocietyPollListAdapter   extends BaseAdapter {
 		});
 		
 		return rowView;
+	}*/
+	
+	
+	@Override
+	public View getView(final int position, View convertView, ViewGroup parent) {
+		View rowView = convertView;
+		if (rowView == null) {
+			LayoutInflater infalInflater = (LayoutInflater) context
+					.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+			rowView = infalInflater.inflate(R.layout.society_poll_list_item, parent);
+			itemHolder = new ItemHolder();
+			itemHolder.textViewTopic = (TextView) rowView.findViewById(R.id.textViewTopic);
+			itemHolder.textViewDetails = (TextView) rowView.findViewById(R.id.textViewDetails);
+			itemHolder.radioGroupOption = (RadioGroup) rowView.findViewById(R.id.radioGroupOption);
+			itemHolder.radioButtonOptionOne = (RadioButton) rowView.findViewById(R.id.radioButtonOptionOne);
+			itemHolder.radioButtonOptionTwo = (RadioButton) rowView.findViewById(R.id.radioButtonOptionTwo);
+			itemHolder.radioButtonOptionThree = (RadioButton) rowView.findViewById(R.id.radioButtonOptionThree);
+			itemHolder.radioButtonOptionFour = (RadioButton) rowView.findViewById(R.id.radioButtonOptionFour);
+			itemHolder.buttonVote = (Button) rowView.findViewById(R.id.buttonVote);
+			rowView.setTag(itemHolder);
+		}else{
+			itemHolder = (ItemHolder) rowView.getTag();
+		}
+		SocietyPollDetails temp = listSocietyPollDetails.get(position);		
+		itemHolder.textViewTopic.setText(temp.getmPollTopic());		
+		itemHolder.textViewDetails.setText(temp.getmPollTopicDetails());	 
+		itemHolder.radioButtonOptionOne.setText(temp.getmPollOption1());		 
+		itemHolder.radioButtonOptionTwo.setText(temp.getmPollOption2());	 
+		if(temp.getmPollOption3().equalsIgnoreCase("")){
+			itemHolder.radioButtonOptionThree.setVisibility(View.GONE);	
+		}else{
+			itemHolder.radioButtonOptionThree.setText(temp.getmPollOption3());	
+		}		
+		 
+		if(temp.getmPollOption4().equalsIgnoreCase("")){
+			itemHolder.radioButtonOptionFour.setVisibility(View.GONE);	
+		}else{
+			itemHolder.radioButtonOptionFour.setText(temp.getmPollOption4());
+		}
+		
+		if(temp.getmPollOption1UpvotedFlatOwner().contains(SmartFlatAdminApplication.getSocietyCodeFromSharedPreferences())
+				||temp.getmPollOption2UpvotedFlatOwner().contains(SmartFlatAdminApplication.getSocietyCodeFromSharedPreferences())
+				||temp.getmPollOption3UpvotedFlatOwner().contains(SmartFlatAdminApplication.getSocietyCodeFromSharedPreferences())
+				||temp.getmPollOption4UpvotedFlatOwner().contains(SmartFlatAdminApplication.getSocietyCodeFromSharedPreferences())){
+			itemHolder.buttonVote.setVisibility(View.GONE);
+			temp1 = listSocietyPollDetails.get(position);
+			position1 = position;
+			calculatePollVote(temp1);
+			listSocietyPollDetails.set(position1, temp1);
+			notifyDataSetChanged();
+
+		}
+		itemHolder.buttonVote.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				if(!itemHolder.radioButtonOptionOne.isChecked() && !itemHolder.radioButtonOptionTwo.isChecked()
+						&& !itemHolder.radioButtonOptionThree.isChecked() && !itemHolder.radioButtonOptionFour.isChecked())
+				{
+					Utilities.ShowAlertBox(context, "Message", "Please select option to vote");
+				}else{
+					
+					switch (itemHolder.radioGroupOption.getCheckedRadioButtonId()) {
+					case R.id.radioButtonOptionOne:
+						optionNumber = "1";
+						break;
+						
+					case R.id.radioButtonOptionTwo:
+						optionNumber = "2";
+						break;
+						
+					case R.id.radioButtonOptionThree:
+						optionNumber = "3";
+						break;
+						
+					case R.id.radioButtonOptionFour:
+						optionNumber = "4";
+						break;
+
+					default:
+						break;
+					}
+					temp1 = listSocietyPollDetails.get(position);
+					position1 = position;
+					uploadVote(temp1,optionNumber);
+				}			
+			}
+		});
+		
+		return rowView;
 	}
+	
 	
 	private void uploadVote(SocietyPollDetails societyPollDetails, String selectedOption)
 	{	
